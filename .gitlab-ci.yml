@@ -1,0 +1,50 @@
+stages:
+    - preinstall
+    - build
+    - test
+    - acceptance-testing
+    - deploy
+
+preinstall-scripts:
+    stage: preinstall
+    script:
+        - cp -f docker/conf/docker-compose.yml.dist docker-compose.yml
+        - cp -f app/conf/domains_urls.yml.dist app/conf/domains_urls.yml
+        - cp -f app/conf/parameters.yml.dist app/conf/parameters.yml
+        - docker-compose up - d
+
+install-scritps:
+    stage: build
+    script:
+        - docker exec -it shopsys-framework-php-fpm composer update
+        - docker exec -it shopsys-framework-php-fpm ./phing db-create test-db-create timezones-check wipe-excluding-logs composer-dev npm dirs-create domains-urls-check assets db-demo grunt error-pages-generate img-demo
+
+standards:
+    stage: test
+    script:
+        - docker exec -it shopsys-framework-php-fpm ./phing standards
+
+tests-unit:
+    stage: test
+    script:
+        - docker exec -it shopsys-framework-php-fpm ./phing tests-unit
+
+tests-smoke:
+    stage: test
+    script:
+        - docker exec -it shopsys-framework-php-fpm ./phing tests-smoke
+
+test-demo:
+    stage: test
+    script:
+        - docker exec -it shopsys-framework-php-fpm ./phing test-db-demo
+
+test-db:
+    stage: test
+    script:
+        - docker exec -it shopsys-framework-php-fpm ./phing tests-db
+
+acceptance-test-scripts:
+    stage: acceptance-testing
+    script:
+        - docker exec -it shopsys-framework-php-fpm ./phing tests-acceptance
