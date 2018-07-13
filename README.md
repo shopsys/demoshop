@@ -1,12 +1,14 @@
-# Shopsys Project-base
+# Shopsys Framework Demoshop
 
-This repository is part of Shopsys Framework - a **scalable ecommerce framework** for fast-growing ecommerce sites created and maintained by in-house developers or outsourcing agencies.
+This repository is Demoshop project of Shopsys Framework - a **scalable ecommerce framework** for fast-growing ecommerce sites created and maintained by in-house developers or outsourcing agencies.
 
-Shopsys/project-base repository contains the fully ready base for building your Shopsys Framework projects. This repository is READ-ONLY and it is maintained by monorepo [shopsys/shopsys](https://github.com/shopsys/shopsys).
+shopsys/demoshop repository contains demostration project to show how you can build your own project on top of Shopsys Framework. 
+It started in July of 2018 based on [shopsys/project-base](https://github.com/shopsys/project-base) and since then we added several new features that are not included in Shopsys Framework. 
+Its purpose is to demonstrate the possibilities of Shopsys Framework and also to test and validate all concepts of Shopsys Framework to ensure customizability and upgradability.
 
-For more informations about project, please see [shopsys/shopsys](https://github.com/shopsys/shopsys) readme.
+For more informations about Shopsys Framework, please see [shopsys/shopsys](https://github.com/shopsys/shopsys) readme.
 
-This repository is maintained by [shopsys/shopsys] monorepo, information about changes are in [monorepo CHANGELOG.md](https://github.com/shopsys/shopsys/blob/master/CHANGELOG.md).
+If you want to start your own project using Shopsys Framework you should use [shopsys/project-base](https://github.com/shopsys/project-base).
 
 ## Installation
 We recommend to choose **installation via Docker** because it is the easiest and fastest way to start using Shopsys Framework.
@@ -24,21 +26,28 @@ Create new project on Shopsys Framework easily from this package following one o
 ## Documentation
 For documentation of Shopsys Framework itself see [Shopsys Framework Knowledge Base](https://github.com/shopsys/shopsys/blob/master/docs/index.md).
 
-Documentation of the specific project built on Shopsys Framework should be in [Project Documentation](https://github.com/shopsys/project-base/blob/master/docs/index.md).
+You can find documentation of this project in [Project Documentation](https://github.com/shopsys/demoshop/blob/master/docs/index.md).
 
 ## Contributing
-Thank you for your contributions to Shopsys Project-base.
-Together we are making Shopsys Framework better.
+If you have some ideas or you want to help to improve Shopsys Framework Demoshop, let us know!
+We are looking forward to your insights, feedback, and improvements.
+Thank you for helping us making Shopsys Framework Demoshop better.
 
-This repository is READ-ONLY.
-If you want to [report issues](https://github.com/shopsys/shopsys/issues/new) and/or send [pull requests](https://github.com/shopsys/shopsys/compare),
-please use the main [Shopsys repository](https://github.com/shopsys/shopsys).
-
-Please, check our [Contribution Guide](https://github.com/shopsys/shopsys/blob/master/CONTRIBUTING.md) before contributing.
+You can find all the necessary information in our [Contribution Guide](./CONTRIBUTING.md). 
 
 ## Support
-What to do when you are in troubles or need some help? Best way is to contact us on our Slack [http://slack.shopsys-framework.com/](http://slack.shopsys-framework.com/)
+What to do when you are in troubles or need some help?
+The best way is to contact us on our [Slack](http://slack.shopsys-framework.com/).
 
-If you want to [report issues](https://github.com/shopsys/shopsys/issues/new), please use the main [Shopsys repository](https://github.com/shopsys/shopsys).
+If you are experiencing problems running Shopsys Framework on Docker,
+please see our [Docker troubleshooting](https://github.com/shopsys/shopsys/blob/master/docs/docker/docker-troubleshooting.md).
 
-[shopsys/shopsys]:(https://github.com/shopsys/shopsys)
+Or ultimately, just [report an issue](https://github.com/shopsys/demoshop/issues/new).
+
+## License
+We distribute Shopsys Framework Demoshop under two different licenses:
+
+* [Community License](./LICENSE) in MIT style for growing small to mid-size e-commerce sites with total online sales less than 12.000.000 EUR / year (3.000.000 EUR / quarter)
+* Commercial License
+
+Learn the principles on which we distribute our product on our website at [Licenses and Pricing section](https://www.shopsys.com/licensing).
