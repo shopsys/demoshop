@@ -44,11 +44,17 @@ img {
         }
     }
 
+    &__header {
+        box-shadow: 0 0 20px rgba(0,0,0,.1);
+        margin-bottom: 30px;
+    }
+
     &__container {
         padding: 0 @web-padding;
 
         @media @query-xl {
             width: @web-width;
+            max-width: 100%;
             margin: 0 auto;
         }
     }
@@ -83,7 +89,7 @@ img {
                 order: 1;
                 flex-shrink: 0;
                 width: @web-panel-width;
-                padding-right: 20px;
+                padding-right: 40px;
             }
         }
     }
