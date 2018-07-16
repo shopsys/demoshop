@@ -38,7 +38,7 @@
 
 // mobile + tablet version
 @media @query-tablet {
-    @list-menu-mobile-bg: @color-2;
+    @list-menu-mobile-bg: @color-f;
     @list-menu-mobile-border-color: darken(@list-menu-mobile-bg, 5%);
     @list-menu-mobile-position: @web-header-mobile-dropdown-position;
 
@@ -61,8 +61,6 @@
 
         &__item {
             display: block;
-
-            border-top: 1px solid @list-menu-mobile-border-color;
 
             &:first-child {
                 border-top: 0;
@@ -107,7 +105,7 @@
         & & {
             margin-bottom: 0;
 
-            border-top: 1px solid @list-menu-mobile-border-color;
+
         }
     }
 }
@@ -121,8 +119,6 @@
 
         &--root {
             padding: 15px;
-
-            background-color: @color-2;
         }
 
         &__item {
@@ -138,7 +134,7 @@
 
                 font-size: 13px;
                 text-decoration: none;
-                color: @color-f;
+                color: @color-base;
 
                 &--level-1 {
                     padding-left: 0;
