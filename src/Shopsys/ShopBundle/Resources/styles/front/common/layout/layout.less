@@ -1,6 +1,7 @@
 @web-footer-with-cookies-margin-bottom: 36px;
 
 @web-footer-background: @color-3;
+@web-header-background: @color-3;
 
 img {
     max-width: 100%;
@@ -16,8 +17,8 @@ img {
     }
 
     &--window-activated {
-        overflow: hidden;
         margin-right: @web-scrollbar-size;
+        overflow: hidden;
     }
 
     &__in {
@@ -29,14 +30,18 @@ img {
         &--grey {
             background: @color-light;
         }
+
+        &--dark {
+            background: @web-header-background;
+        }
     }
 
     &__footer {
         flex: 0;
-        will-change: padding;
 
         background: @web-footer-background;
         transition: @transition padding;
+        will-change: padding;
 
 
         &--with-cookies {
@@ -45,17 +50,19 @@ img {
     }
 
     &__header {
-        box-shadow: 0 0 20px rgba(0,0,0,.1);
         margin-bottom: 30px;
+
+        background-color: @web-header-background;
+        border-top: 1px solid rgba(255,255,255,.1);
     }
 
     &__container {
         padding: 0 @web-padding;
 
         @media @query-xl {
+            margin: 0 auto;
             width: @web-width;
             max-width: 100%;
-            margin: 0 auto;
         }
     }
 
@@ -87,9 +94,10 @@ img {
             @media @query-lg {
                 display: block;
                 order: 1;
-                flex-shrink: 0;
-                width: @web-panel-width;
                 padding-right: 40px;
+                width: @web-panel-width;
+
+                flex-shrink: 0;
             }
         }
     }

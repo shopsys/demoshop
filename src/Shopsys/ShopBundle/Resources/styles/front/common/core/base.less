@@ -5,21 +5,19 @@
 }
 
 html {
-    height: 100%;
     margin: 0;
+    height: 100%;
 }
 
 html, body {
-    min-height: 100%;
     padding: 0;
+    min-height: 100%;
 }
 
-body, form, input, select, button, p, pre, dfn, address, ul, ol, li,
-h1, h2, h3, h4, h5, h6, img,
-table, tr, td, th, input, textarea {
+body, form, input, select, button, p, pre, dfn, address, ul, ol, li, h1, h2, h3, h4, h5, h6, img, table, tr, td, th, input, textarea {
     color: @color-base;
-    font-family: @font-base;
     font-size: @font-size-mobile;
+    font-family: @font-base;
 
     @media @query-lg {
         font-size: @font-size;
@@ -27,14 +25,15 @@ table, tr, td, th, input, textarea {
 }
 
 fieldset {
-    border: 0;
     margin: 0;
     padding: 0;
+
+    border: 0;
 }
 
 img {
-    max-width: 100%;
     height: auto;
+    max-width: 100%;
 }
 
 td, th {
@@ -58,12 +57,14 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: @color-base;
-    font-family: @font;
-    font-weight: 400;
     line-height: 1.3em;
-    text-rendering: optimizelegibility;
+
+    color: @color-base;
+    font-weight: 600;
+    font-family: @font-headline;
     word-wrap: break-word;
+
+    text-rendering: optimizelegibility;
 }
 
 h1 {
@@ -162,8 +163,8 @@ h5 {
     margin: 0 0 10px 0;
 
     font-size: 9px;
-    text-transform: uppercase;
     font-weight: bold;
+    text-transform: uppercase;
 
     @media @query-md {
         font-size: 10px;
@@ -190,14 +191,14 @@ h6 {
 }
 
 a {
-    text-decoration: underline;
-    color: @color-link;
     cursor: pointer;
-    outline: none;
+    color: @color-link;
     transition: @transition color;
+    text-decoration: underline;
+    outline: none;
 
     &:hover {
-        text-decoration: none;
         color: @color-link-hover;
+        text-decoration: none;
     }
 }

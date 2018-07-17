@@ -19,10 +19,6 @@
 
             {% block panel_content %}{% endblock %}
 
-            <div id="js-contact-form-container">
-                {{ render(controller('ShopsysShopBundle:Front/ContactForm:index')) }}
-            </div>
-
             {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : constant('Shopsys\\FrameworkBundle\\Model\\Advert\\Advert::POSITION_LEFT_SIDEBAR')})) }}
         </div>
     </div>

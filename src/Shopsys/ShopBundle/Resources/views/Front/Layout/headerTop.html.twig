@@ -1,0 +1,59 @@
+{% block header %}
+<div class="header__top">
+    <div class="header__top__left">
+        {% cache 'layout_article_menu' 5*60 %}
+            {{ render(controller('ShopsysShopBundle:Front/Article:menu')) }}
+        {% endcache %}
+    </div>
+
+    <div class="header__top__right">
+        <ul class="menu-iconic">
+            {% if is_granted('ROLE_LOGGED_CUSTOMER') %}
+                <li class="menu-iconic__item">
+                    <a href="{{ url('front_customer_edit') }}" class="menu-iconic__item__link">
+                        <i class="svg svg-user"></i>
+                        <span>
+                            {{ app.user.firstName }} {{ app.user.lastName }}
+                        </span>
+                    </a>
+                    <ul class="menu-iconic__sub">
+                        <li class="menu-iconic__sub__item">
+                            <a href="{{ url('front_customer_edit') }}" class="menu-iconic__sub__item__link">{{ 'Personal data'|trans }}</a>
+                        </li>
+                        <li class="menu-iconic__sub__item">
+                            <a href="{{ url('front_customer_orders') }}" class="menu-iconic__sub__item__link">{{ 'My orders'|trans }}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-iconic__item">
+                    <a href="{{ url('front_logout', { _csrf_token: csrf_token('frontend_logout')}) }}" class="js-logout-link-desktop menu-iconic__item__link">
+                        <span>
+                            {{ 'Log out'|trans }}
+                        </span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="menu-iconic__item">
+                    <a
+                        href="{{ url('front_login') }}"
+                        onclick="Shopsys.window({ content: '{{ render(controller('ShopsysShopBundle:Front/Login:windowForm'))|escape('js') }}' }); return false;"
+                        class="js-login-link-desktop menu-iconic__item__link"
+                    >
+                        <i class="svg svg-user"></i>
+                        <span>
+                            {{ 'Log in'|trans }}
+                        </span>
+                    </a>
+                </li>
+                <li class="menu-iconic__item">
+                    <a href="{{ url('front_registration_register') }}" class="js-registration-link-desktop menu-iconic__item__link">
+                        <span>
+                            {{ 'Registration'|trans }}
+                        </span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

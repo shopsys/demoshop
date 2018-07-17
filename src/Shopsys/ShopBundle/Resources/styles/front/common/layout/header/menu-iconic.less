@@ -3,6 +3,7 @@
 
     @media @query-lg {
         .reset-ul();
+
         display: block;
         text-align: right;
 
@@ -10,8 +11,8 @@
 
         &__item {
             display: inline-block;
-            vertical-align: middle;
             position: relative;
+            vertical-align: middle;
             line-height: 16px;
             text-align: left;
 
@@ -19,9 +20,10 @@
 
             &__link {
                 display: block;
-                padding: 5px;
                 margin-right: 5px;
+                padding: 10px 5px;
 
+                color: @color-8;
                 text-decoration: none;
 
                 .svg {
@@ -31,17 +33,8 @@
                     font-size: 11px;
                 }
 
-                span {
-                    display: inline-block;
-                    vertical-align: middle;
-
-                    text-decoration: underline;
-                }
-
                 &:hover {
-                    span {
-                        text-decoration: none;
-                    }
+                    color: @color-9;
                 }
             }
 
@@ -53,19 +46,19 @@
         }
 
         &__sub {
-            display: none;
-
             .reset-ul();
+
+            display: none;
             position: absolute;
             top: 26px;
             left: 50%;
-            width: 140px;
             margin-left: -70px;
+            width: 140px;
+            z-index: 30;
 
             background: @color-f;
             border: 1px solid @color-border;
             border-top: 0;
-            z-index: 30;
 
             .menu-iconic__item:hover & {
                 display: block;
