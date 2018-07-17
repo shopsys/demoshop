@@ -20,7 +20,7 @@
             line-height: @list-menu-arrow-size;
             text-align: center;
 
-            font-size: 11px;
+            font-size: 15px;
 
             &:before {
                 display: block;
@@ -30,7 +30,7 @@
             }
 
             &.open:before {
-                transform: rotateX(180deg);
+                transform: rotate(45deg);
             }
         }
     }
@@ -70,7 +70,6 @@
                 display: block;
                 padding: 10px @list-menu-padding-right 10px 20px;
 
-                color: @color-f;
                 font-size: 13px;
                 text-decoration: none;
 
@@ -80,19 +79,23 @@
                 }
 
                 &--level-1 {
-                    font-size: 14px;
+                    padding-left: 10px;
+
+                    font-size: 18px;
+                    font-weight: 600;
+                    font-family: @font-headline;
                 }
 
                 &--level-2 {
-                    padding-left: 40px;
+                    padding-left: 20px;
                 }
 
                 &--level-3 {
-                    padding-left: 50px;
+                    padding-left: 30px;
                 }
 
                 &--level-4 {
-                    padding-left: 60px;
+                    padding-left: 30px;
                 }
 
                 &.current {
@@ -137,23 +140,25 @@
                 &--level-1 {
                     padding-left: 0;
 
-                    font-size: 14px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    font-family: @font-headline;
                 }
 
                 &--level-2 {
-                    padding-left: 20px;
+                    padding-left: 0px;
                 }
 
                 &--level-3 {
-                    padding-left: 30px;
+                    padding-left: 20px;
                 }
 
                 &--level-4 {
-                    padding-left: 40px;
+                    padding-left: 30px;
                 }
 
                 &.current {
-                    color: @color-base;
+                    color: @color-primary;
                     font-weight: bold;
                 }
             }
@@ -168,7 +173,7 @@
         }
 
         & & {
-            margin-bottom: 0;
+            margin-bottom: 10px;
         }
     }
 }

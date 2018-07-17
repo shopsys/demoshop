@@ -1,21 +1,23 @@
 {% extends '@ShopsysShop/Front/Layout/layout.html.twig' %}
 
 {% block content %}
+    {% block breadcrumb %}
+        {{ render(controller('ShopsysShopBundle:Front/Breadcrumb:index', { routeName: getRoute(), routeParameters: getRouteParams() } )) }}
+    {% endblock %}
     <div class="web__main web__main--with-panel">
         <div class="web__main__content js-main-content">
-            {% block breadcrumb %}
-                {{ render(controller('ShopsysShopBundle:Front/Breadcrumb:index', { routeName: getRoute(), routeParameters: getRouteParams() } )) }}
-            {% endblock %}
-
+            
             {{ render(controller('ShopsysShopBundle:Front/FlashMessage:index')) }}
 
             {% block main_content %}{% endblock %}
         </div>
 
         <div class="web__main__panel">
-            {% cache 'category_panel'~app.request.pathinfo 5*60 %}
-                {{ render(controller('ShopsysShopBundle:Front/Category:panel', { request: app.request } )) }}
-            {% endcache %}
+            <div class="wrap-shadow">
+                {% cache 'category_panel'~app.request.pathinfo 5*60 %}
+                    {{ render(controller('ShopsysShopBundle:Front/Category:panel', { request: app.request } )) }}
+                {% endcache %}
+            </div>
 
             {% block panel_content %}{% endblock %}
 

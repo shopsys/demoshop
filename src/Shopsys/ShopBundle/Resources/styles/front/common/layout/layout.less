@@ -53,14 +53,15 @@ img {
         margin-bottom: 30px;
 
         background-color: @web-header-background;
-        border-top: 1px solid rgba(255,255,255,.1);
+        border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     &__container {
-        padding: 0 @web-padding;
+        padding: 0 @web-padding/2;
 
         @media @query-xl {
             margin: 0 auto;
+            padding: 0 @web-padding;
             width: @web-width;
             max-width: 100%;
         }

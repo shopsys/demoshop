@@ -113,23 +113,21 @@
         position: relative;
         padding: 0 10px;
 
-        color: @color-base;
+        color: @color-f;
         font-size: 16px;
         transition: @transition color;
         text-decoration: none;
 
         .header__mobile-button--menu & {
-            background: @color-light;
+            background: @color-primary;
             font-size: 14px;
         }
 
         &.active {
-            color: @color-primary;
             text-decoration: none;
 
             .header__mobile-button--menu & {
-                background: @color-primary;
-                color: @color-f;
+                background: darken(@color-primary, 10%);
             }
         }
 

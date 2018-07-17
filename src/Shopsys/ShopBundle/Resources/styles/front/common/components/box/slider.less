@@ -24,21 +24,23 @@
         }
 
         &__item {
+            position: relative;
             float: left;
             width: 0;
-            position: relative;
 
             img {
-                margin: 0 auto;
                 display: block;
+                margin: 0 auto;
+                width: 100%;
             }
         }
 
         .slick-dots {
             .reset-ul();
+
             position: absolute;
-            left: 10px;
             bottom: 10px;
+            left: 10px;
             z-index: 2;
 
             li {
@@ -46,19 +48,18 @@
 
                 button {
                     display: block;
+                    margin: 0 4px 0 0;
+                    padding: 0;
                     width: @box-slider-point-size;
                     height: @box-slider-point-size;
                     line-height: @box-slider-point-size;
-                    padding: 0;
-                    margin: 0 4px 0 0;
 
-                    text-indent: -9999px;
-                    font-size: 0;
                     background: @color-base;
-                    cursor: pointer;
                     border: none;
-
+                    cursor: pointer;
+                    font-size: 0;
                     border-radius: 50%;
+                    text-indent: -9999px;
                 }
 
                 &.slick-active {
