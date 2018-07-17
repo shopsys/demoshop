@@ -1,5 +1,5 @@
 <div id="js-cart-box" data-reload-url="{{ url('front_cart_box') }}">
-    <div class="cart">
+    <div class="cart {% if not cart.isEmpty %}cart--full{% endif %}">
         <a class="cart__block" href="{{ url('front_cart') }}">
             <span class="cart__icon">
                 <i class="svg svg-cart"></i>

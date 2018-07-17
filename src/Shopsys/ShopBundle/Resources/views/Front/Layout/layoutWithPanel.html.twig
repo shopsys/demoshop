@@ -6,19 +6,18 @@
     {% endblock %}
     <div class="web__main web__main--with-panel">
         <div class="web__main__content js-main-content">
-            
+
             {{ render(controller('ShopsysShopBundle:Front/FlashMessage:index')) }}
 
             {% block main_content %}{% endblock %}
         </div>
 
         <div class="web__main__panel">
-            <div class="wrap-shadow">
+            <div class="wrap-border">
                 {% cache 'category_panel'~app.request.pathinfo 5*60 %}
                     {{ render(controller('ShopsysShopBundle:Front/Category:panel', { request: app.request } )) }}
                 {% endcache %}
             </div>
-
             {% block panel_content %}{% endblock %}
 
             {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : constant('Shopsys\\FrameworkBundle\\Model\\Advert\\Advert::POSITION_LEFT_SIDEBAR')})) }}

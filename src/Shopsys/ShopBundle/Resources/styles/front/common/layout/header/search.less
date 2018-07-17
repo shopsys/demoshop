@@ -9,6 +9,7 @@
 
         .is-no-flex & {
             display: block;
+
             .clearfix();
         }
 
@@ -24,14 +25,16 @@
             .input {
                 padding-left: 30px;
                 width: 100%;
+
+                border: 0;
             }
         }
 
         &__button {
             flex: 0 @search-button-width;
+            padding: 0;
             height: @search-form-height;
             line-height: @search-form-height;
-            padding: 0;
 
             .is-no-flex & {
                 width: @search-button-width;
@@ -42,9 +45,9 @@
             position: absolute;
             top: 9px;
             left: 10px;
-            transition: @transition color;
 
             color: @color-inactive;
+            transition: @transition color;
 
             .search__input:focus + & {
                 color: @color-primary;
@@ -55,15 +58,16 @@
 
     &__hint {
         .reset-ul();
+
         position: absolute;
         top: 34px;
         left: 0;
         width: 100%;
         z-index: 10;
 
-        border: 1px solid @color-border;
-        border-top: 0px;
         background: @color-f;
+        border: 1px solid @color-border;
+        border-top: 0;
         border-radius: 0 0 @radius @radius;
 
         &__item {
@@ -72,11 +76,12 @@
             &__link {
                 display: flex;
                 align-items: center;
-                width: 100%;
                 padding: 10px;
-                .clearfix();
+                width: 100%;
 
                 text-decoration: none;
+
+                .clearfix();
 
                 &:hover {
                     text-decoration: none;
@@ -87,8 +92,8 @@
                 padding: 10px 0;
                 text-align: center;
 
-                font-size: 12px;
                 border: none;
+                font-size: 12px;
             }
 
             &:last-child {
@@ -97,9 +102,9 @@
         }
 
         &__image {
+            flex: 0 30px;
             position: relative;
             height: 30px;
-            flex: 0 30px;
 
             img {
                 .center-image();
@@ -110,14 +115,14 @@
                 top: -2px;
                 margin-bottom: -2px;
 
-                font-size: 20px;
                 color: @color-base;
+                font-size: 20px;
             }
         }
 
         &__name {
-            padding-left: 10px;
             flex: 1;
+            padding-left: 10px;
         }
     }
 }
