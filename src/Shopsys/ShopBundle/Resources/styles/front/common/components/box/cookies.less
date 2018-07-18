@@ -1,46 +1,53 @@
-@box-cookies-height: @web-footer-with-cookies-margin-bottom;
-@box-cookies-padding: @web-padding;
+@box-cookies-padding: 10px;
 @box-cookies-width: @web-width;
 
-@box-cookies-background: #BCE0EE;
+@box-cookies-background: fade(@color-f, 90%);
 
 .box-cookies {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
+    right: auto;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
     padding: 5px 0;
-    height: @box-cookies-height;
-    will-change: transform;
+    z-index: 1000;
+
     text-align: center;
 
     background: @box-cookies-background;
     transition: @transition transform;
+    will-change: transform;
+    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+
+    @media @query-vl {
+        transform: translate(-50%,0);
+        left: 50%;
+        right: auto;
+    }
 
     &--closing {
         transform: scaleY(0);
     }
 
     &__in {
-        padding: 0 @box-cookies-padding;
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
+        padding: 5px @box-cookies-padding;
         width: 100%;
 
         .is-no-flex & {
             display: block;
             text-align: center;
         }
-
-        @media @query-xl {
-            margin: 0 auto;
-            width: @box-cookies-width;
-        }
     }
 
     &__text {
+
+        @media @query-vl {
+            white-space: nowrap;
+        }
+
         .is-no-flex & {
             display: inline-block;
             vertical-align: middle;
@@ -49,6 +56,7 @@
 
     &__btn {
         padding-left: 10px;
+        white-space: nowrap;
 
         .is-no-flex & {
             display: inline-block;
