@@ -12,6 +12,20 @@ img {
     flex-direction: column;
     min-height: 100%;
 
+    &.js-body-filters-open {
+
+        @media @query-tablet {
+            display: block;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    }
+
     .is-no-flex &, .is-safari & {
         display: block;
     }

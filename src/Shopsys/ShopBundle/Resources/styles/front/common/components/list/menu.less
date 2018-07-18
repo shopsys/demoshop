@@ -13,11 +13,12 @@
         &__control {
             position: absolute;
             top: 50%;
-            right: 0;
+            right: 10px;
             margin-top: -@list-menu-arrow-size/2;
             width: @list-menu-arrow-size;
             height: @list-menu-arrow-size;
             line-height: @list-menu-arrow-size;
+            z-index: 10;
             text-align: center;
 
             font-size: 15px;
@@ -120,8 +121,8 @@
         margin-bottom: @margin-gap;
 
         &--root {
-            padding: 15px;
             margin-bottom: 0;
+            padding: 0;
         }
 
         &__item {
@@ -133,30 +134,50 @@
 
             &__link {
                 display: block;
-                padding: 5px @list-menu-padding-right 5px 50px;
+                padding: 5px @list-menu-padding-right 5px 60px;
 
                 color: @color-base;
                 font-size: 13px;
                 text-decoration: none;
 
                 &--level-1 {
-                    padding-left: 0;
+                    position: relative;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    padding-left: 15px;
 
+                    border-top: 1px solid rgba(0,0,0,0.07);
                     font-size: 18px;
                     font-weight: 600;
                     font-family: @font-headline;
+
+                    &:after {
+                        position: absolute;
+                        top: 0;
+                        right: 100%;
+                        bottom: 0;
+                        left: 0;
+                        content: ' ';
+
+                        background-color: fade(@color-0, 5%);
+                        transition: @transition;
+                    }
+
+                    &:hover:after {
+                        right: 0;
+                    }
                 }
 
                 &--level-2 {
-                    padding-left: 0px;
+                    padding-left: 15px;
                 }
 
                 &--level-3 {
-                    padding-left: 20px;
+                    padding-left: 30px;
                 }
 
                 &--level-4 {
-                    padding-left: 30px;
+                    padding-left: 45px;
                 }
 
                 &.current {
@@ -175,7 +196,8 @@
         }
 
         & & {
-            margin-bottom: 10px;
+            margin-bottom: 0;
+            padding-bottom: 10px;
         }
     }
 }
