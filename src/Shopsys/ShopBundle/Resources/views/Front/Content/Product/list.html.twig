@@ -42,19 +42,7 @@
         {{ render(controller('ShopsysShopBundle:Front/BestsellingProduct:list', { category: category })) }}
 
         <div class="js-product-list-with-filter">
-            {% if paginationResult.results|length > 0 or filterFormSubmited %}
-                <div class="box-filter js-product-filter">
-                    {{ productFilterForm.filterForm(
-                        filterForm,
-                        url('front_product_list', { id: category.id }),
-                        url('front_product_list', { id: category.id }),
-                        null,
-                        'product_list',
-                        productFilterCountData,
-                        priceRange
-                    ) }}
-                </div>
-            {% endif %}
+            
 
             <div class="js-product-list-ajax-filter-products-with-controls">
                 <div>
