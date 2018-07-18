@@ -1,4 +1,4 @@
-{% extends '@ShopsysShop/Front/Layout/layoutWithPanel.html.twig' %}
+{% extends '@ShopsysShop/Front/Layout/layout.html.twig' %}
 {% import '@ShopsysShop/Front/Inline/Paginator/paginator.html.twig' as paginator %}
 {% import '@ShopsysShop/Front/Content/Product/filterFormMacro.html.twig' as productFilterForm %}
 {% import '@ShopsysShop/Front/Content/Product/productListMacro.html.twig' as productList %}
@@ -17,51 +17,86 @@
     {{ category.getSeoTitle(domain.id)|default(category.name) }}
 {% endblock %}
 
-{% block main_content %}
-    <div class="box-list">
-        {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : POSITION_PRODUCT_LIST})) }}
-        <h1>
-            {{ category.getSeoH1(domain.id)|default(category.name) }}
-        </h1>
-        <div class="box-list__description">
-            <div class="js-category-description box-list__description__text in-user-text">
-                {{ category.getDescriptionSecond(domain.id)|raw }}
-            </div>
-            <div class="box-list__description__more">
-                <span class="js-category-description-load-more link-style box-list__description__more__btn">
-                    {{ 'View more'|trans }}
-                </span>
-            </div>
-        </div>
-        {% if visibleChildren is not empty %}
-            <h2>{{ 'List of subcategories'|trans }}</h2>
+{% block content %}
+    {% block breadcrumb %}
+        {{ render(controller('ShopsysShopBundle:Front/Breadcrumb:index', { routeName: getRoute(), routeParameters: getRouteParams() } )) }}
+    {% endblock %}
+    <div class="web__main web__main--with-panel">
+        <div class="web__main__content js-main-content">
 
-            {{ render(controller('ShopsysShopBundle:Front/Category:categoryList', {categories: visibleChildren})) }}
-        {% endif %}
+            {{ render(controller('ShopsysShopBundle:Front/FlashMessage:index')) }}
 
-        {{ render(controller('ShopsysShopBundle:Front/BestsellingProduct:list', { category: category })) }}
-
-        <div class="js-product-list-with-filter">
-            
-
-            <div class="js-product-list-ajax-filter-products-with-controls">
-                <div>
-                    {{ render(controller('ShopsysShopBundle:Front/Product:selectOrderingModeForList')) }}
+            {% block main_content %}
+            <div class="box-list">
+                {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : POSITION_PRODUCT_LIST})) }}
+                <h1>
+                    {{ category.getSeoH1(domain.id)|default(category.name) }}
+                </h1>
+                <div class="box-list__description">
+                    <div class="js-category-description box-list__description__text in-user-text">
+                        {{ category.getDescriptionSecond(domain.id)|raw }}
+                    </div>
+                    <div class="box-list__description__more">
+                        <span class="js-category-description-load-more link-style box-list__description__more__btn">
+                            {{ 'View more'|trans }}
+                        </span>
+                    </div>
                 </div>
-                {% include '@ShopsysShop/Front/Content/Product/productsWithControls.html.twig' with {paginationResult: paginationResult, filterFormSubmited: filterFormSubmited} %}
+                {% if visibleChildren is not empty %}
+                    <h2>{{ 'List of subcategories'|trans }}</h2>
+
+                    {{ render(controller('ShopsysShopBundle:Front/Category:categoryList', {categories: visibleChildren})) }}
+                {% endif %}
+
+                {{ render(controller('ShopsysShopBundle:Front/BestsellingProduct:list', { category: category })) }}
+
+                <div class="js-product-list-with-filter">
+
+
+                    <div class="js-product-list-ajax-filter-products-with-controls">
+                        <div>
+                            {{ render(controller('ShopsysShopBundle:Front/Product:selectOrderingModeForList')) }}
+                        </div>
+                        {% include '@ShopsysShop/Front/Content/Product/productsWithControls.html.twig' with {paginationResult: paginationResult, filterFormSubmited: filterFormSubmited} %}
+                    </div>
+                </div>
+
+                <div class="box-list__description">
+                    <div class="js-category-description box-list__description__text in-user-text">
+                        {{ category.getDescription(domain.id)|raw }}
+                    </div>
+                    <div class="box-list__description__more">
+                        <span class="js-category-description-load-more link-style box-list__description__more__btn">
+                            {{ 'View more'|trans }}
+                        </span>
+                    </div>
+                </div>
             </div>
+            {% endblock %}
         </div>
 
-        <div class="box-list__description">
-            <div class="js-category-description box-list__description__text in-user-text">
-                {{ category.getDescription(domain.id)|raw }}
+        <div class="web__main__panel">
+            <div class="wrap-border">
+                {{ render(controller('ShopsysShopBundle:Front/Category:panel', { request: app.request } )) }}
             </div>
-            <div class="box-list__description__more">
-                <span class="js-category-description-load-more link-style box-list__description__more__btn">
-                    {{ 'View more'|trans }}
-                </span>
-            </div>
+
+            {% if paginationResult.results|length > 0 or filterFormSubmited %}
+                <div class="box-filter js-product-filter">
+                    {{ productFilterForm.filterForm(
+                        filterForm,
+                        url('front_product_list', { id: category.id }),
+                        url('front_product_list', { id: category.id }),
+                        null,
+                        'product_list',
+                        productFilterCountData,
+                        priceRange
+                    ) }}
+                </div>
+            {% endif %}
+
+            {% block panel_content %}{% endblock %}
+
+            {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : constant('Shopsys\\FrameworkBundle\\Model\\Advert\\Advert::POSITION_LEFT_SIDEBAR')})) }}
         </div>
     </div>
-
 {% endblock %}
