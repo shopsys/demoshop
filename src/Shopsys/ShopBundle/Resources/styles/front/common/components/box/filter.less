@@ -1,22 +1,47 @@
 @box-filter-padding: 10px;
 
 .box-filter {
+    margin-top: @margin-gap;
     margin-bottom: @margin-gap;
     padding: @box-filter-padding;
 
-    border: 1px solid @color-border;
+    .wrap-border;
+
+    @media @query-lg {
+        padding: 15px;
+    }
 
     &__price {
         margin-bottom: @margin-gap;
+
+        .form-line {
+            dt {
+                display: inline-block;
+                float: none;
+                width: 50px;
+            }
+
+            dd {
+                display: inline-block;
+                margin-left: 0;
+
+                .input {
+                    width: 80px;
+                }
+            }
+        }
+
+        .ui-slider {
+            margin: @margin-gap 10px;
+        }
     }
 
     &__choice {
         margin-bottom: @margin-gap/2;
 
         &__title {
-            display: inline-block;
-            vertical-align: middle;
-            margin: 0 10px 5px 0;
+            display: block;
+            margin: 23px 10px 5px 0;
 
             font-weight: bold;
         }
@@ -25,15 +50,15 @@
     &__parameters {
         &__title {
             display: block;
-            padding: @box-filter-padding;
             margin: 0 -@box-filter-padding @margin-gap/2;
+            padding: @box-filter-padding;
 
             font-weight: bold;
-            background: @color-light;
         }
     }
 
     &__action {
         text-align: right;
+        margin-top: @margin-gap;
     }
 }

@@ -13,8 +13,9 @@
         {% endif %}
 
         <div class="box-filter__price">
-            {{ form_row(filterForm.minimalPrice, {label: 'Price from'|trans, symbolAfterInput: currencySymbolByDomainId(getDomain().id), attr: { class: 'js-product-filter-call-change-after-reset'} }) }}
-            {{ form_row(filterForm.maximalPrice, {label: 'Price to'|trans, symbolAfterInput: currencySymbolByDomainId(getDomain().id), attr: { class: 'js-product-filter-call-change-after-reset'} }) }}
+            <strong>
+            {{ 'Price'|trans }}
+            </strong>
             <div
                 class="js-range-slider"
                 data-minimum-input-id="{{ filterForm.minimalPrice.vars.id }}"
@@ -22,6 +23,9 @@
                 data-maximum-input-id="{{ filterForm.maximalPrice.vars.id }}"
                 data-maximal-value="{{ priceRange.maximalPrice }}"
             ></div>
+            {{ form_row(filterForm.minimalPrice, {label: 'From'|trans, symbolAfterInput: currencySymbolByDomainId(getDomain().id), attr: { class: 'js-product-filter-call-change-after-reset'} }) }}
+            {{ form_row(filterForm.maximalPrice, {label: 'To'|trans, symbolAfterInput: currencySymbolByDomainId(getDomain().id), attr: { class: 'js-product-filter-call-change-after-reset'} }) }}
+
         </div>
 
         <div class="box-filter__choice">
@@ -76,9 +80,6 @@
             {% do filterForm.parameters.setRendered %}
         {% else %}
             <div class="box-filter__parameters">
-                <span class="box-filter__parameters__title">
-                    {{ 'Parameters'|trans }}:
-                </span>
                 <div id="{{ filterForm.parameters.vars.id }}">
                     {% for parameterId, parameterForm in filterForm.parameters %}
                         <div class="js-product-filter-parameter">
