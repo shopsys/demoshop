@@ -6,15 +6,16 @@
             <li class="list-products__item js-list-products-item">
                 <div class="list-products__item__in">
                     <a href="{{ url('front_product_detail', {'id': product.id}) }}" class="list-products__item__block">
-                        <{{ productHeadingTagName|default('h2') }} class="list-products__item__title js-list-products-item-title">
-                            {{ product.name }}
-                        </{{ productHeadingTagName|default('h2') }}>
 
                         <div class="list-products__item__image">
                             {{ image(product, { size: 'list', alt: product.name }) }}
                         </div>
 
                         <div class="list-products__item__info">
+                            <{{ productHeadingTagName|default('h2') }} class="list-products__item__title js-list-products-item-title">
+                                {{ product.name }}
+                            </{{ productHeadingTagName|default('h2') }}>
+                            
                             <p class="list-products__item__info__description">
                                 {{ product.getShortDescription(domain.id) }}
                             </p>
