@@ -31,4 +31,8 @@ services:
 
   Shopsys\ShopBundle\Model\Category\CurrentCategoryResolver: ~
 
+  Shopsys\FrameworkBundle\Model\Product\ProductFactoryInterface: '@Shopsys\ShopBundle\Model\Product\ProductFactory'
+
+  Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface: '@Shopsys\ShopBundle\Model\Product\ProductDataFactory'
+
   League\Flysystem\FilesystemInterface: '@main_filesystem'
