@@ -1,0 +1,34 @@
+{% block begin %}
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+    <channel>
+        {% endblock %}
+
+        {% block item %}
+            <item>
+                <g:id>{{ item.id }}</g:id>
+                <title>{{ item.title }}</title>
+                <g:description>{{ item.description|striptags|replace({"\n": ' '})|trim }}</g:description>
+                <link>{{ item.link }}</link>
+                {% if item.imageLink is not null -%}
+                    <g:image_link>{{ item.imageLink }}</g:image_link>
+                {% endif -%}
+                <g:availability>{{ item.availability }}</g:availability>
+                <g:price>{{ item.price.priceWithVat|number_format(2, '.', '') }} {{ item.currency.code }}</g:price>
+                {%  if item.brand is not null -%}
+                    <g:brand>{{ item.brand }}</g:brand>
+                {% endif -%}
+                {% for type, value in item.identifiers %}
+                    <g:{{ type }}>{{ value }}</g:{{ type }}>
+                {% else %}
+                    <g:identifier_exists>no</g:identifier_exists>
+                {% endfor %}
+                <g:adult>no</g:adult>
+                <g:condition>{{ item.condition }}</g:condition>
+            </item>
+        {% endblock %}
+
+        {% block end %}
+    </channel>
+</rss>
+{% endblock %}
