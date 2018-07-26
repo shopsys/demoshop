@@ -1,0 +1,20 @@
+{% for pickUpPlace in pickUpPlaces %}
+    <div class="js-pick-up-place-tooltip" title="{{ pickUpPlace.description }}">
+        <div class="js-pick-up-place-row">
+            <i class="svg svg-arrow-down"></i>
+            {{ pickUpPlace.name }}, {{ pickUpPlace.postCode }}
+        </div>
+        <div class="js-pick-up-place-autocomplete-results-detail-container">
+            <div class="js-pick-up-place-autocomplete-results-detail"></div>
+
+            <button type="button" class="js-pick-up-place-button btn btn--success "
+                    data-id="{{ pickUpPlace.id }}"
+                    data-name="{{ pickUpPlace.name }}"
+                    data-address="{{ pickUpPlace.fullAddress }}"
+                    data-description="{{ pickUpPlace.description }}"
+            >
+                {{ 'Choose'|trans }}
+            </button>
+        </div>
+    </div>
+{% endfor %}

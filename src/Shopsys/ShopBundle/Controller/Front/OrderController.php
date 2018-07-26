@@ -8,7 +8,6 @@ use Shopsys\FrameworkBundle\Model\Cart\CartFacade;
 use Shopsys\FrameworkBundle\Model\Customer\User;
 use Shopsys\FrameworkBundle\Model\LegalConditions\LegalConditionsFacade;
 use Shopsys\FrameworkBundle\Model\Newsletter\NewsletterFacade;
-use Shopsys\FrameworkBundle\Model\Order\FrontOrderData;
 use Shopsys\FrameworkBundle\Model\Order\Mail\OrderMailFacade;
 use Shopsys\FrameworkBundle\Model\Order\OrderData;
 use Shopsys\FrameworkBundle\Model\Order\OrderDataMapper;
@@ -22,6 +21,7 @@ use Shopsys\FrameworkBundle\Model\Pricing\Currency\CurrencyFacade;
 use Shopsys\FrameworkBundle\Model\Transport\TransportFacade;
 use Shopsys\FrameworkBundle\Model\Transport\TransportPriceCalculation;
 use Shopsys\ShopBundle\Form\Front\Order\DomainAwareOrderFlowFactory;
+use Shopsys\ShopBundle\Model\Order\FrontOrderData;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,7 +52,7 @@ class OrderController extends FrontBaseController
     private $orderMailFacade;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Order\OrderDataMapper
+     * @var \Shopsys\ShopBundle\Model\Order\OrderDataMapper
      */
     private $orderDataMapper;
 
@@ -229,6 +229,7 @@ class OrderController extends FrontBaseController
             'transport' => $transport,
             'payment' => $payment,
             'payments' => $payments,
+            'pickUpPlace' => $orderData->pickUpPlace,
             'transportsPrices' => $this->transportPriceCalculation->getCalculatedPricesIndexedByTransportId(
                 $transports,
                 $currency,

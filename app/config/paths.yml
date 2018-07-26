@@ -33,3 +33,4 @@ parameters:
   shopsys.web_dir: '%shopsys.root_dir%/web'
   shopsys.vendor_dir: '%kernel.root_dir%/../vendor'
   shopsys.js_form_validator_output_vendor_dir: '../vendor'
+  shopsys.zasilkovna_feed: 'http://www.zasilkovna.cz/api/v3/41494564a70d6de6/branch.xml'

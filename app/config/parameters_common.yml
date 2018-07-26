@@ -22,3 +22,5 @@ parameters:
     Shopsys\FrameworkBundle\Model\Product\Product: Shopsys\ShopBundle\Model\Product\Product
     Shopsys\FrameworkBundle\Model\Category\Category: Shopsys\ShopBundle\Model\Category\Category
     Shopsys\FrameworkBundle\Model\Category\CategoryDomain: Shopsys\ShopBundle\Model\Category\CategoryDomain
+    Shopsys\FrameworkBundle\Model\Order\Order: Shopsys\ShopBundle\Model\Order\Order
+    Shopsys\FrameworkBundle\Model\Transport\Transport: Shopsys\ShopBundle\Model\Transport\Transport
