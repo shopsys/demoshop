@@ -31,6 +31,9 @@ msgstr "Uplatnit"
 msgid "Attention! You are administrator logged in as the customer."
 msgstr "Pozor! Jste jako administrátor přihlášen za zákazníka."
 
+msgid "Basic"
+msgstr "Základní"
+
 msgid "Back to buying"
 msgstr "Zpět k nákupu"
 
@@ -70,6 +73,9 @@ msgstr "Košík"
 msgid "Catalogue number"
 msgstr "Katalogové číslo"
 
+msgid "Change"
+msgstr "Změnit"
+
 msgid "Changing password"
 msgstr "Změna hesla"
 
@@ -78,6 +84,9 @@ msgstr "Zkontrolujte správnost adresy"
 
 msgid "Choose variant"
 msgstr "Vybrat variantu"
+
+msgid "Choose pick up place"
+msgstr "Volba odběrných míst"
 
 msgid "City"
 msgstr "Město"
@@ -189,6 +198,12 @@ msgstr "Nastala chyba"
 
 msgid "Error occurred when sending e-mail."
 msgstr "Nastala chyba při odesílání mailu."
+
+msgid "etc. Praha"
+msgstr "např. Praha"
+
+msgid "Fill in city or post number"
+msgstr "Zadejte mēsto nebo psč"
 
 msgid "Finish the order"
 msgstr "Dokončit objednávku"
@@ -532,6 +547,9 @@ msgstr "Stav"
 msgid "Street"
 msgstr "Ulice"
 
+msgid "Store name"
+msgstr "Název pobočky"
+
 msgid "Subscription to e-mail newsletter"
 msgstr "Přihlášení k zpravodaji"
 
@@ -663,6 +681,12 @@ msgstr "Vaše údaje byly úspěšně zaktualizovány"
 
 msgid "Your discount"
 msgstr "Vaše sleva"
+
+msgid "Zásilkovna"
+msgstr "Zásilkovna"
+
+msgid "Zasilkovna.cz - dispensing point"
+msgstr "Zasilkovna.cz - výdejní místo"
 
 msgid "excluding VAT"
 msgstr "bez DPH"

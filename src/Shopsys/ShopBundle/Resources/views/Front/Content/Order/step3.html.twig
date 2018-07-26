@@ -20,8 +20,7 @@
             <fieldset>
                 {{ form_row(form.companyCustomer, {
                     attr: { class: 'js-checkbox-toggle', 'data-checkbox-toggle-container-id': 'js-company-fields' },
-                    label: 'I buy on company behalf'|trans})
-                }}
+                    label: 'I buy on company behalf'|trans}) }}
                 <div id="js-company-fields">
                     {{ form_row(form.companyName, { label: 'Company name'|trans }) }}
                     {{ form_row(form.companyNumber, { label: 'Company number'|trans }) }}
@@ -30,7 +29,6 @@
             </fieldset>
 
             <h2>{{ 'Billing data'|trans }} <span class="heading-addition">{{ '(This address will be on the tax invoice)'|trans }}</span></h2>
-
             <fieldset>
                 {{ form_row(form.street, { label: 'Street'|trans }) }}
                 {{ form_row(form.city, { label: 'City'|trans }) }}
@@ -38,21 +36,36 @@
                 {{ form_row(form.country, { label: 'Country'|trans }) }}
             </fieldset>
 
+            {% set isSelectedPickupPlaceTypeTransport = transport is not empty and transport.isPickUpPlaceType %}
             <h2>{{ 'Shipping address'|trans }} <span class="heading-addition">{{ '(Products will be delivered to this address)'|trans }}</span></h2>
             <fieldset>
-                {{ form_row(form.deliveryAddressFilled, {
-                    attr: { class: 'js-checkbox-toggle', 'data-checkbox-toggle-container-id': 'js-delivery-address-fields' },
-                    label: 'I want to deliver products to different address than the billing one'|trans})
-                }}
-                <div id="js-delivery-address-fields">
-                    {{ form_row(form.deliveryFirstName, { label: 'First name'|trans }) }}
-                    {{ form_row(form.deliveryLastName, { label: 'Last name'|trans }) }}
-                    {{ form_row(form.deliveryCompanyName, { label: 'Company'|trans }) }}
-                    {{ form_row(form.deliveryTelephone, { label: 'Telephone'|trans }) }}
-                    {{ form_row(form.deliveryStreet, { label: 'Street'|trans }) }}
-                    {{ form_row(form.deliveryCity, { label: 'City'|trans }) }}
-                    {{ form_row(form.deliveryPostcode, { label: 'Postcode'|trans }) }}
-                    {{ form_row(form.deliveryCountry, { label: 'Country'|trans }) }}
+                {% if not isSelectedPickupPlaceTypeTransport %}
+                    {{ form_row(form.deliveryAddressFilled, {
+                        attr: { class: 'js-checkbox-toggle', 'data-checkbox-toggle-container-id': 'js-delivery-address-fields' },
+                        label: 'I want to deliver products to different address than the billing one'|trans,
+                        disabled: isSelectedPickupPlaceTypeTransport
+                    }) }}
+                {% else %}
+                    {%  do form.deliveryAddressFilled.setRendered %}
+                {% endif %}
+                <div{% if not isSelectedPickupPlaceTypeTransport %} id="js-delivery-address-fields"{% endif %}>
+                    {% if not isSelectedPickupPlaceTypeTransport %}
+                        {{ form_row(form.deliveryFirstName, { label: 'First name'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
+                        {{ form_row(form.deliveryLastName, { label: 'Last name'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
+                    {% else %}
+                        {%  do form.deliveryFirstName.setRendered %}
+                        {%  do form.deliveryLastName.setRendered %}
+                    {% endif %}
+                    {{ form_row(form.deliveryCompanyName, { label: 'Company'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
+                    {% if not isSelectedPickupPlaceTypeTransport %}
+                        {{ form_row(form.deliveryTelephone, { label: 'Telephone'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
+                    {% else %}
+                        {%  do form.deliveryTelephone.setRendered %}
+                    {% endif %}
+                    {{ form_row(form.deliveryStreet, { label: 'Street'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
+                    {{ form_row(form.deliveryCity, { label: 'City'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
+                    {{ form_row(form.deliveryPostcode, { label: 'Postcode'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
+                    {{ form_row(form.deliveryCountry, { label: 'Country'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
                 </div>
             </fieldset>
 

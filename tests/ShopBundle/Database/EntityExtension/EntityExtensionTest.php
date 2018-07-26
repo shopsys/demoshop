@@ -12,9 +12,11 @@ use Shopsys\FrameworkBundle\Model\Order\Item\OrderItem;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderPayment;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderProduct;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderTransport;
+use Shopsys\FrameworkBundle\Model\Order\Order;
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
-use Shopsys\FrameworkBundle\Model\Transport\Transport;
+use Shopsys\ShopBundle\Model\Order\Order as ExtendedOrder;
 use Shopsys\ShopBundle\Model\Product\Product;
+use Shopsys\ShopBundle\Model\Transport\Transport;
 use Tests\ShopBundle\Database\EntityExtension\Model\CategoryManyToManyBidirectionalEntity;
 use Tests\ShopBundle\Database\EntityExtension\Model\CategoryOneToManyBidirectionalEntity;
 use Tests\ShopBundle\Database\EntityExtension\Model\CategoryOneToOneBidirectionalEntity;
@@ -60,6 +62,7 @@ class EntityExtensionTest extends DatabaseTestCase
         $entityExtensionMap = [
             Product::class => ExtendedProduct::class,
             Category::class => ExtendedCategory::class,
+            Order::class => ExtendedOrder::class,
             OrderItem::class => ExtendedOrderItem::class,
             OrderProduct::class => ExtendedOrderProduct::class,
             OrderPayment::class => ExtendedOrderPayment::class,

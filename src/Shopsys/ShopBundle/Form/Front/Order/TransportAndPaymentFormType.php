@@ -8,7 +8,9 @@ use Shopsys\FrameworkBundle\Model\Payment\Payment;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentFacade;
 use Shopsys\FrameworkBundle\Model\Transport\Transport;
 use Shopsys\FrameworkBundle\Model\Transport\TransportFacade;
+use Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceIdToEntityTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,13 +30,23 @@ class TransportAndPaymentFormType extends AbstractType
     private $paymentFacade;
 
     /**
+     * @var \Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceIdToEntityTransformer
+     */
+    private $pickUpPlaceIdToEntityTransformer;
+
+    /**
      * @param \Shopsys\FrameworkBundle\Model\Transport\TransportFacade $transportFacade
      * @param \Shopsys\FrameworkBundle\Model\Payment\PaymentFacade $paymentFacade
+     * @param \Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceIdToEntityTransformer $pickUpPlaceIdToEntityTransformer
      */
-    public function __construct(TransportFacade $transportFacade, PaymentFacade $paymentFacade)
-    {
+    public function __construct(
+        TransportFacade $transportFacade,
+        PaymentFacade $paymentFacade,
+        PickUpPlaceIdToEntityTransformer $pickUpPlaceIdToEntityTransformer
+    ) {
         $this->transportFacade = $transportFacade;
         $this->paymentFacade = $paymentFacade;
+        $this->pickUpPlaceIdToEntityTransformer = $pickUpPlaceIdToEntityTransformer;
     }
 
     /**
@@ -65,6 +77,11 @@ class TransportAndPaymentFormType extends AbstractType
                 ],
                 'invalid_message' => 'Please choose payment type',
             ])
+            ->add(
+                $builder
+                    ->create('pickUpPlace', HiddenType::class)
+                    ->addModelTransformer($this->pickUpPlaceIdToEntityTransformer)
+            )
             ->add('save', SubmitType::class);
     }
 
@@ -85,7 +102,7 @@ class TransportAndPaymentFormType extends AbstractType
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Order\OrderData $orderData
+     * @param \Shopsys\ShopBundle\Model\Order\OrderData $orderData
      * @param \Symfony\Component\Validator\Context\ExecutionContextInterface $context
      */
     public function validateTransportPaymentRelation(OrderData $orderData, ExecutionContextInterface $context)

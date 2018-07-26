@@ -1,0 +1,31 @@
+@box-pick-up-place-margin: 1%;
+
+.box-pick-up-place {
+
+    width: calc(100% - 2*@box-pick-up-place-margin);
+    max-width: 600px;
+    margin: auto;
+    left: @box-pick-up-place-margin;
+    right: @box-pick-up-place-margin;
+
+    &__control {
+        display: flex;
+
+        > input {
+            flex: 1;
+        }
+
+    }
+
+    &__results {
+        max-height: 300px;
+        overflow: auto;
+        margin-top: 1rem;
+
+        > div {
+            margin-top: 1rem;
+        }
+
+    }
+
+}

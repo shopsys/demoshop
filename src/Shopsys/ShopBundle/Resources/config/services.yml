@@ -1,5 +1,6 @@
 imports:
   - { resource: forms.yml }
+  - { resource: cron.yml }
 
 services:
   _defaults:
@@ -28,6 +29,14 @@ services:
   Shopsys\FrameworkBundle\Model\Article\ArticleFactoryInterface: '@Shopsys\ShopBundle\Model\Article\ArticleFactory'
 
   Shopsys\FrameworkBundle\Model\Article\ArticleDataFactoryInterface: '@Shopsys\ShopBundle\Model\Article\ArticleDataFactory'
+
+  Shopsys\ShopBundle\Model\Country\CountryRepository: ~
+
+  Shopsys\FrameworkBundle\Model\Country\CountryRepository: '@Shopsys\ShopBundle\Model\Country\CountryRepository'
+
+  Shopsys\FrameworkBundle\Model\Transport\TransportFactoryInterface: '@Shopsys\ShopBundle\Model\Transport\TransportFactory'
+
+  Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface: '@Shopsys\ShopBundle\Model\Transport\TransportDataFactory'
 
   Shopsys\ShopBundle\Model\Category\CurrentCategoryResolver: ~
 
@@ -60,3 +69,23 @@ services:
       - '@twig_cache_extension.cache_strategy'
     tags:
       - { name: twig.extension }
+
+  Shopsys\FrameworkBundle\Model\Order\OrderFactoryInterface: '@Shopsys\ShopBundle\Model\Order\OrderFactory'
+
+  Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface: '@Shopsys\ShopBundle\Model\Order\OrderDataFactory'
+
+  Shopsys\ShopBundle\Model\Order\FrontOrderData: ~
+
+  Shopsys\FrameworkBundle\Model\Order\FrontOrderData: '@Shopsys\ShopBundle\Model\Order\FrontOrderData'
+
+  Shopsys\ShopBundle\Model\Order\OrderDataMapper: ~
+
+  Shopsys\FrameworkBundle\Model\Order\OrderDataMapper: '@Shopsys\ShopBundle\Model\Order\OrderDataMapper'
+
+  Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceFacade: ~
+
+  Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceIdToEntityTransformer: ~
+
+  Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceLoader: ~
+
+  Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceRepository: ~
