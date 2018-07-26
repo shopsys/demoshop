@@ -3,9 +3,9 @@
 namespace Tests\ShopBundle\Database\Model\Product;
 
 use Shopsys\FrameworkBundle\DataFixtures\Demo\AvailabilityDataFixture;
-use Shopsys\FrameworkBundle\Model\Product\Product;
-use Shopsys\FrameworkBundle\Model\Product\ProductDataFactory;
-use Shopsys\FrameworkBundle\Model\Product\ProductFactory;
+use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
+use Shopsys\FrameworkBundle\Model\Product\ProductFactoryInterface;
+use Shopsys\ShopBundle\Model\Product\Product;
 use Tests\ShopBundle\Test\DatabaseTestCase;
 
 class ProductDomainTest extends DatabaseTestCase
@@ -19,12 +19,12 @@ class ProductDomainTest extends DatabaseTestCase
     const DEMONSTRATIVE_SHORT_DESCRIPTION = 'Demonstrative short description';
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Product\ProductDataFactory
+     * @var \Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface
      */
     private $productDataFactory;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Product\ProductFactory
+     * @var \Shopsys\FrameworkBundle\Model\Product\ProductFactoryInterface
      */
     private $productFactory;
 
@@ -36,8 +36,8 @@ class ProductDomainTest extends DatabaseTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        $this->productFactory = $this->getContainer()->get(ProductFactory::class);
+        $this->productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
+        $this->productFactory = $this->getContainer()->get(ProductFactoryInterface::class);
         $this->em = $this->getEntityManager();
     }
 
@@ -99,8 +99,8 @@ class ProductDomainTest extends DatabaseTestCase
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Product\Product $product
-     * @return \Shopsys\FrameworkBundle\Model\Product\Product
+     * @param \Shopsys\ShopBundle\Model\Product\Product $product
+     * @return \Shopsys\ShopBundle\Model\Product\Product
      */
     private function getRefreshedProductFromDatabase(Product $product)
     {

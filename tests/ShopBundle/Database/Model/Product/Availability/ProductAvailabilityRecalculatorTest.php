@@ -5,9 +5,9 @@ namespace Tests\ShopBundle\Database\Model\Product\Availability;
 use Shopsys\FrameworkBundle\DataFixtures\Demo\AvailabilityDataFixture;
 use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityFacade;
 use Shopsys\FrameworkBundle\Model\Product\Availability\ProductAvailabilityRecalculator;
-use Shopsys\FrameworkBundle\Model\Product\Product;
-use Shopsys\FrameworkBundle\Model\Product\ProductDataFactory;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
+use Shopsys\ShopBundle\Model\Product\Product;
+use Shopsys\ShopBundle\Model\Product\ProductDataFactory;
 use Tests\ShopBundle\Test\DatabaseTestCase;
 
 class ProductAvailabilityRecalculatorTest extends DatabaseTestCase
@@ -17,7 +17,7 @@ class ProductAvailabilityRecalculatorTest extends DatabaseTestCase
         $productFacade = $this->getContainer()->get(ProductFacade::class);
         /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
         $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\FrameworkBundle\Model\Product\ProductDataFactory */
+        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
         $productAvailabilityRecalculator = $this->getContainer()->get(ProductAvailabilityRecalculator::class);
         /* @var $productAvailabilityRecalculator \Shopsys\FrameworkBundle\Model\Product\Availability\ProductAvailabilityRecalculator */
 
@@ -44,7 +44,7 @@ class ProductAvailabilityRecalculatorTest extends DatabaseTestCase
         $productFacade = $this->getContainer()->get(ProductFacade::class);
         /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
         $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\FrameworkBundle\Model\Product\ProductDataFactory */
+        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
         $availabilityFacade = $this->getContainer()->get(AvailabilityFacade::class);
         /* @var $availabilityFacade \Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityFacade */
         $productAvailabilityRecalculator = $this->getContainer()->get(ProductAvailabilityRecalculator::class);
@@ -75,7 +75,7 @@ class ProductAvailabilityRecalculatorTest extends DatabaseTestCase
         $productFacade = $this->getContainer()->get(ProductFacade::class);
         /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
         $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\FrameworkBundle\Model\Product\ProductDataFactory */
+        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
         $productAvailabilityRecalculator = $this->getContainer()->get(ProductAvailabilityRecalculator::class);
         /* @var $productAvailabilityRecalculator \Shopsys\FrameworkBundle\Model\Product\Availability\ProductAvailabilityRecalculator */
 

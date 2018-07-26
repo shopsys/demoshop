@@ -4,8 +4,8 @@ namespace Tests\ShopBundle\Database\EntityExtension\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Shopsys\FrameworkBundle\Model\Product\Product;
-use Shopsys\FrameworkBundle\Model\Product\ProductData;
+use Shopsys\ShopBundle\Model\Product\Product;
+use Shopsys\ShopBundle\Model\Product\ProductData;
 
 /**
  * @ORM\Entity
@@ -124,8 +124,8 @@ class ExtendedProduct extends Product
     protected $manyToManySelfReferencingInverseEntities;
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Product\ProductData $productData
-     * @param \Shopsys\FrameworkBundle\Model\Product\Product[]|null $variants
+     * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
+     * @param \Shopsys\ShopBundle\Model\Product\Product[]|null $variants
      */
     protected function __construct(ProductData $productData, array $variants = null)
     {

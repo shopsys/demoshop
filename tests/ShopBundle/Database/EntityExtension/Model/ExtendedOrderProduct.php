@@ -5,7 +5,7 @@ namespace Tests\ShopBundle\Database\EntityExtension\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Shopsys\FrameworkBundle\Model\Order\Order;
 use Shopsys\FrameworkBundle\Model\Pricing\Price;
-use Shopsys\FrameworkBundle\Model\Product\Product;
+use Shopsys\ShopBundle\Model\Product\Product;
 
 /**
  * @ORM\Entity
@@ -18,9 +18,9 @@ use Shopsys\FrameworkBundle\Model\Product\Product;
 class ExtendedOrderProduct extends ExtendedOrderItem
 {
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Product\Product|null
+     * @var \Shopsys\ShopBundle\Model\Product\Product|null
      *
-     * @ORM\ManyToOne(targetEntity="Shopsys\FrameworkBundle\Model\Product\Product")
+     * @ORM\ManyToOne(targetEntity="Shopsys\ShopBundle\Model\Product\Product")
      * @ORM\JoinColumn(nullable=true, name="product_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $product;
@@ -40,7 +40,7 @@ class ExtendedOrderProduct extends ExtendedOrderItem
      * @param int $quantity
      * @param string $unitName
      * @param string|null $catnum
-     * @param \Shopsys\FrameworkBundle\Model\Product\Product|null $product
+     * @param \Shopsys\ShopBundle\Model\Product\Product|null $product
      */
     public function __construct(
         Order $order,
@@ -70,7 +70,7 @@ class ExtendedOrderProduct extends ExtendedOrderItem
     }
 
     /**
-     * @return \Shopsys\FrameworkBundle\Model\Product\Product|null
+     * @return \Shopsys\ShopBundle\Model\Product\Product|null
      */
     public function getProduct()
     {

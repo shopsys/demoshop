@@ -6,8 +6,8 @@ use Shopsys\FrameworkBundle\DataFixtures\Demo\AvailabilityDataFixture;
 use Shopsys\FrameworkBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityData;
 use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityFacade;
-use Shopsys\FrameworkBundle\Model\Product\ProductDataFactory;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
+use Shopsys\ShopBundle\Model\Product\ProductDataFactory;
 use Tests\ShopBundle\Test\DatabaseTestCase;
 
 class AvailabilityFacadeTest extends DatabaseTestCase
@@ -18,7 +18,7 @@ class AvailabilityFacadeTest extends DatabaseTestCase
         $availabilityFacade = $this->getContainer()->get(AvailabilityFacade::class);
         /* @var $availabilityFacade \Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityFacade */
         $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\FrameworkBundle\Model\Product\ProductDataFactory */
+        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
         /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
 
@@ -28,9 +28,9 @@ class AvailabilityFacadeTest extends DatabaseTestCase
         $availabilityToReplaceWith = $this->getReference(AvailabilityDataFixture::AVAILABILITY_IN_STOCK);
         /* @var $availabilityToReplaceWith \Shopsys\FrameworkBundle\Model\Product\Availability\Availability */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
-        /* @var $product \Shopsys\FrameworkBundle\Model\Product\Product */
+        /* @var $product \Shopsys\ShopBundle\Model\Product\Product */
         $productData = $productDataFactory->createFromProduct($product);
-        /* @var $productData \Shopsys\FrameworkBundle\Model\Product\ProductData */
+        /* @var $productData \Shopsys\ShopBundle\Model\Product\ProductData */
 
         $productData->availability = $availabilityToDelete;
         $productData->outOfStockAvailability = $availabilityToDelete;
