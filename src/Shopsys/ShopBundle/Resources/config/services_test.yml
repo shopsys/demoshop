@@ -47,3 +47,24 @@ services:
   Shopsys\ShopBundle\Model\Category\CategoryFactory: ~
 
   Shopsys\ShopBundle\Model\Category\CategoryDataFactory: ~
+
+  Shopsys\ShopBundle\Model\Order\OrderFactory: ~
+
+  Shopsys\FrameworkBundle\Model\Order\OrderFactoryInterface:
+    alias: Shopsys\ShopBundle\Model\Order\OrderFactory
+
+  Shopsys\ShopBundle\Model\Order\OrderDataFactory: ~
+
+  Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface:
+    alias: Shopsys\ShopBundle\Model\Order\OrderDataFactory
+
+  Shopsys\ShopBundle\Model\Transport\TransportFactory: ~
+
+  Shopsys\FrameworkBundle\Model\Transport\TransportFactoryInterface:
+    alias: Shopsys\ShopBundle\Model\Transport\TransportFactory
+
+  Shopsys\ShopBundle\Model\Transport\TransportDataFactory: ~
+
+  Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface:
+    alias: Shopsys\ShopBundle\Model\Transport\TransportDataFactory
+

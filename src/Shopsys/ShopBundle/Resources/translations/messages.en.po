@@ -46,6 +46,9 @@ msgstr ""
 msgid "Back to store"
 msgstr ""
 
+msgid "Basic"
+msgstr ""
+
 msgid "Basic information"
 msgstr ""
 
@@ -70,10 +73,16 @@ msgstr ""
 msgid "Catalogue number"
 msgstr ""
 
+msgid "Change"
+msgstr ""
+
 msgid "Changing password"
 msgstr ""
 
 msgid "Check the address correctness"
+msgstr ""
+
+msgid "Choose pick up place"
 msgstr ""
 
 msgid "Choose variant"
@@ -188,6 +197,9 @@ msgid "Error occurred"
 msgstr ""
 
 msgid "Error occurred when sending e-mail."
+msgstr ""
+
+msgid "etc. Praha"
 msgstr ""
 
 msgid "Finish the order"
@@ -532,6 +544,9 @@ msgstr ""
 msgid "Street"
 msgstr ""
 
+msgid "Store name"
+msgstr ""
+
 msgid "Subscription to e-mail newsletter"
 msgstr ""
 
@@ -662,6 +677,12 @@ msgid "Your data had been successfully updated"
 msgstr ""
 
 msgid "Your discount"
+msgstr ""
+
+msgid "Zásilkovna"
+msgstr ""
+
+msgid "Zasilkovna.cz - dispensing point"
 msgstr ""
 
 msgid "excluding VAT"

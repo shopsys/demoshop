@@ -3,8 +3,8 @@
 namespace Tests\ShopBundle\Database\EntityExtension\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use Shopsys\FrameworkBundle\Model\Order\Order;
 use Shopsys\FrameworkBundle\Model\Pricing\Price;
+use Shopsys\ShopBundle\Model\Order\Order;
 use Shopsys\ShopBundle\Model\Product\Product;
 
 /**
@@ -33,7 +33,7 @@ class ExtendedOrderProduct extends ExtendedOrderItem
     protected $productStringField;
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Order\Order $order
+     * @param \Shopsys\ShopBundle\Model\Order\Order $order
      * @param string $name
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Price $price
      * @param string $vatPercent
