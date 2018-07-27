@@ -106,6 +106,9 @@ msgstr "Název firmy"
 msgid "Company number"
 msgstr "IČ"
 
+msgid "Condition"
+msgstr "Stav zboží"
+
 msgid "Contact us"
 msgstr "Napište nám"
 
@@ -286,6 +289,9 @@ msgstr "Mé objednávky"
 msgid "Name"
 msgstr "Název"
 
+msgid "New"
+msgstr "Nové"
+
 msgid "No"
 msgstr "Ne"
 
@@ -454,6 +460,9 @@ msgstr "Jen zboží skladem"
 msgid "Promo code"
 msgstr "Slevový kupón"
 
+msgid "Refurbished"
+msgstr "Repasované"
+
 msgid "Register"
 msgstr "Registrovat"
 
@@ -603,6 +612,9 @@ msgstr "Nepodařilo se odeslat některé e-maily, pro ověření objednávky ná
 
 msgid "Unit price including VAT"
 msgstr "Jednotková cena s DPH"
+
+msgid "Used"
+msgstr "Použité"
 
 msgid "User not found."
 msgstr "Uživatel nebyl nalezen."

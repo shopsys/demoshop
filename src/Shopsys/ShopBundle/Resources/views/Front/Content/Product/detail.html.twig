@@ -138,6 +138,19 @@
                                     {{ product.ean }}
                                 </dd>
                             {% endif %}
+                            
+                            <dt>
+                                {{ 'Condition'|trans }}:
+                            </dt>
+                            <dd>
+                                {% if product.condition == constant('Shopsys\\ShopBundle\\Model\\Product\\ProductConditionFacade::CONDITION_NEW') %}
+                                    {{ 'New'|trans }}
+                                {% elseif product.condition == constant('Shopsys\\ShopBundle\\Model\\Product\\ProductConditionFacade::CONDITION_REFURBISHED') %}
+                                    {{ 'Refurbished'|trans }}
+                                {% elseif product.condition == constant('Shopsys\\ShopBundle\\Model\\Product\\ProductConditionFacade::CONDITION_USED') %}
+                                    {{ 'Used'|trans }}
+                                {% endif %}
+                            </dd>
                         {% endif %}
                     </dl>
                 {% endspaceless %}

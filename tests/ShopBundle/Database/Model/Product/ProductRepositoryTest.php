@@ -9,10 +9,10 @@ use Shopsys\FrameworkBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Model\Category\Category;
 use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData;
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingModeService;
-use Shopsys\FrameworkBundle\Model\Product\Product;
-use Shopsys\FrameworkBundle\Model\Product\ProductDataFactory;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
 use Shopsys\FrameworkBundle\Model\Product\ProductRepository;
+use Shopsys\ShopBundle\Model\Product\Product;
+use Shopsys\ShopBundle\Model\Product\ProductDataFactory;
 use Tests\ShopBundle\Test\DatabaseTestCase;
 
 class ProductRepositoryTest extends DatabaseTestCase
@@ -181,13 +181,13 @@ class ProductRepositoryTest extends DatabaseTestCase
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Product\Product $product
+     * @param \Shopsys\ShopBundle\Model\Product\Product $product
      * @param int $priority
      */
     private function setProductOrderingPriority(Product $product, $priority)
     {
         $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\FrameworkBundle\Model\Product\ProductDataFactory */
+        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
         /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
 
@@ -198,7 +198,7 @@ class ProductRepositoryTest extends DatabaseTestCase
 
     /**
      * @param string $searchText
-     * @return \Shopsys\FrameworkBundle\Model\Product\Product[]
+     * @return \Shopsys\ShopBundle\Model\Product\Product[]
      */
     private function getProductsForSearchOrderedByPriority($searchText)
     {
@@ -223,7 +223,7 @@ class ProductRepositoryTest extends DatabaseTestCase
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Category\Category $category
-     * @return \Shopsys\FrameworkBundle\Model\Product\Product[]
+     * @return \Shopsys\ShopBundle\Model\Product\Product[]
      */
     private function getProductsInCategoryOrderedByPriority(Category $category)
     {

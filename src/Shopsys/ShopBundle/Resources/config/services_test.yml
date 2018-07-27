@@ -16,6 +16,16 @@ services:
     arguments:
       - "%shopsys.entity_extension.map%"
 
+  Shopsys\FrameworkBundle\Model\Product\ProductFactoryInterface:
+    alias: Shopsys\ShopBundle\Model\Product\ProductFactory
+
+  Shopsys\ShopBundle\Model\Product\ProductFactory: ~
+
+  Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface:
+    alias: Shopsys\ShopBundle\Model\Product\ProductDataFactory
+
+  Shopsys\ShopBundle\Model\Product\ProductDataFactory: ~
+
   Symfony\Component\Filesystem\Filesystem: ~
 
   joschi127_doctrine_entity_override.event_subscriber.load_orm_metadata:
