@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e93a589e212b24e971a0054702943254",
+    "content-hash": "c9fd2ed99054628a20bb4813c5cf04a5",
     "packages": [
         {
             "name": "arvenil/ninja-mutex",
@@ -2466,16 +2466,16 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.35",
+            "version": "v2.4.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "1e400fbd05b7e5f912f55fe95805450f7d3bed60"
+                "reference": "87c78ff9fd4b90460386f753d95622f6fbbfcb27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/1e400fbd05b7e5f912f55fe95805450f7d3bed60",
-                "reference": "1e400fbd05b7e5f912f55fe95805450f7d3bed60",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/87c78ff9fd4b90460386f753d95622f6fbbfcb27",
+                "reference": "87c78ff9fd4b90460386f753d95622f6fbbfcb27",
                 "shasum": ""
             },
             "require": {
@@ -2543,7 +2543,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2018-05-08T12:28:40+00:00"
+            "time": "2018-07-26T12:16:35+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -4987,12 +4987,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/framework.git",
-                "reference": "f1741100843ec689646b32719ddb8c0544f2445c"
+                "reference": "c0e5890258b6641f47e66e8cd453cc25d4af851c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/framework/zipball/f1741100843ec689646b32719ddb8c0544f2445c",
-                "reference": "f1741100843ec689646b32719ddb8c0544f2445c",
+                "url": "https://api.github.com/repos/shopsys/framework/zipball/c0e5890258b6641f47e66e8cd453cc25d4af851c",
+                "reference": "c0e5890258b6641f47e66e8cd453cc25d4af851c",
                 "shasum": ""
             },
             "require": {
@@ -5087,7 +5087,7 @@
                 "proprietary"
             ],
             "description": "Core of Shopsys Framework - open source framework for building large, scalable, fast-growing e-commerce projects based on Symfony",
-            "time": "2018-07-23T15:36:37+00:00"
+            "time": "2018-07-31T12:06:43+00:00"
         },
         {
             "name": "shopsys/migrations",
@@ -5262,12 +5262,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/product-feed-heureka.git",
-                "reference": "80ca3ded065cdc53b44c73215402dcaeb7ab3baa"
+                "reference": "6e2e5447303592fd3141e21c4409beadb5432421"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/product-feed-heureka/zipball/80ca3ded065cdc53b44c73215402dcaeb7ab3baa",
-                "reference": "80ca3ded065cdc53b44c73215402dcaeb7ab3baa",
+                "url": "https://api.github.com/repos/shopsys/product-feed-heureka/zipball/6e2e5447303592fd3141e21c4409beadb5432421",
+                "reference": "6e2e5447303592fd3141e21c4409beadb5432421",
                 "shasum": ""
             },
             "require": {
@@ -5319,7 +5319,7 @@
                 "plugin",
                 "product feed"
             ],
-            "time": "2018-07-18T13:56:58+00:00"
+            "time": "2018-07-26T16:47:33+00:00"
         },
         {
             "name": "shopsys/product-feed-heureka-delivery",
@@ -5388,12 +5388,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/product-feed-zbozi.git",
-                "reference": "02754bb81670a61f96aeabb9814e4a21131040e8"
+                "reference": "8a1b5221e4c4a2484208134e6670d7eb774802c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/product-feed-zbozi/zipball/02754bb81670a61f96aeabb9814e4a21131040e8",
-                "reference": "02754bb81670a61f96aeabb9814e4a21131040e8",
+                "url": "https://api.github.com/repos/shopsys/product-feed-zbozi/zipball/8a1b5221e4c4a2484208134e6670d7eb774802c2",
+                "reference": "8a1b5221e4c4a2484208134e6670d7eb774802c2",
                 "shasum": ""
             },
             "require": {
@@ -5439,10 +5439,9 @@
                 "Shopsys Framework",
                 "XML feed",
                 "plugin",
-                "product feed",
-                "zbozi"
+                "product feed"
             ],
-            "time": "2018-07-18T13:56:58+00:00"
+            "time": "2018-07-26T16:47:33+00:00"
         },
         {
             "name": "snc/redis-bundle",
@@ -6670,24 +6669,24 @@
         },
         {
             "name": "twig/extensions",
-            "version": "v1.5.1",
+            "version": "v1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig-extensions.git",
-                "reference": "d188c76168b853481cc75879ea045bf93d718e9c"
+                "reference": "2c1a86526d0044065220d1b51ac08348bea5ca82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/d188c76168b853481cc75879ea045bf93d718e9c",
-                "reference": "d188c76168b853481cc75879ea045bf93d718e9c",
+                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/2c1a86526d0044065220d1b51ac08348bea5ca82",
+                "reference": "2c1a86526d0044065220d1b51ac08348bea5ca82",
                 "shasum": ""
             },
             "require": {
-                "twig/twig": "~1.27|~2.0"
+                "twig/twig": "^1.27|^2.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "~3.3@dev",
-                "symfony/translation": "~2.3|~3.0"
+                "symfony/phpunit-bridge": "^3.4",
+                "symfony/translation": "^2.7|^3.4"
             },
             "suggest": {
                 "symfony/translation": "Allow the time_diff output to be translated"
@@ -6717,12 +6716,11 @@
                 }
             ],
             "description": "Common additional features for Twig that do not directly belong in core",
-            "homepage": "http://twig.sensiolabs.org/doc/extensions/index.html",
             "keywords": [
                 "i18n",
                 "text"
             ],
-            "time": "2017-06-08T18:19:53+00:00"
+            "time": "2018-05-22T13:26:07+00:00"
         },
         {
             "name": "twig/twig",
@@ -7155,16 +7153,16 @@
         },
         {
             "name": "codeception/stub",
-            "version": "2.0.3",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Stub.git",
-                "reference": "5fe83b0a22dc1f28b811c517862e747bdb1a4139"
+                "reference": "b2eff325d8ff0b824ff659048be7be4e5767d7d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Stub/zipball/5fe83b0a22dc1f28b811c517862e747bdb1a4139",
-                "reference": "5fe83b0a22dc1f28b811c517862e747bdb1a4139",
+                "url": "https://api.github.com/repos/Codeception/Stub/zipball/b2eff325d8ff0b824ff659048be7be4e5767d7d0",
+                "reference": "b2eff325d8ff0b824ff659048be7be4e5767d7d0",
                 "shasum": ""
             },
             "require": {
@@ -7184,7 +7182,7 @@
                 "MIT"
             ],
             "description": "Flexible Stub wrapper for PHPUnit's Mock Builder",
-            "time": "2018-07-24T17:06:30+00:00"
+            "time": "2018-05-18T14:33:08+00:00"
         },
         {
             "name": "composer/xdebug-handler",
@@ -9798,16 +9796,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.3.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266"
+                "reference": "628a481780561150481a9ec74709092b9759b3ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/d86873af43b4aa9d1f39a3601cc0cfcf02b25266",
-                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/628a481780561150481a9ec74709092b9759b3ec",
+                "reference": "628a481780561150481a9ec74709092b9759b3ec",
                 "shasum": ""
             },
             "require": {
@@ -9845,7 +9843,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-06-06T23:58:19+00:00"
+            "time": "2018-07-26T23:47:18+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
