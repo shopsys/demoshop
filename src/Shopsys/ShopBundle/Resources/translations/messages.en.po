@@ -688,3 +688,9 @@ msgstr ""
 msgid "{1}Load next %loadNextCount% product|[2,Inf]Load next %loadNextCount% products"
 msgstr ""
 
+msgid "Category description above product list"
+msgstr ""
+
+msgid "Category description under product list"
+msgstr ""
+
