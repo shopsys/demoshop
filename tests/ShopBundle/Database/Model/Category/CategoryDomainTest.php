@@ -2,9 +2,9 @@
 
 namespace Tests\ShopBundle\Database\Model\Category;
 
-use Shopsys\FrameworkBundle\Model\Category\Category;
-use Shopsys\FrameworkBundle\Model\Category\CategoryDataFactory;
-use Shopsys\FrameworkBundle\Model\Category\CategoryFactory;
+use Shopsys\ShopBundle\Model\Category\Category;
+use Shopsys\ShopBundle\Model\Category\CategoryDataFactory;
+use Shopsys\ShopBundle\Model\Category\CategoryFactory;
 use Tests\ShopBundle\Test\DatabaseTestCase;
 
 class CategoryDomainTest extends DatabaseTestCase
@@ -16,12 +16,12 @@ class CategoryDomainTest extends DatabaseTestCase
     const DEMONSTRATIVE_SEO_H1 = 'Demonstrative seo H1';
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Category\CategoryDataFactory
+     * @var \Shopsys\ShopBundle\Model\Category\CategoryDataFactory
      */
     private $categoryDataFactory;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Category\CategoryFactory
+     * @var \Shopsys\ShopBundle\Model\Category\CategoryFactory
      */
     private $categoryFactory;
 
@@ -110,7 +110,7 @@ class CategoryDomainTest extends DatabaseTestCase
      */
     public function testCreateCategoryDomainWithDataForSingleDomain()
     {
-        $categoryData = $this->categoryDataFactory->createDefault();
+        $categoryData = $this->categoryDataFactory->create();
 
         $categoryData->seoTitles[self::FIRST_DOMAIN_ID] = self::DEMONSTRATIVE_SEO_TITLE;
         $categoryData->seoMetaDescriptions[self::FIRST_DOMAIN_ID] = self::DEMONSTRATIVE_SEO_META_DESCRIPTION;

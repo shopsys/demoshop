@@ -688,3 +688,9 @@ msgstr "{1} <strong class=\"cart__state\">%itemsCount%</strong> položka za <str
 msgid "{1}Load next %loadNextCount% product|[2,Inf]Load next %loadNextCount% products"
 msgstr "[1,4]Načíst další %loadNextCount% zboží|[5,Inf]Načíst dalších %loadNextCount% zboží"
 
+msgid "Category description above product list"
+msgstr "Popis, který se zobrazí nad výpisem produktů"
+
+msgid "Category description under product list"
+msgstr "Popis, který se zobrazí pod výpisem produktů"
+

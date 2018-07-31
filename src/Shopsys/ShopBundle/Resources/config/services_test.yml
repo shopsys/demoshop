@@ -37,3 +37,13 @@ services:
       - { name: doctrine.event_subscriber, priority: -10 }
 
   League\Flysystem\FilesystemInterface: '@main_filesystem'
+
+  Shopsys\FrameworkBundle\Model\Category\CategoryFactoryInterface:
+    alias: Shopsys\ShopBundle\Model\Category\CategoryFactory
+
+  Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface:
+    alias: Shopsys\ShopBundle\Model\Category\CategoryDataFactory
+
+  Shopsys\ShopBundle\Model\Category\CategoryFactory: ~
+
+  Shopsys\ShopBundle\Model\Category\CategoryDataFactory: ~
