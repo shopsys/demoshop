@@ -12,4 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - [#1 - Basic changes in docs, readme etc. after copying from project-base](https://github.com/shopsys/demoshop/pull/1) : [@LukasHeinz]
 
+### Fixed
+- [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
+    - GoogleFeedItemFactory: removed unused imports
+ 
 [@LukasHeinz]:(https://github.com/LukasHeinz)
