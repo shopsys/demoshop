@@ -2,10 +2,10 @@
 
 namespace Tests\ShopBundle\Database\Model\Category;
 
-use Shopsys\FrameworkBundle\Model\Category\CategoryDataFactory;
 use Shopsys\FrameworkBundle\Model\Category\CategoryFacade;
 use Shopsys\FrameworkBundle\Model\Category\CategoryRepository;
 use Shopsys\FrameworkBundle\Model\Category\CategoryVisibilityRepository;
+use Shopsys\ShopBundle\Model\Category\CategoryDataFactory;
 use Tests\ShopBundle\Test\DatabaseTestCase;
 
 class CategoryRepositoryTest extends DatabaseTestCase
