@@ -20,3 +20,5 @@ parameters:
   shopsys.entity_extension.map:
     Shopsys\FrameworkBundle\Model\Article\Article: Shopsys\ShopBundle\Model\Article\Article
     Shopsys\FrameworkBundle\Model\Product\Product: Shopsys\ShopBundle\Model\Product\Product
+    Shopsys\FrameworkBundle\Model\Category\Category: Shopsys\ShopBundle\Model\Category\Category
+    Shopsys\FrameworkBundle\Model\Category\CategoryDomain: Shopsys\ShopBundle\Model\Category\CategoryDomain

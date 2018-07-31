@@ -38,3 +38,7 @@ services:
   Shopsys\ProductFeed\GoogleBundle\Model\FeedItem\GoogleFeedItemFactory: '@Shopsys\ShopBundle\Model\Product\Feed\Google\GoogleFeedItemFactory'
 
   League\Flysystem\FilesystemInterface: '@main_filesystem'
+
+  Shopsys\FrameworkBundle\Model\Category\CategoryFactoryInterface: '@Shopsys\ShopBundle\Model\Category\CategoryFactory'
+
+  Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface: '@Shopsys\ShopBundle\Model\Category\CategoryDataFactory'
