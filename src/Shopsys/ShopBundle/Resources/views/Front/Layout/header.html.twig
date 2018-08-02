@@ -87,7 +87,9 @@
 
         <div class="header__top">
             <div class="header__top__left">
-                {{ render(controller('ShopsysShopBundle:Front/Article:menu')) }}
+                {% cache 'layout_article_menu' 5*60 %}
+                    {{ render(controller('ShopsysShopBundle:Front/Article:menu')) }}
+                {% endcache %}
             </div>
 
             <div class="header__top__right">

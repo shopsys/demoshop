@@ -32,7 +32,9 @@
         </div>
     {% endif %}
 
-    {{ render(controller('ShopsysShopBundle:Front/Category:top')) }}
+    {% cache 'homepage_category_top' 5*60 %}
+        {{ render(controller('ShopsysShopBundle:Front/Category:top')) }}
+    {% endcache %}
 
     {% if topProducts is not empty %}
         <div id="top-products">

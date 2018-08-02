@@ -16,9 +16,11 @@
             </div>
 
             <div class="footer__bottom__articles">
-                {{ getShopInfoPhoneNumber() }}
-                {{ getShopInfoEmail() }}
-                {{ render(controller('ShopsysShopBundle:Front/Article:footer')) }}
+                {% cache 'layout_article_footer' 5*60 %}
+                    {{ getShopInfoPhoneNumber() }}
+                    {{ getShopInfoEmail() }}
+                    {{ render(controller('ShopsysShopBundle:Front/Article:footer')) }}
+                {% endcache %}
             </div>
         </footer>
     </div>

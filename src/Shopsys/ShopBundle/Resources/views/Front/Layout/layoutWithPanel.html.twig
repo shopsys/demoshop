@@ -13,7 +13,9 @@
         </div>
 
         <div class="web__main__panel">
-            {{ render(controller('ShopsysShopBundle:Front/Category:panel', { request: app.request } )) }}
+            {% cache 'category_panel'~app.request.pathinfo 5*60 %}
+                {{ render(controller('ShopsysShopBundle:Front/Category:panel', { request: app.request } )) }}
+            {% endcache %}
 
             {% block panel_content %}{% endblock %}
 
