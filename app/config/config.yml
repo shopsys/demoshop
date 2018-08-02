@@ -186,6 +186,12 @@ snc_redis:
       dsn: 'redis://%redis_host%'
       options:
         prefix: 'doctrine_query_'
+    twig:
+      type: 'phpredis'
+      alias: 'twig'
+      dsn: 'redis://%redis_host%'
+      options:
+        prefix: 'twig_'
     session:
       type: 'phpredis'
       alias: 'session'
