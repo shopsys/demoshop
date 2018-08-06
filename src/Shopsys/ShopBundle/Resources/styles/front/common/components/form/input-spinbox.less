@@ -3,18 +3,26 @@
 
 .form-input-spinbox {
     display: inline-block;
-    vertical-align: middle;
     position: relative;
+    vertical-align: middle;
     padding: @form-input-spinbox-padding-vertical @form-input-spinbox-buttons-width @form-input-spinbox-padding-vertical 3px;
 
     border: 1px solid @color-border;
 
+    @media @query-tablet {
+        padding: @form-input-spinbox-padding-vertical @form-input-spinbox-buttons-width;
+    }
+
     &__input {
-        width: @form-input-spinbox-buttons-width + @form-input-spinbox-padding-vertical;
         padding: 0;
+        width: @form-input-spinbox-buttons-width + @form-input-spinbox-padding-vertical;
         height: @input-height - 2 * @form-input-spinbox-padding-vertical;
         line-height: @input-height - 2 * @form-input-spinbox-padding-vertical;
         text-align: center;
+
+        @media @query-tablet {
+            width: @form-input-spinbox-buttons-width*3;
+        }
     }
 
     &__btn {
@@ -27,9 +35,23 @@
         background: @color-light;
         color: @color-base;
 
+        @media @query-tablet {
+            width: @form-input-spinbox-buttons-width*1.5;
+            height: 100%;
+
+            border-left: 1px solid @color-border;
+        }
+
         &--minus {
             top: auto;
             bottom: 0;
+
+            @media @query-tablet {
+                left: 0;
+
+                border-right: 1px solid @color-border;
+                border-left: 0;
+            }
         }
 
         &:hover {
