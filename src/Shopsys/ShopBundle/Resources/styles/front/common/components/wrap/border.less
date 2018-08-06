@@ -1,5 +1,19 @@
 .wrap-border {
     border: 3px solid @color-border-light;
+
+    &--inner-padding {
+        padding: 10px;
+
+        @media @query-lg {
+            padding: 20px;
+        }
+    }
+
+    &--no-mobile {
+        @media @query-tablet {
+            border: 0;
+        }
+    }
 }
 
 .wrap-border--bold {

@@ -13,7 +13,7 @@
         </div>
 
         <div class="web__main__panel">
-            <div class="wrap-border">
+            <div class="wrap-border wrap-border--no-mobile">
                 {% cache 'category_panel'~app.request.pathinfo 5*60 %}
                     {{ render(controller('ShopsysShopBundle:Front/Category:panel', { request: app.request } )) }}
                 {% endcache %}

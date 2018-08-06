@@ -12,6 +12,11 @@
 
     .clearfix();
 
+    .box-detail__image & {
+        top: 0;
+        left: 0;
+    }
+
     &--in-list {
         top: @in-flag-in-list-position-top;
         left: @in-flag-in-list-position-left;
@@ -24,5 +29,13 @@
         clear: left;
 
         font-size: 12px;
+
+        .box-detail__image & {
+
+            @media @query-lg {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+        }
     }
 }

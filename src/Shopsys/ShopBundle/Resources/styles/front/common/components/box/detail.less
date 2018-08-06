@@ -8,17 +8,16 @@
         margin-bottom: @margin-gap;
 
         @media @query-lg {
-            width: 50%;
             float: left;
             padding-right: 20px;
+            width: 50%;
         }
 
         &__main {
-            padding: 10px;
             margin-bottom: @margin-gap;
+            padding: 10px;
             text-align: center;
 
-            border: 1px solid @color-border;
             font-size: 0;
 
             img {
@@ -30,10 +29,14 @@
 
     &__info {
         margin-bottom: @margin-gap;
+        padding: 10px;
+
+        background-color: @color-light;
 
         @media @query-lg {
-            width: 50%;
             float: right;
+            padding: 30px;
+            width: 50%;
         }
 
         &__availability {
@@ -43,14 +46,14 @@
         }
 
         &__params {
-            margin: 0 0 @margin-gap;
-            padding: 10px 0;
+            padding: 10px;
 
+            background-color: @color-f;
             font-size: 0;
-            border-top: 1px solid @color-border;
-            border-bottom: 1px solid @color-border;
 
             @media @query-md {
+                padding: 15px;
+
                 column-count: 2;
             }
 
@@ -63,10 +66,10 @@
             }
 
             dt, dd {
-                margin: 0;
-                padding: 5px 0;
                 display: inline-block;
                 vertical-align: top;
+                margin: 0;
+                padding: 5px 0;
                 width: 50%;
 
                 font-size: 12px;
@@ -81,6 +84,24 @@
             &:empty {
                 display: none;
             }
+        }
+    }
+
+    &__accesories-wrap {
+        .wrap-border--bold;
+
+        @media @query-lg {
+            padding: 20px 20px 0 20px;
+        }
+    }
+
+    &__description-wrap {
+        margin-bottom: @margin-gap;
+
+        .wrap-border--bold;
+
+        @media @query-lg {
+            padding: 20px;
         }
     }
 }
