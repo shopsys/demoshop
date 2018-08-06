@@ -13,7 +13,7 @@
 
     &__toggle-button {
         margin-bottom: @margin-gap;
-        
+
         @media @query-lg {
             display: none;
         }
@@ -35,6 +35,8 @@
             overflow-y: auto;
 
             background-color: #ffffff;
+
+            -webkit-overflow-scrolling: touch;
         }
 
         &__overlay {
@@ -102,6 +104,10 @@
     }
 
     &__parameters {
+        @media @query-tablet {
+            padding-bottom: 60px;
+        }
+
         &__title {
             display: block;
             margin: 0 -@box-filter-padding @margin-gap/2;
