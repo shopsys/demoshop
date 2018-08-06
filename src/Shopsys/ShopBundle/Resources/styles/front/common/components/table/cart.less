@@ -11,9 +11,9 @@
                 display: inline-block;
                 padding: 5px;
 
-                text-decoration: none;
                 color: @color-inactive;
                 font-size: 10px;
+                text-decoration: none;
 
                 &:hover {
                     color: @color-red;
@@ -24,20 +24,28 @@
         &__image {
             display: inline-block;
             position: relative;
-            height: @table-cart-image-height;
             width: @table-cart-image-width;
+            height: @table-cart-image-height;
 
             img {
                 .center-image();
             }
         }
     }
+
+    &__row {
+        border-bottom: 1px solid @color-border;
+
+        tfoot & {
+            border-bottom: 0;
+        }
+    }
 }
 
 @media @query-tablet {
     .table-cart {
-        width: 100%;
         display: block;
+        width: 100%;
 
         tbody, tfoot {
             display: block;
@@ -49,11 +57,8 @@
 
         &__row {
             display: block;
-            margin-bottom: 5px;
-            padding: 5px;
             position: relative;
-
-            border: 1px solid @color-border;
+            padding: 10px 0;
 
             tfoot & {
                 border: 0;
@@ -73,8 +78,8 @@
             }
 
             &--name {
-                padding-left: @table-cart-image-width + @table-cart-image-gap;
                 padding-right: 20px;
+                padding-left: @table-cart-image-width + @table-cart-image-gap;
             }
 
             &--price {
@@ -82,8 +87,8 @@
             }
 
             &--amount {
-                padding-left: @table-cart-image-width + @table-cart-image-gap;
                 padding-top: 10px;
+                padding-left: @table-cart-image-width + @table-cart-image-gap;
             }
 
             &--action {
@@ -95,13 +100,13 @@
             &--total-price {
                 tfoot & {
                     display: block;
+                    padding-top: 20px;
                     text-align: center;
 
-                    font-weight: bold;
-
                     span {
-                        font-size: 14px;
                         color: @color-price-main;
+                        font-size: 16px;
+                        font-weight: bold;
                     }
                 }
             }
@@ -122,9 +127,6 @@
         &__cell {
             padding: 5px;
             text-align: left;
-
-            font-size: 12px;
-            border-bottom: 1px solid @color-border;
 
             thead & {
                 font-weight: bold;
@@ -154,16 +156,16 @@
             }
 
             &--total-price {
+                padding-top: 30px;
                 text-align: right;
-
-                font-weight: bold;
 
                 span {
                     display: inline-block;
                     margin-left: 5px;
 
                     color: @color-price-main;
-                    font-size: 16px;
+                    font-size: 22px;
+                    font-weight: bold;
                 }
             }
 
