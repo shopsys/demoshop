@@ -10,6 +10,7 @@ use Shopsys\FrameworkBundle\Component\Error\ExceptionListener;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
 use Tracy\BlueScreen;
 use Tracy\Debugger;
@@ -151,5 +152,10 @@ class ErrorController extends FrontBaseController
         ob_end_clean();
 
         return new Response($blueScreenHtml);
+    }
+
+    public function notFoundAction()
+    {
+        return $this->createErrorPageResponse(404);
     }
 }

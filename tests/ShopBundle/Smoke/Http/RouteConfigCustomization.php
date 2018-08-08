@@ -99,6 +99,16 @@ class RouteConfigCustomization
                 if ($this->isSingleDomain()) {
                     $config->skipRoute('Domain list in administration is not available when only 1 domain exists.');
                 }
+            })
+            ->customize(function (RouteConfig $config, RouteInfo $info) {
+                if (preg_match('~admin~', $info->getRouteName()) && $info->getRouteName() !== 'admin_flag_delete' && $info->getRouteName() !== 'admin_product_flag_lists') {
+                    $config->skipRoute('Only routes for front-end and administration are tested.');
+                }
+            })
+            ->customize(function (RouteConfig $config, RouteInfo $info) {
+                if (preg_match('~front~', $info->getRouteName())) {
+                    $config->skipRoute('Only routes for front-end and administration are tested.');
+                }
             });
     }
 
@@ -233,6 +243,15 @@ class RouteConfigCustomization
                 $config->changeDefaultRequestDataSet($debugNote)
                     ->setParameter('id', $vat->getId())
                     ->setParameter('newId', $newVat->getId());
+            })
+            ->customizeByRouteName('admin_product_flag_lists', function (RouteConfig $config) {
+                $config->changeDefaultRequestDataSet('Functionality of flags is hidden')
+                    ->setExpectedStatusCode(404);
+            })
+            ->customizeByRouteName('admin_flag_delete', function (RouteConfig $config) {
+                $config->changeDefaultRequestDataSet('Functionality of flags is hidden')
+                    ->setExpectedStatusCode(404)
+                    ->setParameter('id', 1);
             });
     }
 

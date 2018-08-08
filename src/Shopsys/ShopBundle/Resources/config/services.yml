@@ -89,3 +89,11 @@ services:
   Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceLoader: ~
 
   Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceRepository: ~
+
+  Shopsys\FrameworkBundle\Model\AdminNavigation\SideMenuBuilder:
+    class: Shopsys\ShopBundle\Model\AdminNavigation\SideMenuBuilder
+    public: true
+    arguments:
+      $menuFactory: '@knp_menu.factory'
+    tags:
+      - { name: knp_menu.menu_builder, method: createMenu, alias: admin_side_menu }
