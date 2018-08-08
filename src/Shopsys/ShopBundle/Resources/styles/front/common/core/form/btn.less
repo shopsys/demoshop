@@ -8,27 +8,28 @@
 @btn-bg-hover: darken(@btn-bg, 5%);
 
 .btn {
-    width: auto;
-    min-height: @btn-height;
-    padding: @btn-padding-vertical @btn-padding-horizontal;
-    line-height: @btn-height - 2 * @btn-padding-vertical;
-    vertical-align:middle;
     display: inline-block;
-    transition: @transition background, @transition color;
+    vertical-align: middle;
+    padding: @btn-padding-vertical @btn-padding-horizontal;
+    width: auto;
+    line-height: @btn-height - 2 * @btn-padding-vertical;
+    min-height: @btn-height;
     text-align: center;
 
-    border: 0;
-    color: @btn-color;
     background: @btn-bg;
+    border: 0;
     cursor: pointer;
-    font-weight: bold;
-    text-decoration: none;
+    color: @btn-color;
     font-size: 13px;
+    font-weight: bold;
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1);
+    transition: @transition background, @transition color;
+    text-decoration: none;
     outline: 0;
 
     &:hover {
-        color: @btn-color-hover;
         background: @btn-bg-hover;
+        color: @btn-color-hover;
     }
 
     &--block {
@@ -43,35 +44,35 @@
     @btn-success-color-hover: @color-f;
     @btn-success-bg: @color-green;
     @btn-success-bg-hover: darken(@btn-success-bg, 5%);
-
-    &--success {
-        color: @btn-success-color;
-        background: @btn-success-bg;
-
-        &:hover {
-            color: @btn-success-color-hover;
-            background: @btn-success-bg-hover;
-        }
-    }
-
     // primary button
     @btn-primary-color: @color-f;
     @btn-primary-color-hover: @color-f;
     @btn-primary-bg: @color-blue;
     @btn-primary-bg-hover: darken(@btn-primary-bg, 5%);
 
-    &--primary {
-        color: @btn-primary-color;
-        background: @btn-primary-bg;
+    &--success {
+        background: @btn-success-bg;
+        color: @btn-success-color;
 
         &:hover {
-            color: @btn-primary-color-hover;
+            background: @btn-success-bg-hover;
+            color: @btn-success-color-hover;
+        }
+    }
+
+    &--primary {
+        background: @btn-primary-bg;
+        color: @btn-primary-color;
+
+        &:hover {
             background: @btn-primary-bg-hover;
+            color: @btn-primary-color-hover;
         }
     }
 
     &--disabled {
         opacity: 0.5;
+
         cursor: no-drop;
     }
 }
@@ -79,17 +80,17 @@
 //// Modifications - size
 .btn {
     @btn-large-padding-horizontal: 25px;
-
-    &--large {
-        padding-left: @btn-large-padding-horizontal;
-        padding-right: @btn-large-padding-horizontal;
-
-        font-size: 16px;
-    }
-
     @btn-small-padding-vertical: 5px;
     @btn-small-padding-horizontal: 10px;
     @btn-small-height: @btn-height - 10;
+
+    &--large {
+        padding-right: @btn-large-padding-horizontal;
+        padding-left: @btn-large-padding-horizontal;
+
+        font-size: 16px;
+        box-shadow: inset 0 -4px 0 rgba(0,0,0,0.1);
+    }
 
     &--small {
         padding: @btn-small-padding-vertical @btn-small-padding-horizontal;
@@ -101,10 +102,10 @@
 
 // Button with removed styles
 .btn-no-style {
-    padding: 0;
     display: inline-block;
+    padding: 0;
 
-    border: 0;
     background: none;
+    border: 0;
     outline: 0;
 }
