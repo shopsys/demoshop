@@ -3,11 +3,12 @@
 
 .box-order {
     @media @query-lg {
-        width: 100%;
         display: flex;
+        width: 100%;
 
         .is-no-flex & {
             display: block;
+
             .clearfix();
         }
     }
@@ -21,6 +22,18 @@
             .is-no-flex & {
                 float: left;
                 width: @box-order-info-width;
+            }
+        }
+
+        fieldset {
+            margin-bottom: 10px;
+            padding: 5px 10px 0px 10px;
+
+            background-color: @color-light;
+
+            @media @query-lg {
+                margin-bottom: @margin-gap;
+                padding: 20px 20px 5px 20px;
             }
         }
     }
@@ -40,6 +53,26 @@
 
         @media @query-vl {
             padding-left: 40px;
+        }
+    }
+
+    &__wrapper {
+        margin-bottom: 20px;
+        padding: 5px 10px;
+
+        .wrap-border--bold;
+
+        @media @query-lg {
+            margin-bottom: 30px;
+            padding: 20px 20px 0 20px;
+        }
+
+        &--all-padding {
+            padding: 10px;
+
+            @media @query-lg {
+                padding: 20px;
+            }
         }
     }
 }

@@ -56,10 +56,14 @@ img {
         background: @web-footer-background;
         transition: @transition padding;
         will-change: padding;
-
+        margin-top: @margin-gap;
 
         &--with-cookies {
             padding-bottom: @web-footer-with-cookies-margin-bottom;
+        }
+
+        @media @query-lg {
+            margin-top: @margin-gap*1.5;
         }
     }
 

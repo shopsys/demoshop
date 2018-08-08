@@ -8,8 +8,11 @@
 
 .box-chooser {
     margin-bottom: @margin-gap;
+    background-color: @color-light;
 
-    border: 1px solid @color-border;
+    @media @query-lg {
+        padding: 20px;
+    }
 
     &__item {
         width: 100%;

@@ -258,6 +258,7 @@
 
         &__action {
             transition: @transition;
+            text-align: center;
 
             @media @query-vl {
                 display: none;
@@ -265,10 +266,15 @@
                 right: 0;
                 bottom: 10px;
                 left: 0;
-                text-align: center;
 
                 .list-products__item:hover & {
                     display: block;
+                }
+            }
+
+            .btn--success {
+                @media @query-tablet {
+                    min-width: 122px;
                 }
             }
         }

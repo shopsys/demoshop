@@ -1,6 +1,6 @@
 .table-cart-preview {
-    width: 100%;
     margin-bottom: @margin-gap;
+    width: 100%;
 
     &__row {
         border-top: 1px solid @color-border;
@@ -8,12 +8,18 @@
         &:first-child {
             border-top: 0;
         }
+
+        &--total {
+            border: 0;
+        }
     }
 
     &__cell {
         padding: 5px 0;
 
-        .table-cart-preview__row--total & {
+        .table-cart-preview__row--important & {
+            padding-top: @margin-gap;
+
             font-weight: bold;
         }
 
@@ -23,6 +29,14 @@
 
             .table-cart-preview__row--total & {
                 color: @color-price-main;
+            }
+        }
+
+        &--all-price-inc-vat {
+            font-size: 16px;
+
+            @media @query-lg {
+                font-size: 20px;
             }
         }
     }
