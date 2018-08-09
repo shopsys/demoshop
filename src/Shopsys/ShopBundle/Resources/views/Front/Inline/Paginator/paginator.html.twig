@@ -18,7 +18,9 @@
                         {% set page = null %}
                     {% endif %}
                     {% set routeParams = routeParams|merge({'page': page}) %}
-                    <a class="in-paging__control__item in-paging__control__item--arrow" href="{{ path(route, routeParams) }}" rel ="prev">&lt;</a>
+                    <a class="in-paging__control__item in-paging__control__item--arrow" href="{{ path(route, routeParams) }}" rel ="prev">
+                        <span class="svg svg-arrow in-rotate--90"></span>
+                    </a>
 
                     {% set routeParams = routeParams|merge({'page': null}) %}
                     {% if paginationResult.page == 2 %}
@@ -27,7 +29,9 @@
                         <a class="in-paging__control__item in-paging__control__item--num" href="{{ path(route, routeParams) }}">1</a>
                     {% endif %}
                 {% else %}
-                    <span class="in-paging__control__item in-paging__control__item--arrow in-paging__control__item--arrow--inactive">&lt;</span>
+                    <span class="in-paging__control__item in-paging__control__item--arrow in-paging__control__item--arrow--inactive">
+                        <span class="svg svg-arrow in-rotate--90"></span>
+                    </span>
                 {% endif %}
 
                 {% set pagerExpand = 2 %}
@@ -69,9 +73,9 @@
                     {% endif %}
 
                     {% set routeParams = routeParams|merge({'page': paginationResult.page + 1}) %}
-                    <a class="in-paging__control__item in-paging__control__item--arrow in-paging__control__item in-paging__control__item--arrow" href="{{ path(route, routeParams) }}" rel="next">&gt;</a>
+                    <a class="in-paging__control__item in-paging__control__item--arrow in-paging__control__item in-paging__control__item--arrow" href="{{ path(route, routeParams) }}" rel="next"><span class="svg svg-arrow in-rotate--270"></span></a>
                 {% else %}
-                    <span class="in-paging__control__item in-paging__control__item--arrow in-paging__control__item--arrow--inactive">&gt;</span>
+                    <span class="in-paging__control__item in-paging__control__item--arrow in-paging__control__item--arrow--inactive"><span class="svg svg-arrow in-rotate--270"></span></span>
                 {% endif %}
             {% endif %}
         </div>
