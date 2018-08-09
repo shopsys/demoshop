@@ -157,63 +157,66 @@
 
         {% if product.isMainVariant %}
         <h2>{{ 'Product variants'|trans }}</h2>
-        <table {% if getProductSellingPrice(product) is not null %}itemprop="offers"
-            itemscope
-            itemtype="http://schema.org/AggregateOffer" {% endif %}
-            class="table-variants"
-        >
-            <thead>
-                <tr class="table-variants__row">
-                    <th class="table-variants__cell table-variants__cell--image"></th>
-                    <th class="table-variants__cell table-variants__cell--name">{{ 'Name'|trans }}</th>
-                    <th class="table-variants__cell table-variants__cell--price">
-                        {{ 'Price including VAT'|trans }}
-                        {% if getProductSellingPrice(product) is not null %}
-                            <meta itemprop="priceCurrency"
-                                content="{{ currencyCode(domain.id) }}"
-                            >
-                            <meta itemprop="lowPrice"
-                                content="{{ getProductSellingPrice(product).priceWithVat }}"
-                            >
-                            <link itemprop="availability"
-                                href="{{ product.calculatedSellingDenied ? 'http://schema.org/OutOfStock' : 'http://schema.org/InStock' }}"
-                            >
-                        {% endif %}
-                    </th>
-                    <th class="table-variants__cell table-variants__cell--action"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for variant in variants %}
+        <div class="box-detail__variants-wrap">
+            <table {% if getProductSellingPrice(product) is not null %}itemprop="offers"
+                itemscope
+                itemtype="http://schema.org/AggregateOffer" {% endif %}
+                class="table-variants"
+            >
+                <thead>
                     <tr class="table-variants__row">
-                        <td class="table-variants__cell table-variants__cell--image">
-                            <div class="table-variants__cell__image">
-                                {% if imageExists(variant) %}
-                                    <a href="{{ imageUrl(variant, 'original') }}" class="js-popup-image">
-                                        {{ image(variant, { size: 'thumbnail' }) }}
-                                    </a>
-                                {% else %}
-                                    {{ noimage() }}
-                                {% endif %}
-                            </div>
-                        </td>
-                        <td class="table-variants__cell table-variants__cell--name">
-                            {% if variant.variantAlias is not null %}
-                                {{ variant.variantAlias }}
-                            {% else %}
-                                {{ variant.name }}
+                        <th class="table-variants__cell table-variants__cell--image"></th>
+                        <th class="table-variants__cell table-variants__cell--name">{{ 'Name'|trans }}</th>
+                        <th class="table-variants__cell table-variants__cell--price">
+                            {{ 'Price including VAT'|trans }}
+                            {% if getProductSellingPrice(product) is not null %}
+                                <meta itemprop="priceCurrency"
+                                    content="{{ currencyCode(domain.id) }}"
+                                >
+                                <meta itemprop="lowPrice"
+                                    content="{{ getProductSellingPrice(product).priceWithVat }}"
+                                >
+                                <link itemprop="availability"
+                                    href="{{ product.calculatedSellingDenied ? 'http://schema.org/OutOfStock' : 'http://schema.org/InStock' }}"
+                                >
                             {% endif %}
-                        </td>
-                        <td class="table-variants__cell table-variants__cell--price">
-                            {{ getProductSellingPrice(variant).priceWithVat|price }}
-                        </td>
-                        <td class="table-variants__cell table-variants__cell--action">
-                            {{ render(controller('ShopsysShopBundle:Front/Cart:addProductForm', {product: variant})) }}
-                        </td>
+                        </th>
+                        <th class="table-variants__cell table-variants__cell--action"></th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for variant in variants %}
+                        <tr class="table-variants__row">
+                            <td class="table-variants__cell table-variants__cell--image">
+                                <div class="table-variants__cell__image">
+                                    {% if imageExists(variant) %}
+                                        <a href="{{ imageUrl(variant, 'original') }}" class="js-popup-image">
+                                            {{ image(variant, { size: 'thumbnail' }) }}
+                                        </a>
+                                    {% else %}
+                                        {{ noimage() }}
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td class="table-variants__cell table-variants__cell--name">
+                                {% if variant.variantAlias is not null %}
+                                    {{ variant.variantAlias }}
+                                {% else %}
+                                    {{ variant.name }}
+                                {% endif %}
+                            </td>
+                            <td class="table-variants__cell table-variants__cell--price">
+                                {{ getProductSellingPrice(variant).priceWithVat|price }}
+                            </td>
+                            <td class="table-variants__cell table-variants__cell--action">
+                                {{ render(controller('ShopsysShopBundle:Front/Cart:addProductForm', {product: variant})) }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
         {% endif %}
 
         {% set productParameterValues = getProductParameterValues(product) %}

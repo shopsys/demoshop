@@ -66,16 +66,17 @@
         z-index: 10;
 
         background: @color-f;
-        border: 1px solid @color-border;
+        border: 1px solid @color-border-light;
         border-top: 0;
         border-radius: 0 0 @radius @radius;
 
         &__item {
-            border-top: 1px dashed @color-border;
+            border-top: 1px solid @color-border-light;
 
             &__link {
                 display: flex;
                 align-items: center;
+                position: relative;
                 padding: 10px;
                 width: 100%;
 
@@ -86,6 +87,23 @@
                 &:hover {
                     text-decoration: none;
                 }
+
+                &:after {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: 100%;
+                    bottom: 0;
+                    left: 0;
+                    content: ' ';
+
+                    background-color: fade(@color-0, 5%);
+                    transition: @transition;
+                }
+
+                &:hover:after {
+                    right: 0;
+                }
             }
 
             &--info {
@@ -93,6 +111,7 @@
                 text-align: center;
 
                 border: none;
+                border-top: 1px solid @color-border-light;
                 font-size: 12px;
             }
 
