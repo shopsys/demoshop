@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Shopsys Framework (dev)" default="build-demo-ci">
 
-    <target name="build-dev" depends="clean,composer-dev,npm,timezones-check,dirs-create,domains-urls-check,assets,db-migrations,create-domains-data,generate-friendly-urls,replace-domains-urls,grunt,error-pages-generate,tests-acceptance-build,checks-diff" description="Builds application for development preserving your DB and runs checks on changed files."/>
+    <target name="build-dev" depends="clean,composer-dev,npm,timezones-check,dirs-create,domains-urls-check,assets,db-migrations,create-domains-data,generate-friendly-urls,replace-domains-urls,elasticsearch-indexes-recreate,elasticsearch-products-export,grunt,error-pages-generate,tests-acceptance-build,checks-diff" description="Builds application for development preserving your DB and runs checks on changed files."/>
     <target name="build-dev-quick" depends="clean,composer-dev,npm,dirs-create,domains-urls-check,assets,db-migrations,create-domains-data,generate-friendly-urls,replace-domains-urls,grunt,tests-acceptance-build" description="Builds application for development preserving your DB while skipping nonessential steps."/>
-    <target name="build-demo-dev" depends="wipe-excluding-logs,composer-dev,npm,timezones-check,dirs-create,domains-urls-check,assets,db-demo,grunt,error-pages-generate,tests-acceptance-build,checks-diff" description="Builds application for development with clean demo DB and runs checks on changed files."/>
-    <target name="build-demo-dev-quick" depends="wipe-excluding-logs,composer-dev,npm,dirs-create,domains-urls-check,assets,db-demo,grunt,tests-acceptance-build" description="Builds application for development with clean demo DB while skipping nonessential steps."/>
-    <target name="build-demo-ci" depends="wipe-excluding-logs,composer-dev,npm,timezones-check,dirs-create,domains-urls-check,assets,db-demo,grunt,img-demo,error-pages-generate,tests-acceptance-build,checks-ci" description="Builds application for development with clean demo DB and runs CI checks."/>
-    <target name="build-demo-ci-diff" depends="wipe-excluding-logs,composer-dev,npm,timezones-check,dirs-create,domains-urls-check,assets,db-demo,grunt,img-demo,error-pages-generate,tests-acceptance-build,checks-ci-diff" description="Builds application for development with clean demo DB and runs CI checks on changed files."/>
+    <target name="build-demo-dev" depends="wipe-excluding-logs,composer-dev,npm,timezones-check,dirs-create,domains-urls-check,assets,db-demo,elasticsearch-indexes-recreate,elasticsearch-products-export,grunt,error-pages-generate,tests-acceptance-build,checks-diff" description="Builds application for development with clean demo DB and runs checks on changed files."/>
+    <target name="build-demo-dev-quick" depends="wipe-excluding-logs,composer-dev,npm,dirs-create,domains-urls-check,assets,db-demo,elasticsearch-indexes-recreate,elasticsearch-products-export,grunt,tests-acceptance-build" description="Builds application for development with clean demo DB while skipping nonessential steps."/>
+    <target name="build-demo-ci" depends="wipe-excluding-logs,composer-dev,npm,timezones-check,dirs-create,domains-urls-check,assets,db-demo,elasticsearch-indexes-recreate,elasticsearch-products-export,grunt,img-demo,error-pages-generate,tests-acceptance-build,checks-ci" description="Builds application for development with clean demo DB and runs CI checks."/>
+    <target name="build-demo-ci-diff" depends="wipe-excluding-logs,composer-dev,npm,timezones-check,dirs-create,domains-urls-check,assets,db-demo,elasticsearch-indexes-recreate,elasticsearch-products-export,grunt,img-demo,error-pages-generate,tests-acceptance-build,checks-ci-diff" description="Builds application for development with clean demo DB and runs CI checks on changed files."/>
 
     <target name="checks" depends="db-check-mapping,standards,tests" description="Checks ORM mapping, coding standards and runs unit, DB and smoke tests."/>
     <target name="checks-diff" depends="db-check-mapping,standards-diff,tests" description="Checks ORM mapping, coding standards on changed files and runs unit, DB and smoke tests."/>
@@ -24,10 +24,10 @@
 
     <target name="composer-check" description="Checks if Composer lock file is valid.">
         <exec
-            executable="${path.composer.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.composer.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg value="validate" />
             <arg value="--no-check-all" />
@@ -36,10 +36,10 @@
 
     <target name="composer-dev" depends="composer-check" description="Installs dependencies for development.">
         <exec
-            executable="${path.composer.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.composer.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg value="install"/>
         </exec>
@@ -64,18 +64,18 @@
 
     <target name="diff-files" description="Finds changed files (against origin/master) and saves them into properties.">
         <exec
-            command="git merge-base origin/master HEAD"
-            outputProperty="git.merge.base"
+                command="git merge-base origin/master HEAD"
+                outputProperty="git.merge.base"
         />
 
         <exec
-            command="git diff --name-only --diff-filter=ACMR ${git.merge.base} ${path.src} ${path.tests}"
-            outputProperty="git.files.changed"
+                command="git diff --name-only --diff-filter=ACMR ${git.merge.base} ${path.src} ${path.tests}"
+                outputProperty="git.files.changed"
         />
 
         <exec
-            command="git ls-files --others --exclude-standard ${path.src} ${path.tests}"
-            outputProperty="git.files.unstaged"
+                command="git ls-files --others --exclude-standard ${path.src} ${path.tests}"
+                outputProperty="git.files.unstaged"
         />
 
         <property name="diff.files.all" value="${git.files.changed}${line.separator}${git.files.unstaged}">
@@ -218,10 +218,10 @@
 
     <target name="ecs" description="Checks coding standards in all files by PHP easy coding standards.">
         <exec
-            executable="${path.ecs.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.ecs.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg value="check" />
             <arg value="--clear-cache" />
@@ -233,10 +233,10 @@
 
     <target name="ecs-fix" description="Checks and fixes automatically fixable coding standards in all files by PHP easy coding standards.">
         <exec
-            executable="${path.ecs.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.ecs.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg value="check" />
             <arg value="--clear-cache" />
@@ -250,10 +250,10 @@
 
     <target name="ecs-diff" description="Checks coding standards in all files by PHP easy coding standards.">
         <exec
-            executable="${path.ecs.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.ecs.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg value="check" />
             <arg path="${path.src}" />
@@ -264,10 +264,10 @@
 
     <target name="ecs-fix-diff" description="Checks and fixes automatically fixable coding standards in all files by PHP easy coding standards.">
         <exec
-            executable="${path.ecs.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.ecs.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg value="check" />
             <arg value="--fix" />
@@ -279,10 +279,10 @@
 
     <target name="phplint" description="Checks syntax of PHP files.">
         <exec
-            executable="${path.phplint.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.phplint.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg path="${path.src}"/>
             <arg path="${path.tests}" />
@@ -296,10 +296,10 @@
             </not>
             <then>
                 <exec
-                    executable="${path.phplint.executable}"
-                    logoutput="true"
-                    passthru="true"
-                    checkreturn="true"
+                        executable="${path.phplint.executable}"
+                        logoutput="true"
+                        passthru="true"
+                        checkreturn="true"
                 >
                     <arg line="${diff.files.php.spaces}" />
                 </exec>
@@ -309,10 +309,10 @@
 
     <target name="phpstan" description="Performs static analysis of PHP files using PHPStan.">
         <exec
-            executable="${path.phpstan.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.phpstan.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg value="analyze"/>
 
@@ -328,10 +328,10 @@
 
     <target name="selenium-run" description="Runs the Selenium server for acceptance testing. ChromeDriver is required.">
         <exec
-            executable="${path.chromedriver.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.chromedriver.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg value="--port=4444" />
             <arg value="--url-base=wd/hub" />
@@ -369,10 +369,10 @@
         <trycatch>
             <try>
                 <exec
-                    executable="${path.codeception.executable}"
-                    logoutput="true"
-                    passthru="true"
-                    checkreturn="true"
+                        executable="${path.codeception.executable}"
+                        logoutput="true"
+                        passthru="true"
+                        checkreturn="true"
                 >
                     <arg value="run" />
                     <arg value="--config=${path.codeception.configuration}" />
@@ -393,10 +393,10 @@
 
     <target name="tests-acceptance-build" description="Generates AcceptanceTesterActions.php (execute after change of Codeception modules, eg. StrictWebDriver).">
         <exec
-            executable="${path.codeception.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.codeception.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg value="build" />
             <arg value="--config=${path.codeception.configuration}" />
@@ -408,10 +408,10 @@
             <istrue value="${is-multidomain}" />
             <then>
                 <exec
-                    executable="${path.phpunit.executable}"
-                    logoutput="true"
-                    passthru="true"
-                    checkreturn="true"
+                        executable="${path.phpunit.executable}"
+                        logoutput="true"
+                        passthru="true"
+                        checkreturn="true"
                 >
                     <arg value="--colors=always"/>
                     <arg value="--testsuite"/>
@@ -425,10 +425,10 @@
 
             <else>
                 <exec
-                    executable="${path.phpunit.executable}"
-                    logoutput="true"
-                    passthru="true"
-                    checkreturn="true"
+                        executable="${path.phpunit.executable}"
+                        logoutput="true"
+                        passthru="true"
+                        checkreturn="true"
                 >
                     <arg value="--colors=always"/>
                     <arg value="--testsuite"/>
@@ -447,10 +447,10 @@
             <istrue value="${is-multidomain}" />
             <then>
                 <exec
-                    executable="${path.phpunit.executable}"
-                    logoutput="true"
-                    passthru="true"
-                    checkreturn="true"
+                        executable="${path.phpunit.executable}"
+                        logoutput="true"
+                        passthru="true"
+                        checkreturn="true"
                 >
                     <arg value="--colors=always"/>
                     <arg value="--testsuite"/>
@@ -463,10 +463,10 @@
             </then>
             <else>
                 <exec
-                    executable="${path.phpunit.executable}"
-                    logoutput="true"
-                    passthru="true"
-                    checkreturn="true"
+                        executable="${path.phpunit.executable}"
+                        logoutput="true"
+                        passthru="true"
+                        checkreturn="true"
                 >
                     <arg value="--colors=always"/>
                     <arg value="--testsuite"/>
@@ -482,10 +482,10 @@
 
     <target name="tests-performance" depends="clean" description="Runs performance tests.">
         <exec
-            executable="${path.phpunit.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.phpunit.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg value="--colors=always"/>
             <arg value="--testsuite"/>
@@ -499,10 +499,10 @@
 
     <target name="tests-performance-warmup" description="Warms up cache for performance tests.">
         <exec
-            executable="${path.phpunit.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.phpunit.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg value="--colors=always"/>
             <arg value="--testsuite"/>
@@ -516,10 +516,10 @@
 
     <target name="tests-unit" depends="clean" description="Runs unit tests.">
         <exec
-            executable="${path.phpunit.executable}"
-            logoutput="true"
-            passthru="true"
-            checkreturn="true"
+                executable="${path.phpunit.executable}"
+                logoutput="true"
+                passthru="true"
+                checkreturn="true"
         >
             <arg value="--colors=always"/>
             <arg value="--testsuite"/>

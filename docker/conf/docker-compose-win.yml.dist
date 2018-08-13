@@ -25,14 +25,14 @@ services:
 
     php-fpm:
         build:
-            context: project-base/docker/php-fpm
+            context: docker/php-fpm
             args:
                 www_data_uid: 82
                 www_data_gid: 82
         container_name: shopsys-framework-php-fpm
         volumes:
             - .:/var/www/html
-            - ./project-base/docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/php.ini
+            - ./docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/php.ini
         links:
             - postgres
             - redis
@@ -83,6 +83,22 @@ services:
         image: namshi/smtp:latest
         container_name: shopsys-framework-smtp-server
 
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.3.2
+        container_name: shopsys-framework-elasticsearch
+        ulimits:
+            nofile:
+                soft: 65536
+                hard: 65536
+        ports:
+            - "9200:9200"
+        volumes:
+            - elasticsearch-data:/usr/share/elasticsearch/data
+        environment:
+            - discovery.type=single-node
+
 volumes:
     pgdata:
         driver: local
+    elasticsearch-data:
+      driver: local

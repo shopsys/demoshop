@@ -2342,6 +2342,63 @@
             "time": "2018-04-10T10:11:19+00:00"
         },
         {
+            "name": "elasticsearch/elasticsearch",
+            "version": "v6.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elastic/elasticsearch-php.git",
+                "reference": "b8e3bc9d1fc54d6a18692df0b74956efe7fe241a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/b8e3bc9d1fc54d6a18692df0b74956efe7fe241a",
+                "reference": "b8e3bc9d1fc54d6a18692df0b74956efe7fe241a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": ">=1.3.7",
+                "guzzlehttp/ringphp": "~1.0",
+                "php": "^7.0",
+                "psr/log": "~1.0"
+            },
+            "require-dev": {
+                "cpliakas/git-wrapper": "~1.0",
+                "doctrine/inflector": "^1.1",
+                "mockery/mockery": "0.9.4",
+                "phpstan/phpstan-shim": "0.8.3",
+                "phpunit/phpunit": "6.3.0",
+                "squizlabs/php_codesniffer": "3.0.2",
+                "symfony/finder": "^2.8",
+                "symfony/yaml": "^2.8"
+            },
+            "suggest": {
+                "ext-curl": "*",
+                "monolog/monolog": "Allows for client-level logging and tracing"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Elasticsearch\\": "src/Elasticsearch/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Zachary Tong"
+                }
+            ],
+            "description": "PHP Client for Elasticsearch",
+            "keywords": [
+                "client",
+                "elasticsearch",
+                "search"
+            ],
+            "time": "2017-12-05T14:15:58+00:00"
+        },
+        {
             "name": "fig/link-util",
             "version": "1.0.0",
             "source": {
@@ -2663,6 +2720,107 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "guzzlehttp/ringphp",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/RingPHP.git",
+                "reference": "5e2a174052995663dd68e6b5ad838afd47dd615b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/RingPHP/zipball/5e2a174052995663dd68e6b5ad838afd47dd615b",
+                "reference": "5e2a174052995663dd68e6b5ad838afd47dd615b",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/streams": "~3.0",
+                "php": ">=5.4.0",
+                "react/promise": "~2.0"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "ext-curl": "Guzzle will use specific adapters if cURL is present"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Ring\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function.",
+            "time": "2018-07-31T13:22:33+00:00"
+        },
+        {
+            "name": "guzzlehttp/streams",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/streams.git",
+                "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/streams/zipball/47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
+                "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Stream\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Provides a simple abstraction over streams of data",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "Guzzle",
+                "stream"
+            ],
+            "time": "2014-10-12T19:18:40+00:00"
         },
         {
             "name": "helios-ag/fm-elfinder-bundle",
@@ -4574,6 +4732,52 @@
             "time": "2017-10-23T01:57:42+00:00"
         },
         {
+            "name": "react/promise",
+            "version": "v2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp/promise.git",
+                "reference": "f4edc2581617431aea50430749db55cc3fc031b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp/promise/zipball/f4edc2581617431aea50430749db55cc3fc031b3",
+                "reference": "f4edc2581617431aea50430749db55cc3fc031b3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "React\\Promise\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Sorgalla",
+                    "email": "jsorgalla@gmail.com"
+                }
+            ],
+            "description": "A lightweight implementation of CommonJS Promises/A for PHP",
+            "keywords": [
+                "promise",
+                "promises"
+            ],
+            "time": "2018-06-13T15:59:06+00:00"
+        },
+        {
             "name": "robloach/component-installer",
             "version": "0.2.3",
             "source": {
@@ -5041,12 +5245,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/framework.git",
-                "reference": "c0e5890258b6641f47e66e8cd453cc25d4af851c"
+                "reference": "789104c273fdba612624ba0a764d16357314fc33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/framework/zipball/c0e5890258b6641f47e66e8cd453cc25d4af851c",
-                "reference": "c0e5890258b6641f47e66e8cd453cc25d4af851c",
+                "url": "https://api.github.com/repos/shopsys/framework/zipball/789104c273fdba612624ba0a764d16357314fc33",
+                "reference": "789104c273fdba612624ba0a764d16357314fc33",
                 "shasum": ""
             },
             "require": {
@@ -5065,6 +5269,7 @@
                 "doctrine/doctrine-fixtures-bundle": "^3.0.2",
                 "doctrine/orm": "dev-doctrine-260-with-ddc1960-hotfix-and-ddc4005-hotfix as 2.6.0",
                 "egeloen/ckeditor-bundle": "^4.0.6",
+                "elasticsearch/elasticsearch": "^6.0.1",
                 "ext-bcmath": "*",
                 "ext-ctype": "*",
                 "ext-curl": "*",
@@ -5141,7 +5346,7 @@
                 "proprietary"
             ],
             "description": "Core of Shopsys Framework - open source framework for building large, scalable, fast-growing e-commerce projects based on Symfony",
-            "time": "2018-07-31T12:06:43+00:00"
+            "time": "2018-08-13T14:42:16+00:00"
         },
         {
             "name": "shopsys/migrations",
