@@ -7,3 +7,13 @@ shopsys_framework:
   
 elfinder:
   resource: "@FMElfinderBundle/Resources/config/routing.yml"
+
+admin_flag_delete:
+   path: /admin/product/flag/delete/{id}?routeCsrfToken={routeCsrfToken}
+   defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
+   requirements:
+       id: \d+
+
+admin_flag_list:
+  path: /admin/product/flag/list/
+  defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
