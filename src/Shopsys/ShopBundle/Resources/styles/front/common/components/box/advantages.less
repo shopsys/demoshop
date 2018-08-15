@@ -8,18 +8,21 @@
     }
 
     &__item {
-        text-align: center;
+        display: flex;
+        align-items: center;
         padding: @margin-gap 5px;
+        text-align: center;
 
 
         @media @query-lg {
-            width: 100% / 3;
+            display: block;
             padding: @margin-gap 10px;
+            width: 100% / 3;
 
-            border-right: 1px solid rgba(255,255,255,.1);
+            border-right: 1px solid rgba(255,255,255,0.1);
 
             &:first-child {
-                border-left: 1px solid rgba(255,255,255,.1);
+                border-left: 1px solid rgba(255,255,255,0.1);
             }
         }
 
@@ -28,14 +31,15 @@
         }
 
         &__icon {
-            font-size: 48px;
             color: @color-primary;
+            font-size: 48px;
         }
 
         &__title {
+            margin-bottom: 0.5em;
+
             color: @color-f;
             font-size: 16px;
-            margin-bottom: .5em;
 
             @media @query-lg {
                 font-size: 18px;
@@ -43,8 +47,16 @@
         }
 
         &__text {
+            padding-left: @margin-gap/2;
             line-height: 1.5em;
+            text-align: left;
+
             color: @color-9;
+
+            @media @query-lg {
+                padding-left: 0;
+                text-align: center;
+            }
         }
     }
 }
