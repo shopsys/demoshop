@@ -2,28 +2,35 @@
 
 .box-progress {
     .reset-ul();
+
     display: flex;
     align-items: stretch;
-    width: 100%;
     margin-bottom: @margin-gap;
+    width: 100%;
+
+    @media @query-lg {
+        margin-bottom: @margin-gap*2;
+    }
 
     .is-no-flex & {
         display: block;
+
         .clearfix();
     }
 
     &__item {
-        flex: 1;
         display: flex;
+        flex: 1;
         align-items: center;
 
-        background: @color-light;
+        border-bottom: 3px solid @color-border-light;
         border-left: 1px solid @color-f;
+        color: @color-9;
 
         .is-no-flex & {
+            display: block;
             float: left;
             width: 100%/@box-progress-steps-count;
-            display: block;
         }
 
         &:first-child {
@@ -31,17 +38,16 @@
         }
 
         &--active {
-            background: @color-primary;
-            color: @color-f;
+            border-bottom-color: @color-primary;
+            color: @color-base;
         }
 
         &--done {
-            background: @color-light;
-            color: @color-c;
+
         }
 
         &--previous-active {
-            color: @color-c;
+            
         }
 
         &__inner {
@@ -62,10 +68,6 @@
 
         &__step {
             font-weight: bold;
-
-            @media @query-lg {
-                font-size: 18px;
-            }
         }
     }
 }
