@@ -28,12 +28,5 @@
                 </li>
             {% endfor %}
         </ul>
-        {% if products|length > maxShownProducts %}
-            <div class="list-products-line__more js-bestselling-products-load-more-container">
-                <span class="btn js-bestselling-products-load-more">
-                    {{ 'More bestsellers'|trans }}
-                </span>
-            </div>
-        {% endif %}
     </div>
 {% endif %}
