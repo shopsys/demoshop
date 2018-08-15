@@ -12,9 +12,9 @@ class AdvertPositionRegistry extends BaseAdvertPositionRegistry
     public function getAllLabelsIndexedByNames(): array
     {
         $advertPositions = parent::getAllLabelsIndexedByNames();
-        $advertPositions['homepagePrimary'] = t('on homepage above popular categories (full width)');
-        $advertPositions['homepageSecondaryLeft'] = t('on homepage above popular categories (half width left)');
-        $advertPositions['homepageSecondaryRight'] = t('on homepage above popular categories (half width right)');
+        $advertPositions['homepagePrimary'] = t('on homepage above popular categories (Primary)');
+        $advertPositions['homepageSecondaryFirst'] = t('on homepage above popular categories (Secondary First)');
+        $advertPositions['homepageSecondarySecond'] = t('on homepage above popular categories (Secondary Second)');
 
         return $advertPositions;
     }

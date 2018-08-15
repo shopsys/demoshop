@@ -20,9 +20,19 @@
 
 {% block main_content %}
 
-    {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepagePrimary'})) }}
-    {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepageSecondaryLeft'})) }}
-    {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepageSecondaryRight'})) }}
+    <div class="box-homepage-gallery">
+        <div class="box-homepage-gallery__primary">
+            {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepagePrimary'})) }}
+        </div>
+        <div class="box-homepage-gallery__secondary">
+            <div class="box-homepage-gallery__secondary__item box-homepage-gallery__secondary__item--first">
+                {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepageSecondaryFirst'})) }}
+            </div>
+            <div class="box-homepage-gallery__secondary__item box-homepage-gallery__secondary__item--second">
+                {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepageSecondarySecond'})) }}
+            </div>
+        </div>
+    </div>
 
     {% cache 'homepage_category_top' 5*60 %}
         {{ render(controller('ShopsysShopBundle:Front/Category:top')) }}
