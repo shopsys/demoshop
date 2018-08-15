@@ -1,6 +1,13 @@
 .box-order-type {
     margin-bottom: @margin-gap;
+
     .clearfix();
+
+    @media @query-xl {
+        margin-top: @margin-gap*2;
+
+        border-bottom: 1px solid @color-border;
+    }
 
     &__item {
         float: left;
@@ -8,6 +15,7 @@
 
         border: 1px solid transparent;
         font-size: 12px;
+        text-decoration: none;
 
         @media @query-md {
             padding: 8px 12px;
@@ -21,10 +29,17 @@
 
         &.active {
             background: @color-f;
-            border-color:  @color-border;
+            border-color: @color-border;
             color: @color-base;
-            text-decoration: none;
             font-weight: bold;
+            text-decoration: none;
+
+            @media @query-xl {
+                position: relative;
+                bottom: -1px;
+
+                border-bottom: 1px solid white;
+            }
         }
     }
 }
