@@ -48,6 +48,15 @@ img {
         &--dark {
             background: @web-header-background;
         }
+
+        &--box-advantages {
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            background: @web-header-background;
+        }
+
+        &--footer {
+            border-bottom: 1px solid rgba(255,255,255,.1);
+        }
     }
 
     &__footer {
@@ -56,14 +65,13 @@ img {
         background: @web-footer-background;
         transition: @transition padding;
         will-change: padding;
-        margin-top: @margin-gap;
 
         &--with-cookies {
             padding-bottom: @web-footer-with-cookies-margin-bottom;
         }
 
         @media @query-lg {
-            margin-top: @margin-gap*1.5;
+
         }
     }
 
@@ -74,7 +82,7 @@ img {
         border-top: 1px solid rgba(255,255,255,0.1);
 
         @media @query-lg {
-            margin-bottom: @margin-gap;
+            margin-bottom: @margin-gap*2;
         }
     }
 

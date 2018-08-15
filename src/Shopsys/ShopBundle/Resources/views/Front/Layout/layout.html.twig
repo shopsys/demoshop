@@ -35,6 +35,63 @@
             </div>
         </div>
     </div>
+    {% block advantages %}
+    <div class="web__advantages">
+        <div class="web__line web__line--box-advantages">
+            <div class="web__container">
+                <div class="box-advantages">
+                    <div class="box-advantages__item">
+                        <div class="box-advantages__item__icon">
+                            <span class="svg svg-advantages-icon-value"></span>
+                        </div>
+                        <div class="box-advantages__item__title">
+                            Great Value
+                        </div>
+                        <div class="box-advantages__item__text">
+                            We offer competitive prices on our 100 million plus product range.
+                        </div>
+                    </div>
+                    <div class="box-advantages__item">
+                        <div class="box-advantages__item__icon">
+                            <span class="svg svg-advantages-icon-satisfaction"></span>
+                        </div>
+                        <div class="box-advantages__item__title">
+                            100% Satisfaction
+                        </div>
+                        <div class="box-advantages__item__text">With sites in 5 languages, we ship to over 200 countries & regions.</div>
+                    </div>
+                    <div class="box-advantages__item">
+                        <div class="box-advantages__item__icon">
+                            <span class="svg svg-advantages-icon-delivery"></span>
+                        </div>
+                        <div class="box-advantages__item__title">
+                            Worldwide Delivery
+                        </div>
+                        <div class="box-advantages__item__text">Pay with the world’s most popular and secure payment methods.</div>
+                    </div>
+                    <div class="box-advantages__item">
+                        <div class="box-advantages__item__icon">
+                            <span class="svg svg-advantages-icon-responsible"></span>
+                        </div>
+                        <div class="box-advantages__item__title">
+                            We are Responsible
+                        </div>
+                        <div class="box-advantages__item__text">Our Buyer Protection covers your purchase from click to delivery.</div>
+                    </div>
+                    <div class="box-advantages__item">
+                        <div class="box-advantages__item__icon">
+                            <span class="svg svg-advantages-icon-help"></span>
+                        </div>
+                        <div class="box-advantages__item__title">
+                            24/7 Help Center
+                        </div>
+                        <div class="box-advantages__item__text">Round-the-clock assistance for a smooth shopping experience.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
     <div class="web__footer{% if not isCookiesConsentGiven() %} web__footer--with-cookies js-eu-cookies-consent-footer-gap{% endif %}">
         {% include '@ShopsysShop/Front/Layout/footer.html.twig' %}
     </div>

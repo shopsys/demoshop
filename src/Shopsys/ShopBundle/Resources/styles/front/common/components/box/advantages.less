@@ -1,0 +1,50 @@
+.box-advantages {
+    margin-top: @margin-gap;
+
+    @media @query-lg {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: @margin-gap*2;
+    }
+
+    &__item {
+        text-align: center;
+        padding: @margin-gap 5px;
+
+
+        @media @query-lg {
+            width: 100% / 3;
+            padding: @margin-gap 10px;
+
+            border-right: 1px solid rgba(255,255,255,.1);
+
+            &:first-child {
+                border-left: 1px solid rgba(255,255,255,.1);
+            }
+        }
+
+        @media @query-vl {
+            width: 100% / 5;
+        }
+
+        &__icon {
+            font-size: 48px;
+            color: @color-primary;
+        }
+
+        &__title {
+            color: @color-f;
+            font-size: 16px;
+            margin-bottom: .5em;
+
+            @media @query-lg {
+                font-size: 18px;
+            }
+        }
+
+        &__text {
+            line-height: 1.5em;
+            color: @color-9;
+        }
+    }
+}
