@@ -81,20 +81,6 @@
                     {{ form_row(form.note, { label: 'Contact us'|trans }) }}
                 </fieldset>
 
-                {% if termsAndConditionsArticle is not null %}
-                    <h2>{{ 'Terms and conditions'|trans }}</h2>
-                    <fieldset>
-                        <div class="box-condition">
-                            <div class="box-condition__in">
-                                <iframe name="js-terms-and-conditions-frame" width="100%" src="{{ url('front_order_terms_and_conditions') }}"></iframe>
-                            </div>
-                            <div class="box-condition__control">
-                                <button id="js-terms-and-conditions-print" class="btn btn--small" type="button">{{ 'Print'|trans }}</button>
-                                <a href="{{ url('front_order_terms_and_conditions_download') }}" class="btn btn--small">{{ 'Download'|trans }}</a>
-                            </div>
-                        </div>
-                    </fieldset>
-                {% endif %}
                 <fieldset>
                     <dl class="form-line">
                         <dt></dt>
