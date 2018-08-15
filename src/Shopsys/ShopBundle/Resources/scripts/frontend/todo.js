@@ -21,4 +21,19 @@ $(document).ready(function () {
         $('js-filter-toggle-button').removeClass('active');
     });
 
+    // vzato z agáty, je potřeba nějak začlenit do rangeSlider.js .. funkčně to bere hodnoty z inputů, které máme skryté a dává je to do textových elementů, které zobrazuji. Po resetu filtrů by se měli aktualizovat, což se nyní neděje.
+    var showSliderPrices = function ( $slider ) {
+		var $minimalPriceInput = $ ( '#product_filter_form_minimalPrice' );
+		var $maximalPriceInput = $ ( '#product_filter_form_maximalPrice' );
+		var minimalPrice = $minimalPriceInput.val ( ) ? $minimalPriceInput.val ( ) : parseInt ( $slider.data ( 'minimal-value' ) );
+		var maximalPrice = $maximalPriceInput.val ( ) ? $maximalPriceInput.val ( ) : parseInt ( $slider.data ( 'maximal-value' ) );
+		$ ( '.js-homepage-filter-price-from' ) . html ( minimalPrice );
+		$ ( '.js-homepage-filter-price-to' ) . html ( maximalPrice );
+	};
+
+    showSliderPrices ( $ ( '.js-range-slider' ) );
+		$ ( '.js-range-slider' ) . on ( 'mousemove', function ( ) {
+			showSliderPrices ( $ ( this ) );
+		} );
+
 });
