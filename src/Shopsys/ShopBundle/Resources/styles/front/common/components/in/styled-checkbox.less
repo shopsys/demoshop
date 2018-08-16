@@ -3,63 +3,63 @@
 .in-styled-checkbox {
     display: none;
 
-    &+label {
-	    height: @in-styled-checkbox-width + 2px;
-	    width: @in-styled-checkbox-width;
-	    display: block;
-	    padding: 0 0 0 (@in-styled-checkbox-width - 2px);
-	    vertical-align: top;
+    & + label {
+        display: block;
+        vertical-align: top;
+        padding: 0 0 0 (@in-styled-checkbox-width - 2px);
+        width: @in-styled-checkbox-width;
+        height: @in-styled-checkbox-width + 2px;
 
-	    background: @color-f;
-	    border: 2px solid @color-d;
-	    cursor: pointer;
+        background: @color-f;
+        border: 2px solid @color-d;
+        cursor: pointer;
 
-	    &:hover {
-	    	border-color: @color-9;
-	    }
-	}
+        &:hover {
+            border-color: @color-9;
+        }
+    }
 
-	&:checked+label {
-	    height: @in-styled-checkbox-width + 2px;
-	    width: @in-styled-checkbox-width;
-	    display: inline-block;
-	    padding: 0 0 0 (@in-styled-checkbox-width - 2px);
-	    position: relative;
+    &:checked + label {
+        display: inline-block;
+        position: relative;
+        padding: 0 0 0 (@in-styled-checkbox-width - 2px);
+        width: @in-styled-checkbox-width;
+        height: @in-styled-checkbox-width + 2px;
 
-		font-weight: bold;
-		color: @color-base;
-	    background: @color-primary;
-	    border-color: @color-primary;
+        background: @color-primary;
+        border-color: @color-primary;
+        color: @color-base;
+        font-weight: bold;
 
-	    &:before {
-	    	display: block;
-			position: absolute;
-			left: @in-styled-checkbox-width/6;
-			top: 2px;
-			content:"\f104";
+        &:before {
+            display: block;
+            position: absolute;
+            top: 2px;
+            left: @in-styled-checkbox-width/6;
+            content: '\f109';
 
-	    	font-family: "svg";
-	    	font-size: 11px;
-			color: white;
-	    }
-	}
+            color: white;
+            font-size: 11px;
+            font-family: 'svg';
+        }
+    }
 
-	&__in {
-		padding-left: @in-styled-checkbox-width/2;
-		line-height: @in-styled-checkbox-width;
-		vertical-align: top;
+    &__in {
+        vertical-align: top;
+        padding-left: @in-styled-checkbox-width/2;
+        line-height: @in-styled-checkbox-width;
+        white-space: nowrap;
 
-		white-space: nowrap;
+        &__count {
+            display: inline-block;
+            vertical-align: top;
 
-		&__count {
-			color: @color-9;
-			font-size: @font-size-mobile - 1px;
-			display: inline-block;
-			vertical-align: top;
-		}
-	}
+            color: @color-9;
+            font-size: @font-size-mobile - 1px;
+        }
+    }
 
-	&__wrap {
-		padding: 5px 0;
-	}
+    &__wrap {
+        padding: 5px 0;
+    }
 }
