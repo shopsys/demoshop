@@ -18,7 +18,56 @@
                     {{ render(controller('ShopsysShopBundle:Front/Category:panel', { request: app.request } )) }}
                 {% endcache %}
             </div>
-            {% block panel_content %}{% endblock %}
+
+            {% set shopInfoPhoneNumber = getShopInfoPhoneNumber() %}
+            {% set shopInfoPhoneHours = getShopInfoPhoneHours() %}
+            {% set shopInfoEmail = getShopInfoEmail() %}
+
+            {% if shopInfoPhoneNumber is not null or shopInfoPhoneHours is not null or shopInfoEmail is not null %}
+            {% block panel_content %}
+            <div class="box-panel-callus">
+                <div class="box-panel-callus__headline">
+                    <h3>{{ 'Contact Us'|trans }}</h3>
+                </div>
+                <div class="box-panel-callus__person">
+                    <div class="box-panel-callus__person__image-wrap">
+                        <img class="box-panel-callus__person__image" src="{{ asset('assets/frontend/images/avatar.jpg') }}" alt="{{ 'Jessica Fletcher'|trans }}">
+                    </div>
+                    <div class="box-panel-callus__person__text">
+                        <span class="box-panel-callus__person__name">
+                            {{ 'Jessica Fletcher'|trans }}
+                        </span>
+                        <span class="box-panel-callus__person__position">
+                            {{ 'Effectivness Hunter'|trans }}
+                        </span>
+                    </div>
+                </div>
+                {% if shopInfoPhoneNumber is not null %}
+                <div class="box-panel-callus__phone">
+                    <a href="tel:{{ shopInfoPhoneNumber }}" class="box-panel-callus__phone__link">
+                        <i class="svg svg-phone box-panel-callus__phone__icon"></i>
+                        <span class="box-panel-callus__phone__number">{{ shopInfoPhoneNumber }}</span>
+                    </a>
+                    {% if shopInfoPhoneHours is not null %}
+                    <span class="box-panel-callus__phone__hours">
+                        {{ shopInfoPhoneHours }}
+                    </span>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if shopInfoEmail is not null %}
+                <div class="box-panel-callus__email">
+                    <a href="mailto:{{ shopInfoEmail }}" class="box-panel-callus__email__link">
+                        <i class="svg svg-mail box-panel-callus__email__icon"></i>
+                        <span class="box-panel-callus__email__text">
+                            {{ shopInfoEmail }}
+                        </span>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            {% endblock %}
+            {% endif %}
 
             {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : constant('Shopsys\\FrameworkBundle\\Model\\Advert\\Advert::POSITION_LEFT_SIDEBAR')})) }}
         </div>
