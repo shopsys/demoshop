@@ -20,10 +20,24 @@ class ProductListComponent extends AbstractPage
         $quantityElement = $productItemElement->findElement(WebDriverBy::name('add_product_form[quantity]'));
         $addButtonElement = $productItemElement->findElement(WebDriverBy::name('add_product_form[add]'));
 
+        $this->uncoverAddToCartForm($productItemElement);
         $this->tester->fillFieldByElement($quantityElement, $quantity);
         $this->tester->clickByElement($addButtonElement);
         $this->tester->waitForAjax();
         $this->tester->wait(1); // animation of popup window
+    }
+
+    /**
+     * By design, "add to cart" form is not visible on product list.
+     * The product list item must be "hovered" to make the form visible.
+     * Uncovering of the form is done via animation, therefore codeception must wait for it.
+     *
+     * @param \Facebook\WebDriver\WebDriverElement $productItemElement
+     */
+    private function uncoverAddToCartForm(WebDriverElement $productItemElement)
+    {
+        $this->tester->moveMouseOverByCss('#' . $productItemElement->getAttribute('id'));
+        $this->tester->wait(2);
     }
 
     /**

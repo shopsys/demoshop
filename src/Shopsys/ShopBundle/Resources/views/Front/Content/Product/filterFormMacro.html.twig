@@ -68,7 +68,7 @@
                 {% for brandForm in filterForm.brands %}
                     <div class="in-styled-checkbox__wrap">
                         {{ form_widget(brandForm, { attr: { class: 'in-styled-checkbox'} }, { name: brandForm.vars.id }) }}
-                        <label class="form-choice__label" for="{{ brandForm.vars.id }}">
+                        <label class="form-choice__label js-brand-filter-label-{{ brandForm.vars.label }}" for="{{ brandForm.vars.id }}">
                             <span class="in-styled-checkbox__in">
                                 {{ brandForm.vars.label }}
                                 {% if productFilterCountData is not null %}
@@ -101,10 +101,10 @@
                                     {{ parameterForm.vars.label }}:
                                 </span>
                                 {% for parameterValueForm in parameterForm %}
-                                    <div class="in-styled-checkbox__wrap js-product-filter-parameter-value">
+                                    <div class="in-styled-checkbox__wrap">
                                         {{ form_widget(parameterValueForm, { attr: { class: 'in-styled-checkbox'} }, { name: parameterValueForm.vars.id }) }}
 
-                                        <label class="form-choice__label"  for="{{ parameterValueForm.vars.id }}">
+                                        <label class="form-choice__label js-product-filter-parameter-value"  for="{{ parameterValueForm.vars.id }}">
                                             <span class="in-styled-checkbox__in">
                                                 {{ parameterValueForm.vars.label }}
                                                 {% if productFilterCountData is not null %}

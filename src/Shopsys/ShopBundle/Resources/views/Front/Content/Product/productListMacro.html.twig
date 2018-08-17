@@ -3,7 +3,7 @@
 
     <ul class="list-products js-product-list {{ listCssClass|default('') }}">
         {% for product in products %}
-            <li class="list-products__item js-list-products-item">
+            <li class="list-products__item js-list-products-item" id="js-list-products-item-{{ product.id }}">
                 <div class="list-products__item__in">
                     <a href="{{ url('front_product_detail', {'id': product.id}) }}" class="list-products__item__block">
 

@@ -21,7 +21,7 @@ class OrderCest
         $me->amOnPage('/tv-audio/');
         $productListPage->addProductToCartByName('Defender 2.0 SPK-480');
         $me->clickByText('Go to cart');
-        $me->clickByText('Order');
+        $me->clickByText('Continue to Order');
 
         $orderPage->assertTransportIsNotSelected('Czech post');
         $orderPage->selectTransport('Czech post');
@@ -45,7 +45,7 @@ class OrderCest
         $me->amOnPage('/tv-audio/');
         $productListPage->addProductToCartByName('Defender 2.0 SPK-480');
         $me->clickByText('Go to cart');
-        $me->clickByText('Order');
+        $me->clickByText('Continue to Order');
 
         $orderPage->assertTransportIsNotSelected('Czech post');
         $orderPage->selectTransport('Czech post');
@@ -66,7 +66,7 @@ class OrderCest
         $me->amOnPage('/tv-audio/');
         $productListPage->addProductToCartByName('Defender 2.0 SPK-480');
         $me->clickByText('Go to cart');
-        $me->clickByText('Order');
+        $me->clickByText('Continue to Order');
         $orderPage->selectTransport('Czech post');
         $orderPage->selectPayment('Cash on delivery');
         $me->waitForAjax();
@@ -111,7 +111,7 @@ class OrderCest
         $me->amOnPage('/tv-audio/');
         $productListPage->addProductToCartByName('Defender 2.0 SPK-480');
         $me->clickByText('Go to cart');
-        $me->clickByText('Order');
+        $me->clickByText('Continue to Order');
 
         $orderPage->selectTransport('Czech post');
         $orderPage->selectPayment('Cash on delivery');
