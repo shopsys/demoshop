@@ -1,31 +1,71 @@
 @box-pick-up-place-margin: 1%;
 
 .box-pick-up-place {
-
+    right: @box-pick-up-place-margin;
+    left: @box-pick-up-place-margin;
+    margin: auto;
     width: calc(100% - 2*@box-pick-up-place-margin);
     max-width: 600px;
-    margin: auto;
-    left: @box-pick-up-place-margin;
-    right: @box-pick-up-place-margin;
 
     &__control {
         display: flex;
 
-        > input {
+         > input {
             flex: 1;
         }
+    }
 
+    &__item {
+        display: flex;
+        justify-content: space-between;
+
+        @media @query-lg {
+            align-items: center;
+        }
+    }
+
+    &__search-title {
+        display: block;
+        padding-bottom: 8px;
+    }
+
+    &__more-info {
+        display: inline-block;
+    }
+
+    &__description {
+        display: none;
+    }
+
+    &__selected-place-wrap {
+        padding: 5px 10px;
+
+        background-color: @color-f;
+
+        .wrap-border;
+
+        @media @query-tablet {
+            order: 1;
+            width: 100%;
+            margin-top: @margin-gap/2;
+        }
+
+        @media @query-lg {
+            margin-right: @margin-gap;
+        }
     }
 
     &__results {
+        margin-top: 1rem;
         max-height: 300px;
         overflow: auto;
-        margin-top: 1rem;
 
-        > div {
+         > div {
             margin-top: 1rem;
+
+            &:first-child {
+                margin-top: 0;
+            }
         }
-
     }
-
 }

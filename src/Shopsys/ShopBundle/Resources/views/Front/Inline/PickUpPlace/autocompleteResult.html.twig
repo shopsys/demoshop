@@ -1,10 +1,17 @@
 {% for pickUpPlace in pickUpPlaces %}
-    <div class="js-pick-up-place-tooltip" title="{{ pickUpPlace.description }}">
-        <div class="js-pick-up-place-row">
-            <i class="svg svg-arrow-down"></i>
-            {{ pickUpPlace.name }}, {{ pickUpPlace.postCode }}
+    <div class="js-pick-up-place-tooltip box-pick-up-place__item" title="{{ pickUpPlace.description }}">
+        <div class="js-pick-up-place-row box-pick-up-place__item__info">
+            <div class="">
+                {{ pickUpPlace.name }}, {{ pickUpPlace.postCode }}
+            </div>
+
+            <a class="js-responsive-toggle box-pick-up-place__item__more-info" data-element="pick-up-place-id-{{ pickUpPlace.id }}">{{ 'More info'|trans }}</a>
+
+            <div class="box-pick-up-place__description" id="pick-up-place-id-{{ pickUpPlace.id }}">
+                {{ pickUpPlace.description }}
+            </div>
         </div>
-        <div class="js-pick-up-place-autocomplete-results-detail-container">
+        <div class="js-pick-up-place-autocomplete-results-detail-container box-pick-up-place__item__button-wrap">
             <div class="js-pick-up-place-autocomplete-results-detail"></div>
 
             <button type="button" class="js-pick-up-place-button btn btn--success "

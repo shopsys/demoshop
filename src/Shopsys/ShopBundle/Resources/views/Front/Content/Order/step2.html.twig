@@ -26,7 +26,7 @@
                             {% for child in form.transport %}
                                 {% set choice = form.transport.vars.choices[child.vars.name] %}
                                 {% set transportPrice = transportsPrices[choice.data.id] %}
-                                <label class="box-chooser__item js-order-transport">
+                                <label class="box-chooser__item box-chooser__item--transport js-order-transport">
                                     <span class="box-chooser__item__check">
                                         {{ form_widget(child, { attr: {
                                             class: 'js-order-transport-input',
@@ -53,7 +53,7 @@
                                     </span>
 
                                     {% if choice.data.isPickUpPlaceType() %}
-                                        <div class="js-pick-up-place-detail js-pick-up-place-tooltip"
+                                        <div class="js-pick-up-place-detail js-pick-up-place-tooltip box-pick-up-place__selected-place-wrap"
                                              title="{{ pickUpPlace ? pickUpPlace.description : '' }}">
                                             <strong class="js-pick-up-place-detail-name">
                                                 {{ pickUpPlace != null ? pickUpPlace.name : '' }}

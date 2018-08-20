@@ -8,6 +8,7 @@
 
 .box-chooser {
     margin-bottom: @margin-gap;
+
     background-color: @color-light;
 
     @media @query-lg {
@@ -15,14 +16,21 @@
     }
 
     &__item {
-        width: 100%;
-        padding: @box-chooser-item-padding;
         display: flex;
         align-items: flex-start;
+        padding: @box-chooser-item-padding;
+        width: 100%;
 
         .is-no-flex & {
             display: block;
+
             .clearfix();
+        }
+
+        &--transport {
+            @media @query-tablet {
+                flex-wrap: wrap;
+            }
         }
 
         &__check {
