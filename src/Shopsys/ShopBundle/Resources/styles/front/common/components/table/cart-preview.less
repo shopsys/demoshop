@@ -11,16 +11,35 @@
 
         &--total {
             border: 0;
+            padding-bottom: @margin-gap/2;
+        }
+
+        &:last-child {
+            tbody & {
+                .table-cart-preview__cell {
+                    padding-bottom: @margin-gap;
+                }
+            }
         }
     }
 
     &__cell {
-        padding: 5px 0;
+        padding: 5px;
+
+        @media @query-lg {
+            padding: 10px;
+        }
+
+        tfoot & {
+            background-color: @color-light;
+        }
 
         .table-cart-preview__row--important & {
-            padding-top: @margin-gap;
+            padding-top: @margin-gap/2;
+            padding-bottom: @margin-gap/2;
 
             font-weight: bold;
+            background-color: fade(@color-add, 30%);
         }
 
         &--price {
@@ -37,6 +56,23 @@
 
             @media @query-lg {
                 font-size: 20px;
+            }
+        }
+
+        &__name-img-wrap {
+            display: flex;
+            align-items: center;
+        }
+
+        &__img-wrap {
+            display: flex;
+            align-items: center;
+
+
+            &__img {
+                flex-shrink: 0;
+                width: 30px;
+                margin-right: 8px;
             }
         }
     }

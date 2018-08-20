@@ -7,11 +7,19 @@
             {% set quantifiedProductDiscount = orderPreview.quantifiedItemsDiscounts[quantifiedProductKey] %}
             <tr class="table-cart-preview__row">
                 <td class="table-cart-preview__cell">
-                    <strong>{{ quantifiedProduct.quantity|formatNumber }} {{ quantifiedProduct.product.unit.name }}</strong>
-                    {{ quantifiedProduct.product.name }}
+                    <div class="table-cart-preview__cell__name-img-wrap">
+                        <div class="table-cart-preview__cell__img-wrap">
+                            <span class="table-cart-preview__cell__img-wrap__img">
+                                {{ image(quantifiedProduct.product, { size: 'thumbnail' }) }}
+                            </span>
+                        </div>
+                        <div class="table-cart-preview__cell__name">
+                            <strong>{{ quantifiedProduct.quantity|formatNumber }} {{ quantifiedProduct.product.unit.name }}</strong> {{ quantifiedProduct.product.name }}
+                        </div>
+                    </div>
                 </td>
                 <td class="table-cart-preview__cell table-cart-preview__cell--price">
-                    {{ quantifiedProductPrice.totalPrice.priceWithVat|price }}
+                    <strong>{{ quantifiedProductPrice.totalPrice.priceWithVat|price }}</strong>
                 </td>
             </tr>
             {% if quantifiedProductDiscount is not null %}
@@ -59,6 +67,8 @@
             </tr>
         {% endif %}
 
+    </tbody>
+    <tfoot>
         <tr class="table-cart-preview__row table-cart-preview__row--total table-cart-preview__row--important">
             <td class="table-cart-preview__cell">
                 {{ 'Total price including VAT'|trans }}:
@@ -85,6 +95,5 @@
                 {{ orderPreview.totalPrice.vatAmount|price }}
             </td>
         </tr>
-
-    </tbody>
+    </tfoot>
 </table>
