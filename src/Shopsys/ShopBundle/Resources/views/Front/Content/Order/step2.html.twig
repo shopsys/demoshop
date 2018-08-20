@@ -55,12 +55,14 @@
                                     {% if choice.data.isPickUpPlaceType() %}
                                         <div class="js-pick-up-place-detail js-pick-up-place-tooltip box-pick-up-place__selected-place-wrap"
                                              title="{{ pickUpPlace ? pickUpPlace.description : '' }}">
-                                             <strong class="js-pick-up-place-detail-name">
-                                                 {{ pickUpPlace != null ? pickUpPlace.name : '' }}
-                                             </strong>
-                                             <div class="js-pick-up-place-detail-address">
-                                                 {{ pickUpPlace != null ? pickUpPlace.fullAddress : '' }}
-                                             </div>
+                                             <p>
+                                                 <strong class="js-pick-up-place-detail-name">
+                                                     {{ pickUpPlace != null ? pickUpPlace.name : '' }}
+                                                 </strong> <br>
+                                                 <span class="js-pick-up-place-detail-address">
+                                                     {{ pickUpPlace != null ? pickUpPlace.fullAddress : '' }}
+                                                 </span>
+                                             </p>
                                              <button type="button" class="js-pick-up-place-change-button link-style btn-no-style{%  if  pickUpPlace is null %} display-none{% endif %}">
                                                  {{ 'Change'|trans }}
                                              </button>
