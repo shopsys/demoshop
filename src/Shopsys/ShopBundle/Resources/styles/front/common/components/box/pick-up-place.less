@@ -38,15 +38,19 @@
     }
 
     &__selected-place-wrap {
+        display: none;
+        order: 1;
+        margin-top: @margin-gap/2;
         padding: 5px 10px;
+        width: 100%;
 
         background-color: @color-f;
 
         .wrap-border;
 
-        order: 1;
-        width: 100%;
-        margin-top: @margin-gap/2;
+        .box-chooser__item--active & {
+            display: block;
+        }
     }
 
     &__results {
