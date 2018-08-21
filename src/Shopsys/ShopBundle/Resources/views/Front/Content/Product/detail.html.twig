@@ -1,5 +1,4 @@
 {% extends '@ShopsysShop/Front/Layout/layoutWithPanel.html.twig' %}
-{% import '@ShopsysShop/Front/Inline/Product/productFlagsMacro.html.twig' as productFlags %}
 {% import '@ShopsysShop/Front/Content/Product/productListMacro.html.twig' as productList %}
 
 {% set domain = getDomain() %}
@@ -29,7 +28,6 @@
                         {{ noimage({ alt: product.name }) }}
                     {% endif %}
                 </div>
-                {{ productFlags.list(product) }}
 
                 {% if showGallery %}
                     <div class="box-gallery js-gallery">

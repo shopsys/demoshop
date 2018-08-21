@@ -152,4 +152,12 @@ class ErrorController extends FrontBaseController
 
         return new Response($blueScreenHtml);
     }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function notFoundAction()
+    {
+        return $this->createErrorPageResponse(404);
+    }
 }

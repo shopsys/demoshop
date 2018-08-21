@@ -43,36 +43,6 @@
             </label>
         </div>
 
-        {% if filterForm.flags is empty %}
-            {% do filterForm.flags.setRendered %}
-        {% else %}
-            <div class="box-filter__choice" id="{{ filterForm.flags.vars.id }}">
-                <span class="box-filter__choice__title">
-                    {{ 'Flags'|trans }}:
-                </span>
-                {% for flagForm in filterForm.flags %}
-                    <label class="form-choice">
-                        <span class="form-choice__input">
-                            {{ form_widget(flagForm) }}
-                        </span>
-                        <span class="form-choice__label">
-                            {{ flagForm.vars.label }}
-                            {% if productFilterCountData is not null %}
-                                <span
-                                    class="js-product-filter-count"
-                                    data-form-id="{{ flagForm.vars.id }}"
-                                >
-                                    {% if not flagForm.vars.checked %}
-                                        ({% if filterForm.flags.vars.data is not empty %}+{% endif %}{{ productFilterCountData.countByFlagId[flagForm.vars.value]|default(0) }})
-                                    {% endif %}
-                                </span>
-                            {% endif %}
-                        </span>
-                    </label>
-                {% endfor %}
-            </div>
-        {% endif %}
-
         {% if filterForm.brands is empty %}
             {% do filterForm.brands.setRendered %}
         {% else %}
