@@ -91,9 +91,7 @@
         var $pickUpPlaceDetail = $('#transport_and_payment_form_transport .js-pick-up-place-detail');
 
         $('.js-pick-up-place-detail').addClass('display-none');
-        $pickUpPlaceDetail.removeClass('display-none')
-            .attr('title', $button.data('description'))
-            .tooltip('destroy');
+        $pickUpPlaceDetail.removeClass('display-none');
 
         $pickUpPlaceDetail.find('.js-pick-up-place-detail-name')
             .text($button.data('name'));

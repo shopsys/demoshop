@@ -53,8 +53,7 @@
                                     </span>
 
                                     {% if choice.data.isPickUpPlaceType() %}
-                                        <div class="js-pick-up-place-detail js-pick-up-place-tooltip box-pick-up-place__selected-place-wrap"
-                                             title="{{ pickUpPlace ? pickUpPlace.description : '' }}">
+                                        <div class="js-pick-up-place-detail box-pick-up-place__selected-place-wrap">
                                              <p>
                                                  <strong class="js-pick-up-place-detail-name">
                                                      {{ pickUpPlace != null ? pickUpPlace.name : '' }}
