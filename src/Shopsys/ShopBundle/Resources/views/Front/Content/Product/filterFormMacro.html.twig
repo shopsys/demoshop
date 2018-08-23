@@ -26,20 +26,17 @@
             <div class="box-filter__price__values">
                 <div class="box-filter__price__values__item box-filter__price__values__item--from">
                     <span class="js-homepage-filter-price-from"></span>
+                    {{ currencySymbolByDomainId(getDomain().id) }}
                 </div>
                 <div class="box-filter__price__values__item box-filter__price__values__item--to">
                     <span class="js-homepage-filter-price-to"></span>
+                    {{ currencySymbolByDomainId(getDomain().id) }}
                 </div>
             </div>
-
-
-
             <div class="display-none">
                 {{ form_row(filterForm.minimalPrice, {label: 'From'|trans, symbolAfterInput: currencySymbolByDomainId(getDomain().id), attr: { class: 'js-product-filter-call-change-after-reset'} }) }}
                 {{ form_row(filterForm.maximalPrice, {label: 'To'|trans, symbolAfterInput: currencySymbolByDomainId(getDomain().id), attr: { class: 'js-product-filter-call-change-after-reset'} }) }}
             </div>
-
-
         </div>
 
         <div class="box-filter__choice">
