@@ -15,7 +15,6 @@
         $container.filterAllNodes('.js-pick-up-place-button').click(Shopsys.pickUpPlaceSelection.onSelectPlaceButtonClick);
         $container.filterAllNodes('.js-pick-up-place-change-button').click(Shopsys.pickUpPlaceSelection.onChangeButtonClick);
 
-        Shopsys.pickUpPlaceSelection.updateSummaryVisibility();
     };
 
     Shopsys.pickUpPlaceSelection.onTransportChange = function (event) {
@@ -48,6 +47,9 @@
                     cssClass: 'window-popup--standard box-pick-up-place'
                 });
                 $window.data('transportInput', $selectedTransportInput);
+                if ($('.js-pick-up-place-row').length == 0) {
+                    $('.js-pick-up-place-autocomplete-results').toggle(false);
+                }
             }
         });
     };
@@ -88,18 +90,14 @@
             $transportInput.prop('checked', true).change();
         }
 
-        var $pickUpPlaceDetail = $('#transport_and_payment_form_transport .js-pick-up-place-detail');
-
-        $('.js-pick-up-place-detail').addClass('display-none');
-        $pickUpPlaceDetail.removeClass('display-none');
-
+        var $pickUpPlaceDetail = $('body').filterAllNodes('.js-pick-up-place-detail');
         $pickUpPlaceDetail.find('.js-pick-up-place-detail-name')
             .text($button.data('name'));
 
         $pickUpPlaceDetail.find('.js-pick-up-place-detail-address')
             .text($button.data('address'));
 
-        $pickUpPlaceDetail.find('.js-pick-up-place-change-button').toggle($button.data('name').length > 0);
+        $pickUpPlaceDetail.toggle($button.data('name').length > 0);
 
         Shopsys.windowFunctions.close();
     };
@@ -110,17 +108,6 @@
         var $selectedTransportInput = $transportContainer.find('.js-order-transport-input');
 
         Shopsys.pickUpPlaceSelection.showSearchWindow($selectedTransportInput);
-    };
-
-    Shopsys.pickUpPlaceSelection.updateSummaryVisibility = function () {
-        if ($('.js-order-transport-input').length === 0) {
-            return;
-        }
-        var transportType = $('.js-order-transport-input:checked').data('transport-type');
-        var isPickUpPlaceTransportTypeSelected = Shopsys.pickUpPlaceSelection.isPickUpPlaceTransportType(transportType);
-
-        $('.js-pick-up-place-summary').toggleClass('display-none', !isPickUpPlaceTransportTypeSelected);
-        $('.js-pick-up-place-hide-if-chosen').toggleClass('display-none', isPickUpPlaceTransportTypeSelected);
     };
 
     Shopsys.pickUpPlaceSelection.isPickUpPlaceTransportType = function (transportType) {
