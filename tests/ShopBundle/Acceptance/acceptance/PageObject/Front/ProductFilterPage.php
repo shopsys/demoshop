@@ -26,7 +26,7 @@ class ProductFilterPage extends AbstractPage
          * The input for minimal price is hidden by design so Codeception is not able to fill it directly.
          * There is a jQueryUI price slider in the filter form but making Codeception to handle it correctly would be overkill.
          */
-        $this->tester->executeJS(sprintf('$("#product_filter_form_minimalPrice").val(%d).change()', $price));
+        $this->tester->executeJS(sprintf('$("#product_filter_form_minimalPrice").val(%.2f).change()', $price));
         $this->waitForFilter();
     }
 
@@ -39,7 +39,7 @@ class ProductFilterPage extends AbstractPage
          * The input for maximal price is hidden by design so Codeception is not able to fill it directly.
          * There is a jQueryUI price slider in the filter form but making Codeception to handle it correctly would be overkill.
          */
-        $this->tester->executeJS(sprintf('$("#product_filter_form_maximalPrice").val(%d).change()', $price));
+        $this->tester->executeJS(sprintf('$("#product_filter_form_maximalPrice").val(%.2f).change()', $price));
         $this->waitForFilter();
     }
 
