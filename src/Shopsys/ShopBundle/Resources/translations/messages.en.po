@@ -13,6 +13,12 @@ msgstr ""
 msgid "(This address will be on the tax invoice)"
 msgstr ""
 
+msgid "100% Satisfaction"
+msgstr ""
+
+msgid "24/7 Help Center"
+msgstr ""
+
 msgid "Accessories"
 msgstr ""
 
@@ -73,6 +79,12 @@ msgstr ""
 msgid "Catalogue number"
 msgstr ""
 
+msgid "Category description above product list"
+msgstr ""
+
+msgid "Category description under product list"
+msgstr ""
+
 msgid "Change"
 msgstr ""
 
@@ -80,6 +92,9 @@ msgid "Changing password"
 msgstr ""
 
 msgid "Check the address correctness"
+msgstr ""
+
+msgid "Choose"
 msgstr ""
 
 msgid "Choose pick up place"
@@ -118,10 +133,16 @@ msgstr ""
 msgid "Condition"
 msgstr ""
 
+msgid "Contact Us"
+msgstr ""
+
 msgid "Contact us"
 msgstr ""
 
 msgid "Continue in order"
+msgstr ""
+
+msgid "Continue to Order"
 msgstr ""
 
 msgid "Country"
@@ -169,9 +190,6 @@ msgstr ""
 msgid "Do you want to receive the newest information about our shop? Subscribe to our e-mail newsletter."
 msgstr ""
 
-msgid "Download"
-msgstr ""
-
 msgid "Download the personal information"
 msgstr ""
 
@@ -187,6 +205,9 @@ msgstr ""
 msgid "EAN"
 msgstr ""
 
+msgid "Effectivness Hunter"
+msgstr ""
+
 msgid "Empty cart"
 msgstr ""
 
@@ -199,7 +220,7 @@ msgstr ""
 msgid "Error occurred when sending e-mail."
 msgstr ""
 
-msgid "etc. Praha"
+msgid "Fill in city or post number"
 msgstr ""
 
 msgid "Finish the order"
@@ -208,19 +229,22 @@ msgstr ""
 msgid "First name"
 msgstr ""
 
-msgid "Flags"
-msgstr ""
-
 msgid "Forgot your password?"
 msgstr ""
 
 msgid "Forgotten password"
 msgstr ""
 
+msgid "From"
+msgstr ""
+
 msgid "Full name"
 msgstr ""
 
 msgid "Go to cart"
+msgstr ""
+
+msgid "Great Value"
 msgstr ""
 
 msgid "I agree with <a href=\"%termsAndConditionsUrl%\" target=\"_blank\">terms and conditions</a> and <a href=\"%privacyPolicyUrl%\" target=\"_blank\">privacy policy</a>."
@@ -265,6 +289,9 @@ msgstr ""
 msgid "Items"
 msgstr ""
 
+msgid "Jessica Fletcher"
+msgstr ""
+
 msgid "Last name"
 msgstr ""
 
@@ -289,9 +316,6 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-msgid "More bestsellers"
-msgstr ""
-
 msgid "More information"
 msgstr ""
 
@@ -304,6 +328,9 @@ msgstr ""
 msgid "New"
 msgstr ""
 
+msgid "News & Sales in your e-mail"
+msgstr ""
+
 msgid "No"
 msgstr ""
 
@@ -311,6 +338,9 @@ msgid "No order so far."
 msgstr ""
 
 msgid "No personal data for this e-mail address"
+msgstr ""
+
+msgid "No pickup places found."
 msgstr ""
 
 msgid "No products found for this brand"
@@ -367,6 +397,9 @@ msgstr ""
 msgid "Orders"
 msgstr ""
 
+msgid "Our Buyer Protection covers your purchase from click to delivery."
+msgstr ""
+
 msgid "Our customers who bought this bought also"
 msgstr ""
 
@@ -374,9 +407,6 @@ msgid "Page not found!"
 msgstr ""
 
 msgid "Page you are looking for either no longer exists or you entered wrong address."
-msgstr ""
-
-msgid "Parameters"
 msgstr ""
 
 msgid "Password"
@@ -389,6 +419,9 @@ msgid "Password must be at least six characters and can't be the same as entered
 msgstr ""
 
 msgid "Password successfully changed"
+msgstr ""
+
+msgid "Pay with the world’s most popular and secure payment methods."
 msgstr ""
 
 msgid "Payment"
@@ -436,16 +469,10 @@ msgstr ""
 msgid "Postcode"
 msgstr ""
 
-msgid "Price from"
+msgid "Price"
 msgstr ""
 
 msgid "Price including VAT"
-msgstr ""
-
-msgid "Price to"
-msgstr ""
-
-msgid "Print"
 msgstr ""
 
 msgid "Product <strong>{{ name }}</strong> ({{ quantity|formatNumber }} {{ unitName }}) added to the cart"
@@ -458,6 +485,9 @@ msgid "Product information"
 msgstr ""
 
 msgid "Product no longer on sale"
+msgstr ""
+
+msgid "Product variants"
 msgstr ""
 
 msgid "Product {{ name }} removed from cart"
@@ -487,10 +517,16 @@ msgstr ""
 msgid "Reset password"
 msgstr ""
 
+msgid "Round-the-clock assistance for a smooth shopping experience."
+msgstr ""
+
 msgid "Rounding"
 msgstr ""
 
 msgid "Save changes"
+msgstr ""
+
+msgid "Search"
 msgstr ""
 
 msgid "Search [verb]"
@@ -535,6 +571,12 @@ msgstr ""
 msgid "Shipping selection"
 msgstr ""
 
+msgid "Shipping type"
+msgstr ""
+
+msgid "Show filters"
+msgstr ""
+
 msgid "Special offers"
 msgstr ""
 
@@ -542,9 +584,6 @@ msgid "Status"
 msgstr ""
 
 msgid "Street"
-msgstr ""
-
-msgid "Store name"
 msgstr ""
 
 msgid "Subscription to e-mail newsletter"
@@ -557,9 +596,6 @@ msgid "Technical parameters"
 msgstr ""
 
 msgid "Telephone"
-msgstr ""
-
-msgid "Terms and conditions"
 msgstr ""
 
 msgid "Thank you, your message has been sent."
@@ -584,6 +620,9 @@ msgid "This site uses cookies."
 msgstr ""
 
 msgid "This site uses cookies. By staying on the site you agree with that."
+msgstr ""
+
+msgid "To"
 msgstr ""
 
 msgid "To prevent the possibility of account theft, the change of the e-mail address must be dealt with individually. If your e-mail address has changed, please contact us."
@@ -646,7 +685,19 @@ msgstr ""
 msgid "View results"
 msgstr ""
 
+msgid "We are Responsible"
+msgstr ""
+
+msgid "We offer competitive prices on our 100 million plus product range."
+msgstr ""
+
 msgid "We will remember your login on this computer for 30 days."
+msgstr ""
+
+msgid "With sites in 5 languages, we ship to over 200 countries & regions."
+msgstr ""
+
+msgid "Worldwide Delivery"
 msgstr ""
 
 msgid "Yes"
@@ -682,7 +733,7 @@ msgstr ""
 msgid "Zásilkovna"
 msgstr ""
 
-msgid "Zasilkovna.cz - dispensing point"
+msgid "etc. Praha"
 msgstr ""
 
 msgid "excluding VAT"
@@ -692,6 +743,15 @@ msgid "from"
 msgstr ""
 
 msgid "from %price%"
+msgstr ""
+
+msgid "on homepage above popular categories (Primary)"
+msgstr ""
+
+msgid "on homepage above popular categories (Secondary First)"
+msgstr ""
+
+msgid "on homepage above popular categories (Secondary Second)"
 msgstr ""
 
 msgid "products"
@@ -707,11 +767,5 @@ msgid "{1} <strong class=\"cart__state\">%itemsCount%</strong> item for <strong 
 msgstr ""
 
 msgid "{1}Load next %loadNextCount% product|[2,Inf]Load next %loadNextCount% products"
-msgstr ""
-
-msgid "Category description above product list"
-msgstr ""
-
-msgid "Category description under product list"
 msgstr ""
 
