@@ -24,9 +24,8 @@ class TransportFormTypeExtension extends AbstractTypeExtension
                 t('Zásilkovna') => Transport::TYPE_ZASILKOVNA,
             ],
             'constraints' => [
-                new Constraints\NotBlank(['message' => t('Please check the correctness of all data filled.')]),
+                new Constraints\NotBlank(['message' => 'Please check the correctness of all data filled.']),
             ],
-            //'entity' => $options['transport'],
             'label' => t('Shipping type'),
         ]);
         $builder->add($builderTransportDataGroup);
