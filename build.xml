@@ -102,10 +102,10 @@
 
     <target name="composer" description="Installs dependencies for production.">
         <exec
-                executable="${path.composer.executable}"
-                logoutput="true"
-                passthru="true"
-                checkreturn="true"
+            executable="${path.composer.executable}"
+            logoutput="true"
+            passthru="true"
+            checkreturn="true"
         >
             <arg value="install" />
             <arg value="--no-dev" />
@@ -318,21 +318,21 @@
 
     <target name="npm" description="Installs modules required for Grunt.">
         <exec
-                executable="${path.npm.executable}"
-                dir="${path.root}"
-                logoutput="true"
-                passthru="true"
-                checkreturn="true"
+            executable="${path.npm.executable}"
+            dir="${path.root}"
+            logoutput="true"
+            passthru="true"
+            checkreturn="true"
         >
             <arg value="prune"/>
         </exec>
 
         <exec
-                executable="${path.npm.executable}"
-                dir="${path.root}"
-                logoutput="true"
-                passthru="true"
-                checkreturn="true"
+            executable="${path.npm.executable}"
+            dir="${path.root}"
+            logoutput="true"
+            passthru="true"
+            checkreturn="true"
         >
             <arg value="install"/>
         </exec>
