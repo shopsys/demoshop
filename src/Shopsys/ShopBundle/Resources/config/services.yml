@@ -88,6 +88,18 @@ services:
 
   Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface: '@Shopsys\ShopBundle\Model\Order\OrderDataFactory'
 
+  Shopsys\FrameworkBundle\Model\Customer\CustomerFacade: '@Shopsys\ShopBundle\Model\Customer\CustomerFacade'
+
+  Shopsys\ShopBundle\Model\Customer\UserRepository: ~
+
+  Shopsys\FrameworkBundle\Model\Customer\UserRepository: '@Shopsys\ShopBundle\Model\Customer\UserRepository'
+
+  Shopsys\FrameworkBundle\Model\Order\OrderFacade: '@Shopsys\ShopBundle\Model\Order\OrderFacade'
+
+  Shopsys\ShopBundle\Model\Order\OrderRepository: ~
+
+  Shopsys\FrameworkBundle\Model\Order\OrderRepository: '@Shopsys\ShopBundle\Model\Order\OrderRepository'
+
   Shopsys\ShopBundle\Model\Order\FrontOrderData: ~
 
   Shopsys\FrameworkBundle\Model\Order\FrontOrderData: '@Shopsys\ShopBundle\Model\Order\FrontOrderData'

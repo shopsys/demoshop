@@ -104,7 +104,13 @@ class CustomerController extends FrontBaseController
         $user = $this->getUser();
         /* @var $user \Shopsys\FrameworkBundle\Model\Customer\User */
 
-        $orders = $this->orderFacade->getCustomerOrderList($user);
+        if ($user->getBillingAddress()->getIsCompanyWithMultipleUsers()) {
+            $users = $this->customerFacade->getUsersByBillingAddressAndDomain($user->getBillingAddress(), $user->getDomainId());
+        } else {
+            $users = [$user];
+        }
+
+        $orders = $this->orderFacade->getOrderListByCustomers($users);
         return $this->render('@ShopsysShop/Front/Content/Customer/orders.html.twig', [
             'orders' => $orders,
         ]);
@@ -140,8 +146,13 @@ class CustomerController extends FrontBaseController
 
             $user = $this->getUser();
             try {
-                $order = $this->orderFacade->getByOrderNumberAndUser($orderNumber, $user);
+                if ($user->getBillingAddress()->getIsCompanyWithMultipleUsers()) {
+                    $order = $this->orderFacade->getByOrderNumberAndBillingAddress($orderNumber, $user->getBillingAddress());
                 /* @var $order \Shopsys\FrameworkBundle\Model\Order\Order */
+                } else {
+                    $order = $this->orderFacade->getByOrderNumberAndUser($orderNumber, $user);
+                    /* @var $order \Shopsys\FrameworkBundle\Model\Order\Order */
+                }
             } catch (\Shopsys\FrameworkBundle\Model\Order\Exception\OrderNotFoundException $ex) {
                 $this->getFlashMessageSender()->addErrorFlash(t('Order not found'));
                 return $this->redirectToRoute('front_customer_orders');
