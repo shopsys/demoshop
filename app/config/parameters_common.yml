@@ -25,3 +25,4 @@ parameters:
     Shopsys\FrameworkBundle\Model\Order\Order: Shopsys\ShopBundle\Model\Order\Order
     Shopsys\FrameworkBundle\Model\Transport\Transport: Shopsys\ShopBundle\Model\Transport\Transport
     Shopsys\FrameworkBundle\Model\Customer\BillingAddress: Shopsys\ShopBundle\Model\Customer\BillingAddress
+    Shopsys\FrameworkBundle\Model\Customer\User: Shopsys\ShopBundle\Model\Customer\User
