@@ -14,14 +14,14 @@
                     {% set disabledInputClassIfCompanyWithMultipleUsers = 'form-input-disabled' %}
                 {% endif %}
                 <h2>{{ 'Personal data'|trans }}</h2>
-                <fieldset>
+                <fieldset class="box-order__fieldset">
                     {{ form_row(form.firstName, { label: 'First name'|trans }) }}
                     {{ form_row(form.lastName, { label: 'Last name'|trans }) }}
                     {{ form_row(form.email, { label: 'E-mail'|trans }) }}
                     {{ form_row(form.telephone, { label: 'Telephone'|trans }) }}
                 </fieldset>
                 <h2>{{ 'Company data'|trans }} <span {% if isCompanyWithMultipleUsers %} class="display-none" {% else %} class="heading-addition" {% endif %}>{{ '(If I buy on the company behalf)'|trans }}</span></h2>
-                <fieldset>
+                <fieldset class="box-order__fieldset">
                     <div {% if isCompanyWithMultipleUsers %}class="display-none"{% endif %}>
                         {{ form_row(form.companyCustomer, {
                             attr: { class: 'js-checkbox-toggle', 'data-checkbox-toggle-container-id': 'js-company-fields' },
@@ -35,7 +35,7 @@
                 </fieldset>
 
                 <h2>{{ 'Billing data'|trans }} <span class="heading-addition">{{ '(This address will be on the tax invoice)'|trans }}</span></h2>
-                <fieldset>
+                <fieldset class="box-order__fieldset">
                     {{ form_row(form.street, { label: 'Street'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
                     {{ form_row(form.city, { label: 'City'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
                     {{ form_row(form.postcode, { label: 'Postcode'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
@@ -44,7 +44,7 @@
 
                 {% set isSelectedPickupPlaceTypeTransport = transport is not empty and transport.isPickUpPlaceType %}
                 <h2>{{ 'Shipping address'|trans }} <span class="heading-addition">{{ '(Products will be delivered to this address)'|trans }}</span></h2>
-                <fieldset>
+                <fieldset class="box-order__fieldset">
                     {% if not isSelectedPickupPlaceTypeTransport %}
                         {{ form_row(form.deliveryAddressFilled, {
                             attr: { class: 'js-checkbox-toggle', 'data-checkbox-toggle-container-id': 'js-delivery-address-fields' },
@@ -77,11 +77,11 @@
 
                 <h2>{{ 'Note'|trans }}</h2>
 
-                <fieldset>
+                <fieldset class="box-order__fieldset">
                     {{ form_row(form.note, { label: 'Contact us'|trans }) }}
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="box-order__fieldset">
                     <dl class="form-line">
                         <dt></dt>
                         <dd>
