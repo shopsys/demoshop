@@ -31,16 +31,17 @@
         color: @color-base;
         font-weight: bold;
 
+
         &:before {
             display: block;
             position: absolute;
             top: 2px;
             left: @form-styled-checkbox-width/6;
-            content: '\f109';
+            &:extend(.svg-checkbox:before);
 
-            color: white;
-            font-size: 11px;
+            color: @color-f;
             font-family: 'svg';
+            font-size: 11px;
         }
     }
 
