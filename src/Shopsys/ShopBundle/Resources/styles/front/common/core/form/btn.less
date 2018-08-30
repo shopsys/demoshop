@@ -7,6 +7,24 @@
 @btn-bg: @color-d;
 @btn-bg-hover: darken(@btn-bg, 5%);
 
+// call to action button
+@btn-success-color: @color-f;
+@btn-success-color-hover: @color-f;
+@btn-success-bg: @color-green;
+@btn-success-bg-hover: darken(@btn-success-bg, 5%);
+
+// primary button
+@btn-primary-color: @color-f;
+@btn-primary-color-hover: @color-f;
+@btn-primary-bg: @color-blue;
+@btn-primary-bg-hover: darken(@btn-primary-bg, 5%);
+
+// sizing
+@btn-large-padding-horizontal: 25px;
+@btn-small-padding-vertical: 5px;
+@btn-small-padding-horizontal: 10px;
+@btn-small-height: @btn-height - 10;
+
 .btn {
     display: inline-block;
     vertical-align: middle;
@@ -39,17 +57,6 @@
 
 //// Modifications - color
 .btn {
-    // call to action button
-    @btn-success-color: @color-f;
-    @btn-success-color-hover: @color-f;
-    @btn-success-bg: @color-green;
-    @btn-success-bg-hover: darken(@btn-success-bg, 5%);
-    // primary button
-    @btn-primary-color: @color-f;
-    @btn-primary-color-hover: @color-f;
-    @btn-primary-bg: @color-blue;
-    @btn-primary-bg-hover: darken(@btn-primary-bg, 5%);
-
     &--success {
         background: @btn-success-bg;
         color: @btn-success-color;
@@ -79,11 +86,6 @@
 
 //// Modifications - size
 .btn {
-    @btn-large-padding-horizontal: 25px;
-    @btn-small-padding-vertical: 5px;
-    @btn-small-padding-horizontal: 10px;
-    @btn-small-height: @btn-height - 10;
-
     &--large {
         padding-right: @btn-large-padding-horizontal;
         padding-left: @btn-large-padding-horizontal;
