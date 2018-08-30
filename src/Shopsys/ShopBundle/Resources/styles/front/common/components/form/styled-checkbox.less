@@ -1,14 +1,14 @@
-@in-styled-checkbox-width: 20px;
+@form-styled-checkbox-width: 20px;
 
-.in-styled-checkbox {
+.form-styled-checkbox {
     display: none;
 
     & + label {
         display: block;
         vertical-align: top;
-        padding: 0 0 0 (@in-styled-checkbox-width - 2px);
-        width: @in-styled-checkbox-width;
-        height: @in-styled-checkbox-width + 2px;
+        padding: 0 0 0 (@form-styled-checkbox-width - 2px);
+        width: @form-styled-checkbox-width;
+        height: @form-styled-checkbox-width + 2px;
 
         background: @color-f;
         border: 2px solid @color-d;
@@ -22,9 +22,9 @@
     &:checked + label {
         display: inline-block;
         position: relative;
-        padding: 0 0 0 (@in-styled-checkbox-width - 2px);
-        width: @in-styled-checkbox-width;
-        height: @in-styled-checkbox-width + 2px;
+        padding: 0 0 0 (@form-styled-checkbox-width - 2px);
+        width: @form-styled-checkbox-width;
+        height: @form-styled-checkbox-width + 2px;
 
         background: @color-primary;
         border-color: @color-primary;
@@ -35,7 +35,7 @@
             display: block;
             position: absolute;
             top: 2px;
-            left: @in-styled-checkbox-width/6;
+            left: @form-styled-checkbox-width/6;
             content: '\f109';
 
             color: white;
@@ -46,8 +46,8 @@
 
     &__in {
         vertical-align: top;
-        padding-left: @in-styled-checkbox-width/2;
-        line-height: @in-styled-checkbox-width;
+        padding-left: @form-styled-checkbox-width/2;
+        line-height: @form-styled-checkbox-width;
         white-space: nowrap;
 
         &__count {

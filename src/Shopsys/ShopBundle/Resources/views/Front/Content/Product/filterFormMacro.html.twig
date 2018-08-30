@@ -40,14 +40,14 @@
         </div>
 
         <div class="box-filter__choice">
-            <div class="in-styled-checkbox__wrap">
-                {{ form_widget(filterForm.inStock, { attr: { class: 'in-styled-checkbox'} }, { name: filterForm.inStock.vars.id }) }}
+            <div class="form-styled-checkbox__wrap">
+                {{ form_widget(filterForm.inStock, { attr: { class: 'form-styled-checkbox'} }, { name: filterForm.inStock.vars.id }) }}
                 <label class="form-choice__label" for="{{ filterForm.inStock.vars.id }}">
-                    <span class="in-styled-checkbox__in">
+                    <span class="form-styled-checkbox__in">
                         {{ 'Products in stock only'|trans }}
                         {% if productFilterCountData is not null %}
                             <span
-                                class="js-product-filter-count in-styled-checkbox__in__count"
+                                class="js-product-filter-count form-styled-checkbox__in__count"
                                 data-form-id="{{ filterForm.inStock.vars.id }}"
                             >
                                 ({{ productFilterCountData.countInStock }})
@@ -66,14 +66,14 @@
                     {{ 'Brand'|trans }}:
                 </span>
                 {% for brandForm in filterForm.brands %}
-                    <div class="in-styled-checkbox__wrap">
-                        {{ form_widget(brandForm, { attr: { class: 'in-styled-checkbox'} }, { name: brandForm.vars.id }) }}
+                    <div class="form-styled-checkbox__wrap">
+                        {{ form_widget(brandForm, { attr: { class: 'form-styled-checkbox'} }, { name: brandForm.vars.id }) }}
                         <label class="form-choice__label js-brand-filter-label-{{ brandForm.vars.label }}" for="{{ brandForm.vars.id }}">
-                            <span class="in-styled-checkbox__in">
+                            <span class="form-styled-checkbox__in">
                                 {{ brandForm.vars.label }}
                                 {% if productFilterCountData is not null %}
                                     <span
-                                        class="js-product-filter-count in-styled-checkbox__in__count"
+                                        class="js-product-filter-count form-styled-checkbox__in__count"
                                         data-form-id="{{ brandForm.vars.id }}"
                                     >
                                         {% set brandCount = productFilterCountData.countByBrandId[brandForm.vars.value]|default(0) %}
@@ -101,15 +101,15 @@
                                     {{ parameterForm.vars.label }}:
                                 </span>
                                 {% for parameterValueForm in parameterForm %}
-                                    <div class="in-styled-checkbox__wrap">
-                                        {{ form_widget(parameterValueForm, { attr: { class: 'in-styled-checkbox'} }, { name: parameterValueForm.vars.id }) }}
+                                    <div class="form-styled-checkbox__wrap">
+                                        {{ form_widget(parameterValueForm, { attr: { class: 'form-styled-checkbox'} }, { name: parameterValueForm.vars.id }) }}
 
                                         <label class="form-choice__label js-product-filter-parameter-value"  for="{{ parameterValueForm.vars.id }}">
-                                            <span class="in-styled-checkbox__in">
+                                            <span class="form-styled-checkbox__in">
                                                 {{ parameterValueForm.vars.label }}
                                                 {% if productFilterCountData is not null %}
                                                     <span
-                                                        class="js-product-filter-count in-styled-checkbox__in__count"
+                                                        class="js-product-filter-count form-styled-checkbox__in__count"
                                                         data-form-id="{{ parameterValueForm.vars.id }}"
                                                     >
                                                         {% if not parameterValueForm.vars.checked %}

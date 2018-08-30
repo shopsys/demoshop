@@ -1,8 +1,9 @@
 @box-filter-padding: 10px;
+@box-filter-margin: @margin-gap;
 
 .box-filter {
-    margin-top: @margin-gap;
-    margin-bottom: @margin-gap;
+    margin-top: @box-filter-margin;
+    margin-bottom: @box-filter-margin;
     padding: @box-filter-padding;
 
     .wrap-border;
@@ -12,7 +13,7 @@
     }
 
     &__toggle-button {
-        margin-bottom: @margin-gap;
+        margin-bottom: @box-filter-margin;
 
         @media @query-lg {
             display: none;
@@ -61,7 +62,7 @@
     }
 
     &__price {
-        margin-bottom: @margin-gap;
+        margin-bottom: @box-filter-margin;
 
         .form-line {
             dt {
@@ -81,7 +82,7 @@
         }
 
         .ui-slider {
-            margin: @margin-gap 10px;
+            margin: @box-filter-margin 10px;
         }
 
         &__values {
@@ -93,7 +94,7 @@
     }
 
     &__choice {
-        margin-bottom: @margin-gap/2;
+        margin-bottom: @box-filter-margin/2;
 
         &__title {
             display: block;
@@ -117,7 +118,7 @@
 
         &__title {
             display: block;
-            margin: 0 -@box-filter-padding @margin-gap/2;
+            margin: 0 -@box-filter-padding @box-filter-margin/2;
             padding: @box-filter-padding;
 
             font-weight: bold;
@@ -125,7 +126,7 @@
     }
 
     &__action {
-        margin-top: @margin-gap;
+        margin-top: @box-filter-margin;
         text-align: right;
 
         @media @query-tablet {
