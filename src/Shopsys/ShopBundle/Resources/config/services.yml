@@ -38,6 +38,10 @@ services:
 
   Shopsys\FrameworkBundle\Model\Article\ArticleDataFactoryInterface: '@Shopsys\ShopBundle\Model\Article\ArticleDataFactory'
 
+  Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface: '@Shopsys\ShopBundle\Model\Customer\BillingAddressFactory'
+
+  Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface: '@Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory'
+
   Shopsys\ShopBundle\Model\Country\CountryRepository: ~
 
   Shopsys\FrameworkBundle\Model\Country\CountryRepository: '@Shopsys\ShopBundle\Model\Country\CountryRepository'
