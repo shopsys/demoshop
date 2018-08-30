@@ -50,12 +50,12 @@
                 <div class="wrap-box__in">
                     {{ form_row(form.billingAddressData.companyCustomer, {
                         attr: { class: 'js-checkbox-toggle', 'data-checkbox-toggle-container-id': 'js-company-fields' },
-                        label: 'I buy on company behalf'|trans})
+                        label: 'I buy on company behalf'|trans, disabled: user.getBillingAddress().getIsCompanyWithMultipleUsers() })
                     }}
                     <div id="js-company-fields">
-                        {{ form_row(form.billingAddressData.companyName, { label: 'Company'|trans}) }}
-                        {{ form_row(form.billingAddressData.companyNumber, { label: 'Company number'|trans}) }}
-                        {{ form_row(form.billingAddressData.companyTaxNumber, { label: 'Tax number'|trans}) }}
+                        {{ form_row(form.billingAddressData.companyName, { label: 'Company'|trans, disabled: user.getBillingAddress().getIsCompanyWithMultipleUsers() }) }}
+                        {{ form_row(form.billingAddressData.companyNumber, { label: 'Company number'|trans, disabled: user.getBillingAddress().getIsCompanyWithMultipleUsers() }) }}
+                        {{ form_row(form.billingAddressData.companyTaxNumber, { label: 'Tax number'|trans, disabled: user.getBillingAddress().getIsCompanyWithMultipleUsers() }) }}
                     </div>
                 </div>
             </div>
@@ -64,10 +64,10 @@
                 <h2 class="wrap-box__title">{{ 'Address'|trans }}</h2>
 
                 <div class="wrap-box__in">
-                    {{ form_row(form.billingAddressData.street, { label: 'Street'|trans}) }}
-                    {{ form_row(form.billingAddressData.city, { label: 'City'|trans}) }}
-                    {{ form_row(form.billingAddressData.postcode, { label: 'Postcode'|trans}) }}
-                    {{ form_row(form.billingAddressData.country, { label: 'Country'|trans}) }}
+                    {{ form_row(form.billingAddressData.street, { label: 'Street'|trans, disabled: user.getBillingAddress().getIsCompanyWithMultipleUsers() }) }}
+                    {{ form_row(form.billingAddressData.city, { label: 'City'|trans, disabled: user.getBillingAddress().getIsCompanyWithMultipleUsers() }) }}
+                    {{ form_row(form.billingAddressData.postcode, { label: 'Postcode'|trans, disabled: user.getBillingAddress().getIsCompanyWithMultipleUsers() }) }}
+                    {{ form_row(form.billingAddressData.country, { label: 'Country'|trans, disabled: user.getBillingAddress().getIsCompanyWithMultipleUsers() }) }}
                 </div>
             </div>
         </div>

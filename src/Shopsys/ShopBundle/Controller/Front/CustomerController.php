@@ -90,6 +90,7 @@ class CustomerController extends FrontBaseController
 
         return $this->render('@ShopsysShop/Front/Content/Customer/edit.html.twig', [
             'form' => $form->createView(),
+            'user' => $user,
         ]);
     }
 

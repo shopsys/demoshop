@@ -7,6 +7,7 @@
 {% block content %}
     <div class="box-order">
         <div class="box-order__info">
+            {% set isCompanyWithMultipleUsers = user is not null and user.getBillingAddress().getIsCompanyWithMultipleUsers() %}
             <h2>{{ 'Personal data'|trans }}</h2>
 
             <fieldset>
@@ -20,20 +21,20 @@
             <fieldset>
                 {{ form_row(form.companyCustomer, {
                     attr: { class: 'js-checkbox-toggle', 'data-checkbox-toggle-container-id': 'js-company-fields' },
-                    label: 'I buy on company behalf'|trans}) }}
+                    label: 'I buy on company behalf'|trans, disabled: isCompanyWithMultipleUsers }) }}
                 <div id="js-company-fields">
-                    {{ form_row(form.companyName, { label: 'Company name'|trans }) }}
-                    {{ form_row(form.companyNumber, { label: 'Company number'|trans }) }}
-                    {{ form_row(form.companyTaxNumber, { label: 'Tax number'|trans }) }}
+                    {{ form_row(form.companyName, { label: 'Company name'|trans, disabled: isCompanyWithMultipleUsers  }) }}
+                    {{ form_row(form.companyNumber, { label: 'Company number'|trans, disabled: isCompanyWithMultipleUsers  }) }}
+                    {{ form_row(form.companyTaxNumber, { label: 'Tax number'|trans, disabled: isCompanyWithMultipleUsers  }) }}
                 </div>
             </fieldset>
 
             <h2>{{ 'Billing data'|trans }} <span class="heading-addition">{{ '(This address will be on the tax invoice)'|trans }}</span></h2>
             <fieldset>
-                {{ form_row(form.street, { label: 'Street'|trans }) }}
-                {{ form_row(form.city, { label: 'City'|trans }) }}
-                {{ form_row(form.postcode, { label: 'Postcode'|trans }) }}
-                {{ form_row(form.country, { label: 'Country'|trans }) }}
+                {{ form_row(form.street, { label: 'Street'|trans, disabled: isCompanyWithMultipleUsers  }) }}
+                {{ form_row(form.city, { label: 'City'|trans, disabled: isCompanyWithMultipleUsers  }) }}
+                {{ form_row(form.postcode, { label: 'Postcode'|trans, disabled: isCompanyWithMultipleUsers  }) }}
+                {{ form_row(form.country, { label: 'Country'|trans, disabled: isCompanyWithMultipleUsers  }) }}
             </fieldset>
 
             {% set isSelectedPickupPlaceTypeTransport = transport is not empty and transport.isPickUpPlaceType %}
