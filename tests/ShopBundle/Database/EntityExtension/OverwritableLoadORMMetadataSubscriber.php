@@ -2,7 +2,7 @@
 
 namespace Tests\ShopBundle\Database\EntityExtension;
 
-use Joschi127\DoctrineEntityOverrideBundle\EventListener\LoadORMMetadataSubscriber;
+use Shopsys\ShopBundle\Component\EntityExtension\LoadORMMetadataSubscriber;
 
 class OverwritableLoadORMMetadataSubscriber extends LoadORMMetadataSubscriber
 {

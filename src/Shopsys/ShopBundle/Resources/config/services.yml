@@ -8,6 +8,14 @@ services:
     autoconfigure: true
     public: false
 
+  joschi127_doctrine_entity_override.event_subscriber.load_orm_metadata:
+      class: Shopsys\ShopBundle\Component\EntityExtension\LoadORMMetadataSubscriber
+      arguments:
+          - "@service_container"
+          - "%shopsys.entity_extension.map%"
+      tags:
+          - { name: doctrine.event_subscriber, priority: -10 }
+
   Shopsys\ShopBundle\Controller\:
     resource: '../../Controller/'
     public: true
