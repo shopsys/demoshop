@@ -42,6 +42,8 @@ services:
 
   Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface: '@Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory'
 
+  Shopsys\FrameworkBundle\Model\Customer\UserFactoryInterface: '@Shopsys\ShopBundle\Model\Customer\UserFactory'
+
   Shopsys\ShopBundle\Model\Country\CountryRepository: ~
 
   Shopsys\FrameworkBundle\Model\Country\CountryRepository: '@Shopsys\ShopBundle\Model\Country\CountryRepository'
