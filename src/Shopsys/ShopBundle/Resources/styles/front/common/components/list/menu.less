@@ -1,5 +1,6 @@
 @list-menu-padding-right: 25px;
 @list-menu-arrow-size: 25px;
+@list-menu-color-link: @color-0; 
 
 // global settings
 .list-menu {
@@ -7,7 +8,7 @@
         &__link {
             position: relative;
 
-            color: @color-0;
+            color: @list-menu-color-link;
         }
 
         &__control {
@@ -77,7 +78,7 @@
 
                 &:hover {
                     background: @list-menu-mobile-border-color;
-                    color: @color-0;
+                    color: @list-menu-color-link;
                 }
 
                 &--level-1 {
@@ -159,7 +160,7 @@
                         left: 0;
                         content: ' ';
 
-                        background-color: fade(@color-0, 5%);
+                        background-color: fade(@list-menu-color-link, 5%);
                         transition: @transition;
                     }
 
