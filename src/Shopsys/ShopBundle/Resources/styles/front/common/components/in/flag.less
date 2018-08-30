@@ -2,13 +2,14 @@
 @in-flag-position-left: 10px;
 @in-flag-in-list-position-top: 0;
 @in-flag-in-list-position-left: 0;
+@in-flag-text-color: @color-f;
 
 .in-flag {
     position: absolute;
     top: @in-flag-position-top;
     left: @in-flag-position-left;
 
-    color: @color-f;
+    color: @in-flag-text-color;
 
     .clearfix();
 
@@ -31,10 +32,10 @@
         font-size: 12px;
 
         .box-detail__image & {
-
             @media @query-lg {
-                font-size: 14px;
                 padding: 8px 12px;
+
+                font-size: 14px;
             }
         }
     }
