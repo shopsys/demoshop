@@ -1,4 +1,5 @@
 @search-button-width: 80px;
+@search-img-size: 30px;
 @search-form-height: @input-height;
 
 .search {
@@ -121,9 +122,9 @@
         }
 
         &__image {
-            flex: 0 30px;
+            flex: 0 @search-img-size;
             position: relative;
-            height: 30px;
+            height: @search-img-size;
 
             img {
                 .center-image();
