@@ -104,7 +104,13 @@ class CustomerController extends FrontBaseController
         $user = $this->getUser();
         /* @var $user \Shopsys\FrameworkBundle\Model\Customer\User */
 
-        $orders = $this->orderFacade->getCustomerOrderList($user);
+        if ($user->getBillingAddress()->getIsCompanyWithMultipleUsers()) {
+            $users = $this->customerFacade->getUsersByBillingAddressAndDomain($user->getBillingAddress(), $user->getDomainId());
+        } else {
+            $users = [$user];
+        }
+
+        $orders = $this->orderFacade->getOrderListByCustomers($users);
         return $this->render('@ShopsysShop/Front/Content/Customer/orders.html.twig', [
             'orders' => $orders,
         ]);
