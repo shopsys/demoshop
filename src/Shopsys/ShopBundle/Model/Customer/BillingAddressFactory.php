@@ -8,7 +8,6 @@ use Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface;
 
 class BillingAddressFactory implements BillingAddressFactoryInterface
 {
-
     /**
      * @param \Shopsys\ShopBundle\Model\Customer\BillingAddressData $data
      * @return \Shopsys\ShopBundle\Model\Customer\BillingAddress

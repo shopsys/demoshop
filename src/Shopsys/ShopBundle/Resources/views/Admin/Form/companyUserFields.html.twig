@@ -1,0 +1,8 @@
+{% block company_user_form_widget %}
+    Zacatek cyklu
+    {% for key, companyUser in form %}
+        -{{ key }}- {{ form_widget(companyUser, { isSimple: true} ) }}
+    {% else %}
+
+    {% endfor %}
+{% endblock company_user_form_widget %}

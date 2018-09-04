@@ -3,10 +3,10 @@
 namespace Shopsys\ShopBundle\Model\Customer;
 
 use Doctrine\ORM\Mapping as ORM;
-use Shopsys\FrameworkBundle\Model\Customer\BillingAddress;
+use Shopsys\FrameworkBundle\Model\Customer\BillingAddress as BaseBillingAddress;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress;
 use Shopsys\FrameworkBundle\Model\Customer\User as BaseUser;
-use Shopsys\FrameworkBundle\Model\Customer\UserData;
+use Shopsys\FrameworkBundle\Model\Customer\UserData as BaseUserData;
 
 /**
  * @ORM\Table(
@@ -23,20 +23,20 @@ use Shopsys\FrameworkBundle\Model\Customer\UserData;
 class User extends BaseUser
 {
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\BillingAddress
+     * @var \Shopsys\ShopBundle\Model\Customer\BillingAddress
      * @ORM\ManyToOne(targetEntity="Shopsys\FrameworkBundle\Model\Customer\BillingAddress")
      * @ORM\JoinColumn(name="billing_address_id", referencedColumnName="id", nullable=false)
      */
     protected $billingAddress;
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Customer\UserData $userData
-     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddress $billingAddress
+     * @param \Shopsys\ShopBundle\Model\Customer\UserData $userData
+     * @param \Shopsys\ShopBundle\Model\Customer\BillingAddress $billingAddress
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress|null $deliveryAddress
      */
     public function __construct(
-        UserData $userData,
-        BillingAddress $billingAddress,
+        BaseUserData $userData,
+        BaseBillingAddress $billingAddress,
         DeliveryAddress $deliveryAddress = null
     ) {
         $this->billingAddress = $billingAddress;
@@ -44,7 +44,7 @@ class User extends BaseUser
     }
 
     /**
-     * @return \Shopsys\FrameworkBundle\Model\Customer\BillingAddress
+     * @return \Shopsys\ShopBundle\Model\Customer\BillingAddress
      */
     public function getBillingAddress()
     {

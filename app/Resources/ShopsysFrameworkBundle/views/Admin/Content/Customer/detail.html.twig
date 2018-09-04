@@ -1,0 +1,63 @@
+{% extends '@ShopsysFramework/Admin/Layout/layoutWithPanel.html.twig' %}
+
+{% block title %}- {{ 'Customer detail'|trans }}{% endblock %}
+{% block h1 %}{{ 'Customer detail'|trans }}{% endblock %}
+
+{% block main_content %}
+    <script>
+        Shopsys = window.Shopsys || {};
+        Shopsys.companyData = Shopsys.companyData || {};
+
+        Shopsys.companyData.init = function () {
+            $('.js-is-company-with-multiple-users').on('click', function (event) {
+                var isCompanyCustomer = $('input[name="customer_form[billingAddressData][companyData][companyCustomer]"]:checked').length > 0;
+
+                if (!isCompanyCustomer) {
+                    Shopsys.window({
+                        content: Shopsys.translator.trans('Only accounts with set up buy on company behalf can be set up as a company with multiple users')
+                    });
+                    event.preventDefault();
+                }
+
+                if (!$('.js-is-company-with-multiple-users').prop('checked')) {
+                    Shopsys.companyData.changeSetUpCompanyWithMultipleUsers(false);
+                }
+            });
+
+            $('input[name="customer_form[billingAddressData][companyData][companyCustomer]').on('click', function (event) {
+                var isCompanyCustomer = $('input[name="customer_form[billingAddressData][companyData][companyCustomer]"]:checked').length > 0;
+
+                if (!isCompanyCustomer) {
+                    Shopsys.companyData.changeSetUpCompanyWithMultipleUsers(false);
+                }
+            });
+
+        };
+
+        Shopsys.companyData.changeSetUpCompanyWithMultipleUsers = function (newSetUpIsCompanyWithMultipleUsers) {
+            if (newSetUpIsCompanyWithMultipleUsers === false) {
+                Shopsys.window({
+                    content: Shopsys.translator.trans('After save, all company users will be removed permanently!')
+                });
+            }
+
+            $('.js-is-company-with-multiple-users').prop('checked', newSetUpIsCompanyWithMultipleUsers);
+        };
+
+
+        $(document).ready(function () {
+            Shopsys.companyData.init();
+        });
+    </script>
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {% embed '@ShopsysFramework/Admin/Inline/FixedBar/fixedBar.html.twig' %}
+            {% block fixed_bar_content %}
+                <a href="{{ url('admin_customer_list') }}" class="btn-link-style">{{ 'Back to overview'|trans }}</a>
+                {{ form_save(user|default(null), form) }}
+            {% endblock %}
+        {% endembed %}
+    {{ form_end(form) }}
+
+{% endblock %}
