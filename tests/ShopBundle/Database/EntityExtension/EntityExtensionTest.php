@@ -13,10 +13,10 @@ use Shopsys\FrameworkBundle\Model\Order\Item\OrderPayment;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderProduct;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderTransport;
 use Shopsys\FrameworkBundle\Model\Order\Order;
+use Shopsys\FrameworkBundle\Model\Order\Order as ExtendedOrder;
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
-use Shopsys\ShopBundle\Model\Order\Order as ExtendedOrder;
-use Shopsys\ShopBundle\Model\Product\Product;
-use Shopsys\ShopBundle\Model\Transport\Transport;
+use Shopsys\FrameworkBundle\Model\Product\Product;
+use Shopsys\FrameworkBundle\Model\Transport\Transport;
 use Tests\ShopBundle\Database\EntityExtension\Model\CategoryManyToManyBidirectionalEntity;
 use Tests\ShopBundle\Database\EntityExtension\Model\CategoryOneToManyBidirectionalEntity;
 use Tests\ShopBundle\Database\EntityExtension\Model\CategoryOneToOneBidirectionalEntity;
@@ -106,6 +106,9 @@ class EntityExtensionTest extends DatabaseTestCase
      */
     public function overwriteEntityExtensionMapInServicesInContainer(array $entityExtensionMap): void
     {
+        $originalEntityExtensionMap = $this->getContainer()->getParameter('shopsys.entity_extension.map');
+        $entityExtensionMap = array_merge($originalEntityExtensionMap, $entityExtensionMap);
+
         $loadORMMetadataSubscriber = $this->getContainer()->get('joschi127_doctrine_entity_override.event_subscriber.load_orm_metadata');
         /* @var $loadORMMetadataSubscriber \Tests\ShopBundle\Database\EntityExtension\OverwritableLoadORMMetadataSubscriber */
         $entityNameResolver = $this->getContainer()->get(EntityNameResolver::class);

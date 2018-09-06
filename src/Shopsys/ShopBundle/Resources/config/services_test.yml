@@ -74,3 +74,30 @@ services:
   Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface:
     alias: Shopsys\ShopBundle\Model\Transport\TransportDataFactory
 
+  Shopsys\FrameworkBundle\Controller\Admin\CustomerController:
+    class: Shopsys\ShopBundle\Controller\Admin\CustomerController
+    tags: ['controller.service_arguments']
+
+  Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactory:
+    alias: Shopsys\ShopBundle\Model\Customer\CustomerDataFactory
+
+  Shopsys\ShopBundle\Model\Order\OrderFacade: ~
+
+  Shopsys\FrameworkBundle\Model\Order\OrderFacade:
+    alias: Shopsys\ShopBundle\Model\Order\OrderFacade
+
+  Shopsys\ShopBundle\Model\Customer\CustomerFacade: ~
+
+  Shopsys\FrameworkBundle\Model\Customer\CustomerFacade:
+    alias: Shopsys\ShopBundle\Model\Customer\CustomerFacade
+
+  Shopsys\ShopBundle\Model\Order\OrderRepository: ~
+
+  Shopsys\FrameworkBundle\Model\Order\OrderRepository:
+    alias: Shopsys\ShopBundle\Model\Order\OrderRepository
+
+  Shopsys\ShopBundle\Model\Customer\UserDataFactory: ~
+
+  Shopsys\FrameworkBundle\Model\Customer\UserDataFactory:
+    alias: Shopsys\ShopBundle\Model\Customer\UserDataFactory
+
