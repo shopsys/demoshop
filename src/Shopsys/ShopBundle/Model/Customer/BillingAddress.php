@@ -29,10 +29,27 @@ class BillingAddress extends BaseBillingAddress
     }
 
     /**
+     * @param \Shopsys\ShopBundle\Model\Customer\BillingAddressData $billingAddressData
+     */
+    public function edit(BaseBillingAddressData $billingAddressData)
+    {
+        $this->isCompanyWithMultipleUsers = $billingAddressData->isCompanyWithMultipleUsers;
+        parent::__construct($billingAddressData);
+    }
+
+    /**
      * @return bool
      */
-    public function getisCompanyWithMultipleUsers()
+    public function getIsCompanyWithMultipleUsers()
     {
         return $this->isCompanyWithMultipleUsers;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

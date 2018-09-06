@@ -17,3 +17,15 @@ admin_flag_delete:
 admin_flag_list:
   path: /admin/product/flag/list/
   defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
+
+admin_customer_edit:
+    path: /admin/customer/edit/{billingAddressId}
+    defaults: { _controller: ShopsysShopBundle:Admin\Customer:edit }
+    requirements:
+        billingAddressId: \d+
+
+admin_customer_delete:
+    path: /admin/customer/delete/{billingAddressId}
+    defaults: { _controller: ShopsysShopBundle:Admin\Customer:delete }
+    requirements:
+        billingAddressId: \d+
