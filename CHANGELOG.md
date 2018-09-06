@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [#6 - Shipping method with pickup places](https://github.com/shopsys/demoshop/pull/6)
     - added new shipping method Zasilkovna
     - pick up places are downloaded by cron
+- [#15 - Company account with multiple users](https://github.com/shopsys/demoshop/pull/15)
 
 ### Changed
 - [#1 - Basic changes in docs, readme etc. after copying from project-base](https://github.com/shopsys/demoshop/pull/1) : [@LukasHeinz]
