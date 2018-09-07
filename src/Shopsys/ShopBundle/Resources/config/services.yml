@@ -131,3 +131,6 @@ services:
       $menuFactory: '@knp_menu.factory'
     tags:
       - { name: knp_menu.menu_builder, method: createMenu, alias: admin_side_menu }
+
+  Shopsys\FrameworkBundle\Twig\FormThemeExtension:
+    class: Shopsys\ShopBundle\Twig\FormThemeExtension
