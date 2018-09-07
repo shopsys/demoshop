@@ -40,7 +40,7 @@ class BillingAddress extends BaseBillingAddress
     /**
      * @return bool
      */
-    public function getIsCompanyWithMultipleUsers()
+    public function isCompanyWithMultipleUsers()
     {
         return $this->isCompanyWithMultipleUsers;
     }

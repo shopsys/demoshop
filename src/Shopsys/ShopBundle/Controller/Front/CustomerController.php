@@ -104,7 +104,7 @@ class CustomerController extends FrontBaseController
         $user = $this->getUser();
         /* @var $user \Shopsys\FrameworkBundle\Model\Customer\User */
 
-        if ($user->getBillingAddress()->getIsCompanyWithMultipleUsers()) {
+        if ($user->getBillingAddress()->isCompanyWithMultipleUsers()) {
             $users = $this->customerFacade->getUsersByBillingAddressAndDomain($user->getBillingAddress(), $user->getDomainId());
         } else {
             $users = [$user];
@@ -146,7 +146,7 @@ class CustomerController extends FrontBaseController
 
             $user = $this->getUser();
             try {
-                if ($user->getBillingAddress()->getIsCompanyWithMultipleUsers()) {
+                if ($user->getBillingAddress()->isCompanyWithMultipleUsers()) {
                     $order = $this->orderFacade->getByOrderNumberAndBillingAddress($orderNumber, $user->getBillingAddress());
                 /* @var $order \Shopsys\FrameworkBundle\Model\Order\Order */
                 } else {

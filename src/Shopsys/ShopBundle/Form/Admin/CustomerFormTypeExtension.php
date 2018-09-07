@@ -16,7 +16,7 @@ class CustomerFormTypeExtension extends AbstractTypeExtension
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        if ($options['billingAddress'] !== null && $options['billingAddress']->getIsCompanyWithMultipleUsers()) {
+        if ($options['billingAddress'] !== null && $options['billingAddress']->isCompanyWithMultipleUsers()) {
             $builder
                 ->remove('orders')
                 ->remove('userData')

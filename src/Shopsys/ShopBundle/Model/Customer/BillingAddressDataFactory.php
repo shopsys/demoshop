@@ -34,7 +34,7 @@ class BillingAddressDataFactory extends BaseBillingAddressDataFactory
      */
     protected function fillFromBillingAddress(BaseBillingAddressData $billingAddressData, BaseBillingAddress $billingAddress)
     {
-        $billingAddressData->isCompanyWithMultipleUsers = $billingAddress->getisCompanyWithMultipleUsers();
+        $billingAddressData->isCompanyWithMultipleUsers = $billingAddress->isCompanyWithMultipleUsers();
         parent::fillFromBillingAddress($billingAddressData, $billingAddress);
     }
 }

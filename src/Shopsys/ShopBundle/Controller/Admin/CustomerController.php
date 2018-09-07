@@ -205,7 +205,7 @@ class CustomerController extends BaseCustomerController
             return $this->redirectToRoute('admin_customer_list');
         }
 
-        if ($billingAddress->getIsCompanyWithMultipleUsers()) {
+        if ($billingAddress->isCompanyWithMultipleUsers()) {
             return $this->processCompanyWithMultipleUsers($request, $billingAddress);
         }
 
