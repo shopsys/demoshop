@@ -47,7 +47,7 @@
                         {% if order.customer is null%}
                             {{ 'unregistered customer'|trans }}
                         {% else %}
-                            <a href="{{ path('admin_customer_edit', { id: order.customer.id }) }}" target="_blank">
+                            <a href="{{ path('admin_customer_edit', { billingAddressId: order.customer.billingAddress.id }) }}" target="_blank">
                                 {% if order.customer.billingAddress.companyCustomer %}
                                     {{ order.customer.billingAddress.companyName }} -
                                 {% endif %}

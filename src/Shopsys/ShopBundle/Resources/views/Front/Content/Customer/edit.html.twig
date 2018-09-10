@@ -43,19 +43,25 @@
             </div>
         </div>
 
-
+        {% set isCompanyWithMultipleUsers = user.getBillingAddress().isCompanyWithMultipleUsers() %}
+        {% set disabledInputClassIfCompanyWithMultipleUsers = '' %}
+        {% if isCompanyWithMultipleUsers %}
+            {% set disabledInputClassIfCompanyWithMultipleUsers = 'form-input-disabled' %}
+        {% endif %}
         <div id="{{ form.billingAddressData.vars.id }}">
             <div class="wrap-box">
                 <h2 class="wrap-box__title">{{ 'Company data'|trans }}</h2>
                 <div class="wrap-box__in">
-                    {{ form_row(form.billingAddressData.companyCustomer, {
-                        attr: { class: 'js-checkbox-toggle', 'data-checkbox-toggle-container-id': 'js-company-fields' },
-                        label: 'I buy on company behalf'|trans})
-                    }}
+                    <div {% if isCompanyWithMultipleUsers %}class="display-none"{% endif %}>
+                        {{ form_row(form.billingAddressData.companyCustomer, {
+                            attr: { class: 'js-checkbox-toggle', 'data-checkbox-toggle-container-id': 'js-company-fields' },
+                            label: 'I buy on company behalf'|trans})
+                        }}
+                    </div>
                     <div id="js-company-fields">
-                        {{ form_row(form.billingAddressData.companyName, { label: 'Company'|trans}) }}
-                        {{ form_row(form.billingAddressData.companyNumber, { label: 'Company number'|trans}) }}
-                        {{ form_row(form.billingAddressData.companyTaxNumber, { label: 'Tax number'|trans}) }}
+                        {{ form_row(form.billingAddressData.companyName, { label: 'Company'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
+                        {{ form_row(form.billingAddressData.companyNumber, { label: 'Company number'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
+                        {{ form_row(form.billingAddressData.companyTaxNumber, { label: 'Tax number'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
                     </div>
                 </div>
             </div>
@@ -64,10 +70,10 @@
                 <h2 class="wrap-box__title">{{ 'Address'|trans }}</h2>
 
                 <div class="wrap-box__in">
-                    {{ form_row(form.billingAddressData.street, { label: 'Street'|trans}) }}
-                    {{ form_row(form.billingAddressData.city, { label: 'City'|trans}) }}
-                    {{ form_row(form.billingAddressData.postcode, { label: 'Postcode'|trans}) }}
-                    {{ form_row(form.billingAddressData.country, { label: 'Country'|trans}) }}
+                    {{ form_row(form.billingAddressData.street, { label: 'Street'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
+                    {{ form_row(form.billingAddressData.city, { label: 'City'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
+                    {{ form_row(form.billingAddressData.postcode, { label: 'Postcode'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
+                    {{ form_row(form.billingAddressData.country, { label: 'Country'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
                 </div>
             </div>
         </div>

@@ -11,6 +11,10 @@ services:
     tags:
       - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Article\ArticleFormType }
 
+  Shopsys\ShopBundle\Form\Admin\BillingAddressFormTypeExtension:
+    tags:
+      - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Customer\BillingAddressFormType }
+
   Shopsys\ShopBundle\Form\Admin\ProductFormTypeExtension:
     tags:
       - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Product\ProductFormType }
@@ -18,6 +22,10 @@ services:
   Shopsys\ShopBundle\Form\Admin\CategoryFormTypeExtension:
     tags:
       - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Category\CategoryFormType }
+
+  Shopsys\ShopBundle\Form\Admin\CustomerFormTypeExtension:
+    tags:
+      - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Customer\CustomerFormType }
 
   Shopsys\ShopBundle\Form\Admin\TransportFormTypeExtension:
     tags:

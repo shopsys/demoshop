@@ -244,6 +244,7 @@ class OrderController extends FrontBaseController
             ),
             'termsAndConditionsArticle' => $this->legalConditionsFacade->findTermsAndConditions($this->domain->getId()),
             'privacyPolicyArticle' => $this->legalConditionsFacade->findPrivacyPolicy($this->domain->getId()),
+            'user' => $user,
         ]);
     }
 

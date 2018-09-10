@@ -8,19 +8,31 @@ services:
     autoconfigure: true
     public: false
 
+  joschi127_doctrine_entity_override.event_subscriber.load_orm_metadata:
+      class: Shopsys\ShopBundle\Component\EntityExtension\LoadORMMetadataSubscriber
+      arguments:
+          - "@service_container"
+          - "%shopsys.entity_extension.map%"
+      tags:
+          - { name: doctrine.event_subscriber, priority: -10 }
+
   Shopsys\ShopBundle\Controller\:
     resource: '../../Controller/'
     public: true
     tags: ['controller.service_arguments']
 
   Shopsys\ShopBundle\Model\:
-    resource: '../../Model/**/*{Facade,Factory}.php'
+    resource: '../../Model/**/*{Facade,Factory,Repository}.php'
 
   League\Flysystem\MountManager:
     arguments:
       -
         local: '@local_filesystem'
         main: '@main_filesystem'
+
+  Shopsys\FrameworkBundle\Controller\Admin\CustomerController:
+    class: Shopsys\ShopBundle\Controller\Admin\CustomerController
+    tags: ['controller.service_arguments']
 
   Shopsys\ShopBundle\Form\Front\Order\DomainAwareOrderFlowFactory: ~
 
@@ -29,6 +41,16 @@ services:
   Shopsys\FrameworkBundle\Model\Article\ArticleFactoryInterface: '@Shopsys\ShopBundle\Model\Article\ArticleFactory'
 
   Shopsys\FrameworkBundle\Model\Article\ArticleDataFactoryInterface: '@Shopsys\ShopBundle\Model\Article\ArticleDataFactory'
+
+  Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface: '@Shopsys\ShopBundle\Model\Customer\BillingAddressFactory'
+
+  Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface: '@Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory'
+
+  Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface: '@Shopsys\ShopBundle\Model\Customer\CustomerDataFactory'
+
+  Shopsys\FrameworkBundle\Model\Customer\UserFactoryInterface: '@Shopsys\ShopBundle\Model\Customer\UserFactory'
+
+  Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface: '@Shopsys\ShopBundle\Model\Customer\UserDataFactory'
 
   Shopsys\ShopBundle\Model\Country\CountryRepository: ~
 
@@ -74,6 +96,14 @@ services:
 
   Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface: '@Shopsys\ShopBundle\Model\Order\OrderDataFactory'
 
+  Shopsys\FrameworkBundle\Model\Customer\CustomerFacade: '@Shopsys\ShopBundle\Model\Customer\CustomerFacade'
+
+  Shopsys\FrameworkBundle\Model\Customer\UserRepository: '@Shopsys\ShopBundle\Model\Customer\UserRepository'
+
+  Shopsys\FrameworkBundle\Model\Order\OrderFacade: '@Shopsys\ShopBundle\Model\Order\OrderFacade'
+
+  Shopsys\FrameworkBundle\Model\Order\OrderRepository: '@Shopsys\ShopBundle\Model\Order\OrderRepository'
+
   Shopsys\ShopBundle\Model\Order\FrontOrderData: ~
 
   Shopsys\FrameworkBundle\Model\Order\FrontOrderData: '@Shopsys\ShopBundle\Model\Order\FrontOrderData'
@@ -97,3 +127,6 @@ services:
       $menuFactory: '@knp_menu.factory'
     tags:
       - { name: knp_menu.menu_builder, method: createMenu, alias: admin_side_menu }
+
+  Shopsys\FrameworkBundle\Twig\FormThemeExtension:
+    class: Shopsys\ShopBundle\Twig\FormThemeExtension
