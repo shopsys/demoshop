@@ -102,8 +102,6 @@ services:
 
   Shopsys\FrameworkBundle\Model\Order\OrderFacade: '@Shopsys\ShopBundle\Model\Order\OrderFacade'
 
-  Shopsys\ShopBundle\Model\Order\OrderRepository: ~
-
   Shopsys\FrameworkBundle\Model\Order\OrderRepository: '@Shopsys\ShopBundle\Model\Order\OrderRepository'
 
   Shopsys\ShopBundle\Model\Order\FrontOrderData: ~
