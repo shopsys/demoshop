@@ -30,6 +30,7 @@ use Shopsys\ShopBundle\Model\Customer\BillingAddressFacade;
 use Shopsys\ShopBundle\Model\Customer\CustomerData;
 use Shopsys\ShopBundle\Model\Customer\CustomerFacade;
 use Shopsys\ShopBundle\Model\Customer\Exception\BillingAddressNotFoundException;
+use Shopsys\ShopBundle\Model\Customer\Exception\DuplicateEmailsException;
 use Shopsys\ShopBundle\Model\Customer\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -385,7 +386,12 @@ class CustomerController extends BaseCustomerController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            return $this->editCompanyWithMultipleUsers($billingAddress, $customerData);
+            try {
+                return $this->editCompanyWithMultipleUsers($billingAddress, $customerData);
+            } catch (DuplicateEmailsException $exc) {
+                $this->getFlashMessageSender()->addErrorFlashTwig(t('One or more emails are duplicated or already used, e.g.: ' . $exc->getEmail()));
+                $this->getFlashMessageSender()->addErrorFlashTwig(t('Please check the correctness of all data filled.'));
+            }
         }
 
         if ($form->isSubmitted() && !$form->isValid()) {

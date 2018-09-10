@@ -11,6 +11,7 @@ use Shopsys\FrameworkBundle\Model\Customer\CustomerFacade as BaseCustomerFacade;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerService;
 use Shopsys\FrameworkBundle\Model\Customer\Mail\CustomerMailFacade;
 use Shopsys\FrameworkBundle\Model\Customer\UserFactoryInterface;
+use Shopsys\ShopBundle\Model\Customer\Exception\DuplicateEmailsException;
 
 class CustomerFacade extends BaseCustomerFacade
 {
@@ -81,6 +82,8 @@ class CustomerFacade extends BaseCustomerFacade
      */
     public function editCompanyWithMultipleUsers(BillingAddress $billingAddress, CustomerData $companyData)
     {
+        $this->processUniqueEmailsCheck($billingAddress, $companyData);
+
         $newCompanyUsersData = [];
         foreach ($companyData->companyUsersData as $companyUserData) {
             /**
@@ -189,5 +192,32 @@ class CustomerFacade extends BaseCustomerFacade
         $companyUsersDataWithOneUser = reset($companyData->companyUsersData);
         $companyData->companyUsersData = [$companyUsersDataWithOneUser];
         $this->removeOldCompanyUsers($billingAddress, $companyData);
+    }
+
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddress $billingAddress
+     * @param \Shopsys\ShopBundle\Model\Customer\CustomerData $companyData
+     * @throws \Shopsys\ShopBundle\Model\Customer\Exception\DuplicateEmailsException
+     */
+    protected function processUniqueEmailsCheck(BillingAddress $billingAddress, CustomerData $companyData)
+    {
+        $emailsOfCompanyCustomers = [];
+        foreach ($companyData->companyUsersData as $companyUser) {
+            $emailsOfCompanyCustomers[] = $companyUser->email;
+        }
+
+        $duplicatedEmails = array_diff_assoc($emailsOfCompanyCustomers, array_unique($emailsOfCompanyCustomers));
+
+        if (count($duplicatedEmails) > 0) {
+            throw new DuplicateEmailsException(reset($duplicatedEmails));
+        }
+
+        foreach ($emailsOfCompanyCustomers as $email) {
+            $user = $this->findUserByEmailAndDomain($email, $companyData->userData->domainId);
+
+            if ($user !== null && $user->getBillingAddress()->getId() != $billingAddress->getId()) {
+                throw new DuplicateEmailsException($email);
+            }
+        }
     }
 }
