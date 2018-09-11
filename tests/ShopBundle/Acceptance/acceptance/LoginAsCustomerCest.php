@@ -10,7 +10,6 @@ class LoginAsCustomerCest
 {
     public function testLoginAsCustomer(AcceptanceTester $me, LoginPage $loginPage, Scenario $scenario)
     {
-        $scenario->skip('The fixed bar with warning message is hidden temporarily for design debugging purposes.');
         $me->wantTo('login as a customer from admin');
         $loginPage->loginAsAdmin();
         $me->amOnPage('/admin/customer/edit/2');
