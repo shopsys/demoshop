@@ -20,17 +20,19 @@
 
 {% block main_content %}
 
-    {% if sliderItems is not empty %}
-        <div class="box-slider">
-            <div id="js-slider-homepage" class="box-slider__in">
-                {% for item in sliderItems %}
-                    <div class="box-slider__item">
-                        <a href = "{{ item.link }}">{{ image(item) }}</a>
-                    </div>
-                {% endfor %}
+    <div class="box-homepage-gallery">
+        <div class="box-homepage-gallery__primary">
+            {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepagePrimary'})) }}
+        </div>
+        <div class="box-homepage-gallery__secondary">
+            <div class="box-homepage-gallery__secondary__item box-homepage-gallery__secondary__item--first">
+                {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepageSecondaryFirst'})) }}
+            </div>
+            <div class="box-homepage-gallery__secondary__item box-homepage-gallery__secondary__item--second">
+                {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepageSecondarySecond'})) }}
             </div>
         </div>
-    {% endif %}
+    </div>
 
     {% cache 'homepage_category_top' 5*60 %}
         {{ render(controller('ShopsysShopBundle:Front/Category:top')) }}

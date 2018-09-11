@@ -1,6 +1,22 @@
 @in-place-margin: @margin-gap;
 
 .in-place {
-    margin-bottom: @in-place-margin;
+    margin-top: @in-place-margin;
     text-align: center;
+
+    &--homepagePrimary,
+    &--homepageSecondaryFirst,
+    &--homepageSecondarySecond {
+
+        margin: 0;
+        text-align: inherit;
+
+        a {
+            display: block;
+
+            img {
+                display: block;
+            }
+        }
+    }
 }

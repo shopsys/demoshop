@@ -9,6 +9,8 @@
         var $productFilterForm = $('form[name="product_filter_form"]');
         var $showResultsButton = $('.js-product-filter-show-result-button');
         var $resetFilterButton = $('.js-product-filter-reset-button');
+        var $showFiltersButton = $('.js-filter-toggle-button');
+        var $filterOverlay = $('.js-filter-toggle-overlay');
         var requestTimer = null;
         var requestDelay = 1000;
 
@@ -22,6 +24,7 @@
             $showResultsButton.click(function () {
                 var $productList = $('.js-product-list');
                 $('html, body').animate({ scrollTop: $productList.offset().top }, 'slow');
+                deactivateShowFiltersButton();
                 return false;
             });
 
@@ -30,6 +33,7 @@
                     .find(':radio, :checkbox').removeAttr('checked').end()
                     .find('textarea, :text, select').val('');
                 $productFilterForm.find('.js-product-filter-call-change-after-reset').change();
+                deactivateShowFiltersButton();
                 clearTimeout(requestTimer);
                 var resetUrl = $(this).attr('href');
                 Shopsys.history.pushReloadState(resetUrl);
@@ -37,7 +41,22 @@
                 return false;
             });
 
+            $showFiltersButton.on('click', function (e) {
+                $('body').toggleClass('js-body-filters-open');
+                $(this).toggleClass('active');
+                e.preventDefault();
+            });
+
+            $filterOverlay.click(function () {
+                deactivateShowFiltersButton();
+            });
+
             updateFiltersDisabled();
+        };
+
+        var deactivateShowFiltersButton = function () {
+            $('body').removeClass('js-body-filters-open');
+            $showFiltersButton.removeClass('active');
         };
 
         var showProducts = function ($wrappedData) {

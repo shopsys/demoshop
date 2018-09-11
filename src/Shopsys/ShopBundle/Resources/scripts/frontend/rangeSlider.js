@@ -26,6 +26,7 @@
                     var maximumSliderValue = getValueFromStep(ui.values[1]);
                     $minimumInput.val(minimumSliderValue != minimalValue ? Shopsys.number.formatDecimalNumber(minimumSliderValue, 2) : '');
                     $maximumInput.val(maximumSliderValue != maximalValue ? Shopsys.number.formatDecimalNumber(maximumSliderValue, 2) : '');
+                    showSliderPrices();
                 },
                 stop: function () {
                     if (lastMinimumInputValue != $minimumInput.val()) {
@@ -34,6 +35,9 @@
                     if (lastMaximumInputValue != $maximumInput.val()) {
                         $maximumInput.change();
                     }
+                },
+                change: function () {
+                    showSliderPrices();
                 }
             });
 
@@ -43,6 +47,19 @@
             $maximumInput.change(updateSliderMaximum);
             updateSliderMaximum();
         };
+
+        function showSliderPrices () {
+            $('.js-homepage-filter-price-from').html(getMinimalPrice());
+            $('.js-homepage-filter-price-to').html(getMaximalPrice());
+        };
+
+        function getMinimalPrice () {
+            return $minimumInput.val() ? $minimumInput.val() : parseInt($sliderElement.data('minimal-value'));
+        }
+
+        function getMaximalPrice () {
+            return $maximumInput.val() ? $maximumInput.val() : parseInt($sliderElement.data('maximal-value'));
+        }
 
         function updateSliderMinimum () {
             var value = Shopsys.number.parseNumber($minimumInput.val()) || minimalValue;

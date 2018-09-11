@@ -1,11 +1,11 @@
 {% extends '@ShopsysShop/Front/Layout/layout.html.twig' %}
 
 {% block content %}
+    {% block breadcrumb %}
+        {{ render(controller('ShopsysShopBundle:Front/Breadcrumb:index', { routeName: getRoute(), routeParameters: getRouteParams() } )) }}
+    {% endblock %}
     <div class="web__main web__main--with-panel">
         <div class="web__main__content js-main-content">
-            {% block breadcrumb %}
-                {{ render(controller('ShopsysShopBundle:Front/Breadcrumb:index', { routeName: getRoute(), routeParameters: getRouteParams() } )) }}
-            {% endblock %}
 
             {{ render(controller('ShopsysShopBundle:Front/FlashMessage:index')) }}
 
@@ -13,15 +13,61 @@
         </div>
 
         <div class="web__main__panel">
-            {% cache 'category_panel'~app.request.pathinfo 5*60 %}
-                {{ render(controller('ShopsysShopBundle:Front/Category:panel', { request: app.request } )) }}
-            {% endcache %}
-
-            {% block panel_content %}{% endblock %}
-
-            <div id="js-contact-form-container">
-                {{ render(controller('ShopsysShopBundle:Front/ContactForm:index')) }}
+            <div class="wrap-border wrap-border--no-mobile">
+                {% cache 'category_panel'~app.request.pathinfo 5*60 %}
+                    {{ render(controller('ShopsysShopBundle:Front/Category:panel', { request: app.request } )) }}
+                {% endcache %}
             </div>
+
+            {% set shopInfoPhoneNumber = getShopInfoPhoneNumber() %}
+            {% set shopInfoPhoneHours = getShopInfoPhoneHours() %}
+            {% set shopInfoEmail = getShopInfoEmail() %}
+
+            {% if shopInfoPhoneNumber is not null or shopInfoPhoneHours is not null or shopInfoEmail is not null %}
+            {% block panel_content %}
+            <div class="box-panel-call-us">
+                <div class="box-panel-call-us__headline">
+                    <h3>{{ 'Contact Us'|trans }}</h3>
+                </div>
+                <div class="box-panel-call-us__person">
+                    <div class="box-panel-call-us__person__image-wrap">
+                        <img class="box-panel-call-us__person__image" src="{{ asset('assets/frontend/images/avatar.jpg') }}" alt="{{ 'Jessica Fletcher'|trans }}">
+                    </div>
+                    <div class="box-panel-call-us__person__text">
+                        <span class="box-panel-call-us__person__name">
+                            {{ 'Jessica Fletcher'|trans }}
+                        </span>
+                        <span class="box-panel-call-us__person__position">
+                            {{ 'Effectivness Hunter'|trans }}
+                        </span>
+                    </div>
+                </div>
+                {% if shopInfoPhoneNumber is not null %}
+                <div class="box-panel-call-us__phone">
+                    <a href="tel:{{ shopInfoPhoneNumber }}" class="box-panel-call-us__phone__link">
+                        <i class="svg svg-phone box-panel-call-us__phone__icon"></i>
+                        <span class="box-panel-call-us__phone__number">{{ shopInfoPhoneNumber }}</span>
+                    </a>
+                    {% if shopInfoPhoneHours is not null %}
+                    <span class="box-panel-call-us__phone__hours">
+                        {{ shopInfoPhoneHours }}
+                    </span>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if shopInfoEmail is not null %}
+                <div class="box-panel-call-us__email">
+                    <a href="mailto:{{ shopInfoEmail }}" class="box-panel-call-us__email__link">
+                        <i class="svg svg-mail box-panel-call-us__email__icon"></i>
+                        <span class="box-panel-call-us__email__text">
+                            {{ shopInfoEmail }}
+                        </span>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            {% endblock %}
+            {% endif %}
 
             {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : constant('Shopsys\\FrameworkBundle\\Model\\Advert\\Advert::POSITION_LEFT_SIDEBAR')})) }}
         </div>

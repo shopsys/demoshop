@@ -8,9 +8,9 @@
                     </span>
                     <h3 class="list-categories__item__title">
                         {{ category.name }}
-                        {% if listableProductCountsIndexedByCategoryId is not empty %}
+                        <small class="list-categories__item__title__count">{% if listableProductCountsIndexedByCategoryId is not empty %}
                             ({{ listableProductCountsIndexedByCategoryId[category.id] }})
-                        {% endif %}
+                        {% endif %}</small>
                     </h3>
                 </a>
             </li>

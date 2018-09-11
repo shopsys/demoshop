@@ -17,31 +17,71 @@
     {{ category.getSeoTitle(domain.id)|default(category.name) }}
 {% endblock %}
 
-{% block main_content %}
-    <div class="box-list">
-        {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : POSITION_PRODUCT_LIST})) }}
-        <h1>
-            {{ category.getSeoH1(domain.id)|default(category.name) }}
-        </h1>
-        <div class="box-list__description">
-            <div class="js-category-description box-list__description__text in-user-text">
-                {{ category.getDescriptionSecond(domain.id)|raw }}
+{% block content %}
+    {% block breadcrumb %}
+        {{ render(controller('ShopsysShopBundle:Front/Breadcrumb:index', { routeName: getRoute(), routeParameters: getRouteParams() } )) }}
+    {% endblock %}
+    <div class="web__main web__main--with-panel">
+        <div class="web__main__content js-main-content">
+
+            {{ render(controller('ShopsysShopBundle:Front/FlashMessage:index')) }}
+
+            {% block main_content %}
+            <div class="box-list">
+                {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : POSITION_PRODUCT_LIST})) }}
+                <h1>
+                    {{ category.getSeoH1(domain.id)|default(category.name) }}
+                </h1>
+                <div class="box-list__description">
+                    <div class="js-category-description box-list__description__text in-user-text">
+                        {{ category.getDescriptionSecond(domain.id)|raw }}
+                    </div>
+                    <div class="box-list__description__more">
+                        <span class="js-category-description-load-more link-style box-list__description__more__btn">
+                            {{ 'View more'|trans }}
+                        </span>
+                    </div>
+                </div>
+                {% if visibleChildren is not empty %}
+                    <h2>{{ 'List of subcategories'|trans }}</h2>
+
+                    {{ render(controller('ShopsysShopBundle:Front/Category:categoryList', {categories: visibleChildren})) }}
+                {% endif %}
+
+                {{ render(controller('ShopsysShopBundle:Front/BestsellingProduct:list', { category: category })) }}
+
+                <a href="" class="js-filter-toggle-button box-filter__toggle-button btn btn--primary btn--block">
+                    {{ 'Show filters'|trans }}
+                </a>
+
+                <div class="box-filter__overlay js-filter-toggle-overlay"></div>
+
+                <div class="js-product-list-ajax-filter-products-with-controls">
+                    <div>
+                        {{ render(controller('ShopsysShopBundle:Front/Product:selectOrderingModeForList')) }}
+                    </div>
+                    {% include '@ShopsysShop/Front/Content/Product/productsWithControls.html.twig' with {paginationResult: paginationResult, filterFormSubmited: filterFormSubmited} %}
+                </div>
+
+                <div class="box-list__description">
+                    <div class="js-category-description box-list__description__text in-user-text">
+                        {{ category.getDescription(domain.id)|raw }}
+                    </div>
+                    <div class="box-list__description__more">
+                        <span class="js-category-description-load-more link-style box-list__description__more__btn">
+                            {{ 'View more'|trans }}
+                        </span>
+                    </div>
+                </div>
             </div>
-            <div class="box-list__description__more">
-                <span class="js-category-description-load-more link-style box-list__description__more__btn">
-                    {{ 'View more'|trans }}
-                </span>
-            </div>
+            {% endblock %}
         </div>
-        {% if visibleChildren is not empty %}
-            <h2>{{ 'List of subcategories'|trans }}</h2>
 
-            {{ render(controller('ShopsysShopBundle:Front/Category:categoryList', {categories: visibleChildren})) }}
-        {% endif %}
+        <div class="web__main__panel">
+            <div class="wrap-border">
+                {{ render(controller('ShopsysShopBundle:Front/Category:panel', { request: app.request } )) }}
+            </div>
 
-        {{ render(controller('ShopsysShopBundle:Front/BestsellingProduct:list', { category: category })) }}
-
-        <div class="js-product-list-with-filter">
             {% if paginationResult.results|length > 0 or filterFormSubmited %}
                 <div class="box-filter js-product-filter">
                     {{ productFilterForm.filterForm(
@@ -56,24 +96,9 @@
                 </div>
             {% endif %}
 
-            <div class="js-product-list-ajax-filter-products-with-controls">
-                <div>
-                    {{ render(controller('ShopsysShopBundle:Front/Product:selectOrderingModeForList')) }}
-                </div>
-                {% include '@ShopsysShop/Front/Content/Product/productsWithControls.html.twig' with {paginationResult: paginationResult, filterFormSubmited: filterFormSubmited} %}
-            </div>
-        </div>
+            {% block panel_content %}{% endblock %}
 
-        <div class="box-list__description">
-            <div class="js-category-description box-list__description__text in-user-text">
-                {{ category.getDescription(domain.id)|raw }}
-            </div>
-            <div class="box-list__description__more">
-                <span class="js-category-description-load-more link-style box-list__description__more__btn">
-                    {{ 'View more'|trans }}
-                </span>
-            </div>
+            {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : constant('Shopsys\\FrameworkBundle\\Model\\Advert\\Advert::POSITION_LEFT_SIDEBAR')})) }}
         </div>
     </div>
-
 {% endblock %}

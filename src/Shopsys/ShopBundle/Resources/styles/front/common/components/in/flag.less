@@ -2,12 +2,17 @@
 @in-flag-position-left: 10px;
 @in-flag-in-list-position-top: 0;
 @in-flag-in-list-position-left: 0;
+@in-flag-text-color: @color-f;
 
 .in-flag {
     position: absolute;
     top: @in-flag-position-top;
     left: @in-flag-position-left;
+
+    color: @in-flag-text-color;
+
     .clearfix();
+
 
     &--in-list {
         top: @in-flag-in-list-position-top;
@@ -16,9 +21,9 @@
 
     &__item {
         float: left;
-        clear: left;
-        padding: 3px 5px;
         margin-bottom: 3px;
+        padding: 3px 5px;
+        clear: left;
 
         font-size: 12px;
     }

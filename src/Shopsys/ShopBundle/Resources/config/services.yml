@@ -130,3 +130,6 @@ services:
 
   Shopsys\FrameworkBundle\Twig\FormThemeExtension:
     class: Shopsys\ShopBundle\Twig\FormThemeExtension
+
+  Shopsys\FrameworkBundle\Model\Advert\AdvertPositionRegistry:
+    class: Shopsys\ShopBundle\Model\Advert\AdvertPositionRegistry

@@ -1,17 +1,17 @@
-@in-message-alert: #F7D6D6;
+@in-message-alert: @color-red;
 @in-message-warning: @color-orange;
-@in-message-info: #BAE3F2;
+@in-message-info: @color-blue;
 @in-message-success: @color-green;
 
-@in-message-alert-text: @color-red;
-@in-message-warning-text: @color-orange;
-@in-message-info-text: #005B7E;
-@in-message-success-text: @color-green;
+@in-message-alert-text: darken(@in-message-alert, 10%);
+@in-message-warning-text: darken(@in-message-warning, 10%);
+@in-message-info-text: darken(@in-message-info, 10%);
+@in-message-success-text: darken(@in-message-success, 10%);
 
 .in-message {
     display: block;
     padding: 6px 9px;
-    margin: 5px 0;
+    margin: 10px 0;
 
     font-size: 14px;
     text-transform: none;
@@ -23,31 +23,26 @@
 
     &--error {
         color: @in-message-alert-text;
-        border: 1px solid @in-message-alert;
-        background: lighten(@in-message-alert, 5%);
+        background: lighten(@in-message-alert, 40%);
     }
 
     &--warning {
         color: @in-message-warning-text;
-        border: 1px solid @in-message-warning;
-        background: lighten(@in-message-warning, 10%);
+        background: lighten(@in-message-warning, 50%);
     }
 
     &--info {
         color: @in-message-info-text;
-        border: 1px solid @in-message-info;
-        background: lighten(@in-message-info, 10%);
+        background: lighten(@in-message-info, 40%);
     }
 
     &--success {
         color: @in-message-success-text;
-        border: 1px solid @in-message-success;
         background: lighten(@in-message-success, 50%);
     }
 
     &--alert {
         color: @in-message-alert-text;
-        border: 1px solid @in-message-alert;
-        background: lighten(@in-message-alert, 5%);
+        background: lighten(@in-message-alert, 40%);
     }
 }

@@ -1,6 +1,7 @@
 @web-footer-with-cookies-margin-bottom: 36px;
 
 @web-footer-background: @color-3;
+@web-header-background: @color-3;
 
 img {
     max-width: 100%;
@@ -11,13 +12,26 @@ img {
     flex-direction: column;
     min-height: 100%;
 
+    &.js-body-filters-open {
+        @media @query-tablet {
+            display: block;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    }
+
     .is-no-flex &, .is-safari & {
         display: block;
     }
 
     &--window-activated {
-        overflow: hidden;
         margin-right: @web-scrollbar-size;
+        overflow: hidden;
     }
 
     &__in {
@@ -29,27 +43,52 @@ img {
         &--grey {
             background: @color-light;
         }
+
+        &--dark {
+            background: @web-header-background;
+        }
+
+        &--box-with-border-bottom {
+            background: @web-header-background;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        &--footer {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
     }
 
     &__footer {
         flex: 0;
-        will-change: padding;
 
         background: @web-footer-background;
         transition: @transition padding;
-
+        will-change: padding;
 
         &--with-cookies {
             padding-bottom: @web-footer-with-cookies-margin-bottom;
         }
     }
 
+    &__header {
+        margin-bottom: @margin-gap/2;
+
+        background-color: @web-header-background;
+        border-top: 1px solid rgba(255,255,255,0.1);
+
+        @media @query-lg {
+            margin-bottom: @margin-gap*2;
+        }
+    }
+
     &__container {
-        padding: 0 @web-padding;
+        padding: 0 @web-padding/2;
 
         @media @query-xl {
-            width: @web-width;
             margin: 0 auto;
+            padding: 0 @web-padding;
+            width: @web-width;
+            max-width: 100%;
         }
     }
 
@@ -81,9 +120,10 @@ img {
             @media @query-lg {
                 display: block;
                 order: 1;
-                flex-shrink: 0;
+                padding-right: 40px;
                 width: @web-panel-width;
-                padding-right: 20px;
+
+                flex-shrink: 0;
             }
         }
     }

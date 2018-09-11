@@ -1,0 +1,62 @@
+.box-advantages {
+    margin-top: @margin-gap;
+
+    @media @query-lg {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: @margin-gap*2;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        padding: @margin-gap 5px;
+        text-align: center;
+
+
+        @media @query-lg {
+            display: block;
+            padding: @margin-gap 10px;
+            width: 100% / 3;
+
+            border-right: 1px solid rgba(255,255,255,0.1);
+
+            &:first-child {
+                border-left: 1px solid rgba(255,255,255,0.1);
+            }
+        }
+
+        @media @query-vl {
+            width: 100% / 5;
+        }
+
+        &__icon {
+            color: @color-primary;
+            font-size: 48px;
+        }
+
+        &__title {
+            margin-bottom: 0.5em;
+
+            color: @color-f;
+            font-size: 16px;
+
+            @media @query-lg {
+                font-size: 18px;
+            }
+        }
+
+        &__text {
+            padding-left: @margin-gap/2;
+            line-height: 1.5em;
+            text-align: left;
+
+            color: @color-9;
+
+            @media @query-lg {
+                padding-left: 0;
+                text-align: center;
+            }
+        }
+    }
+}

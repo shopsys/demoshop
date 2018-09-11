@@ -1,0 +1,97 @@
+@box-panel-call-us-icon-size: 20px;
+
+.box-panel-call-us {
+    margin-top: @margin-gap;
+    padding: 10px;
+
+    .wrap-border;
+
+    @media @query-lg {
+        padding: 10px 15px;
+    }
+
+    &__person {
+        display: flex;
+        align-items: center;
+
+        &__image {
+            display: block;
+            width: 68px;
+
+            border-radius: 50%;
+        }
+
+        &__text {
+            padding-left: 15px;
+        }
+
+        &__name {
+            display: block;
+
+            font-weight: bold;
+
+            @media @query-lg {
+                font-size: 16px;
+            }
+        }
+
+        &__position {
+            display: block;
+            padding-top: 3px;
+
+            color: @color-9;
+        }
+    }
+
+    &__phone {
+        margin-top: @margin-gap;
+
+
+        &__link {
+            display: block;
+
+            text-decoration: none;
+        }
+
+        &__number {
+            padding-left: 5px;
+
+            font-size: 16px;
+        }
+
+        &__hours {
+            display: block;
+            padding-left: @box-panel-call-us-icon-size + 10px;
+            font-size: 12px;
+            color: @color-9;
+        }
+
+        &__icon {
+            width: @box-panel-call-us-icon-size;
+
+            font-size: @box-panel-call-us-icon-size;
+        }
+    }
+
+    &__email {
+        margin-top: @margin-gap;
+
+        &__link {
+            display: block;
+
+            text-decoration: none;
+        }
+
+        &__icon {
+            width: @box-panel-call-us-icon-size;
+
+            font-size: @box-panel-call-us-icon-size;
+        }
+
+        &__text {
+            padding-left: 5px;
+
+            font-size: 16px;
+        }
+    }
+}

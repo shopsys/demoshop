@@ -5,21 +5,20 @@
 }
 
 html {
-    height: 100%;
     margin: 0;
+    height: 100%;
 }
 
 html, body {
-    min-height: 100%;
     padding: 0;
+    min-height: 100%;
 }
 
-body, form, input, select, button, p, pre, dfn, address, ul, ol, li,
-h1, h2, h3, h4, h5, h6, img,
-table, tr, td, th, input, textarea {
+body, form, input, select, button, p, pre, dfn, address, ul, ol, li, h1, h2, h3, h4, h5, h6, img, table, tr, td, th, input, textarea {
     color: @color-base;
-    font-family: @font-base;
     font-size: @font-size-mobile;
+    font-family: @font-base;
+    -webkit-font-smoothing: antialiased;
 
     @media @query-lg {
         font-size: @font-size;
@@ -27,14 +26,15 @@ table, tr, td, th, input, textarea {
 }
 
 fieldset {
-    border: 0;
     margin: 0;
     padding: 0;
+
+    border: 0;
 }
 
 img {
-    max-width: 100%;
     height: auto;
+    max-width: 100%;
 }
 
 td, th {
@@ -58,16 +58,18 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: @color-base;
-    font-family: @font;
-    font-weight: 400;
     line-height: 1.3em;
-    text-rendering: optimizelegibility;
+
+    color: @color-base;
+    font-weight: 600;
+    font-family: @font-headline;
     word-wrap: break-word;
+
+    text-rendering: optimizelegibility;
+    margin: 0 0 .5em 0;
 }
 
 h1 {
-    margin: 0 0 10px 0;
 
     font-size: 20px;
     font-weight: normal;
@@ -77,20 +79,15 @@ h1 {
     }
 
     @media @query-lg {
-        margin-bottom: 15px;
-
-        font-size: 28px;
+        font-size: 30px;
     }
 
     @media @query-vl {
-        margin-bottom: 20px;
-
-        font-size: 32px;
+        font-size: 42px;
     }
 }
 
 h2 {
-    margin: 0 0 10px 0;
 
     font-size: 16px;
     font-weight: normal;
@@ -100,21 +97,15 @@ h2 {
     }
 
     @media @query-lg {
-        margin-bottom: 15px;
-
         font-size: 20px;
     }
 
     @media @query-vl {
-        margin-bottom: 20px;
-
-        font-size: 22px;
+        font-size: 24px;
     }
 }
 
 h3 {
-    margin: 0 0 10px 0;
-
     font-size: 14px;
     font-weight: normal;
 
@@ -123,21 +114,15 @@ h3 {
     }
 
     @media @query-lg {
-        margin-bottom: 15px;
-
-        font-size: 16px;
+        font-size: 18px;
     }
 
     @media @query-vl {
-        margin-bottom: 20px;
-
-        font-size: 18px;
+        font-size: 20px;
     }
 }
 
 h4 {
-    margin: 0 0 10px 0;
-
     font-size: 10px;
     font-weight: bold;
 
@@ -146,58 +131,46 @@ h4 {
     }
 
     @media @query-lg {
-        margin-bottom: 15px;
-
         font-size: 12px;
     }
 
     @media @query-vl {
-        margin-bottom: 20px;
-
         font-size: 14px;
     }
 }
 
 h5 {
-    margin: 0 0 10px 0;
-
     font-size: 9px;
-    text-transform: uppercase;
     font-weight: bold;
+    text-transform: uppercase;
 
     @media @query-md {
         font-size: 10px;
     }
 
     @media @query-lg {
-        margin-bottom: 15px;
-
         font-size: 11px;
     }
 
     @media @query-vl {
-        margin-bottom: 20px;
-
         font-size: 12px;
     }
 }
 
 h6 {
-    margin: 0 0 10px 0;
-
     font-size: 12px;
     font-weight: bold;
 }
 
 a {
-    text-decoration: underline;
-    color: @color-link;
     cursor: pointer;
-    outline: none;
+    color: @color-link;
     transition: @transition color;
+    text-decoration: underline;
+    outline: none;
 
     &:hover {
-        text-decoration: none;
         color: @color-link-hover;
+        text-decoration: none;
     }
 }

@@ -13,6 +13,12 @@ msgstr "(Na tuto adresu bude zboží doručeno)"
 msgid "(This address will be on the tax invoice)"
 msgstr "(Tato adresa bude na daňovém dokladu)"
 
+msgid "100% Satisfaction"
+msgstr "100% Spokojenost"
+
+msgid "24/7 Help Center"
+msgstr "Podpora 24/7"
+
 msgid "Accessories"
 msgstr "Příslušenství"
 
@@ -31,9 +37,6 @@ msgstr "Uplatnit"
 msgid "Attention! You are administrator logged in as the customer."
 msgstr "Pozor! Jste jako administrátor přihlášen za zákazníka."
 
-msgid "Basic"
-msgstr "Základní"
-
 msgid "Back to buying"
 msgstr "Zpět k nákupu"
 
@@ -48,6 +51,9 @@ msgstr "Zpět na výběr dopravy a platby"
 
 msgid "Back to store"
 msgstr "Zpět do obchodu"
+
+msgid "Basic"
+msgstr "Základní"
 
 msgid "Basic information"
 msgstr "Základní informace"
@@ -73,6 +79,12 @@ msgstr "Košík"
 msgid "Catalogue number"
 msgstr "Katalogové číslo"
 
+msgid "Category description above product list"
+msgstr "Popis, který se zobrazí nad výpisem produktů"
+
+msgid "Category description under product list"
+msgstr "Popis, který se zobrazí pod výpisem produktů"
+
 msgid "Change"
 msgstr "Změnit"
 
@@ -82,11 +94,14 @@ msgstr "Změna hesla"
 msgid "Check the address correctness"
 msgstr "Zkontrolujte správnost adresy"
 
-msgid "Choose variant"
-msgstr "Vybrat variantu"
+msgid "Choose"
+msgstr "Vybrat"
 
 msgid "Choose pick up place"
 msgstr "Volba odběrných míst"
+
+msgid "Choose variant"
+msgstr "Vybrat variantu"
 
 msgid "City"
 msgstr "Město"
@@ -118,10 +133,16 @@ msgstr "IČ"
 msgid "Condition"
 msgstr "Stav zboží"
 
+msgid "Contact Us"
+msgstr "Kontaktujte nás"
+
 msgid "Contact us"
 msgstr "Napište nám"
 
 msgid "Continue in order"
+msgstr "Pokračovat v objednávce"
+
+msgid "Continue to Order"
 msgstr "Pokračovat v objednávce"
 
 msgid "Country"
@@ -187,6 +208,9 @@ msgstr "E-mail s odkazem na stránku s údaji o osobních údajích byl odeslán
 msgid "EAN"
 msgstr "EAN"
 
+msgid "Effectivness Hunter"
+msgstr "Effectivness Hunter"
+
 msgid "Empty cart"
 msgstr "Prázdný nákupní košík"
 
@@ -198,9 +222,6 @@ msgstr "Nastala chyba"
 
 msgid "Error occurred when sending e-mail."
 msgstr "Nastala chyba při odesílání mailu."
-
-msgid "etc. Praha"
-msgstr "např. Praha"
 
 msgid "Fill in city or post number"
 msgstr "Zadejte mēsto nebo psč"
@@ -220,11 +241,17 @@ msgstr "Zapomněli jste své heslo?"
 msgid "Forgotten password"
 msgstr "Zapomenuté heslo"
 
+msgid "From"
+msgstr "Od"
+
 msgid "Full name"
 msgstr "Celé jméno"
 
 msgid "Go to cart"
 msgstr "Přejít do košíku"
+
+msgid "Great Value"
+msgstr "Skvělá cena"
 
 msgid "I agree with <a href=\"%termsAndConditionsUrl%\" target=\"_blank\">terms and conditions</a> and <a href=\"%privacyPolicyUrl%\" target=\"_blank\">privacy policy</a>."
 msgstr "Souhlasím s <a href=\"%termsAndConditionsUrl%\" target=\"_blank\">obchodními podmínkami</a> a <a href=\"%privacyPolicyUrl%\" target=\"_blank\">zpracováním osobních údajů</a>."
@@ -268,6 +295,9 @@ msgstr "Byly zadány neplatné přihlašovací údaje"
 msgid "Items"
 msgstr "Položky"
 
+msgid "Jessica Fletcher"
+msgstr "Jessica Fletcher"
+
 msgid "Last name"
 msgstr "Příjmení"
 
@@ -307,6 +337,9 @@ msgstr "Název"
 msgid "New"
 msgstr "Nové"
 
+msgid "News & Sales in your e-mail"
+msgstr "Novinky a slevy ve vašem e-mailu"
+
 msgid "No"
 msgstr "Ne"
 
@@ -315,6 +348,9 @@ msgstr "Dosud nemáte žádnou objednávku."
 
 msgid "No personal data for this e-mail address"
 msgstr "Pro zadaný e-mail neevidujeme žádné osobní údaje"
+
+msgid "No pickup places found."
+msgstr "Nebyla nalezena žádná výdejní místa."
 
 msgid "No products found for this brand"
 msgstr "Pro tuto značku nebyly nalezeny žádné produkty"
@@ -370,6 +406,9 @@ msgstr "Objednávka byla odeslána"
 msgid "Orders"
 msgstr "Objednávky"
 
+msgid "Our Buyer Protection covers your purchase from click to delivery."
+msgstr "Naše pojištění kryje vaši koupi od prvního kliku po doručení"
+
 msgid "Our customers who bought this bought also"
 msgstr "Naši zákaznící k tomuto produktu nejčastěji nakupují"
 
@@ -393,6 +432,9 @@ msgstr "Heslo musí mít alespoň šest znaků a nesmí být shodné se zadaným
 
 msgid "Password successfully changed"
 msgstr "Heslo bylo úspěšně změněno"
+
+msgid "Pay with the world’s most popular and secure payment methods."
+msgstr "Plaťte nejpopulárnějšími a nejbezpečnějšími platebními metodami na světě."
 
 msgid "Payment"
 msgstr "Platba"
@@ -439,6 +481,9 @@ msgstr "Rozcestník kategorií"
 msgid "Postcode"
 msgstr "PSČ"
 
+msgid "Price"
+msgstr "Cena"
+
 msgid "Price from"
 msgstr "Cena od"
 
@@ -462,6 +507,9 @@ msgstr "Informace o produktu"
 
 msgid "Product no longer on sale"
 msgstr "Zboží se již neprodává"
+
+msgid "Product variants"
+msgstr "Varianty produktu"
 
 msgid "Product {{ name }} removed from cart"
 msgstr "Z košíku bylo odstraněno zboží {{ name }}"
@@ -490,11 +538,17 @@ msgstr "Zapamatuj si mé přihlášení"
 msgid "Reset password"
 msgstr "Resetovat heslo"
 
+msgid "Round-the-clock assistance for a smooth shopping experience."
+msgstr "Nonstop asistence pro příjemný zážítek z nakupování."
+
 msgid "Rounding"
 msgstr "Zaokrouhlení"
 
 msgid "Save changes"
 msgstr "Uložit změny"
+
+msgid "Search"
+msgstr "Vyhledat"
 
 msgid "Search [verb]"
 msgstr "Vyhledat"
@@ -538,17 +592,23 @@ msgstr "Způsob dopravy"
 msgid "Shipping selection"
 msgstr "Výběr dopravy"
 
+msgid "Shipping type"
+msgstr "Typ dopravy"
+
+msgid "Show filters"
+msgstr "Zobrazit filtry"
+
 msgid "Special offers"
 msgstr "Akční zboží"
 
 msgid "Status"
 msgstr "Stav"
 
-msgid "Street"
-msgstr "Ulice"
-
 msgid "Store name"
 msgstr "Název pobočky"
+
+msgid "Street"
+msgstr "Ulice"
 
 msgid "Subscription to e-mail newsletter"
 msgstr "Přihlášení k zpravodaji"
@@ -588,6 +648,9 @@ msgstr "Tyto stránky používají cookies."
 
 msgid "This site uses cookies. By staying on the site you agree with that."
 msgstr "Tyto stránky používají cookies. Setrváním na stránkách s tímto souhlasíte."
+
+msgid "To"
+msgstr "Do"
 
 msgid "To prevent the possibility of account theft, the change of the e-mail address must be dealt with individually. If your e-mail address has changed, please contact us."
 msgstr "Abychom předešli možnosti zcizení účtu, je třeba změnu e-mailu řešit individuálně. Pokud se Vám e-mailová adresa změnila, tak nás prosím kontaktujte."
@@ -649,8 +712,20 @@ msgstr "Zobrazit více"
 msgid "View results"
 msgstr "Zobrazit výsledky"
 
+msgid "We are Responsible"
+msgstr "Jsme zodpovědní"
+
+msgid "We offer competitive prices on our 100 million plus product range."
+msgstr "Nabízíme konkureční ceny pro náš sortiment čítající přes 100 milionů produktů."
+
 msgid "We will remember your login on this computer for 30 days."
 msgstr "Zapamatujeme si vaše přihlášení na tomto počítači po dobu 30 dní."
+
+msgid "With sites in 5 languages, we ship to over 200 countries & regions."
+msgstr "Máme stránky v 5 jazycích a doručujeme do více než 200 zemí a regionů."
+
+msgid "Worldwide Delivery"
+msgstr "Doručení po celém světě"
 
 msgid "Yes"
 msgstr "Ano"
@@ -682,11 +757,14 @@ msgstr "Vaše údaje byly úspěšně zaktualizovány"
 msgid "Your discount"
 msgstr "Vaše sleva"
 
+msgid "Zasilkovna.cz - dispensing point"
+msgstr "Zasilkovna.cz - výdejní místo"
+
 msgid "Zásilkovna"
 msgstr "Zásilkovna"
 
-msgid "Zasilkovna.cz - dispensing point"
-msgstr "Zasilkovna.cz - výdejní místo"
+msgid "etc. Praha"
+msgstr "např. Praha"
 
 msgid "excluding VAT"
 msgstr "bez DPH"
@@ -696,6 +774,15 @@ msgstr "z"
 
 msgid "from %price%"
 msgstr "od %price%"
+
+msgid "on homepage above popular categories (Primary)"
+msgstr "na domovské stránce nad oblíbenými kategoriemi (primární)"
+
+msgid "on homepage above popular categories (Secondary First)"
+msgstr "na domovské stránce nad oblíbenými kategoriemi (sekundární 1)"
+
+msgid "on homepage above popular categories (Secondary Second)"
+msgstr "na domovské stránce nad oblíbenými kategoriemi (sekundární 2)"
 
 msgid "products"
 msgstr "zboží"
@@ -711,10 +798,4 @@ msgstr "{1} <strong class=\"cart__state\">%itemsCount%</strong> položka za <str
 
 msgid "{1}Load next %loadNextCount% product|[2,Inf]Load next %loadNextCount% products"
 msgstr "[1,4]Načíst další %loadNextCount% zboží|[5,Inf]Načíst dalších %loadNextCount% zboží"
-
-msgid "Category description above product list"
-msgstr "Popis, který se zobrazí nad výpisem produktů"
-
-msgid "Category description under product list"
-msgstr "Popis, který se zobrazí pod výpisem produktů"
 

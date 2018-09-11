@@ -6,17 +6,18 @@
 @path-font: '../fonts';
 
 // Fonts
-@font-base: Arial, Helvetica, sans-serif;
+@font-base: 'Roboto', sans-serif;
+@font-headline: 'Teko', sans-serif;
 @font: @font-base;
 
 @font-size: 14px;
 @font-size-mobile: 12px;
 
 // Layout
-@web-width: 1200px;
+@web-width: 1430px;
 @web-padding: 20px;
-@web-panel-width: 260px;
-@web-header-mobile-dropdown-position: 95px;
+@web-panel-width: 300px;
+@web-header-mobile-dropdown-position: 170px;
 
 @margin-gap: 20px;
 @web-scrollbar-size: 17px;
@@ -41,10 +42,11 @@
 @color-f: #fff;
 
 //// Classic colors of design
-@color-blue: #009BD9;
-@color-green: #a0c519;
-@color-orange: #FFA200;
-@color-red: #D60000;
+@color-blue: #01AEFF;
+@color-blue-darker: #0986ff;
+@color-green: #12C49C;
+@color-orange: #F9B62C;
+@color-red: #C93329;
 
 //// Context colors
 ////// Base color of text
@@ -57,16 +59,16 @@
 @color-add: @color-green;
 
 ////// Color, which is the most used grey in design
-@color-light: #f4f4f4;
+@color-light: #f7f7f7;
 
 ////// Color for common prices
-@color-price: @color-a;
+@color-price: @color-8;
 ////// Color for more visible prices (main price)
-@color-price-main: @color-red;
+@color-price-main: @color-base;
 
 ////// Color for main links and its hover color
 @color-link: @color-blue;
-@color-link-hover: @color-base;
+@color-link-hover: darken(@color-link, 10%);
 
 ////// Special colors
 @color-info: @color-green;
@@ -77,6 +79,7 @@
 @color-inactive: @color-a;
 ////// Base color of border
 @color-border: @color-d;
+@color-border-light: fade(@color-0, 7%);
 ////// Base color for background of components
 @color-box: @color-light;
 

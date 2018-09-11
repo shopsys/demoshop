@@ -37,12 +37,13 @@
 @link-style-height: 22px;
 
 .link-style {
-    &:extend(a);
     display: inline-block;
     height: @link-style-height;
     line-height: @link-style-height;
 
     border: none;
+
+    &:extend(a);
 
     &:hover {
         &:extend(a:hover);

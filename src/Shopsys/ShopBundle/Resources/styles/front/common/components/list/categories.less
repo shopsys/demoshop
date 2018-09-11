@@ -1,26 +1,24 @@
 @list-categories-gap: 5px;
 
-@list-categories-item-min-height: 85px;
+@list-categories-item-min-height: 95px;
 @list-categories-item-padding: 10px;
-@list-categories-item-image-width: 50px;
+@list-categories-item-image-width: 90px;
 
 .list-categories {
     .reset-ul();
+
     margin-bottom: @margin-gap;
 
-    @media @query-sm {
-        margin-left: -@list-categories-gap;
+    .wrap-border--bold;
 
+    @media @query-sm {
         font-size: 0;
     }
 
     &__item {
-        margin-bottom: @list-categories-gap;
-
         @media @query-sm {
             display: inline-block;
             vertical-align: top;
-            padding-left: @list-categories-gap;
             width: 100%/2;
         }
 
@@ -32,14 +30,36 @@
             width: 100%/4;
         }
 
+
+
         &__block {
             display: flex;
             align-items: center;
+            position: relative;
             width: 100%;
             min-height: @list-categories-item-min-height;
 
+            border-right: 1px solid @color-border-light;
+            border-bottom: 1px solid @color-border-light;
             text-decoration: none;
-            border: 1px solid @color-border;
+
+            &:after {
+                position: absolute;
+                top: 0;
+                right: 100%;
+                bottom: 0;
+                left: 0;
+                content: ' ';
+
+                background-color: fade(@color-0, 5%);
+                transition: @transition;
+            }
+
+            &:hover:after {
+                @media @query-sm {
+                    right: 0;
+                }
+            }
 
             .is-no-flex & {
                 display: block;
@@ -49,9 +69,11 @@
         }
 
         &__image {
-            padding: @list-categories-item-padding 0 @list-categories-item-padding @list-categories-item-padding;
             flex: 0 @list-categories-item-image-width;
+            padding: @list-categories-item-padding 0 @list-categories-item-padding @list-categories-item-padding;
             text-align: center;
+
+
 
             .is-no-flex & {
                 display: inline-block;
@@ -63,16 +85,20 @@
         &__title {
             flex: 1;
             margin: 0;
-            line-height: 16px;
             padding: @list-categories-item-padding;
+            line-height: 1.3em;
 
-            font-size: 12px;
+            font-size: 18px;
             font-weight: bold;
 
             .is-no-flex & {
                 display: inline-block;
                 vertical-align: middle;
                 width: ~"calc(100% - @{list-categories-item-image-width})";
+            }
+
+            &__count {
+                color: @color-8;
             }
         }
     }

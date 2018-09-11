@@ -2,12 +2,13 @@
 
 namespace Tests\ShopBundle\Acceptance\acceptance;
 
+use Codeception\Scenario;
 use Tests\ShopBundle\Acceptance\acceptance\PageObject\Admin\LoginPage;
 use Tests\ShopBundle\Test\Codeception\AcceptanceTester;
 
 class LoginAsCustomerCest
 {
-    public function testLoginAsCustomer(AcceptanceTester $me, LoginPage $loginPage)
+    public function testLoginAsCustomer(AcceptanceTester $me, LoginPage $loginPage, Scenario $scenario)
     {
         $me->wantTo('login as a customer from admin');
         $loginPage->loginAsAdmin();

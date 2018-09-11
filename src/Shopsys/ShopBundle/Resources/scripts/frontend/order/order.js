@@ -118,7 +118,6 @@
         }
 
         Shopsys.order.updatePayments();
-        Shopsys.pickUpPlaceSelection.updateSummaryVisibility();
     };
 
     Shopsys.order.onPaymentChange = function () {
