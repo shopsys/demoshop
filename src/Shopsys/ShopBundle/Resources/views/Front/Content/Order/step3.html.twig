@@ -43,6 +43,10 @@
                 </fieldset>
 
                 {% set isSelectedPickupPlaceTypeTransport = transport is not empty and transport.isPickUpPlaceType %}
+                {% set disabledInputClassIfSelectedPickupPlaceTypeTransport = '' %}
+                {% if isSelectedPickupPlaceTypeTransport %}
+                    {% set disabledInputClassIfSelectedPickupPlaceTypeTransport = 'form-input-disabled' %}
+                {% endif %}
                 <h2>{{ 'Shipping address'|trans }} <span class="heading-addition">{{ '(Products will be delivered to this address)'|trans }}</span></h2>
                 <fieldset class="box-order__fieldset">
                     {% if not isSelectedPickupPlaceTypeTransport %}
@@ -56,22 +60,22 @@
                     {% endif %}
                     <div{% if not isSelectedPickupPlaceTypeTransport %} id="js-delivery-address-fields"{% endif %}>
                         {% if not isSelectedPickupPlaceTypeTransport %}
-                            {{ form_row(form.deliveryFirstName, { label: 'First name'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
-                            {{ form_row(form.deliveryLastName, { label: 'Last name'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
+                            {{ form_row(form.deliveryFirstName, { label: 'First name'|trans, disabled: isSelectedPickupPlaceTypeTransport, class: disabledInputClassIfSelectedPickupPlaceTypeTransport }) }}
+                            {{ form_row(form.deliveryLastName, { label: 'Last name'|trans, disabled: isSelectedPickupPlaceTypeTransport, class: disabledInputClassIfSelectedPickupPlaceTypeTransport }) }}
                         {% else %}
                             {%  do form.deliveryFirstName.setRendered %}
                             {%  do form.deliveryLastName.setRendered %}
                         {% endif %}
-                        {{ form_row(form.deliveryCompanyName, { label: 'Company'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
+                        {{ form_row(form.deliveryCompanyName, { label: 'Company'|trans, disabled: isSelectedPickupPlaceTypeTransport, class: disabledInputClassIfSelectedPickupPlaceTypeTransport }) }}
                         {% if not isSelectedPickupPlaceTypeTransport %}
-                            {{ form_row(form.deliveryTelephone, { label: 'Telephone'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
+                            {{ form_row(form.deliveryTelephone, { label: 'Telephone'|trans, disabled: isSelectedPickupPlaceTypeTransport, class: disabledInputClassIfSelectedPickupPlaceTypeTransport }) }}
                         {% else %}
                             {%  do form.deliveryTelephone.setRendered %}
                         {% endif %}
-                        {{ form_row(form.deliveryStreet, { label: 'Street'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
-                        {{ form_row(form.deliveryCity, { label: 'City'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
-                        {{ form_row(form.deliveryPostcode, { label: 'Postcode'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
-                        {{ form_row(form.deliveryCountry, { label: 'Country'|trans, disabled: isSelectedPickupPlaceTypeTransport }) }}
+                        {{ form_row(form.deliveryStreet, { label: 'Street'|trans, disabled: isSelectedPickupPlaceTypeTransport, class: disabledInputClassIfSelectedPickupPlaceTypeTransport }) }}
+                        {{ form_row(form.deliveryCity, { label: 'City'|trans, disabled: isSelectedPickupPlaceTypeTransport, class: disabledInputClassIfSelectedPickupPlaceTypeTransport }) }}
+                        {{ form_row(form.deliveryPostcode, { label: 'Postcode'|trans, disabled: isSelectedPickupPlaceTypeTransport, class: disabledInputClassIfSelectedPickupPlaceTypeTransport }) }}
+                        {{ form_row(form.deliveryCountry, { label: 'Country'|trans, disabled: isSelectedPickupPlaceTypeTransport, class: disabledInputClassIfSelectedPickupPlaceTypeTransport }) }}
                     </div>
                 </fieldset>
 
