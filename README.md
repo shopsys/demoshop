@@ -10,7 +10,7 @@ For more informations about Shopsys Framework, please see [shopsys/shopsys](http
 
 If you want to start your own project using Shopsys Framework you should use [shopsys/project-base](https://github.com/shopsys/project-base).
 
-## Installation
+## Installation of New Shopsys Framework Project
 We recommend to choose **installation via Docker** because it is the easiest and fastest way to start using Shopsys Framework.
 Docker contains complete development environment necessary for running your application.
 In the future we want to add new technologies to Shopsys Framework (e.g. ElasticSearch).
