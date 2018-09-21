@@ -1,103 +1,103 @@
 services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
-    public: true
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
 
-  CommerceGuys\Intl\NumberFormat\NumberFormatRepository: ~
+    CommerceGuys\Intl\NumberFormat\NumberFormatRepository: ~
 
-  Shopsys\FrameworkBundle\Component\Localization\DateTimeFormatter:
-    factory: ['@Shopsys\FrameworkBundle\Model\Localization\CustomDateTimeFormatterFactory', create]
+    Shopsys\FrameworkBundle\Component\Localization\DateTimeFormatter:
+        factory: ['@Shopsys\FrameworkBundle\Model\Localization\CustomDateTimeFormatterFactory', create]
 
-  Shopsys\FrameworkBundle\Model\Localization\IntlCurrencyRepository: ~
+    Shopsys\FrameworkBundle\Model\Localization\IntlCurrencyRepository: ~
 
-  Shopsys\FrameworkBundle\Component\EntityExtension\EntityNameResolver:
-    class: Tests\ShopBundle\Database\EntityExtension\OverwritableEntityNameResolver
-    arguments:
-      - "%shopsys.entity_extension.map%"
+    Shopsys\FrameworkBundle\Component\EntityExtension\EntityNameResolver:
+        class: Tests\ShopBundle\Database\EntityExtension\OverwritableEntityNameResolver
+        arguments:
+            - "%shopsys.entity_extension.map%"
 
-  Shopsys\FrameworkBundle\Model\Product\ProductFactoryInterface:
-    alias: Shopsys\ShopBundle\Model\Product\ProductFactory
+    Shopsys\FrameworkBundle\Model\Product\ProductFactoryInterface:
+        alias: Shopsys\ShopBundle\Model\Product\ProductFactory
 
-  Shopsys\ShopBundle\Model\Product\ProductFactory: ~
+    Shopsys\ShopBundle\Model\Product\ProductFactory: ~
 
-  Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface:
-    alias: Shopsys\ShopBundle\Model\Product\ProductDataFactory
+    Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface:
+        alias: Shopsys\ShopBundle\Model\Product\ProductDataFactory
 
-  Shopsys\ShopBundle\Model\Product\ProductDataFactory: ~
+    Shopsys\ShopBundle\Model\Product\ProductDataFactory: ~
 
-  Symfony\Component\Filesystem\Filesystem: ~
+    Symfony\Component\Filesystem\Filesystem: ~
 
-  joschi127_doctrine_entity_override.event_subscriber.load_orm_metadata:
-    class: Tests\ShopBundle\Database\EntityExtension\OverwritableLoadORMMetadataSubscriber
-    arguments:
-      - "@service_container"
-      - "%shopsys.entity_extension.map%"
-    tags:
-      - { name: doctrine.event_subscriber, priority: -10 }
+    joschi127_doctrine_entity_override.event_subscriber.load_orm_metadata:
+        class: Tests\ShopBundle\Database\EntityExtension\OverwritableLoadORMMetadataSubscriber
+        arguments:
+            - "@service_container"
+            - "%shopsys.entity_extension.map%"
+        tags:
+            - { name: doctrine.event_subscriber, priority: -10 }
 
-  League\Flysystem\FilesystemInterface: '@main_filesystem'
+    League\Flysystem\FilesystemInterface: '@main_filesystem'
 
-  Shopsys\FrameworkBundle\Model\Category\CategoryFactoryInterface:
-    alias: Shopsys\ShopBundle\Model\Category\CategoryFactory
+    Shopsys\FrameworkBundle\Model\Category\CategoryFactoryInterface:
+        alias: Shopsys\ShopBundle\Model\Category\CategoryFactory
 
-  Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface:
-    alias: Shopsys\ShopBundle\Model\Category\CategoryDataFactory
+    Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface:
+        alias: Shopsys\ShopBundle\Model\Category\CategoryDataFactory
 
-  Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface:
-    alias: Shopsys\ShopBundle\Model\Customer\BillingAddressFactory
+    Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface:
+        alias: Shopsys\ShopBundle\Model\Customer\BillingAddressFactory
 
-  Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface:
-    alias: Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory
+    Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface:
+        alias: Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory
 
-  Shopsys\ShopBundle\Model\Category\CategoryFactory: ~
+    Shopsys\ShopBundle\Model\Category\CategoryFactory: ~
 
-  Shopsys\ShopBundle\Model\Category\CategoryDataFactory: ~
+    Shopsys\ShopBundle\Model\Category\CategoryDataFactory: ~
 
-  Shopsys\ShopBundle\Model\Order\OrderFactory: ~
+    Shopsys\ShopBundle\Model\Order\OrderFactory: ~
 
-  Shopsys\FrameworkBundle\Model\Order\OrderFactoryInterface:
-    alias: Shopsys\ShopBundle\Model\Order\OrderFactory
+    Shopsys\FrameworkBundle\Model\Order\OrderFactoryInterface:
+        alias: Shopsys\ShopBundle\Model\Order\OrderFactory
 
-  Shopsys\ShopBundle\Model\Order\OrderDataFactory: ~
+    Shopsys\ShopBundle\Model\Order\OrderDataFactory: ~
 
-  Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface:
-    alias: Shopsys\ShopBundle\Model\Order\OrderDataFactory
+    Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface:
+        alias: Shopsys\ShopBundle\Model\Order\OrderDataFactory
 
-  Shopsys\ShopBundle\Model\Transport\TransportFactory: ~
+    Shopsys\ShopBundle\Model\Transport\TransportFactory: ~
 
-  Shopsys\FrameworkBundle\Model\Transport\TransportFactoryInterface:
-    alias: Shopsys\ShopBundle\Model\Transport\TransportFactory
+    Shopsys\FrameworkBundle\Model\Transport\TransportFactoryInterface:
+        alias: Shopsys\ShopBundle\Model\Transport\TransportFactory
 
-  Shopsys\ShopBundle\Model\Transport\TransportDataFactory: ~
+    Shopsys\ShopBundle\Model\Transport\TransportDataFactory: ~
 
-  Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface:
-    alias: Shopsys\ShopBundle\Model\Transport\TransportDataFactory
+    Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface:
+        alias: Shopsys\ShopBundle\Model\Transport\TransportDataFactory
 
-  Shopsys\FrameworkBundle\Controller\Admin\CustomerController:
-    class: Shopsys\ShopBundle\Controller\Admin\CustomerController
-    tags: ['controller.service_arguments']
+    Shopsys\FrameworkBundle\Controller\Admin\CustomerController:
+        class: Shopsys\ShopBundle\Controller\Admin\CustomerController
+        tags: ['controller.service_arguments']
 
-  Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactory:
-    alias: Shopsys\ShopBundle\Model\Customer\CustomerDataFactory
+    Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactory:
+        alias: Shopsys\ShopBundle\Model\Customer\CustomerDataFactory
 
-  Shopsys\ShopBundle\Model\Order\OrderFacade: ~
+    Shopsys\ShopBundle\Model\Order\OrderFacade: ~
 
-  Shopsys\FrameworkBundle\Model\Order\OrderFacade:
-    alias: Shopsys\ShopBundle\Model\Order\OrderFacade
+    Shopsys\FrameworkBundle\Model\Order\OrderFacade:
+        alias: Shopsys\ShopBundle\Model\Order\OrderFacade
 
-  Shopsys\ShopBundle\Model\Customer\CustomerFacade: ~
+    Shopsys\ShopBundle\Model\Customer\CustomerFacade: ~
 
-  Shopsys\FrameworkBundle\Model\Customer\CustomerFacade:
-    alias: Shopsys\ShopBundle\Model\Customer\CustomerFacade
+    Shopsys\FrameworkBundle\Model\Customer\CustomerFacade:
+        alias: Shopsys\ShopBundle\Model\Customer\CustomerFacade
 
-  Shopsys\ShopBundle\Model\Order\OrderRepository: ~
+    Shopsys\ShopBundle\Model\Order\OrderRepository: ~
 
-  Shopsys\FrameworkBundle\Model\Order\OrderRepository:
-    alias: Shopsys\ShopBundle\Model\Order\OrderRepository
+    Shopsys\FrameworkBundle\Model\Order\OrderRepository:
+        alias: Shopsys\ShopBundle\Model\Order\OrderRepository
 
-  Shopsys\ShopBundle\Model\Customer\UserDataFactory: ~
+    Shopsys\ShopBundle\Model\Customer\UserDataFactory: ~
 
-  Shopsys\FrameworkBundle\Model\Customer\UserDataFactory:
-    alias: Shopsys\ShopBundle\Model\Customer\UserDataFactory
+    Shopsys\FrameworkBundle\Model\Customer\UserDataFactory:
+        alias: Shopsys\ShopBundle\Model\Customer\UserDataFactory
 
