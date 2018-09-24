@@ -3,7 +3,6 @@
 namespace Shopsys\ShopBundle\Form\Admin;
 
 use Shopsys\FrameworkBundle\Form\Constraints\Email;
-use Shopsys\ShopBundle\Model\Customer\CustomerFacade;
 use Shopsys\ShopBundle\Model\Customer\UserData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -16,19 +15,6 @@ use Symfony\Component\Validator\Constraints;
 
 class CompanyUserFormType extends AbstractType
 {
-    /**
-     * @var \Shopsys\ShopBundle\Model\Customer\CustomerFacade
-     */
-    private $customerFacade;
-
-    /**
-     * @param \Shopsys\ShopBundle\Model\Customer\CustomerFacade $customerFacade
-     */
-    public function __construct(CustomerFacade $customerFacade)
-    {
-        $this->customerFacade = $customerFacade;
-    }
-
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array $options
