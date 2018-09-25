@@ -25,13 +25,15 @@ class ProductFormTypeExtension extends AbstractTypeExtension
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('condition', ChoiceType::class, [
+        $basicInformationGroupBuilder = $builder->get('basicInformationGroup');
+
+        $basicInformationGroupBuilder->add('condition', ChoiceType::class, [
             'required' => true,
             'choices' => $this->productConditionFacade->getAll(),
             'label' => t('Condition'),
         ]);
 
-        $builder->remove('flags');
+        $basicInformationGroupBuilder->remove('flags');
     }
 
     /**
