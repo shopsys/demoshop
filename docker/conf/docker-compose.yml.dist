@@ -27,9 +27,10 @@ services:
     php-fpm:
         build:
             context: docker/php-fpm
-            args:
+            args: &common_build_args
                 www_data_uid: 1000
                 www_data_gid: 1000
+                github_oauth_token: place-your-token-here
         container_name: shopsys-framework-php-fpm
         volumes:
             - .:/var/www/html
@@ -37,6 +38,8 @@ services:
         links:
             - postgres
             - redis
+            - microservice-product-search
+            - microservice-product-search-export
         ports:
             - "35729:35729"
         depends_on:
@@ -101,6 +104,14 @@ services:
     microservice-product-search:
         image: shopsys/microservice-product-search:latest
         container_name: shopsys-framework-microservice-product-search
+        links:
+            - elasticsearch
+        depends_on:
+            - elasticsearch
+
+    microservice-product-search-export:
+        image: shopsys/microservice-product-search-export:latest
+        container_name: shopsys-framework-microservice-product-search-export
         links:
             - elasticsearch
         depends_on:
