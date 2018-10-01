@@ -1,32 +1,32 @@
 services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
-    public: false
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
 
-  Shopsys\ShopBundle\Form\:
-      resource: '../../Form/'
+    Shopsys\ShopBundle\Form\:
+        resource: '../../Form/'
 
-  Shopsys\ShopBundle\Form\Admin\ArticleFormTypeExtension:
-    tags:
-      - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Article\ArticleFormType }
+    Shopsys\ShopBundle\Form\Admin\ArticleFormTypeExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Article\ArticleFormType }
 
-  Shopsys\ShopBundle\Form\Admin\BillingAddressFormTypeExtension:
-    tags:
-      - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Customer\BillingAddressFormType }
+    Shopsys\ShopBundle\Form\Admin\BillingAddressFormTypeExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Customer\BillingAddressFormType }
 
-  Shopsys\ShopBundle\Form\Admin\ProductFormTypeExtension:
-    tags:
-      - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Product\ProductFormType }
+    Shopsys\ShopBundle\Form\Admin\ProductFormTypeExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Product\ProductFormType }
 
-  Shopsys\ShopBundle\Form\Admin\CategoryFormTypeExtension:
-    tags:
-      - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Category\CategoryFormType }
+    Shopsys\ShopBundle\Form\Admin\CategoryFormTypeExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Category\CategoryFormType }
 
-  Shopsys\ShopBundle\Form\Admin\CustomerFormTypeExtension:
-    tags:
-      - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Customer\CustomerFormType }
+    Shopsys\ShopBundle\Form\Admin\CustomerFormTypeExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Customer\CustomerFormType }
 
-  Shopsys\ShopBundle\Form\Admin\TransportFormTypeExtension:
-    tags:
-      - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Transport\TransportFormType }
+    Shopsys\ShopBundle\Form\Admin\TransportFormTypeExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Transport\TransportFormType }
