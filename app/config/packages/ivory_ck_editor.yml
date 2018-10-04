@@ -32,7 +32,8 @@ ivory_ck_editor:
                 - ['Outdent', 'Indent', '-', 'Blockquote']
                 - ['Link', 'Unlink']
                 - '/'
-                - ['Source', '-', 'Image', 'SpecialChar']
+                - ['Source', '-', 'Image', 'Table', 'SpecialChar']
                 - ['Format']
                 - ['FontSize']
                 - ['TextColor']
+            extraAllowedContent: '*{*}'
