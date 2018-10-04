@@ -19,3 +19,6 @@ parameters:
   secret: ThisTokenIsNotSoSecretChangeIt
 
   elasticsearch_hosts: ['elasticsearch:9200']
+
+  microservice_product_search_url: 'http://microservice-product-search:8000'
+  microservice_product_search_export_url: 'http://microservice-product-search-export:8000'
