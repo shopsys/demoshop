@@ -480,6 +480,7 @@ class EntityExtensionTest extends DatabaseTestCase
         $this->assertInstanceOf(ExtendedOrderProduct::class, $orderItem);
         return $orderItem;
     }
+
     /**
      * @param int $id
      * @return \Tests\ShopBundle\Database\EntityExtension\Model\ExtendedOrderItem

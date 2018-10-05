@@ -12,7 +12,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class CategoryFormTypeExtension extends AbstractTypeExtension
 {
-
     /**
      * {@inheritdoc}
      */

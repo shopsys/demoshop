@@ -18,6 +18,7 @@ class ProductDataFactory extends BaseProductDataFactory
 
         return $productData;
     }
+
     /**
      * @param \Shopsys\ShopBundle\Model\Product\Product $product
      * @return \Shopsys\ShopBundle\Model\Product\ProductData
