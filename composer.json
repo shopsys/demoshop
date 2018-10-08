@@ -108,7 +108,7 @@
     "require-dev": {
         "ext-pgsql": "*",
         "ext-zip": "*",
-        "codeception/codeception": "^2.4.0",
+        "codeception/codeception": "^2.5.0",
         "phpstan/phpstan": "^0.7",
         "phpunit/phpunit": "^7.0",
         "shopsys/coding-standards": "v7.0.0-beta1",
