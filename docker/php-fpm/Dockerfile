@@ -48,8 +48,8 @@ RUN apk add --update nodejs-npm
 # install grunt-cli using npm to be able to run grunt watch
 RUN npm install -g grunt-cli
 
-# install postgresql to allow execution of pg_dump for acceptance tests (using older repository to install version 9.5)
-RUN apk add --update --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.4/main "postgresql<9.6"
+# install postgresql to allow execution of pg_dump for acceptance tests
+RUN apk add --update --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.7/main postgresql
 
 # install locales and switch to en_US.utf8 in order to enable UTF-8 support
 # see https://github.com/docker-library/php/issues/240#issuecomment-305038173
@@ -66,3 +66,7 @@ ARG www_data_uid
 ARG www_data_gid
 RUN deluser www-data && (addgroup -g $www_data_gid www-data || addgroup -g 82 www-data) && adduser -u $www_data_uid -D -S -G www-data www-data
 USER www-data
+
+# allow configuring the GitHub OAuth token
+ARG github_oauth_token
+RUN if [ -n "$github_oauth_token" ]; then composer config -g github-oauth.github.com $github_oauth_token; fi

@@ -10,7 +10,6 @@ use Symfony\Bridge\Monolog\Logger;
 
 class PickUpPlaceCronModule implements SimpleCronModuleInterface
 {
-
     /**
      * @var string
      */

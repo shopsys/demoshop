@@ -4,7 +4,7 @@ parameters:
   database_name: shopsys
   database_user: root
   database_password: root
-  database_server_version: 9.5
+  database_server_version: 10.5
 
   redis_host: redis
 
@@ -19,3 +19,6 @@ parameters:
   secret: ThisTokenIsNotSoSecretChangeIt
 
   elasticsearch_hosts: ['elasticsearch:9200']
+
+  microservice_product_search_url: 'http://microservice-product-search:8000'
+  microservice_product_search_export_url: 'http://microservice-product-search-export:8000'

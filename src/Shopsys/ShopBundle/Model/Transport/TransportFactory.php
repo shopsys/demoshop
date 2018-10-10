@@ -8,7 +8,6 @@ use Shopsys\FrameworkBundle\Model\Transport\TransportFactoryInterface;
 
 class TransportFactory implements TransportFactoryInterface
 {
-
     /**
      * @param \Shopsys\ShopBundle\Model\Transport\TransportData $data
      * @return \Shopsys\ShopBundle\Model\Transport\Transport

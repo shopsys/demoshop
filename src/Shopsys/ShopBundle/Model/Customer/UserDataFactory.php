@@ -68,5 +68,6 @@ class UserDataFactory extends BaseUserDataFactory
         $userData->email = $user->getEmail();
         $userData->pricingGroup = $user->getPricingGroup();
         $userData->createdAt = $user->getCreatedAt();
+        $userData->telephone = $user->getTelephone();
     }
 }
