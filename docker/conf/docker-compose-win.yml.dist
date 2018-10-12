@@ -1,12 +1,13 @@
 version: "3.1"
 services:
     postgres:
-        image: postgres:9.5-alpine
+        image: postgres:10.5-alpine
         container_name: shopsys-framework-postgres
         volumes:
             - pgdata:/var/lib/postgresql/data
+            - ./docker/postgres/postgres.conf:/var/lib/postgresql/data/postgresql.conf
         environment:
-            - PGDATA=/var/lib/postgresql/data
+            - PGDATA=/var/lib/postgresql/data/pgdata
             - POSTGRES_USER=root
             - POSTGRES_PASSWORD=root
             - POSTGRES_DB=shopsys
@@ -29,10 +30,10 @@ services:
             args:
                 www_data_uid: 82
                 www_data_gid: 82
+                github_oauth_token: place-your-token-here
         container_name: shopsys-framework-php-fpm
         volumes:
             - .:/var/www/html
-            - ./docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/php.ini
         links:
             - postgres
             - redis
@@ -97,8 +98,24 @@ services:
         environment:
             - discovery.type=single-node
 
+    microservice-product-search:
+        image: shopsys/microservice-product-search:v7.0.0-beta1
+        container_name: shopsys-framework-microservice-product-search
+        links:
+            - elasticsearch
+        depends_on:
+            - elasticsearch
+
+    microservice-product-search-export:
+        image: shopsys/microservice-product-search-export:v7.0.0-beta1
+        container_name: shopsys-framework-microservice-product-search-export
+        links:
+            - elasticsearch
+        depends_on:
+            - elasticsearch
+
 volumes:
     pgdata:
         driver: local
     elasticsearch-data:
-      driver: local
+        driver: local
