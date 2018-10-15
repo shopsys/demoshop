@@ -1,22 +1,22 @@
 shopsys_shop:
-  resource: "@ShopsysShopBundle/Resources/config/routing.yml"
-  prefix: /
+    resource: "@ShopsysShopBundle/Resources/config/routing.yml"
+    prefix: /
 
 shopsys_framework:
-  resource: "@ShopsysFrameworkBundle/Resources/config/routing.yml"
+    resource: "@ShopsysFrameworkBundle/Resources/config/routing.yml"
   
 elfinder:
-  resource: "@FMElfinderBundle/Resources/config/routing.yml"
+    resource: "@FMElfinderBundle/Resources/config/routing.yml"
 
 admin_flag_delete:
-   path: /admin/product/flag/delete/{id}?routeCsrfToken={routeCsrfToken}
-   defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
-   requirements:
-       id: \d+
+    path: /admin/product/flag/delete/{id}?routeCsrfToken={routeCsrfToken}
+    defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
+    requirements:
+        id: \d+
 
 admin_flag_list:
-  path: /admin/product/flag/list/
-  defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
+    path: /admin/product/flag/list/
+    defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
 
 admin_customer_edit:
     path: /admin/customer/edit/{billingAddressId}
