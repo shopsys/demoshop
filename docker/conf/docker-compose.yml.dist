@@ -94,6 +94,7 @@ services:
             nofile:
                 soft: 65536
                 hard: 65536
+        restart: on-failure
         ports:
             - "9200:9200"
         volumes:
