@@ -9,6 +9,7 @@ use Shopsys\FrameworkBundle\Component\Grid\QueryBuilderDataSource;
 use Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory;
 use Shopsys\FrameworkBundle\Component\Router\Security\Annotation\CsrfProtection;
 use Shopsys\FrameworkBundle\Controller\Admin\CustomerController as BaseCustomerController;
+use Shopsys\FrameworkBundle\Controller\Admin\LoginController;
 use Shopsys\FrameworkBundle\Form\Admin\Customer\CustomerFormType;
 use Shopsys\FrameworkBundle\Form\Admin\QuickSearch\QuickSearchFormData;
 use Shopsys\FrameworkBundle\Form\Admin\QuickSearch\QuickSearchFormType;
@@ -18,6 +19,7 @@ use Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerListAdminFacade;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressDataFactory;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFactory;
+use Shopsys\FrameworkBundle\Model\Customer\User;
 use Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Customer\UserFactory;
 use Shopsys\FrameworkBundle\Model\Order\OrderFacade;
@@ -30,6 +32,7 @@ use Shopsys\ShopBundle\Model\Customer\CustomerFacade;
 use Shopsys\ShopBundle\Model\Customer\Exception\BillingAddressNotFoundException;
 use Shopsys\ShopBundle\Model\Customer\Exception\DuplicateEmailsException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CustomerController extends BaseCustomerController
 {
@@ -408,5 +411,31 @@ class CustomerController extends BaseCustomerController
             'orders' => $orders,
             'ssoLoginAsUserUrl' => $this->getSsoLoginAsUserUrl($user),
         ]);
+    }
+
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Customer\User $user
+     * @return string
+     */
+    protected function getSsoLoginAsUserUrl(User $user)
+    {
+        $loginAsUserUrl = $this->generateUrl(
+            'admin_customer_loginasuser',
+            [
+                'userId' => $user->getId(),
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+
+        $ssoLoginAsUserUrl = $this->generateUrl(
+            'admin_login_sso',
+            [
+                LoginController::ORIGINAL_DOMAIN_ID_PARAMETER_NAME => $user->getDomainId(),
+                LoginController::ORIGINAL_REFERER_PARAMETER_NAME => $loginAsUserUrl,
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+
+        return $ssoLoginAsUserUrl;
     }
 }
