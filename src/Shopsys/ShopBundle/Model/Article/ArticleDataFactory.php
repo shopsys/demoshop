@@ -12,7 +12,6 @@ use Shopsys\FrameworkBundle\Model\Article\ArticleDataFactory as BaseArticleDataF
 
 class ArticleDataFactory extends BaseArticleDataFactory
 {
-
     /**
      * @var \Shopsys\ShopBundle\Model\Article\ArticleFacade
      */
@@ -29,7 +28,7 @@ class ArticleDataFactory extends BaseArticleDataFactory
         Domain $domain,
         AdminDomainTabsFacade $adminDomainTabsFacade,
         ArticleFacade $articleFacade
-    ){
+    ) {
         parent::__construct($friendlyUrlFacade, $domain, $adminDomainTabsFacade);
         $this->articleFacade = $articleFacade;
     }
