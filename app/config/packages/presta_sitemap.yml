@@ -1,2 +1,2 @@
 presta_sitemap:
-  route_annotation_listener: false
+    route_annotation_listener: false

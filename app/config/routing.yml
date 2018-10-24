@@ -1,31 +1,34 @@
-shopsys_shop:
-  resource: "@ShopsysShopBundle/Resources/config/routing.yml"
-  prefix: /
 
 shopsys_framework:
-  resource: "@ShopsysFrameworkBundle/Resources/config/routing.yml"
-  
+    resource: "@ShopsysFrameworkBundle/Controller/Admin"
+    prefix: /%admin_url%
+    type: annotation
+
+shopsys_shop:
+    resource: "@ShopsysShopBundle/Resources/config/routing.yml"
+    prefix: /
+
 elfinder:
-  resource: "@FMElfinderBundle/Resources/config/routing.yml"
+    resource: "@FMElfinderBundle/Resources/config/routing.yml"
 
 admin_flag_delete:
-   path: /admin/product/flag/delete/{id}?routeCsrfToken={routeCsrfToken}
-   defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
-   requirements:
-       id: \d+
+    path: /%admin_url%/product/flag/delete/{id}?routeCsrfToken={routeCsrfToken}
+    defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
+    requirements:
+        id: \d+
 
 admin_flag_list:
-  path: /admin/product/flag/list/
-  defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
+    path: /%admin_url%/product/flag/list/
+    defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
 
 admin_customer_edit:
-    path: /admin/customer/edit/{billingAddressId}
+    path: /%admin_url%/customer/edit/{billingAddressId}
     defaults: { _controller: ShopsysShopBundle:Admin\Customer:edit }
     requirements:
         billingAddressId: \d+
 
 admin_customer_delete:
-    path: /admin/customer/delete/{billingAddressId}
+    path: /%admin_url%/customer/delete/{billingAddressId}
     defaults: { _controller: ShopsysShopBundle:Admin\Customer:delete }
     requirements:
         billingAddressId: \d+

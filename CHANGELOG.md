@@ -20,6 +20,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [#1 - Basic changes in docs, readme etc. after copying from project-base](https://github.com/shopsys/demoshop/pull/1) : [@LukasHeinz]
 - [#13 - The product flags functionality is now hidden from admin and FE](https://github.com/shopsys/demoshop/pull/13)
 - [#20 - Upgrade to shopsys framework 7.0.0-beta1](https://github.com/shopsys/demoshop/pull/20)
+- [#24 - Production demoshop](https://github.com/shopsys/demoshop/pull/24)
+    - administration route prefix is modifiable via `parameters.yml`
+    - added Dockerfile for production
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)

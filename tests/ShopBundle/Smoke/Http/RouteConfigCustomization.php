@@ -60,7 +60,7 @@ class RouteConfigCustomization
                 }
             })
             ->customize(function (RouteConfig $config, RouteInfo $info) {
-                if (preg_match('~^(/admin)?/_~', $info->getRoutePath())) {
+                if (preg_match('~^(/[^/]+)?/_~', $info->getRoutePath())) {
                     $config->skipRoute('Internal routes (prefixed with "/_") are not tested.');
                 }
             })

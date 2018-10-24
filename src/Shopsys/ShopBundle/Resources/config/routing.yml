@@ -4,5 +4,5 @@ shopsys_shop_front:
 
 shopsys_shop_admin:
     resource: "@ShopsysShopBundle/Controller/Admin"
-    prefix: /admin
+    prefix: /%admin_url%
     type: annotation
