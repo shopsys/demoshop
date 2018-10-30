@@ -100,8 +100,7 @@
         "shopsys/http-smoke-testing": "v7.0.0-beta2"
     },
     "conflict": {
-        "codeception/stub": ">=2.0.2",
-        "symfony/dependency-injection": ">=3.4.15"
+        "symfony/dependency-injection": "3.4.15|3.4.16"
     },
     "scripts": {
         "post-install-cmd": [
