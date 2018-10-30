@@ -31,7 +31,6 @@ services:
         container_name: shopsys-framework-php-fpm
         volumes:
             - shopsys-framework-sync:/var/www/html
-            - ./docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/php.ini
         links:
             - postgres
             - redis
