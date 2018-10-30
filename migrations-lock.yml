@@ -283,3 +283,6 @@
 20180830121204:
     class: Shopsys\FrameworkBundle\Migrations\Version20180830121204
     skip: false
+20181008000001:
+    class: Shopsys\FrameworkBundle\Migrations\Version20181008000001
+    skip: false
