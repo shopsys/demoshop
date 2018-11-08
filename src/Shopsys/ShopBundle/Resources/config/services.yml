@@ -24,6 +24,10 @@ services:
     Shopsys\ShopBundle\Model\:
         resource: '../../Model/**/*{Facade,Factory,Repository}.php'
 
+    Shopsys\ShopBundle\DataFixtures\:
+        resource: '../../DataFixtures/**/*DataFixture.php'
+        tags: ['doctrine.fixture.orm']
+
     League\Flysystem\MountManager:
         arguments:
             -

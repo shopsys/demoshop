@@ -15,6 +15,8 @@ parameters:
             - '*/tests/ShopBundle/Database/Model/Order/Preview/OrderPreviewCalculationTest.php'
             - '*/tests/ShopBundle/Database/Model/Pricing/InputPriceRecalculationSchedulerTest.php'
             - '*/tests/ShopBundle/Smoke/Http/RouteConfigCustomization.php'
+            - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/MailTemplateDataFixture.php'
+            - '*/src/Shopsys/ShopBundle/DataFixtures/DemoMultidomain/MailTemplateDataFixture.php'
 
         ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
             - '*/tests/ShopBundle/Database/Model/Product/ProductVisibilityRepositoryTest.php'
