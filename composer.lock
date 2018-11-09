@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "88cdf711ea86064ec16e599881c2a5dc",
+    "content-hash": "88e139f29c5f296e8eac2e8c2914944e",
     "packages": [
         {
             "name": "arvenil/ninja-mutex",
@@ -1962,110 +1962,6 @@
             "time": "2018-06-06T21:00:30+00:00"
         },
         {
-            "name": "doctrine/orm",
-            "version": "dev-doctrine-260-with-ddc1960-hotfix-and-ddc4005-hotfix",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shopsys/doctrine2.git",
-                "reference": "374e7ace49d864dad8cddbc55346447c8a6a2083"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/doctrine2/zipball/374e7ace49d864dad8cddbc55346447c8a6a2083",
-                "reference": "374e7ace49d864dad8cddbc55346447c8a6a2083",
-                "shasum": ""
-            },
-            "archive": {
-                "exclude": [
-                    "!vendor",
-                    "tests",
-                    "*phpunit.xml",
-                    ".travis.yml",
-                    "build.xml",
-                    "build.properties",
-                    "composer.phar",
-                    "vendor/satooshi",
-                    "lib/vendor",
-                    "*.swp"
-                ]
-            },
-            "require": {
-                "doctrine/annotations": "~1.5",
-                "doctrine/cache": "~1.6",
-                "doctrine/collections": "^1.4",
-                "doctrine/common": "^2.7.1",
-                "doctrine/dbal": "^2.6",
-                "doctrine/instantiator": "~1.1",
-                "ext-pdo": "*",
-                "php": "^7.1",
-                "symfony/console": "~3.0|~4.0"
-            },
-            "require-dev": {
-                "doctrine/coding-standard": "^1.0",
-                "phpunit/phpunit": "^6.5",
-                "squizlabs/php_codesniffer": "^3.2",
-                "symfony/yaml": "~3.4|~4.0"
-            },
-            "suggest": {
-                "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
-            },
-            "bin": [
-                "bin/doctrine"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.6.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Doctrine\\ORM\\": "lib/Doctrine/ORM"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Doctrine\\Tests\\": "tests/Doctrine/Tests",
-                    "Doctrine\\Performance\\": "tests/Doctrine/Performance"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
-                },
-                {
-                    "name": "Roman Borschel",
-                    "email": "roman@code-factory.org"
-                },
-                {
-                    "name": "Benjamin Eberlei",
-                    "email": "kontakt@beberlei.de"
-                },
-                {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com"
-                },
-                {
-                    "name": "Marco Pivetta",
-                    "email": "ocramius@gmail.com"
-                }
-            ],
-            "description": "Object-Relational-Mapper for PHP",
-            "homepage": "http://www.doctrine-project.org",
-            "keywords": [
-                "database",
-                "orm"
-            ],
-            "support": {
-                "source": "https://github.com/shopsys/doctrine2/tree/dev-doctrine-260-with-ddc1960-hotfix-and-ddc4005-hotfix"
-            },
-            "time": "2017-12-20T00:38:15+00:00"
-        },
-        {
             "name": "doctrine/persistence",
             "version": "v1.0.1",
             "source": {
@@ -3045,54 +2941,6 @@
                 "parameters management"
             ],
             "time": "2018-02-13T18:05:56+00:00"
-        },
-        {
-            "name": "intaro/postgres-search-bundle",
-            "version": "dev-master",
-            "target-dir": "Intaro/PostgresSearchBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/molaux/PostgreSearchBundle.git",
-                "reference": "06625bdc1d07e05965a89447990583b77d89f494"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/molaux/PostgreSearchBundle/zipball/06625bdc1d07e05965a89447990583b77d89f494",
-                "reference": "06625bdc1d07e05965a89447990583b77d89f494",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/orm": ">=2.2.3",
-                "php": ">=5.3.3",
-                "symfony/framework-bundle": ">=2.1"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "Intaro\\PostgresSearchBundle\\": ""
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Gruzd Sergey",
-                    "homepage": "https://github.com/ddmaster"
-                }
-            ],
-            "description": "Tools to use full-text search PostgreSQL in Doctrine.",
-            "homepage": "https://github.com/ddmaster/PostgresSearchBundle",
-            "keywords": [
-                "doctrine2",
-                "postgresql",
-                "search",
-                "symfony2"
-            ],
-            "support": {
-                "source": "https://github.com/molaux/PostgreSearchBundle/tree/master"
-            },
-            "time": "2016-04-11T10:34:23+00:00"
         },
         {
             "name": "intervention/image",
@@ -6923,39 +6771,6 @@
             "time": "2018-08-01T14:48:04+00:00"
         },
         {
-            "name": "timwhitlock/jparser",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shopsys/jparser.git",
-                "reference": "f839f8322c4dbbf0a0796a5994e9a7454a34c44a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/jparser/zipball/f839f8322c4dbbf0a0796a5994e9a7454a34c44a",
-                "reference": "f839f8322c4dbbf0a0796a5994e9a7454a34c44a",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "conf.dist/PLUG.conf.php",
-                    "PLUG/core/PLUGTool.php"
-                ]
-            },
-            "authors": [
-                {
-                    "name": "Tim Whitlock",
-                    "email": "info@timwhitlock.info"
-                }
-            ],
-            "description": "A JavaScript parsing library for PHP",
-            "support": {
-                "source": "https://github.com/shopsys/jparser/tree/master"
-            },
-            "time": "2013-02-15T12:33:15+00:00"
-        },
-        {
             "name": "tracy/tracy",
             "version": "v2.5.3",
             "source": {
@@ -10617,18 +10432,9 @@
             "time": "2018-01-29T19:49:41+00:00"
         }
     ],
-    "aliases": [
-        {
-            "alias": "2.6.0",
-            "alias_normalized": "2.6.0.0",
-            "version": "dev-doctrine-260-with-ddc1960-hotfix-and-ddc4005-hotfix",
-            "package": "doctrine/orm"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "doctrine/orm": 20,
-        "intaro/postgres-search-bundle": 20,
         "shopsys/migrations": 10,
         "shopsys/form-types-bundle": 10,
         "shopsys/framework": 10,
@@ -10637,7 +10443,6 @@
         "shopsys/product-feed-heureka-delivery": 10,
         "shopsys/product-feed-zbozi": 10,
         "shopsys/product-feed-google": 10,
-        "timwhitlock/jparser": 20,
         "shopsys/coding-standards": 10,
         "shopsys/http-smoke-testing": 10
     },
