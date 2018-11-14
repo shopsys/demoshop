@@ -32,7 +32,6 @@ services:
         container_name: shopsys-framework-php-fpm
         volumes:
             - .:/var/www/html
-            - ./docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/php.ini
         links:
             - postgres
             - redis
@@ -97,6 +96,23 @@ services:
             - elasticsearch-data:/usr/share/elasticsearch/data
         environment:
             - discovery.type=single-node
+
+
+    microservice-product-search:
+        image: shopsys/microservice-product-search:v7.0.0-beta2
+        container_name: shopsys-framework-microservice-product-search
+        links:
+            - elasticsearch
+        depends_on:
+            - elasticsearch
+
+    microservice-product-search-export:
+        image: shopsys/microservice-product-search-export:v7.0.0-beta2
+        container_name: shopsys-framework-microservice-product-search-export
+        links:
+            - elasticsearch
+        depends_on:
+            - elasticsearch
 
 volumes:
     pgdata:
