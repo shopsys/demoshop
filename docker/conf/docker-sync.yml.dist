@@ -3,7 +3,20 @@ syncs:
     shopsys-framework-sync:
         sync_userid: 501
         src: './'
-        sync_excludes: ['docker/']
-
-    shopsys-framework-postgres-data-sync:
-        src: './var/postgres-data/'
+        sync_excludes: [
+            'docker/',
+            '.git',
+            '.idea',
+            '.docker-sync',
+            '.DS_Store',
+            'docker',
+            'docs',
+            'kubernetes',
+            'nbproject',
+            'node_modules',
+            'var/cache',
+            'var/postgres-data',
+            'var/elasticsearch-data',
+            'web',
+            'vendor'
+        ]
