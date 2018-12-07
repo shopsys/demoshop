@@ -37,6 +37,10 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
         $this->getAllListableQueryBuilderTest(148, true);
     }
 
+    /**
+     * @param mixed $productReferenceId
+     * @param mixed $isExpectedInResult
+     */
     private function getAllListableQueryBuilderTest($productReferenceId, $isExpectedInResult)
     {
         $productRepository = $this->getContainer()->get(ProductRepository::class);
@@ -78,6 +82,10 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
         $this->getAllSellableQueryBuilderTest(148, false);
     }
 
+    /**
+     * @param mixed $productReferenceId
+     * @param mixed $isExpectedInResult
+     */
     private function getAllSellableQueryBuilderTest($productReferenceId, $isExpectedInResult)
     {
         $productRepository = $this->getContainer()->get(ProductRepository::class);
@@ -119,6 +127,10 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
         $this->getAllOfferedQueryBuilderTest(69, true);
     }
 
+    /**
+     * @param mixed $productReferenceId
+     * @param mixed $isExpectedInResult
+     */
     private function getAllOfferedQueryBuilderTest($productReferenceId, $isExpectedInResult)
     {
         $productRepository = $this->getContainer()->get(ProductRepository::class);

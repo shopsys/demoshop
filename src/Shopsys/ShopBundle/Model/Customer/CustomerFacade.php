@@ -32,6 +32,8 @@ class CustomerFacade extends BaseCustomerFacade
      * @param \Shopsys\FrameworkBundle\Model\Customer\Mail\CustomerMailFacade $customerMailFacade
      * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface $billingAddressFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface $billingAddressDataFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface $customerDataFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\UserFactoryInterface $userFactory
      */
     public function __construct(
         EntityManagerInterface $em,

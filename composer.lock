@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11528a4e46054f0cbf0e8837f5b86da1",
+    "content-hash": "863b8b209c12a9d014f128e6d26911c2",
     "packages": [
         {
             "name": "arvenil/ninja-mutex",
@@ -9612,16 +9612,16 @@
         },
         {
             "name": "shopsys/coding-standards",
-            "version": "v7.0.0-beta2",
+            "version": "v7.0.0-beta3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/coding-standards.git",
-                "reference": "bb397e146931f7b697e871a3b5355e68a29f0a64"
+                "reference": "094c55d286e209998bd2808c1167cbb406e9a10b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/coding-standards/zipball/bb397e146931f7b697e871a3b5355e68a29f0a64",
-                "reference": "bb397e146931f7b697e871a3b5355e68a29f0a64",
+                "url": "https://api.github.com/repos/shopsys/coding-standards/zipball/094c55d286e209998bd2808c1167cbb406e9a10b",
+                "reference": "094c55d286e209998bd2808c1167cbb406e9a10b",
                 "shasum": ""
             },
             "require": {
@@ -9662,7 +9662,7 @@
                 "code quality",
                 "coding standards"
             ],
-            "time": "2018-08-23T09:12:51+00:00"
+            "time": "2018-11-15T09:31:59+00:00"
         },
         {
             "name": "shopsys/http-smoke-testing",

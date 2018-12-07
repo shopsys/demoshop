@@ -15,6 +15,10 @@ class OrderDataMapper extends BaseOrderDataMapper
      */
     protected $countryFacade;
 
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface $orderDataFactory
+     * @param \Shopsys\ShopBundle\Model\Country\CountryFacade $countryFacade
+     */
     public function __construct(OrderDataFactoryInterface $orderDataFactory, CountryFacade $countryFacade)
     {
         parent::__construct($orderDataFactory);
@@ -41,6 +45,10 @@ class OrderDataMapper extends BaseOrderDataMapper
         return $orderData;
     }
 
+    /**
+     * @param \Shopsys\ShopBundle\Model\Order\OrderData $orderData
+     * @param \Shopsys\ShopBundle\Model\Order\FrontOrderData $frontOrderData
+     */
     private function fillPickUpPlaceDeliveryData(OrderData $orderData, FrontOrderData $frontOrderData)
     {
         $orderData->deliveryFirstName = $frontOrderData->firstName;

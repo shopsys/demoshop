@@ -13,6 +13,9 @@ class PickUpPlaceRepository
      */
     protected $em;
 
+    /**
+     * @param \Doctrine\ORM\EntityManagerInterface $em
+     */
     public function __construct(
         EntityManagerInterface $em
     ) {
@@ -118,6 +121,7 @@ class PickUpPlaceRepository
 
     /**
      * @param string|null $searchQuery
+     * @param mixed $countryCodes
      * @param $transportType
      * @return \Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlace[]
      */

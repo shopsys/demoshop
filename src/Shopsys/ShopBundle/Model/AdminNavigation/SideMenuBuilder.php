@@ -7,6 +7,9 @@ use Shopsys\FrameworkBundle\Model\AdminNavigation\SideMenuBuilder as BaseSideMen
 
 class SideMenuBuilder extends BaseSideMenuBuilder
 {
+    /**
+     * @return \Knp\Menu\ItemInterface
+     */
     protected function createSettingsMenu(): ItemInterface
     {
         $menu = parent::createSettingsMenu();

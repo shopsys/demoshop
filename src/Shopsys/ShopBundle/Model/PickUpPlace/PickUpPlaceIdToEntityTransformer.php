@@ -12,6 +12,9 @@ class PickUpPlaceIdToEntityTransformer implements DataTransformerInterface
      */
     protected $pickUpPlaceFacade;
 
+    /**
+     * @param \Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceFacade $pickUpPlaceFacade
+     */
     public function __construct(PickUpPlaceFacade $pickUpPlaceFacade)
     {
         $this->pickUpPlaceFacade = $pickUpPlaceFacade;
@@ -19,6 +22,7 @@ class PickUpPlaceIdToEntityTransformer implements DataTransformerInterface
 
     /**
      * @var \Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlace
+     * @param mixed $pickUpPlace
      * @return int|null
      */
     public function transform($pickUpPlace)
@@ -31,6 +35,7 @@ class PickUpPlaceIdToEntityTransformer implements DataTransformerInterface
 
     /**
      * @var int|null
+     * @param mixed $pickUpPlaceId
      * @return null|\Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlace
      */
     public function reverseTransform($pickUpPlaceId)

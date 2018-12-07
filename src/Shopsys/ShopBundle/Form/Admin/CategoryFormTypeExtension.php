@@ -37,10 +37,10 @@ class CategoryFormTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * @param FormBuilderInterface $builder
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param string $name
      * @param array $options
-     * @return FormBuilderInterface
+     * @return \Symfony\Component\Form\FormBuilderInterface
      */
     protected function rebuildChildWithAdditionalOptions(FormBuilderInterface $builder, string $name, array $options): FormBuilderInterface
     {

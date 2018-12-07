@@ -17,6 +17,7 @@ class BillingAddressFacade
     protected $billingAddressRepository;
 
     /**
+     * @param \Doctrine\ORM\EntityManagerInterface $em
      * @param \Shopsys\ShopBundle\Model\Customer\BillingAddressRepository $billingAddressRepository
      */
     public function __construct(

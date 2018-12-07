@@ -18,6 +18,10 @@ class CurrentCategoryResolver
      */
     private $productFacade;
 
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Category\CategoryFacade $categoryFacade
+     * @param \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade
+     */
     public function __construct(
         CategoryFacade $categoryFacade,
         ProductFacade $productFacade
