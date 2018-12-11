@@ -4,6 +4,7 @@ namespace Tests\ShopBundle\Functional\Model\Cart\Watcher;
 
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\DataFixtures\Demo\PricingGroupDataFixture;
+use Shopsys\FrameworkBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Model\Cart\Cart;
 use Shopsys\FrameworkBundle\Model\Cart\Item\CartItem;
 use Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcherService;
@@ -11,51 +12,43 @@ use Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerIdentifier;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
+use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductManualInputPriceFacade;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser;
-use Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomainFactory;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibility;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository;
 use Shopsys\ShopBundle\Model\Product\Product;
 use Shopsys\ShopBundle\Model\Product\ProductDataFactory;
-use Tests\ShopBundle\Test\FunctionalTestCase;
+use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
-class CartWatcherServiceTest extends FunctionalTestCase
+class CartWatcherServiceTest extends TransactionFunctionalTestCase
 {
     public function testGetModifiedPriceItemsAndUpdatePrices()
     {
         $customerIdentifier = new CustomerIdentifier('randomString');
-        $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
 
-        $vatData = new VatData();
-        $vatData->name = 'vat';
-        $vatData->percent = 21;
-        $vat = new Vat($vatData);
-        $productData1 = $productDataFactory->create();
-        $productData1->name = [];
-        $productData1->price = 100;
-        $productData1->vat = $vat;
-        $productData1->priceCalculationType = Product::PRICE_CALCULATION_TYPE_AUTO;
-        $productMock = Product::create($productData1);
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
 
+        /* @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser $productPriceCalculationForUser */
         $productPriceCalculationForUser = $this->getContainer()->get(ProductPriceCalculationForUser::class);
-        /* @var $productPriceCalculationForUser \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser */
-        $productPrice = $productPriceCalculationForUser->calculatePriceForCurrentUser($productMock);
-        $cartItem = new CartItem($customerIdentifier, $productMock, 1, $productPrice->getPriceWithVat());
+
+        $productPrice = $productPriceCalculationForUser->calculatePriceForCurrentUser($product);
+        $cartItem = new CartItem($customerIdentifier, $product, 1, $productPrice->getPriceWithVat());
         $cartItems = [$cartItem];
         $cart = new Cart($cartItems);
 
+        /** @var \Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcherService $cartWatcherService */
         $cartWatcherService = $this->getContainer()->get(CartWatcherService::class);
-        /* @var $cartWatcherService \Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcherService */
 
         $modifiedItems1 = $cartWatcherService->getModifiedPriceItemsAndUpdatePrices($cart);
         $this->assertEmpty($modifiedItems1);
 
-        $productData2 = $productDataFactory->create();
-        $productData2->name = [];
-        $productData2->price = 200;
-        $productData2->vat = $vat;
+        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
 
-        $productMock->edit(new ProductCategoryDomainFactory(), $productData2);
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductManualInputPriceFacade $manualInputPriceFacade */
+        $manualInputPriceFacade = $this->getContainer()->get(ProductManualInputPriceFacade::class);
+        $manualInputPriceFacade->refresh($product, $pricingGroup, '10');
+
         $modifiedItems2 = $cartWatcherService->getModifiedPriceItemsAndUpdatePrices($cart);
         $this->assertNotEmpty($modifiedItems2);
 
