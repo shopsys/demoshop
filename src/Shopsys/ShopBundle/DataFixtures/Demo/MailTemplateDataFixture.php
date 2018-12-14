@@ -303,7 +303,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                 </tr>
                 <tr>
                     <td style="padding: 20px;">Dear customer,<br />
-                    For your email, we record personal overview that you can view <a href="http://{url}">here</a>.<br />
+                    For your email, we record personal overview that you can view <a href="{url}">here</a>.<br />
                     The link is valid for 24 hours.<br />
                     <br />
                     <br />
@@ -335,7 +335,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                 </tr>
                 <tr>
                     <td style="padding: 20px;">Dear customer,<br />
-                    You can find your personal information export <a href="http://{url}">here</a>.<br />
+                    You can find your personal information export <a href="{url}">here</a>.<br />
                     The link is valid for 24 hours.<br />
                     <br />
                     Regards,<br />
