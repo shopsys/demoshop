@@ -29,6 +29,11 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
      */
     private $mailTemplateDataFactory;
 
+    /**
+     * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
+     * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateFacade $mailTemplateFacade
+     * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateDataFactoryInterface $mailTemplateDataFactory
+     */
     public function __construct(
         Domain $domain,
         MailTemplateFacade $mailTemplateFacade,
@@ -57,7 +62,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                 </tr>
                 <tr>
                     <td style="padding: 20px;">Dobrý den,,<br />
-                    Vaše objednávka byla úspěšně vytvořena. Stav objednávky můžete sledovat na tomto <a href="http://{order_detail_url}">odkaze</a>. O změně stavu objednávky Vás budeme informovat.<br />
+                    Vaše objednávka byla úspěšně vytvořena. Stav objednávky můžete sledovat na tomto <a href="{order_detail_url}">odkaze</a>. O změně stavu objednávky Vás budeme informovat.<br />
                     &nbsp;
                     <table cellspacing="5" style="font-size:14px; width:100%">
                         <tbody>
@@ -122,7 +127,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                 </tr>
                 <tr>
                     <td style="padding: 20px;">Vážený zákazníku,<br />
-                    Vaše objednávka {number} se zpracovává. Více informací o Vaší objednávce naleznete <a href="http://{order_detail_url}">zde</a>.&nbsp;<br />
+                    Vaše objednávka {number} se zpracovává. Více informací o Vaší objednávce naleznete <a href="{order_detail_url}">zde</a>.&nbsp;<br />
                     <br />
                     <br />
                     <br />
@@ -319,7 +324,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                     <td style="padding: 20px;">Vážený zákazníku,<br />
                     na základě vašeho zadaného emailu {e-mail}, Vám zasíláme odkaz na zobrazení osobních údajů. Klikem na odkaz níže se dostanete na stránku s&nbsp;přehledem všech osobních údajů, které k Vašemu e-mailu evidujeme na našem e-shopu {domain}.<br />
                     <br />
-                    Pro zobrazení osobních údajů klikněte <a href="http://{url}">zde</a>.<br />
+                    Pro zobrazení osobních údajů klikněte <a href="{url}">zde</a>.<br />
                     Odkaz je platný 24 hodin.<br />
                     <br />
                     S pozdravem<br />
@@ -358,7 +363,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                     Klikem na odkaz se dostanete na stránku s možností stažení těchto informací, které k<br />
                     Vašemu e-mailu evidujeme na našem eshopu {domain}.<br />
                     <br />
-                    Pro přechod na stažení údajů, prosím, klikněte <a href="http://{url}">zde </a>.<br />
+                    Pro přechod na stažení údajů, prosím, klikněte <a href="{url}">zde </a>.<br />
                     Odkaz je platný 24 hodin.<br />
                     <br />
                     S pozdravem<br />

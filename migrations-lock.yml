@@ -286,3 +286,18 @@
 20181008000001:
     class: Shopsys\FrameworkBundle\Migrations\Version20181008000001
     skip: false
+20181114102106:
+    class: Shopsys\FrameworkBundle\Migrations\Version20181114102106
+    skip: false
+20181114120915:
+    class: Shopsys\FrameworkBundle\Migrations\Version20181114120915
+    skip: false
+20181114134959:
+    class: Shopsys\FrameworkBundle\Migrations\Version20181114134959
+    skip: false
+20181114145244:
+    class: Shopsys\FrameworkBundle\Migrations\Version20181114145244
+    skip: false
+20181114145250:
+    class: Shopsys\FrameworkBundle\Migrations\Version20181114145250
+    skip: false

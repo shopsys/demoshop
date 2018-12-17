@@ -6,6 +6,9 @@ use Tests\ShopBundle\Test\Codeception\AcceptanceTester;
 
 class ErrorHandlingCest
 {
+    /**
+     * @param \Tests\ShopBundle\Test\Codeception\AcceptanceTester $me
+     */
     public function testDisplayNotice(AcceptanceTester $me)
     {
         $me->wantTo('display notice error page');

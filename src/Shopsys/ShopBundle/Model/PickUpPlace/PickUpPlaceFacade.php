@@ -29,6 +29,12 @@ class PickUpPlaceFacade
      */
     protected $countryFacade;
 
+    /**
+     * @param \Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceRepository $pickUpPlaceRepository
+     * @param \Doctrine\ORM\EntityManagerInterface $em
+     * @param \Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceLoader $pickUpPlaceLoader
+     * @param \Shopsys\ShopBundle\Model\Country\CountryFacade $countryFacade
+     */
     public function __construct(
         PickUpPlaceRepository $pickUpPlaceRepository,
         EntityManagerInterface $em,

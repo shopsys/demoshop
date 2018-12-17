@@ -26,6 +26,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [#19 - Table tags and inline styles can be used in ckEditor for email templates](https://github.com/shopsys/demoshop/pull/19)
     - `ivory_ck_editor.yml` is updated so email templates wysiwyg can parse table tags and inline styles for all elements
     - datafixtures for email templates are added so demoshop has now customized emails
+- [#27 - Upgrade to shopsys framework 7.0.0-beta4](https://github.com/shopsys/demoshop/pull/27)
+    - renamed Database tests to Functional tests
+    - content-test directory is used instead of content during the test
+    - updated coding standards and applied
+    - registered new form types (OrderItemsType, DisplayOnlyCustomerType)
+    - OrderFormType in Admin is extended on a class level. No need to extend twig template anymore
+    - block loading of original data fixtures, if overridden
+    - Shopsys\FrameworkBundle\DataFixtures\Demo\MailTemplateDataFixture blocked from loading, because its overridden in ShopBundle 
+    - Shopsys\FrameworkBundle\DataFixtures\Demo\MultidomainMailTemplateDataFixture blocked from loading, because its overridden in ShopBundle
+    - fixed wrong links in mail template data fixtures
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)

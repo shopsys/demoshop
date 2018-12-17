@@ -1,10 +1,12 @@
-FROM php:7.2-fpm-alpine
+FROM php:7.2-fpm-alpine as base
+
+ARG project_root=.
 
 # install git for computing diffs
 RUN apk add --update git
 
 # install Composer
-COPY docker-install-composer /usr/local/bin/docker-install-composer
+COPY ${project_root}/docker/php-fpm/docker-install-composer /usr/local/bin/docker-install-composer
 RUN chmod +x /usr/local/bin/docker-install-composer && docker-install-composer
 
 # libpng-dev needed by "gd" extension
@@ -58,21 +60,57 @@ ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 ENV LC_ALL=en_US.utf8 LANG=en_US.utf8 LANGUAGE=en_US.utf8
 
 # overwrite the original entry-point from the PHP Docker image with our own
-COPY docker-php-entrypoint /usr/local/bin/
+COPY ${project_root}/docker/php-fpm/docker-php-entrypoint /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-php-entrypoint
 
 # copy php.ini configuration
-COPY php-ini-overrides.ini /usr/local/etc/php/php.ini
+COPY ${project_root}/docker/php-fpm/php-ini-overrides.ini /usr/local/etc/php/php.ini
+
+# the user "www-data" is used when running the image, and therefore should own the workdir
+RUN chown www-data:www-data /var/www/html
+USER www-data
+
+# hirak/prestissimo makes the install of Composer dependencies faster by parallel downloading
+RUN composer global require hirak/prestissimo
+
+# set COMPOSER_MEMORY_LIMIT to -1 (i.e. unlimited - this is a hotfix until https://github.com/shopsys/shopsys/issues/634 is solved)
+ENV COMPOSER_MEMORY_LIMIT=-1
+
+########################################################################################################################
+
+FROM base as development
+
+USER root
 
 # allow overwriting UID and GID o the user "www-data" to help solve issues with permissions in mounted volumes
 # if the GID is already in use, we will assign GID 82 instead (82 is the standard uid/gid for "www-data" in Alpine)
 ARG www_data_uid
 ARG www_data_gid
-RUN deluser www-data && (addgroup -g $www_data_gid www-data || addgroup -g 82 www-data) && adduser -u $www_data_uid -D -S -G www-data www-data
+RUN if [ -n "$www_data_uid" ]; then deluser www-data && (addgroup -g $www_data_gid www-data || addgroup -g 82 www-data) && adduser -u $www_data_uid -D -S -G www-data www-data; fi;
+
+# as the UID and GID might have changed, change the ownership of the home directory workdir again
+RUN chown -R www-data:www-data /home/www-data /var/www/html
+
 USER www-data
 
-# allow configuring the GitHub OAuth token
-ARG github_oauth_token
-RUN if [ -n "$github_oauth_token" ]; then composer config -g github-oauth.github.com $github_oauth_token; fi
+########################################################################################################################
 
-# hirak/prestissimo makes the install of Composer dependencies faster by parallel downloading
-RUN composer global require hirak/prestissimo
+FROM base as production
+
+COPY --chown=www-data:www-data / /var/www/html
+
+RUN composer install --optimize-autoloader --no-interaction --no-progress --no-dev
+
+RUN php phing composer npm dirs-create assets
+
+########################################################################################################################
+
+FROM base as ci
+
+COPY --chown=www-data:www-data / /var/www/html
+
+RUN composer install --optimize-autoloader --no-interaction --no-progress
+
+RUN php phing composer-dev npm dirs-create test-dirs-create assets standards tests-static tests-acceptance-build
+
+RUN ./bin/console shopsys:environment:change prod

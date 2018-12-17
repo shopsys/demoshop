@@ -27,6 +27,11 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
      */
     protected $mailTemplateDataFactory;
 
+    /**
+     * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
+     * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateFactoryInterface $mailTemplateFactory
+     * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateDataFactoryInterface $mailTemplateDataFactory
+     */
     public function __construct(
         Domain $domain,
         MailTemplateFactoryInterface $mailTemplateFactory,
@@ -298,7 +303,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                 </tr>
                 <tr>
                     <td style="padding: 20px;">Dear customer,<br />
-                    For your email, we record personal overview that you can view <a href="http://{url}">here</a>.<br />
+                    For your email, we record personal overview that you can view <a href="{url}">here</a>.<br />
                     The link is valid for 24 hours.<br />
                     <br />
                     <br />
@@ -330,7 +335,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                 </tr>
                 <tr>
                     <td style="padding: 20px;">Dear customer,<br />
-                    You can find your personal information export <a href="http://{url}">here</a>.<br />
+                    You can find your personal information export <a href="{url}">here</a>.<br />
                     The link is valid for 24 hours.<br />
                     <br />
                     Regards,<br />
@@ -354,6 +359,11 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
         $this->createMailTemplate($manager, MailTemplate::PERSONAL_DATA_EXPORT_NAME, $mailTemplateData);
     }
 
+    /**
+     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @param mixed $name
+     * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateData $mailTemplateData
+     */
     private function createMailTemplate(
         ObjectManager $manager,
         $name,

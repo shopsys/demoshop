@@ -111,6 +111,24 @@ class CustomerController extends BaseCustomerController
      */
     protected $domainRouterFactory;
 
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface $userDataFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerListAdminFacade $customerListAdminFacade
+     * @param \Shopsys\ShopBundle\Model\Customer\CustomerFacade $customerFacade
+     * @param \Shopsys\FrameworkBundle\Model\AdminNavigation\BreadcrumbOverrider $breadcrumbOverrider
+     * @param \Shopsys\FrameworkBundle\Model\Administrator\AdministratorGridFacade $administratorGridFacade
+     * @param \Shopsys\FrameworkBundle\Component\Grid\GridFactory $gridFactory
+     * @param \Shopsys\FrameworkBundle\Component\Domain\AdminDomainTabsFacade $adminDomainTabsFacade
+     * @param \Shopsys\FrameworkBundle\Model\Order\OrderFacade $orderFacade
+     * @param \Shopsys\FrameworkBundle\Model\Security\LoginAsUserFacade $loginAsUserFacade
+     * @param \Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory $domainRouterFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface $customerDataFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\BillingAddressFacade $billingAddressFacade
+     * @param \Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory $billingAddressDataFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\UserFactory $userFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressDataFactory $deliveryAddressDataFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFactory $deliveryAddressFactory
+     */
     public function __construct(
         UserDataFactoryInterface $userDataFactory,
         CustomerListAdminFacade $customerListAdminFacade,

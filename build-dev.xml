@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Shopsys Framework (dev)" default="build-demo-ci">
 
-    <target name="build-dev" depends="clean,composer-dev,npm,timezones-check,microservices-check,dirs-create,domains-urls-check,assets,db-migrations,create-domains-data,generate-friendly-urls,replace-domains-urls,microservice-product-search-recreate-structure,microservice-product-search-export-products,grunt,error-pages-generate,tests-acceptance-build,checks-diff" description="Builds application for development preserving your DB and runs checks on changed files."/>
-    <target name="build-dev-quick" depends="clean,composer-dev,npm,dirs-create,domains-urls-check,assets,db-migrations,create-domains-data,generate-friendly-urls,replace-domains-urls,grunt,tests-acceptance-build" description="Builds application for development preserving your DB while skipping nonessential steps."/>
-    <target name="build-demo-dev" depends="wipe-excluding-logs,composer-dev,npm,timezones-check,microservices-check,dirs-create,domains-urls-check,assets,db-demo,microservice-product-search-recreate-structure,microservice-product-search-export-products,grunt,error-pages-generate,tests-acceptance-build,checks-diff" description="Builds application for development with clean demo DB and runs checks on changed files."/>
-    <target name="build-demo-dev-quick" depends="wipe-excluding-logs,composer-dev,npm,dirs-create,domains-urls-check,assets,db-demo,microservice-product-search-recreate-structure,microservice-product-search-export-products,grunt,tests-acceptance-build" description="Builds application for development with clean demo DB while skipping nonessential steps."/>
-    <target name="build-demo-ci" depends="wipe-excluding-logs,composer-dev,npm,timezones-check,microservices-check,dirs-create,domains-urls-check,assets,db-demo,microservice-product-search-recreate-structure,microservice-product-search-export-products,grunt,error-pages-generate,tests-acceptance-build,checks-ci" description="Builds application for development with clean demo DB and runs CI checks."/>
-    <target name="build-demo-ci-diff" depends="wipe-excluding-logs,composer-dev,npm,timezones-check,microservices-check,dirs-create,domains-urls-check,assets,db-demo,microservice-product-search-recreate-structure,microservice-product-search-export-products,grunt,error-pages-generate,tests-acceptance-build,checks-ci-diff" description="Builds application for development with clean demo DB and runs CI checks on changed files."/>
+    <target name="build-dev" depends="clean,composer-dev,npm,timezones-check,microservices-check,dirs-create,test-dirs-create,assets,db-migrations,create-domains-data,generate-friendly-urls,replace-domains-urls,microservice-product-search-recreate-structure,microservice-product-search-export-products,grunt,error-pages-generate,tests-acceptance-build,checks-diff" description="Builds application for development preserving your DB and runs checks on changed files."/>
+    <target name="build-dev-quick" depends="clean,composer-dev,npm,dirs-create,test-dirs-create,assets,db-migrations,create-domains-data,generate-friendly-urls,replace-domains-urls,grunt,tests-acceptance-build" description="Builds application for development preserving your DB while skipping nonessential steps."/>
+    <target name="build-demo-dev" depends="wipe-excluding-logs,composer-dev,npm,timezones-check,microservices-check,dirs-create,test-dirs-create,assets,db-demo,microservice-product-search-recreate-structure,microservice-product-search-export-products,grunt,error-pages-generate,tests-acceptance-build,checks-diff" description="Builds application for development with clean demo DB and runs checks on changed files."/>
+    <target name="build-demo-dev-quick" depends="wipe-excluding-logs,composer-dev,npm,dirs-create,test-dirs-create,assets,db-demo,microservice-product-search-recreate-structure,microservice-product-search-export-products,grunt,tests-acceptance-build" description="Builds application for development with clean demo DB while skipping nonessential steps."/>
+    <target name="build-demo-ci" depends="wipe-excluding-logs,composer-dev,npm,timezones-check,microservices-check,dirs-create,test-dirs-create,assets,db-demo,microservice-product-search-recreate-structure,microservice-product-search-export-products,grunt,error-pages-generate,tests-acceptance-build,checks-ci" description="Builds application for development with clean demo DB and runs CI checks."/>
+    <target name="build-demo-ci-diff" depends="wipe-excluding-logs,composer-dev,npm,timezones-check,microservices-check,dirs-create,test-dirs-create,assets,db-demo,microservice-product-search-recreate-structure,microservice-product-search-export-products,grunt,error-pages-generate,tests-acceptance-build,checks-ci-diff" description="Builds application for development with clean demo DB and runs CI checks on changed files."/>
 
     <target name="checks" depends="db-check-mapping,standards,tests" description="Checks ORM mapping, coding standards and runs unit, DB and smoke tests."/>
     <target name="checks-diff" depends="db-check-mapping,standards-diff,tests" description="Checks ORM mapping, coding standards on changed files and runs unit, DB and smoke tests."/>
@@ -16,9 +16,9 @@
     <target name="standards" depends="phplint,ecs,phpstan,twig-lint,yaml-lint,eslint-check" description="Checks coding standards."/>
     <target name="standards-diff" depends="phplint-diff,ecs-diff,phpstan,twig-lint-diff,yaml-lint,eslint-check-diff" description="Checks coding standards on changed files."/>
 
-    <target name="test-db-demo" depends="clean,test-db-wipe-public-schema,test-db-import-basic-structure,test-db-migrations,test-create-domains-db-functions,test-db-fixtures-demo-singledomain,test-create-domains-data,test-generate-friendly-urls,test-db-fixtures-demo-multidomain,test-load-plugin-demo-data,test-replace-domains-urls" description="Drops all data in test database and creates a new one with demo data."/>
+    <target name="test-db-demo" depends="clean,test-db-wipe-public-schema,test-db-import-basic-structure,test-db-migrations,test-create-domains-data,test-db-fixtures-demo,test-generate-friendly-urls,test-load-plugin-demo-data,test-replace-domains-urls" description="Drops all data in test database and creates a new one with demo data."/>
     <target name="test-db-performance" depends="test-db-demo,test-db-fixtures-performance" description="Drops all data in test database and creates a new one with performance data."/>
-    <target name="tests" depends="test-db-demo,tests-unit,tests-db,tests-smoke" description="Runs unit, database and smoke tests on a newly built test database."/>
+    <target name="tests" depends="test-db-demo,tests-unit,tests-functional,tests-smoke" description="Runs unit, database and smoke tests on a newly built test database."/>
 
     <target name="tests-performance-run" depends="clean,test-db-performance,tests-performance-warmup,tests-performance" description="Runs performance tests on a newly built test database with performance data."/>
 
@@ -442,7 +442,7 @@
         </if>
     </target>
 
-    <target name="tests-db" depends="clean" description="Runs database/integration tests.">
+    <target name="tests-functional" depends="clean" description="Runs functional tests.">
         <if>
             <istrue value="${is-multidomain}" />
             <then>
@@ -454,7 +454,7 @@
                 >
                     <arg value="--colors=always"/>
                     <arg value="--testsuite"/>
-                    <arg value="Database"/>
+                    <arg value="Functional"/>
                     <arg value="--exclude-group"/>
                     <arg value="singledomain"/>
                     <arg value="--configuration"/>
@@ -470,7 +470,7 @@
                 >
                     <arg value="--colors=always"/>
                     <arg value="--testsuite"/>
-                    <arg value="Database"/>
+                    <arg value="Functional"/>
                     <arg value="--exclude-group"/>
                     <arg value="multidomain"/>
                     <arg value="--configuration"/>
@@ -537,7 +537,7 @@
         </exec>
     </target>
 
-    <target name="test-create-domains-data" description="Creates domains data in tests DB for newly configured domains.">
+    <target name="test-create-domains-data" depends="test-create-domains-db-functions" description="Creates domains data in tests DB for newly configured domains.">
         <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
             <arg value="${path.bin-console}" />
             <arg value="shopsys:domains-data:create" />
@@ -580,38 +580,11 @@
         </exec>
     </target>
 
-    <target name="test-db-fixtures-demo-multidomain" description="Loads multidomain demo data fixtures excluding first domain into test DB.">
-        <if>
-            <istrue value="${is-multidomain}" />
-            <then>
-                <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
-                    <arg value="${path.bin-console}" />
-                    <arg value="--env=test" />
-                    <arg value="shopsys:fixtures:load" />
-                    <arg value="--fixtures=${path.framework}/src/DataFixtures/DemoMultidomain" />
-                    <arg value="--fixtures=${path.src}/Shopsys/ShopBundle/DataFixtures/DemoMultidomain" />
-                    <arg value="--append" />
-                    <arg value="--no-interaction" />
-                </exec>
-                <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
-                    <arg value="${path.bin-console}" />
-                    <arg value="shopsys:recalculations" />
-                    <arg value="--env=test" />
-                </exec>
-            </then>
-            <else>
-                <echo message="Multidomain demo data creation skipped." />
-            </else>
-        </if>
-    </target>
-
-    <target name="test-db-fixtures-demo-singledomain" description="Loads base and demo data fixtures for the first domain into test DB.">
+    <target name="test-db-fixtures-demo" description="Loads base and demo data fixtures for the first domain into test DB.">
         <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
             <arg value="${path.bin-console}" />
             <arg value="--env=test" />
-            <arg value="shopsys:fixtures:load" />
-            <arg value="--fixtures=${path.framework}/src/DataFixtures/Demo" />
-            <arg value="--fixtures=${path.src}/Shopsys/ShopBundle/DataFixtures/Demo" />
+            <arg value="doctrine:fixtures:load" />
             <arg value="--append" />
             <arg value="--no-interaction" />
         </exec>
@@ -661,6 +634,14 @@
             <arg value="${path.bin-console}" />
             <arg value="--env=test" />
             <arg value="shopsys:schema:create" />
+        </exec>
+    </target>
+
+    <target name="test-dirs-create" description="Creates application directories for content, images, uploaded files, etc. for test environment">
+        <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
+            <arg value="${path.bin-console}" />
+            <arg value="--env=test" />
+            <arg value="shopsys:create-directories" />
         </exec>
     </target>
 

@@ -15,6 +15,9 @@ class ProductFormTypeExtension extends AbstractTypeExtension
      */
     private $productConditionFacade;
 
+    /**
+     * @param \Shopsys\ShopBundle\Model\Product\ProductConditionFacade $productConditionFacade
+     */
     public function __construct(ProductConditionFacade $productConditionFacade)
     {
         $this->productConditionFacade = $productConditionFacade;

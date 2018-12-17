@@ -10,7 +10,6 @@
     convertWarningsToExceptions="true"
     processIsolation="false"
     stopOnFailure="false"
-    syntaxCheck="false"
     failOnWarning="true"
     beStrictAboutTestsThatDoNotTestAnything="false"
 >
@@ -22,8 +21,8 @@
         <testsuite name="Unit">
             <directory>tests/*Bundle/Unit</directory>
         </testsuite>
-        <testsuite name="Database">
-            <directory>tests/*Bundle/Database</directory>
+        <testsuite name="Functional">
+            <directory>tests/*Bundle/Functional</directory>
         </testsuite>
         <testsuite name="Smoke">
             <directory>tests/*Bundle/Smoke</directory>

@@ -13,6 +13,7 @@ class DuplicateEmailsException extends Exception implements CustomerException
     private $email;
 
     /**
+     * @param mixed $email
      * @param string $message
      * @param \Exception|null $previous
      */

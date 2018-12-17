@@ -12,6 +12,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LoginController extends BaseLoginController
 {
+    /**
+     * @param \Shopsys\FrameworkBundle\Component\Router\DomainRouter $domainRouter
+     */
     private function changeDomainContext(DomainRouter $domainRouter)
     {
         $mainAdminDomainHost = $domainRouter->getContext()->getHost();
