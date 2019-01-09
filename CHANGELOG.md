@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - added new shipping method Zasilkovna
     - pick up places are downloaded by cron
 - [#15 - Company account with multiple users](https://github.com/shopsys/demoshop/pull/15)
+- [#31 - Discount for customer](https://github.com/shopsys/demoshop/pull/31)
+    - administration of customer now contains discount field with range validation that is reflected into User entity
+    - prices of products are recalculated for logged customers based on custom discount
+    - discount works also for companies with multiple users
+    - `filterFormMacro.html.twig` now counts with discount coeficient
 
 ### Changed
 - [#1 - Basic changes in docs, readme etc. after copying from project-base](https://github.com/shopsys/demoshop/pull/1) : [@LukasHeinz]

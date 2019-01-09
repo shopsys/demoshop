@@ -10,6 +10,15 @@ msgstr ""
 msgid "Company name cannot be longer than {{ limit }} characters"
 msgstr ""
 
+msgid "Discount percentage should be {{ limit }} or more."
+msgstr ""
+
+msgid "Discount percentage should be {{ limit }} or less."
+msgstr ""
+
+msgid "Discount percentage needs to be valid number with range between 0 and 100"
+msgstr ""
+
 msgid "Email cannot be longer then {{ limit }} characters"
 msgstr ""
 
@@ -132,4 +141,3 @@ msgstr ""
 
 msgid "Zip code cannot be longer than {{ limit }} characters"
 msgstr ""
-

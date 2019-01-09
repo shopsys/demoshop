@@ -95,6 +95,7 @@ class CustomerFacade extends BaseCustomerFacade
              */
             $companyDataOfCompanyUser = clone $companyData;
             $companyDataOfCompanyUser->userData = $companyUserData;
+            $companyDataOfCompanyUser->userData->discount = $companyData->userData->discount;
 
             /**
              * When companyUserData has set an ID, it means this is an modified existing entity.

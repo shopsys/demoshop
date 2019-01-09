@@ -141,3 +141,14 @@ services:
 
     Shopsys\FrameworkBundle\Model\Advert\AdvertPositionRegistry:
         class: Shopsys\ShopBundle\Model\Advert\AdvertPositionRegistry
+
+    Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculation:
+        class: Shopsys\ShopBundle\Model\Product\Pricing\ProductPriceCalculation
+
+    Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser:
+        class: Shopsys\ShopBundle\Model\Product\Pricing\ProductPriceCalculationForUser
+
+    Shopsys\ShopBundle\Model\Customer\CurrentCustomer: ~
+
+    Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer:
+        alias: Shopsys\ShopBundle\Model\Customer\CurrentCustomer

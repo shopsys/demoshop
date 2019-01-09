@@ -30,6 +30,12 @@ class User extends BaseUser
     protected $billingAddress;
 
     /**
+     * @var int
+     * @ORM\Column(type="integer", options={"default" : 0})
+     */
+    protected $discount;
+
+    /**
      * @param \Shopsys\ShopBundle\Model\Customer\UserData $userData
      * @param \Shopsys\ShopBundle\Model\Customer\BillingAddress $billingAddress
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress|null $deliveryAddress
@@ -39,6 +45,24 @@ class User extends BaseUser
         BaseBillingAddress $billingAddress,
         DeliveryAddress $deliveryAddress = null
     ) {
+        $this->discount = $userData->discount;
         parent::__construct($userData, $billingAddress, $deliveryAddress);
+    }
+
+    /**
+     * @param \Shopsys\ShopBundle\Model\Customer\UserData $userData
+     */
+    public function edit(BaseUserData $userData)
+    {
+        $this->discount = $userData->discount;
+        parent::edit($userData);
+    }
+
+    /**
+     * @return int
+     */
+    public function getDiscount(): int
+    {
+        return $this->discount;
     }
 }
