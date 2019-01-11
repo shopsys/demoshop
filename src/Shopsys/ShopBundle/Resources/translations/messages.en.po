@@ -25,6 +25,9 @@ msgstr ""
 msgid "Add to cart"
 msgstr ""
 
+msgid "Added product will not have any individual discounts"
+msgstr ""
+
 msgid "Address"
 msgstr ""
 
