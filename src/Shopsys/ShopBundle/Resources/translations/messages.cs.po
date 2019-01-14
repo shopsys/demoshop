@@ -25,6 +25,9 @@ msgstr "Příslušenství"
 msgid "Add to cart"
 msgstr "Vložit do košíku"
 
+msgid "Added product will not have any individual discounts"
+msgstr "Na přidaný produkt se nebudou vztahovat žádné individuální slevy"
+
 msgid "Address"
 msgstr "Adresa"
 

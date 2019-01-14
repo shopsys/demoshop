@@ -1,4 +1,4 @@
-{% macro filterForm(filterForm, actionUrl, resetUrl, searchText, page, productFilterCountData, priceRange) %}
+{% macro filterForm(filterForm, actionUrl, resetUrl, searchText, page, productFilterCountData, priceRange, discountCoeficient) %}
     {{ form_start(filterForm, { action: actionUrl }) }}
         {% form_theme filterForm '@ShopsysShop/Front/Content/Product/filterFormTheme.html.twig' %}
 
@@ -19,9 +19,9 @@
             <div
                 class="js-range-slider"
                 data-minimum-input-id="{{ filterForm.minimalPrice.vars.id }}"
-                data-minimal-value="{{ priceRange.minimalPrice }}"
+                data-minimal-value="{{ priceRange.minimalPrice * discountCoeficient }}"
                 data-maximum-input-id="{{ filterForm.maximalPrice.vars.id }}"
-                data-maximal-value="{{ priceRange.maximalPrice }}"
+                data-maximal-value="{{ priceRange.maximalPrice * discountCoeficient}}"
             ></div>
             <div class="box-filter__price__values">
                 <div class="box-filter__price__values__item box-filter__price__values__item--from">

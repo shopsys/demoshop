@@ -101,3 +101,11 @@ services:
     Shopsys\FrameworkBundle\Model\Customer\UserDataFactory:
         alias: Shopsys\ShopBundle\Model\Customer\UserDataFactory
 
+    Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculation:
+        class: Shopsys\ShopBundle\Model\Product\Pricing\ProductPriceCalculation
+
+    Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser:
+        class: Shopsys\ShopBundle\Model\Product\Pricing\ProductPriceCalculationForUser
+
+    Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer:
+        class: Shopsys\ShopBundle\Model\Customer\CurrentCustomer

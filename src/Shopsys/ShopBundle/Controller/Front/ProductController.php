@@ -17,6 +17,7 @@ use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingModeForSear
 use Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacade;
 use Shopsys\FrameworkBundle\Twig\RequestExtension;
 use Shopsys\ShopBundle\Form\Front\Product\ProductFilterFormType;
+use Shopsys\ShopBundle\Model\Customer\CurrentCustomer;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends FrontBaseController
@@ -34,6 +35,11 @@ class ProductController extends FrontBaseController
      * @var \Shopsys\FrameworkBundle\Model\Category\CategoryFacade
      */
     private $categoryFacade;
+
+    /**
+     * @var \Shopsys\ShopBundle\Model\Customer\CurrentCustomer
+     */
+    private $currentCustomer;
 
     /**
      * @var \Shopsys\FrameworkBundle\Component\Domain\Domain
@@ -78,6 +84,7 @@ class ProductController extends FrontBaseController
     /**
      * @param \Shopsys\FrameworkBundle\Twig\RequestExtension $requestExtension
      * @param \Shopsys\FrameworkBundle\Model\Category\CategoryFacade $categoryFacade
+     * @param \Shopsys\ShopBundle\Model\Customer\CurrentCustomer $currentCustomer
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
      * @param \Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacade $productOnCurrentDomainFacade
      * @param \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterConfigFactory $productFilterConfigFactory
@@ -90,6 +97,7 @@ class ProductController extends FrontBaseController
     public function __construct(
         RequestExtension $requestExtension,
         CategoryFacade $categoryFacade,
+        CurrentCustomer $currentCustomer,
         Domain $domain,
         ProductOnCurrentDomainFacade $productOnCurrentDomainFacade,
         ProductFilterConfigFactory $productFilterConfigFactory,
@@ -101,6 +109,7 @@ class ProductController extends FrontBaseController
     ) {
         $this->requestExtension = $requestExtension;
         $this->categoryFacade = $categoryFacade;
+        $this->currentCustomer = $currentCustomer;
         $this->domain = $domain;
         $this->productOnCurrentDomainFacade = $productOnCurrentDomainFacade;
         $this->productFilterConfigFactory = $productFilterConfigFactory;
@@ -135,6 +144,19 @@ class ProductController extends FrontBaseController
     }
 
     /**
+     * @param \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData $productFilterData
+     */
+    private function applyDiscountForPriceFilter(ProductFilterData $productFilterData)
+    {
+        if ($productFilterData->minimalPrice !== null) {
+            $productFilterData->minimalPrice /= $this->currentCustomer->getDiscountCoeficient();
+        }
+        if ($productFilterData->maximalPrice !== null) {
+            $productFilterData->maximalPrice /= $this->currentCustomer->getDiscountCoeficient();
+        }
+    }
+
+    /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param int $id
      */
@@ -159,6 +181,8 @@ class ProductController extends FrontBaseController
             'product_filter_config' => $productFilterConfig,
         ]);
         $filterForm->handleRequest($request);
+
+        $this->applyDiscountForPriceFilter($productFilterData);
 
         $paginationResult = $this->productOnCurrentDomainFacade->getPaginatedProductDetailsInCategory(
             $productFilterData,
@@ -185,6 +209,7 @@ class ProductController extends FrontBaseController
             'filterFormSubmited' => $filterForm->isSubmitted(),
             'visibleChildren' => $this->categoryFacade->getAllVisibleChildrenByCategoryAndDomainId($category, $this->domain->getId()),
             'priceRange' => $productFilterConfig->getPriceRange(),
+            'discountCoeficient' => $this->currentCustomer->getDiscountCoeficient(),
         ];
 
         if ($request->isXmlHttpRequest()) {
@@ -283,6 +308,7 @@ class ProductController extends FrontBaseController
             'searchText' => $searchText,
             'SEARCH_TEXT_PARAMETER' => self::SEARCH_TEXT_PARAMETER,
             'priceRange' => $productFilterConfig->getPriceRange(),
+            'discountCoeficient' => $this->currentCustomer->getDiscountCoeficient(),
         ];
 
         if ($request->isXmlHttpRequest()) {
