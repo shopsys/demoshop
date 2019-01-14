@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Shopsys\FrameworkBundle\Component\Domain\AdminDomainTabsFacade;
 use Shopsys\FrameworkBundle\Component\Grid\GridFactory;
 use Shopsys\FrameworkBundle\Component\Grid\QueryBuilderDataSource;
+use Shopsys\FrameworkBundle\Component\Router\DomainRouter;
 use Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory;
 use Shopsys\FrameworkBundle\Component\Router\Security\Annotation\CsrfProtection;
 use Shopsys\FrameworkBundle\Controller\Admin\CustomerController as BaseCustomerController;
@@ -432,11 +433,24 @@ class CustomerController extends BaseCustomerController
     }
 
     /**
+     * @param \Shopsys\FrameworkBundle\Component\Router\DomainRouter $domainRouter
+     */
+    private function changeDomainContext(DomainRouter $domainRouter)
+    {
+        $mainAdminDomainHost = $domainRouter->getContext()->getHost();
+        $context = $this->container->get('router')->getContext();
+        $context->setHost($mainAdminDomainHost);
+    }
+
+    /**
      * @param \Shopsys\FrameworkBundle\Model\Customer\User $user
      * @return string
      */
     protected function getSsoLoginAsUserUrl(User $user)
     {
+        $mainAdminDomainRouter = $this->domainRouterFactory->getRouter($user->getDomainId());
+        $this->changeDomainContext($mainAdminDomainRouter);
+
         $loginAsUserUrl = $this->generateUrl(
             'admin_customer_loginasuser',
             [
