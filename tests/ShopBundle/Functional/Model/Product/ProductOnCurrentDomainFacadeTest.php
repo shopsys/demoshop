@@ -8,7 +8,7 @@ use Shopsys\FrameworkBundle\DataFixtures\Demo\FlagDataFixture;
 use Shopsys\FrameworkBundle\Model\Category\Category;
 use Shopsys\FrameworkBundle\Model\Product\Filter\ParameterFilterData;
 use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData;
-use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingModeService;
+use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
 use Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterRepository;
 use Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterValue;
 use Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacade;
@@ -206,9 +206,9 @@ class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTestCase
         $page = 1;
         $limit = PHP_INT_MAX;
 
-        return $productOnCurrentDomainFacade->getPaginatedProductDetailsInCategory(
+        return $productOnCurrentDomainFacade->getPaginatedProductsInCategory(
             $productFilterData,
-            ProductListOrderingModeService::ORDER_BY_NAME_ASC,
+            ProductListOrderingConfig::ORDER_BY_NAME_ASC,
             $page,
             $limit,
             $category->getId()

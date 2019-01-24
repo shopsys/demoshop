@@ -18,6 +18,9 @@ parameters:
     mailer_delivery_whitelist: [/@shopsys\.com$/]
 
     secret: ThisTokenIsNotSoSecretChangeIt
+    trusted_proxies:
+        - "127.0.0.1"
+    env(REDIS_PREFIX): ''
 
     microservice_product_search_url: 'http://microservice-product-search'
     microservice_product_search_export_url: 'http://microservice-product-search-export'

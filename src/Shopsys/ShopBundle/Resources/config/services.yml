@@ -56,8 +56,6 @@ services:
 
     Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface: '@Shopsys\ShopBundle\Model\Customer\CustomerDataFactory'
 
-    Shopsys\FrameworkBundle\Model\Customer\UserFactoryInterface: '@Shopsys\ShopBundle\Model\Customer\UserFactory'
-
     Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface: '@Shopsys\ShopBundle\Model\Customer\UserDataFactory'
 
     Shopsys\ShopBundle\Model\Country\CountryRepository: ~
@@ -70,15 +68,11 @@ services:
 
     Shopsys\ShopBundle\Model\Category\CurrentCategoryResolver: ~
 
-    Shopsys\FrameworkBundle\Model\Product\ProductFactoryInterface: '@Shopsys\ShopBundle\Model\Product\ProductFactory'
-
     Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface: '@Shopsys\ShopBundle\Model\Product\ProductDataFactory'
 
     Shopsys\ProductFeed\GoogleBundle\Model\FeedItem\GoogleFeedItemFactory: '@Shopsys\ShopBundle\Model\Product\Feed\Google\GoogleFeedItemFactory'
 
     League\Flysystem\FilesystemInterface: '@main_filesystem'
-
-    Shopsys\FrameworkBundle\Model\Category\CategoryFactoryInterface: '@Shopsys\ShopBundle\Model\Category\CategoryFactory'
 
     Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface: '@Shopsys\ShopBundle\Model\Category\CategoryDataFactory'
 

@@ -11,6 +11,7 @@ img {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    width: 100%;
 
     &.js-body-filters-open {
         @media @query-tablet {
@@ -32,6 +33,10 @@ img {
     &--window-activated {
         margin-right: @web-scrollbar-size;
         overflow: hidden;
+
+        @media @query-vl {
+            overflow: unset;
+        }
     }
 
     &__in {

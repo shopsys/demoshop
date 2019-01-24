@@ -8,10 +8,11 @@ use Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerFacade as BaseCustomerFacade;
-use Shopsys\FrameworkBundle\Model\Customer\CustomerService;
+use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Customer\Mail\CustomerMailFacade;
 use Shopsys\FrameworkBundle\Model\Customer\UserFactoryInterface;
 use Shopsys\ShopBundle\Model\Customer\Exception\DuplicateEmailsException;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class CustomerFacade extends BaseCustomerFacade
 {
@@ -28,26 +29,28 @@ class CustomerFacade extends BaseCustomerFacade
     /**
      * @param \Doctrine\ORM\EntityManagerInterface $em
      * @param \Shopsys\FrameworkBundle\Model\Customer\UserRepository $userRepository
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerService $customerService
+     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface $customerDataFactory
+     * @param \Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface $encoderFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\Mail\CustomerMailFacade $customerMailFacade
      * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface $billingAddressFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFactoryInterface $deliveryAddressFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface $billingAddressDataFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface $customerDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\UserFactoryInterface $userFactory
      */
     public function __construct(
         EntityManagerInterface $em,
         UserRepository $userRepository,
-        CustomerService $customerService,
+        CustomerDataFactoryInterface $customerDataFactory,
+        EncoderFactoryInterface $encoderFactory,
         CustomerMailFacade $customerMailFacade,
         BillingAddressFactoryInterface $billingAddressFactory,
+        DeliveryAddressFactoryInterface $deliveryAddressFactory,
         BillingAddressDataFactoryInterface $billingAddressDataFactory,
-        CustomerDataFactoryInterface $customerDataFactory,
         UserFactoryInterface $userFactory
     ) {
         $this->customerDataFactory = $customerDataFactory;
         $this->userFactory = $userFactory;
-        parent::__construct($em, $userRepository, $customerService, $customerMailFacade, $billingAddressFactory, $billingAddressDataFactory);
+        parent::__construct($em, $userRepository, $customerDataFactory, $encoderFactory, $customerMailFacade, $billingAddressFactory, $deliveryAddressFactory, $billingAddressDataFactory, $userFactory);
     }
 
     /**
@@ -156,7 +159,12 @@ class CustomerFacade extends BaseCustomerFacade
             $newCompanyUserData->pricingGroup = $companyData->userData->pricingGroup;
             $newCompanyUserData->domainId = $companyData->userData->domainId;
 
-            $user = $this->customerService->create($newCompanyUserData, $billingAddress);
+            $user = $this->userFactory->create(
+                $newCompanyUserData,
+                $billingAddress,
+                null,
+                null
+            );
             $this->em->persist($user);
 
             $toFlush[] = $user;

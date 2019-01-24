@@ -48,7 +48,6 @@ class Bootstrap
         }
 
         $kernel = new AppKernel($this->environment, EnvironmentType::isDebug($this->environment));
-        Request::setTrustedProxies(['127.0.0.1'], Request::HEADER_X_FORWARDED_ALL);
         if ($this->console) {
             $input = new ArgvInput();
             $output = new ConsoleOutput();
@@ -58,6 +57,10 @@ class Bootstrap
             $application->run($input, $output);
         } else {
             $this->initDoctrine();
+
+            $kernel->boot();
+            $trustedProxies = $kernel->getContainer()->getParameter('trusted_proxies');
+            Request::setTrustedProxies($trustedProxies, Request::HEADER_X_FORWARDED_ALL);
 
             $request = Request::createFromGlobals();
             $response = $kernel->handle($request);

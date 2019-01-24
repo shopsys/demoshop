@@ -7,6 +7,7 @@ use Shopsys\FrameworkBundle\Model\Customer\BillingAddress as BaseBillingAddress;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress;
 use Shopsys\FrameworkBundle\Model\Customer\User as BaseUser;
 use Shopsys\FrameworkBundle\Model\Customer\UserData as BaseUserData;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 /**
  * @ORM\Table(
@@ -24,7 +25,7 @@ class User extends BaseUser
 {
     /**
      * @var \Shopsys\ShopBundle\Model\Customer\BillingAddress
-     * @ORM\ManyToOne(targetEntity="Shopsys\ShopBundle\Model\Customer\BillingAddress")
+     * @ORM\ManyToOne(targetEntity="Shopsys\ShopBundle\Model\Customer\BillingAddress", cascade={"persist"})
      * @ORM\JoinColumn(name="billing_address_id", referencedColumnName="id", nullable=false)
      */
     protected $billingAddress;
@@ -39,23 +40,26 @@ class User extends BaseUser
      * @param \Shopsys\ShopBundle\Model\Customer\UserData $userData
      * @param \Shopsys\ShopBundle\Model\Customer\BillingAddress $billingAddress
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress|null $deliveryAddress
+     * @param \Shopsys\ShopBundle\Model\Customer\User|null $userByEmail
      */
     public function __construct(
         BaseUserData $userData,
         BaseBillingAddress $billingAddress,
-        DeliveryAddress $deliveryAddress = null
+        ?DeliveryAddress $deliveryAddress,
+        ?self $userByEmail
     ) {
         $this->discount = $userData->discount;
-        parent::__construct($userData, $billingAddress, $deliveryAddress);
+        parent::__construct($userData, $billingAddress, $deliveryAddress, $userByEmail);
     }
 
     /**
      * @param \Shopsys\ShopBundle\Model\Customer\UserData $userData
+     * @param \Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface $encoderFactory
      */
-    public function edit(BaseUserData $userData)
+    public function edit(BaseUserData $userData, EncoderFactoryInterface $encoderFactory)
     {
         $this->discount = $userData->discount;
-        parent::edit($userData);
+        parent::edit($userData, $encoderFactory);
     }
 
     /**
