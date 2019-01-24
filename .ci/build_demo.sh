@@ -17,6 +17,8 @@ NC="\e[0m"
 DEMO_DOMAIN=$1
 JOB_NAME=${JOB_NAME:-$DEMO_DOMAIN}
 WORKSPACE=${WORKSPACE:-$PWD}
+ELASTICSEARCH_NETWORK=${ELASTICSEARCH_NETWORK:-shared-demo-elasticsearch-network}
+ELASTICSEARCH_CONTAINER=${ELASTICSEARCH_CONTAINER:-shared-demo-elasticsearch-instance}
 
 if [[ ! "$DEMO_DOMAIN" =~ ^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$ ]]; then
     echo -e "${RED}Invalid demo domain!${NC}"
@@ -48,10 +50,48 @@ for DOMAIN_ID in $DOMAIN_IDS; do
     fi
 done
 
+echo -e "${BLUE}Connecting to shared elasticsearch instance...${NC}"
+
+NETWORK_CONNECTION_REQUIRED='false'
+
+if docker network create "$ELASTICSEARCH_NETWORK" &> /dev/null; then
+    echo "A network $ELASTICSEARCH_NETWORK has been created."
+    NETWORK_CONNECTION_REQUIRED='true'
+else
+    echo "The network $ELASTICSEARCH_NETWORK already exists."
+fi
+
+if [[ -z "$(docker ps -q -f name="$ELASTICSEARCH_CONTAINER")" ]]; then
+    echo "Creating a shared elasticsearch container $ELASTICSEARCH_CONTAINER..."
+    docker run --name "$ELASTICSEARCH_CONTAINER" --ulimit "nofile=65536:65536" --env "discovery.type=single-node" -d "docker.elastic.co/elasticsearch/elasticsearch-oss:6.3.2"
+    echo "The elasticsearch container has been created."
+    NETWORK_CONNECTION_REQUIRED='true'
+else
+    echo "The elasticsearch container $ELASTICSEARCH_CONTAINER already exists."
+fi
+
+if [[ "$NETWORK_CONNECTION_REQUIRED" == 'true' ]]; then
+    echo "Connecting the container to the network...."
+    docker network connect "$ELASTICSEARCH_NETWORK" "$ELASTICSEARCH_CONTAINER"
+fi
+
+ELASTICSEARCH_IP=$(docker inspect -f "{{ with (index .NetworkSettings.Networks \"$ELASTICSEARCH_NETWORK\") }}{{ .IPAddress }}{{ end }}" "$ELASTICSEARCH_CONTAINER")
+if [[ -z "$ELASTICSEARCH_IP" ]]; then
+    echo -e "${RED}The IP address of the elasticsearch container inside the shared network could not be obtained!${NC}"
+    exit 1
+else
+    echo -e "The IP address of ${BLUE}$ELASTICSEARCH_CONTAINER${NC} inside ${BLUE}$ELASTICSEARCH_NETWORK${NC} is ${BLUE}$ELASTICSEARCH_IP${NC}"
+fi
+
 # Copy the demo Docker Compose configuration
 cp docker/conf/docker-compose.demo.yml.dist docker-compose.yml
 
 echo -e "${BLUE}Building Docker images and starting up the containers...${NC}"
+
+# Export variables used in Docker Compose configuration
+export JOB_NAME
+export ELASTICSEARCH_NETWORK
+export ELASTICSEARCH_IP
 
 # Build the Docker image and start the containers
 docker-compose up --build --force-recreate -d

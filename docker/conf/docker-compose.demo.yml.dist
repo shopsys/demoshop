@@ -34,20 +34,28 @@ services:
     smtp-server:
         image: namshi/smtp:latest
 
-    elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.3.2
-        ulimits:
-            nofile:
-                soft: 65536
-                hard: 65536
-        environment:
-            - discovery.type=single-node
-
     microservice-product-search:
-        image: shopsys/microservice-product-search:v7.0.0-beta4
+        image: shopsys/microservice-product-search:v7.0.0-beta5
+        environment:
+            - ELASTICSEARCH_HOSTS_STRING=$ELASTICSEARCH_IP:9200
+            - ELASTIC_SEARCH_INDEX_PREFIX=$JOB_NAME-
+        networks:
+            - default
+            - shared-elastic
 
     microservice-product-search-export:
-        image: shopsys/microservice-product-search-export:v7.0.0-beta4
+        image: shopsys/microservice-product-search-export:v7.0.0-beta5
+        environment:
+            - ELASTICSEARCH_HOSTS_STRING=$ELASTICSEARCH_IP:9200
+            - ELASTIC_SEARCH_INDEX_PREFIX=$JOB_NAME-
+        networks:
+            - default
+            - shared-elastic
 
 volumes:
-  web-volume: ~
+    web-volume: ~
+
+networks:
+    shared-elastic:
+        external:
+            name: ${ELASTICSEARCH_NETWORK:-shared-demo-elasticsearch-network}
