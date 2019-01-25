@@ -41,7 +41,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Shopsys\FrameworkBundle\DataFixtures\Demo\MailTemplateDataFixture blocked from loading, because its overridden in ShopBundle 
     - Shopsys\FrameworkBundle\DataFixtures\Demo\MultidomainMailTemplateDataFixture blocked from loading, because its overridden in ShopBundle
     - fixed wrong links in mail template data fixtures
-- [#27 - Upgrade to shopsys framework 7.0.0-beta5](https://github.com/shopsys/demoshop/pull/33)
+- [#33 - Upgrade demoshop to version beta5](https://github.com/shopsys/demoshop/pull/33)
     - added the ability to deploy to Google Cloud using Terraform, Kustomize and Kubernetes 
     - updated `.dockerignore` so it ignores infrastructure, and .ci folders and docker/nginx directory is not excluded during building php-fpm image
     - removed `--verbose` from esc phing targets as the package was upgraded and now outputs name of each file checked in the verbose mode
