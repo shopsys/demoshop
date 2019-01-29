@@ -16,11 +16,6 @@ services:
         arguments:
             - "%shopsys.entity_extension.map%"
 
-    Shopsys\FrameworkBundle\Model\Product\ProductFactoryInterface:
-        alias: Shopsys\ShopBundle\Model\Product\ProductFactory
-
-    Shopsys\ShopBundle\Model\Product\ProductFactory: ~
-
     Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Product\ProductDataFactory
 
@@ -38,9 +33,6 @@ services:
 
     League\Flysystem\FilesystemInterface: '@main_filesystem'
 
-    Shopsys\FrameworkBundle\Model\Category\CategoryFactoryInterface:
-        alias: Shopsys\ShopBundle\Model\Category\CategoryFactory
-
     Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Category\CategoryDataFactory
 
@@ -49,8 +41,6 @@ services:
 
     Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory
-
-    Shopsys\ShopBundle\Model\Category\CategoryFactory: ~
 
     Shopsys\ShopBundle\Model\Category\CategoryDataFactory: ~
 

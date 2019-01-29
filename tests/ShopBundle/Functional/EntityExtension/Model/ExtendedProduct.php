@@ -4,6 +4,7 @@ namespace Tests\ShopBundle\Functional\EntityExtension\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomainFactoryInterface;
 use Shopsys\ShopBundle\Model\Product\Product;
 use Shopsys\ShopBundle\Model\Product\ProductData;
 
@@ -124,11 +125,12 @@ class ExtendedProduct extends Product
 
     /**
      * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
+     * @param \Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomainFactoryInterface $productCategoryDomainFactory
      * @param \Shopsys\ShopBundle\Model\Product\Product[]|null $variants
      */
-    protected function __construct(ProductData $productData, array $variants = null)
+    protected function __construct(ProductData $productData, ProductCategoryDomainFactoryInterface $productCategoryDomainFactory, array $variants = null)
     {
-        parent::__construct($productData, $variants);
+        parent::__construct($productData, $productCategoryDomainFactory, $variants);
         $this->oneToManyBidirectionalEntities = new ArrayCollection();
         $this->oneToManyUnidirectionalWithJoinTableEntities = new ArrayCollection();
         $this->oneToManySelfReferencingEntities = new ArrayCollection();

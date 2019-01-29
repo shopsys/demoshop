@@ -7,20 +7,21 @@ use Shopsys\FrameworkBundle\DataFixtures\Demo\PricingGroupDataFixture;
 use Shopsys\FrameworkBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Model\Cart\Cart;
 use Shopsys\FrameworkBundle\Model\Cart\Item\CartItem;
-use Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcherService;
+use Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcher;
 use Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerIdentifier;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductManualInputPriceFacade;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser;
+use Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomainFactory;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibility;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository;
 use Shopsys\ShopBundle\Model\Product\Product;
 use Shopsys\ShopBundle\Model\Product\ProductDataFactory;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
-class CartWatcherServiceTest extends TransactionFunctionalTestCase
+class CartWatcherTest extends TransactionFunctionalTestCase
 {
     public function testGetModifiedPriceItemsAndUpdatePrices()
     {
@@ -37,10 +38,10 @@ class CartWatcherServiceTest extends TransactionFunctionalTestCase
         $cartItems = [$cartItem];
         $cart = new Cart($cartItems);
 
-        /** @var \Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcherService $cartWatcherService */
-        $cartWatcherService = $this->getContainer()->get(CartWatcherService::class);
+        /** @var \Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcher $cartWatcher */
+        $cartWatcher = $this->getContainer()->get(CartWatcher::class);
 
-        $modifiedItems1 = $cartWatcherService->getModifiedPriceItemsAndUpdatePrices($cart);
+        $modifiedItems1 = $cartWatcher->getModifiedPriceItemsAndUpdatePrices($cart);
         $this->assertEmpty($modifiedItems1);
 
         $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
@@ -49,10 +50,10 @@ class CartWatcherServiceTest extends TransactionFunctionalTestCase
         $manualInputPriceFacade = $this->getContainer()->get(ProductManualInputPriceFacade::class);
         $manualInputPriceFacade->refresh($product, $pricingGroup, '10');
 
-        $modifiedItems2 = $cartWatcherService->getModifiedPriceItemsAndUpdatePrices($cart);
+        $modifiedItems2 = $cartWatcher->getModifiedPriceItemsAndUpdatePrices($cart);
         $this->assertNotEmpty($modifiedItems2);
 
-        $modifiedItems3 = $cartWatcherService->getModifiedPriceItemsAndUpdatePrices($cart);
+        $modifiedItems3 = $cartWatcher->getModifiedPriceItemsAndUpdatePrices($cart);
         $this->assertEmpty($modifiedItems3);
     }
 
@@ -76,10 +77,10 @@ class CartWatcherServiceTest extends TransactionFunctionalTestCase
         $cartItems = [$cartItemMock];
         $cart = new Cart($cartItems);
 
-        $cartWatcherService = $this->getContainer()->get(CartWatcherService::class);
-        /* @var $cartWatcherService \Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcherService */
+        $cartWatcher = $this->getContainer()->get(CartWatcher::class);
+        /* @var $cartWatcher \Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcher */
 
-        $notListableItems = $cartWatcherService->getNotListableItems($cart, $currentCustomerMock);
+        $notListableItems = $cartWatcher->getNotListableItems($cart, $currentCustomerMock);
         $this->assertCount(1, $notListableItems);
     }
 
@@ -94,7 +95,7 @@ class CartWatcherServiceTest extends TransactionFunctionalTestCase
         $vatData->name = 'vat';
         $vatData->percent = 21;
         $productData->vat = new Vat($vatData);
-        $product = Product::create($productData);
+        $product = Product::create($productData, new ProductCategoryDomainFactory());
 
         $cartItemMock = $this->getMockBuilder(CartItem::class)
             ->disableOriginalConstructor()
@@ -136,12 +137,12 @@ class CartWatcherServiceTest extends TransactionFunctionalTestCase
         $productPriceCalculationForUser = $this->getContainer()->get(ProductPriceCalculationForUser::class);
         $domain = $this->getContainer()->get(Domain::class);
 
-        $cartWatcherService = new CartWatcherService($productPriceCalculationForUser, $productVisibilityRepositoryMock, $domain);
+        $cartWatcher = new CartWatcher($productPriceCalculationForUser, $productVisibilityRepositoryMock, $domain);
 
         $cartItems = [$cartItemMock];
         $cart = new Cart($cartItems);
 
-        $notListableItems = $cartWatcherService->getNotListableItems($cart, $currentCustomerMock);
+        $notListableItems = $cartWatcher->getNotListableItems($cart, $currentCustomerMock);
         $this->assertCount(1, $notListableItems);
     }
 }

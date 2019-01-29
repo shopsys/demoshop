@@ -4,7 +4,6 @@ namespace Shopsys\ShopBundle\Model\Product\Pricing;
 
 use Shopsys\FrameworkBundle\Model\Pricing\BasePriceCalculation;
 use Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup;
-use Shopsys\FrameworkBundle\Model\Pricing\PricingService;
 use Shopsys\FrameworkBundle\Model\Pricing\PricingSetting;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductManualInputPriceRepository;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPrice;
@@ -35,31 +34,23 @@ class ProductPriceCalculation extends BaseProductPriceCalculation
     private $productRepository;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Pricing\PricingService
-     */
-    private $pricingService;
-
-    /**
      * @param \Shopsys\FrameworkBundle\Model\Pricing\BasePriceCalculation $basePriceCalculation
      * @param \Shopsys\FrameworkBundle\Model\Pricing\PricingSetting $pricingSetting
      * @param \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductManualInputPriceRepository $productManualInputPriceRepository
      * @param \Shopsys\FrameworkBundle\Model\Product\ProductRepository $productRepository
-     * @param \Shopsys\FrameworkBundle\Model\Pricing\PricingService $pricingService
      */
     public function __construct(
         BasePriceCalculation $basePriceCalculation,
         PricingSetting $pricingSetting,
         ProductManualInputPriceRepository $productManualInputPriceRepository,
-        ProductRepository $productRepository,
-        PricingService $pricingService
+        ProductRepository $productRepository
     ) {
-        parent::__construct($basePriceCalculation, $pricingSetting, $productManualInputPriceRepository, $productRepository, $pricingService);
+        parent::__construct($basePriceCalculation, $pricingSetting, $productManualInputPriceRepository, $productRepository);
 
         $this->pricingSetting = $pricingSetting;
         $this->basePriceCalculation = $basePriceCalculation;
         $this->productManualInputPriceRepository = $productManualInputPriceRepository;
         $this->productRepository = $productRepository;
-        $this->pricingService = $pricingService;
     }
 
     /**
@@ -102,8 +93,8 @@ class ProductPriceCalculation extends BaseProductPriceCalculation
             $variantPrices[] = $this->calculatePrice($variant, $domainId, $pricingGroup, $discountCoeficient);
         }
 
-        $minVariantPrice = $this->pricingService->getMinimumPriceByPriceWithoutVat($variantPrices);
-        $from = $this->pricingService->arePricesDifferent($variantPrices);
+        $minVariantPrice = $this->getMinimumPriceByPriceWithoutVat($variantPrices);
+        $from = $this->arePricesDifferent($variantPrices);
 
         return new ProductPrice($minVariantPrice, $from);
     }

@@ -2,9 +2,9 @@
 
 namespace Tests\ShopBundle\Functional\Model\Category;
 
+use Shopsys\FrameworkBundle\Model\Category\CategoryFactory;
 use Shopsys\ShopBundle\Model\Category\Category;
 use Shopsys\ShopBundle\Model\Category\CategoryDataFactory;
-use Shopsys\ShopBundle\Model\Category\CategoryFactory;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CategoryDomainTest extends TransactionFunctionalTestCase
@@ -21,7 +21,7 @@ class CategoryDomainTest extends TransactionFunctionalTestCase
     private $categoryDataFactory;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Category\CategoryFactory
+     * @var \Shopsys\FrameworkBundle\Model\Category\CategoryFactory
      */
     private $categoryFactory;
 
@@ -44,7 +44,7 @@ class CategoryDomainTest extends TransactionFunctionalTestCase
 
         $categoryData->enabled[self::FIRST_DOMAIN_ID] = true;
 
-        $category = $this->categoryFactory->create($categoryData);
+        $category = $this->categoryFactory->create($categoryData, null);
 
         $refreshedCategory = $this->getRefreshedCategoryFromDatabase($category);
 
@@ -57,7 +57,7 @@ class CategoryDomainTest extends TransactionFunctionalTestCase
 
         $categoryData->enabled[self::FIRST_DOMAIN_ID] = false;
 
-        $category = $this->categoryFactory->create($categoryData);
+        $category = $this->categoryFactory->create($categoryData, null);
 
         $refreshedCategory = $this->getRefreshedCategoryFromDatabase($category);
 
@@ -74,7 +74,7 @@ class CategoryDomainTest extends TransactionFunctionalTestCase
         $categoryData->enabled[self::FIRST_DOMAIN_ID] = true;
         $categoryData->enabled[self::SECOND_DOMAIN_ID] = false;
 
-        $category = $this->categoryFactory->create($categoryData);
+        $category = $this->categoryFactory->create($categoryData, null);
 
         $refreshedCategory = $this->getRefreshedCategoryFromDatabase($category);
 
@@ -93,7 +93,7 @@ class CategoryDomainTest extends TransactionFunctionalTestCase
         $categoryData->seoMetaDescriptions[self::SECOND_DOMAIN_ID] = self::DEMONSTRATIVE_SEO_META_DESCRIPTION;
         $categoryData->seoH1s[self::FIRST_DOMAIN_ID] = self::DEMONSTRATIVE_SEO_H1;
 
-        $category = $this->categoryFactory->create($categoryData);
+        $category = $this->categoryFactory->create($categoryData, null);
 
         $refreshedCategory = $this->getRefreshedCategoryFromDatabase($category);
 
@@ -116,7 +116,7 @@ class CategoryDomainTest extends TransactionFunctionalTestCase
         $categoryData->seoMetaDescriptions[self::FIRST_DOMAIN_ID] = self::DEMONSTRATIVE_SEO_META_DESCRIPTION;
         $categoryData->seoH1s[self::FIRST_DOMAIN_ID] = self::DEMONSTRATIVE_SEO_H1;
 
-        $category = $this->categoryFactory->create($categoryData);
+        $category = $this->categoryFactory->create($categoryData, null);
 
         $refreshedCategory = $this->getRefreshedCategoryFromDatabase($category);
 

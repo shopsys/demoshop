@@ -8,7 +8,7 @@ use Shopsys\FrameworkBundle\DataFixtures\Demo\PricingGroupDataFixture;
 use Shopsys\FrameworkBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Model\Category\Category;
 use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData;
-use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingModeService;
+use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
 use Shopsys\FrameworkBundle\Model\Product\ProductRepository;
 use Shopsys\ShopBundle\Model\Product\Product;
@@ -192,6 +192,35 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
         $this->assertSame($product2, $results[1]);
     }
 
+    public function testGetSortedProductsByIds()
+    {
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductRepository $productRepository */
+        $productRepository = $this->getContainer()->get(ProductRepository::class);
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+        /** @var \Shopsys\FrameworkBundle\Component\Domain\Domain $domain */
+        $domain = $this->getContainer()->get(Domain::class);
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        $product1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 1);
+        $product2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 2);
+        $product3 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 3);
+        $product4 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 4);
+        $sortedProducts = [
+            $product4,
+            $product1,
+            $product3,
+            $product2,
+        ];
+        $sortedProductIds = [
+            $product4->getId(),
+            $product1->getId(),
+            $product3->getId(),
+            $product2->getId(),
+        ];
+        $results = $productRepository->getOfferedByIds($domain->getId(), $pricingGroup, $sortedProductIds);
+        $this->assertSame($sortedProducts, $results);
+    }
+
     /**
      * @param \Shopsys\ShopBundle\Model\Product\Product $product
      * @param int $priority
@@ -224,7 +253,7 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
             1,
             'cs',
             new ProductFilterData(),
-            ProductListOrderingModeService::ORDER_BY_PRIORITY,
+            ProductListOrderingConfig::ORDER_BY_PRIORITY,
             $pricingGroup,
             1,
             PHP_INT_MAX
@@ -249,7 +278,7 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
             1,
             'cs',
             new ProductFilterData(),
-            ProductListOrderingModeService::ORDER_BY_PRIORITY,
+            ProductListOrderingConfig::ORDER_BY_PRIORITY,
             $pricingGroup,
             1,
             PHP_INT_MAX

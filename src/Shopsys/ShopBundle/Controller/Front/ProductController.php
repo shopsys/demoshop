@@ -184,7 +184,7 @@ class ProductController extends FrontBaseController
 
         $this->applyDiscountForPriceFilter($productFilterData);
 
-        $paginationResult = $this->productOnCurrentDomainFacade->getPaginatedProductDetailsInCategory(
+        $paginationResult = $this->productOnCurrentDomainFacade->getPaginatedProductsInCategory(
             $productFilterData,
             $orderingModeId,
             $page,
@@ -237,7 +237,7 @@ class ProductController extends FrontBaseController
             $request
         );
 
-        $paginationResult = $this->productOnCurrentDomainFacade->getPaginatedProductDetailsForBrand(
+        $paginationResult = $this->productOnCurrentDomainFacade->getPaginatedProductsForBrand(
             $orderingModeId,
             $page,
             self::PRODUCTS_PER_PAGE,
@@ -283,7 +283,7 @@ class ProductController extends FrontBaseController
         ]);
         $filterForm->handleRequest($request);
 
-        $paginationResult = $this->productOnCurrentDomainFacade->getPaginatedProductDetailsForSearch(
+        $paginationResult = $this->productOnCurrentDomainFacade->getPaginatedProductsForSearch(
             $searchText,
             $productFilterData,
             $orderingModeId,
