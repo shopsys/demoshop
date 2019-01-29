@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 ### Added
+- [#34 - Ability to install demo instances](https://github.com/shopsys/demoshop/pull/34)
 - [#7 - Product now has condition attribute that is displayed on product detail page and is generated in google feed](https://github.com/shopsys/demoshop/pull/7)
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
 - [#9 - Introduced a quick way to improve performance by caching in twig templates](https://github.com/shopsys/demoshop/pull/9)
