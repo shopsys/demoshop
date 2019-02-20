@@ -3,8 +3,29 @@
     Shopsys = window.Shopsys || {};
     Shopsys.login = Shopsys.login || {};
 
-    Shopsys.login.init = function () {
-        $('body').on('submit', '.js-front-login-window', function () {
+    Shopsys.login.Login = function () {
+
+        this.init = function ($loginButton) {
+            $loginButton.click(showWindow);
+        };
+
+        function showWindow (event) {
+            Shopsys.ajax({
+                url: $(this).data('url'),
+                type: 'POST',
+                success: function (data) {
+                    var $window = Shopsys.window({
+                        content: data
+                    });
+
+                    $window.on('submit', '.js-front-login-window', onSubmit);
+                }
+            });
+
+            event.preventDefault();
+        }
+
+        function onSubmit () {
             $('.js-front-login-window-message').empty();
             Shopsys.ajax({
                 loaderElement: '.js-front-login-window',
@@ -18,17 +39,17 @@
 
                         document.location = data.urlToRedirect;
                     } else {
-                        $('.js-front-login-window-message')
-                            .text(Shopsys.translator.trans('Invalid login'))
-                            .show();
+                        var $validationErrors = $('.js-window-validation-errors');
+                        if ($validationErrors.hasClass('display-none')) {
+                            $validationErrors
+                                .text(Shopsys.translator.trans('This account doesn\'t exist or password is incorrect'))
+                                .show();
+                        }
                     }
                 }
             });
             return false;
-        });
-        $('body').on('focus', '.js-front-login-window', function () {
-            $('.js-front-login-window-message').empty().hide();
-        });
+        }
     };
 
     $(document).ready(function () {
