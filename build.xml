@@ -58,7 +58,7 @@
     <target name="build-demo" depends="wipe,redis-check,clean-redis,composer,npm,dirs-create,assets,db-demo,grunt,error-pages-generate,warmup,product-search-recreate-structure" description="Builds application for production with clean demo DB."/>
     <target name="db-demo" depends="db-wipe-public-schema,db-import-basic-structure,db-migrations,create-domains-data,db-fixtures-demo,load-plugin-demo-data,generate-friendly-urls,replace-domains-urls" description="Creates DB and fills it with demo data"/>
     <target name="db-rebuild" depends="db-wipe-public-schema,db-import-basic-structure,db-migrations,create-domains-data,generate-friendly-urls,replace-domains-urls" description="Drops all data in database and creates a new one with base data only."/>
-    <target name="microservice-product-search-recreate-structure" depends="microservice-product-search-delete-structure,microservice-product-search-create-structure" description="Recreates Elasticsearch indexes structure (deletes existing structure and creates new one)" />
+    <target name="product-search-recreate-structure" depends="product-search-delete-structure,product-search-create-structure" description="Recreates structure for searching via elasticsearch (deletes existing structure and creates new one)" />
 
     <target name="assets" description="Installs web assets from external bundles into a public web directory.">
         <exec executable="${path.php.executable}" passthru="true" checkreturn="true" output="${dev.null}">
@@ -141,27 +141,6 @@
         <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
             <arg value="${path.bin-console}" />
             <arg value="shopsys:domains-db-functions:create" />
-        </exec>
-    </target>
-
-    <target name="microservice-product-search-create-structure" description="Creates Elasticsearch indexes structure.">
-        <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
-            <arg value="${path.bin-console}" />
-            <arg value="shopsys:microservice:product-search:create-structure" />
-        </exec>
-    </target>
-
-    <target name="microservice-product-search-delete-structure" description="Deletes Elasticsearch indexes structure.">
-        <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
-            <arg value="${path.bin-console}" />
-            <arg value="shopsys:microservice:product-search:delete-structure" />
-        </exec>
-    </target>
-
-    <target name="microservice-product-search-export-products" description="Exports all products to Elasticsearch.">
-        <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
-            <arg value="${path.bin-console}" />
-            <arg value="shopsys:microservice:product-search:export-products" />
         </exec>
     </target>
 
@@ -347,6 +326,27 @@
         <delete failonerror="false" includeemptydirs="true">
             <fileset dir="${path.var}/logs/" />
         </delete>
+    </target>
+
+    <target name="product-search-create-structure" description="Creates structure for searching via elasticsearch.">
+        <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
+            <arg value="${path.bin-console}" />
+            <arg value="shopsys:product-search:create-structure" />
+        </exec>
+    </target>
+
+    <target name="product-search-delete-structure" description="Deletes structure for searching via elasticsearch.">
+        <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
+            <arg value="${path.bin-console}" />
+            <arg value="shopsys:product-search:delete-structure" />
+        </exec>
+    </target>
+
+    <target name="product-search-export-products" description="Exports all products for searching via elasticsearch.">
+        <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
+            <arg value="${path.bin-console}" />
+            <arg value="shopsys:product-search:export-products" />
+        </exec>
     </target>
 
     <target name="wipe-excluding-logs" depends="clean,clean-styles" description="Wipes out all generated and/or uploaded files except for logs.">

@@ -127,7 +127,7 @@ echo -e "${BLUE}Building the application...${NC}"
 sleep 10
 
 # Build the application inside php-fpm container
-docker-compose exec -T php-fpm ./phing db-create db-demo grunt error-pages-generate microservice-product-search-recreate-structure microservice-product-search-export-products warmup
+docker-compose exec -T php-fpm ./phing db-create db-demo grunt error-pages-generate warmup
 
 # Display success message and available domains
 echo -e "${GREEN}Demo-shop \"$DEMO_DOMAIN\" successfully created!${NC}"

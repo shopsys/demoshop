@@ -85,22 +85,10 @@ services:
         environment:
             - discovery.type=single-node
 
-    microservice-product-search:
-        image: shopsys/microservice-product-search:v7.0.0-beta5
-        container_name: shopsys-framework-microservice-product-search
-
-    microservice-product-search-export:
-        image: shopsys/microservice-product-search-export:v7.0.0-beta5
-        container_name: shopsys-framework-microservice-product-search-export
-
 volumes:
     pgdata:
         driver: local
     elasticsearch-data:
         driver: local
     shopsys-framework-sync:
-        external: true
-    shopsys-framework-vendor-sync:
-        external: true
-    shopsys-framework-web-sync:
         external: true

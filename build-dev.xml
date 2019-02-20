@@ -710,12 +710,4 @@
             <arg value="--parse-tags" />
         </exec>
     </target>
-
-    <target name="microservices-check" description="Checks availability of Microservices.">
-        <exec executable="${path.php.executable}" passthru="true" checkreturn="true">
-            <arg value="${path.bin-console}" />
-            <arg value="shopsys:microservices-check" />
-        </exec>
-    </target>
-
 </project>
