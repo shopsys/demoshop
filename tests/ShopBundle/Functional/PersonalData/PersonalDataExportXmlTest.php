@@ -68,7 +68,8 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $countryData = new CountryData();
         $countryData->name = 'Czech Republic';
         $countryData->code = 'CZ';
-        $country = new Country($countryData, self::DOMAIN_ID_FIRST);
+        $countryData->enabled = [1 => true];
+        $country = new Country($countryData);
 
         return $country;
     }

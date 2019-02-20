@@ -16,22 +16,22 @@ class ProductPriceCalculation extends BaseProductPriceCalculation
     /**
      * @var \Shopsys\FrameworkBundle\Model\Pricing\BasePriceCalculation
      */
-    private $basePriceCalculation;
+    protected $basePriceCalculation;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Pricing\PricingSetting
      */
-    private $pricingSetting;
+    protected $pricingSetting;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductManualInputPriceRepository
      */
-    private $productManualInputPriceRepository;
+    protected $productManualInputPriceRepository;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\ProductRepository
      */
-    private $productRepository;
+    protected $productRepository;
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Pricing\BasePriceCalculation $basePriceCalculation
