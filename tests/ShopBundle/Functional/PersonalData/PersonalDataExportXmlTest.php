@@ -12,7 +12,7 @@ use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressData;
 use Shopsys\FrameworkBundle\Model\Customer\User;
 use Shopsys\FrameworkBundle\Model\Customer\UserData;
-use Shopsys\FrameworkBundle\Model\Order\Item\OrderProduct;
+use Shopsys\FrameworkBundle\Model\Order\Item\OrderItem;
 use Shopsys\FrameworkBundle\Model\Order\Order;
 use Shopsys\FrameworkBundle\Model\Order\OrderData;
 use Shopsys\FrameworkBundle\Model\Order\Status\OrderStatus;
@@ -42,7 +42,8 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $order = $this->createOrder($currency, $status, $country);
         $product = $this->createMock(Product::class);
         $price = new Price(1, 1);
-        $orderItem = new OrderProduct($order, 'test', $price, 1, 1, 'ks', 'cat', $product);
+        $orderItem = new OrderItem($order, 'test', $price, 1, 1, OrderItem::TYPE_PRODUCT, 'ks', 'cat');
+        $orderItem->setProduct($product);
         $order->addItem($orderItem);
         $order->setStatus($status);
 
@@ -68,7 +69,8 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $countryData = new CountryData();
         $countryData->name = 'Czech Republic';
         $countryData->code = 'CZ';
-        $country = new Country($countryData, self::DOMAIN_ID_FIRST);
+        $countryData->enabled = [1 => true];
+        $country = new Country($countryData);
 
         return $country;
     }

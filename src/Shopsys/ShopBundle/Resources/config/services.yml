@@ -40,6 +40,8 @@ services:
 
     Shopsys\ShopBundle\Form\Front\Order\DomainAwareOrderFlowFactory: ~
 
+    Shopsys\FrameworkBundle\Model\Order\Item\OrderItemDataFactoryInterface: '@Shopsys\ShopBundle\Model\Order\Item\OrderItemDataFactory'
+
     # Don't load data fixtures from FrameworkBundle, because they are overridden in ShopBundle
     Shopsys\FrameworkBundle\DataFixtures\Demo\MailTemplateDataFixture: ~
     Shopsys\FrameworkBundle\DataFixtures\Demo\MultidomainMailTemplateDataFixture: ~

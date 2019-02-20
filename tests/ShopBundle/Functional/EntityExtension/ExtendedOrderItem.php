@@ -1,22 +1,13 @@
 <?php
-
 namespace Tests\ShopBundle\Functional\EntityExtension\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItem;
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="order_items")
- * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({
- *     "payment" = "\Tests\ShopBundle\Functional\EntityExtension\Model\ExtendedOrderPayment",
- *     "product" = "\Tests\ShopBundle\Functional\EntityExtension\Model\ExtendedOrderProduct",
- *     "transport" = "\Tests\ShopBundle\Functional\EntityExtension\Model\ExtendedOrderTransport"
- * })
  */
-abstract class ExtendedOrderItem extends OrderItem
+class ExtendedOrderItem extends OrderItem
 {
     /**
      * @var string|null
@@ -24,7 +15,6 @@ abstract class ExtendedOrderItem extends OrderItem
      * @ORM\Column(type="string", nullable=true)
      */
     protected $stringField;
-
     /**
      * @return string|null
      */
@@ -32,7 +22,6 @@ abstract class ExtendedOrderItem extends OrderItem
     {
         return $this->stringField;
     }
-
     /**
      * @param string|null $stringField
      */
