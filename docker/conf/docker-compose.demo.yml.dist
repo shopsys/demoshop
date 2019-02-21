@@ -27,6 +27,9 @@ services:
             target: production
         volumes:
             - web-volume:/var/www/html/web
+        networks:
+            - default
+            - shared-elastic
 
     redis:
         image: redis:4.0-alpine

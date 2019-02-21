@@ -170,7 +170,7 @@ class OrderController extends FrontBaseController
         $flashMessageBag = $this->get('shopsys.shop.component.flash_message.bag.front');
         /* @var $flashMessageBag \Shopsys\FrameworkBundle\Component\FlashMessage\Bag */
 
-        $cart = $this->cartFacade->getCartOfCurrentCustomer();
+        $cart = $this->cartFacade->getCartOfCurrentCustomerCreateIfNotExists();
         if ($cart->isEmpty()) {
             return $this->redirectToRoute('front_cart');
         }

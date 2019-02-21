@@ -86,3 +86,7 @@ services:
 volumes:
     shopsys-framework-sync:
         external: true
+    shopsys-framework-vendor-sync:
+        external: true
+    shopsys-framework-web-sync:
+        external: true
