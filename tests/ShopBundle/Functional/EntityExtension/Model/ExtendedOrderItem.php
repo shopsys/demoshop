@@ -1,8 +1,10 @@
 <?php
+
 namespace Tests\ShopBundle\Functional\EntityExtension\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItem;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="order_items")
@@ -15,6 +17,7 @@ class ExtendedOrderItem extends OrderItem
      * @ORM\Column(type="string", nullable=true)
      */
     protected $stringField;
+
     /**
      * @return string|null
      */
@@ -22,6 +25,7 @@ class ExtendedOrderItem extends OrderItem
     {
         return $this->stringField;
     }
+
     /**
      * @param string|null $stringField
      */
