@@ -76,7 +76,7 @@ class LoadORMMetadataSubscriber extends BaseLoadORMMetadataSubscriber
      * @param string $parentClassName
      * @return bool
      */
-    private function checkIsOverriddenPropertyInChildClass(array $overiddingClassProperties, $parentClassPropertyName, $parentClassName)
+    protected function checkIsOverriddenPropertyInChildClass(array $overiddingClassProperties, $parentClassPropertyName, $parentClassName)
     {
         foreach ($overiddingClassProperties as $overiddingClassProperty) {
             if ($overiddingClassProperty->name === $parentClassPropertyName && $overiddingClassProperty->class === $parentClassName) {

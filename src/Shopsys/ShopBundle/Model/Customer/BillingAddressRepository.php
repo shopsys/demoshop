@@ -23,7 +23,7 @@ class BillingAddressRepository
     /**
      * @return \Doctrine\ORM\EntityRepository
      */
-    private function getBillingAddressRepository()
+    protected function getBillingAddressRepository()
     {
         return $this->em->getRepository(BillingAddress::class);
     }

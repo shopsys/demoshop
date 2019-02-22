@@ -11,7 +11,7 @@ class GoogleFeedItem extends BaseGoogleFeedItem
     /**
      * @var string
      */
-    private $condition;
+    protected $condition;
 
     /**
      * @param int $id
