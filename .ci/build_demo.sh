@@ -18,6 +18,7 @@ DEMO_DOMAIN=$1
 JOB_NAME=${JOB_NAME:-$DEMO_DOMAIN}
 WORKSPACE=${WORKSPACE:-$PWD}
 ELASTICSEARCH_NETWORK=${ELASTICSEARCH_NETWORK:-shared-demo-elasticsearch-network}
+ELASTICSEARCH_INDEX_PREFIX=${JOB_NAME}
 ELASTICSEARCH_CONTAINER=${ELASTICSEARCH_CONTAINER:-shared-demo-elasticsearch-instance}
 
 if [[ ! "$DEMO_DOMAIN" =~ ^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$ ]]; then
@@ -91,6 +92,7 @@ echo -e "${BLUE}Building Docker images and starting up the containers...${NC}"
 # Export variables used in Docker Compose configuration
 export JOB_NAME
 export ELASTICSEARCH_NETWORK
+export ELASTICSEARCH_INDEX_PREFIX
 export ELASTICSEARCH_IP
 
 # Build the Docker image and start the containers
@@ -127,7 +129,7 @@ echo -e "${BLUE}Building the application...${NC}"
 sleep 10
 
 # Build the application inside php-fpm container
-docker-compose exec -T php-fpm ./phing db-create db-demo grunt error-pages-generate warmup
+docker-compose exec -T php-fpm ./phing db-create db-demo grunt error-pages-generate product-search-recreate-structure product-search-export-products warmup
 
 # Display success message and available domains
 echo -e "${GREEN}Demo-shop \"$DEMO_DOMAIN\" successfully created!${NC}"

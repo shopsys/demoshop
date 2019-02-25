@@ -30,6 +30,8 @@ services:
         networks:
             - default
             - shared-elastic
+        environment:
+            - ELASTIC_SEARCH_INDEX_PREFIX
 
     redis:
         image: redis:4.0-alpine
