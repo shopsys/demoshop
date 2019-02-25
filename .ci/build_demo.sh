@@ -18,7 +18,7 @@ DEMO_DOMAIN=$1
 JOB_NAME=${JOB_NAME:-$DEMO_DOMAIN}
 WORKSPACE=${WORKSPACE:-$PWD}
 ELASTICSEARCH_NETWORK=${ELASTICSEARCH_NETWORK:-shared-demo-elasticsearch-network}
-ELASTICSEARCH_INDEX_PREFIX=${JOB_NAME}
+ELASTIC_SEARCH_INDEX_PREFIX=${JOB_NAME}-
 ELASTICSEARCH_CONTAINER=${ELASTICSEARCH_CONTAINER:-shared-demo-elasticsearch-instance}
 
 if [[ ! "$DEMO_DOMAIN" =~ ^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$ ]]; then
@@ -92,7 +92,7 @@ echo -e "${BLUE}Building Docker images and starting up the containers...${NC}"
 # Export variables used in Docker Compose configuration
 export JOB_NAME
 export ELASTICSEARCH_NETWORK
-export ELASTICSEARCH_INDEX_PREFIX
+export ELASTIC_SEARCH_INDEX_PREFIX
 export ELASTICSEARCH_IP
 
 # Build the Docker image and start the containers
