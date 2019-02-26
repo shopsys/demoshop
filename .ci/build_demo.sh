@@ -36,6 +36,7 @@ cp "$WORKSPACE/app/config/domains_urls.yml.dist" "$WORKSPACE/app/config/domains_
 # Disable master e-mail and mailer whitelist
 sed -i "s/mailer_master_email_address:.*/mailer_master_email_address: ~/" "$WORKSPACE/app/config/parameters.yml"
 sed -i "s/mailer_delivery_whitelist:.*/mailer_delivery_whitelist: ~/" "$WORKSPACE/app/config/parameters.yml"
+sed -i "s/elasticsearch:9200/${ELASTICSEARCH_CONTAINER}/" "$WORKSPACE/app/config/parameters.yml"
 
 # Fetch all domain IDs
 DOMAIN_IDS=$(cat "$WORKSPACE/app/config/domains_urls.yml" | grep -Po 'id: ([0-9]+)$' | sed -r 's/id: ([0-9]+)/\1/')
