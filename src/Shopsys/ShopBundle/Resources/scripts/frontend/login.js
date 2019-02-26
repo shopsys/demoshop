@@ -52,8 +52,11 @@
         }
     };
 
-    $(document).ready(function () {
-        Shopsys.login.init();
+    Shopsys.register.registerCallback(function ($container) {
+        $container.filterAllNodes('.js-login-button').each(function () {
+            var $login = new Shopsys.login.Login();
+            $login.init($(this));
+        });
     });
 
 })(jQuery);
