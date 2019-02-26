@@ -51,7 +51,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - changed usage of methods that used services because the service layer was removed
     - trusted proxies are loaded from DIC parameter `trusted_proxies` instead of being hard-coded
     - removed `UserFactory`, `ProductFactory` and `CategoryFactory` because factories are extendable and there was no point of using them instead of factories from FrameworkBundle
-
+- [#37 - Upgrade demoshop to version beta6](https://github.com/shopsys/demoshop/pull/37)
+    - upgraded to php 7.3
+    - refactored order item
+    - added support for multiple image sizes
+    - upgraded npm packages to the latest version
+    - unified countries across domains with translations and domain dependency
+    - added install script
+    - use configuration file to define directories that need to be created 
+    - fixed JS validation of forms in popup windows
+    - microservices have been removed
+    - cart refactored
+    - implemented new acceptance test for promo code functionality testing
+    - `oneup_flysystem` removed
+    - removed usages of inherited `OrderItem` classes
+    - warm up the production cache before generating error pages
+    
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
     - GoogleFeedItemFactory: removed unused imports

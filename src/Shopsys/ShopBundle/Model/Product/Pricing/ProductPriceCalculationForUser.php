@@ -15,22 +15,22 @@ class ProductPriceCalculationForUser extends BaseProductPriceCalculationForUser
     /**
      * @var \Shopsys\ShopBundle\Model\Product\Pricing\ProductPriceCalculation
      */
-    private $productPriceCalculation;
+    protected $productPriceCalculation;
 
     /**
      * @var \Shopsys\ShopBundle\Model\Customer\CurrentCustomer
      */
-    private $currentCustomer;
+    protected $currentCustomer;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupSettingFacade
      */
-    private $pricingGroupSettingFacade;
+    protected $pricingGroupSettingFacade;
 
     /**
      * @var \Shopsys\FrameworkBundle\Component\Domain\Domain
      */
-    private $domain;
+    protected $domain;
 
     /**
      * @param \Shopsys\ShopBundle\Model\Product\Pricing\ProductPriceCalculation $productPriceCalculation

@@ -19,80 +19,80 @@ class PickUpPlace
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $transportType;
+    protected $transportType;
 
     /**
      * ID from pickup system
      * @var int
      * @ORM\Column(type="integer")
      */
-    private $placeId;
+    protected $placeId;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=10)
      */
-    private $countryCode;
+    protected $countryCode;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=250)
      */
-    private $city;
+    protected $city;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=250)
      */
-    private $street;
+    protected $street;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=30)
      */
-    private $postCode;
+    protected $postCode;
 
     /**
      * @var float
      * @ORM\Column(type="float")
      */
-    private $gpsLatitude;
+    protected $gpsLatitude;
 
     /**
      * @var float
      * @ORM\Column(type="float")
      */
-    private $gpsLongitude;
+    protected $gpsLongitude;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=250)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      * @ORM\Column(type="text")
      */
-    private $description;
+    protected $description;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean")
      */
-    private $active;
+    protected $active;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean")
      */
-    private $pending;
+    protected $pending;
 
     /**
      * @param \Shopsys\ShopBundle\Model\PickUpPlace\PickUpPlaceData $pickUpPlaceData

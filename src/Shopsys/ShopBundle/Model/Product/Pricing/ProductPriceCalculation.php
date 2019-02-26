@@ -16,22 +16,22 @@ class ProductPriceCalculation extends BaseProductPriceCalculation
     /**
      * @var \Shopsys\FrameworkBundle\Model\Pricing\BasePriceCalculation
      */
-    private $basePriceCalculation;
+    protected $basePriceCalculation;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Pricing\PricingSetting
      */
-    private $pricingSetting;
+    protected $pricingSetting;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductManualInputPriceRepository
      */
-    private $productManualInputPriceRepository;
+    protected $productManualInputPriceRepository;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\ProductRepository
      */
-    private $productRepository;
+    protected $productRepository;
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Pricing\BasePriceCalculation $basePriceCalculation
@@ -46,11 +46,6 @@ class ProductPriceCalculation extends BaseProductPriceCalculation
         ProductRepository $productRepository
     ) {
         parent::__construct($basePriceCalculation, $pricingSetting, $productManualInputPriceRepository, $productRepository);
-
-        $this->pricingSetting = $pricingSetting;
-        $this->basePriceCalculation = $basePriceCalculation;
-        $this->productManualInputPriceRepository = $productManualInputPriceRepository;
-        $this->productRepository = $productRepository;
     }
 
     /**
@@ -76,7 +71,7 @@ class ProductPriceCalculation extends BaseProductPriceCalculation
      * @param float $discountCoeficient
      * @return \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPrice
      */
-    private function calculateMainVariantPrice(Product $mainVariant, $domainId, PricingGroup $pricingGroup, $discountCoeficient)
+    protected function calculateMainVariantPrice(Product $mainVariant, $domainId, PricingGroup $pricingGroup, $discountCoeficient = 1)
     {
         $variants = $this->productRepository->getAllSellableVariantsByMainVariant(
             $mainVariant,
@@ -105,7 +100,7 @@ class ProductPriceCalculation extends BaseProductPriceCalculation
      * @param float $discountCoeficient
      * @return \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPrice
      */
-    private function calculateProductPriceForPricingGroup(Product $product, PricingGroup $pricingGroup, $discountCoeficient)
+    protected function calculateProductPriceForPricingGroup(Product $product, PricingGroup $pricingGroup, $discountCoeficient = 1)
     {
         $manualInputPrice = $this->productManualInputPriceRepository->findByProductAndPricingGroup($product, $pricingGroup);
         if ($manualInputPrice !== null) {

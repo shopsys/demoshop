@@ -69,8 +69,7 @@
                             {{ 'Log out'|trans }}
                         </a>
                     {% else %}
-                        <a href="{{ url('front_login') }}"
-                            onclick="Shopsys.window({ content: '{{ render(controller('ShopsysShopBundle:Front/Login:windowForm'))|escape('js') }}' }); return false;">
+                        <a class="js-login-button" href="{{ url('front_login') }}" data-url="{{ url('front_login_window_form') }}">
                             {{ 'Log in'|trans }}
                         </a>
                         <a href="{{ url('front_registration_register') }}">

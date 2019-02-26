@@ -18,6 +18,7 @@ DEMO_DOMAIN=$1
 JOB_NAME=${JOB_NAME:-$DEMO_DOMAIN}
 WORKSPACE=${WORKSPACE:-$PWD}
 ELASTICSEARCH_NETWORK=${ELASTICSEARCH_NETWORK:-shared-demo-elasticsearch-network}
+ELASTIC_SEARCH_INDEX_PREFIX=${JOB_NAME}-
 ELASTICSEARCH_CONTAINER=${ELASTICSEARCH_CONTAINER:-shared-demo-elasticsearch-instance}
 
 if [[ ! "$DEMO_DOMAIN" =~ ^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$ ]]; then
@@ -35,6 +36,7 @@ cp "$WORKSPACE/app/config/domains_urls.yml.dist" "$WORKSPACE/app/config/domains_
 # Disable master e-mail and mailer whitelist
 sed -i "s/mailer_master_email_address:.*/mailer_master_email_address: ~/" "$WORKSPACE/app/config/parameters.yml"
 sed -i "s/mailer_delivery_whitelist:.*/mailer_delivery_whitelist: ~/" "$WORKSPACE/app/config/parameters.yml"
+sed -i "s/elasticsearch:/${ELASTICSEARCH_CONTAINER}:/" "$WORKSPACE/app/config/parameters.yml"
 
 # Fetch all domain IDs
 DOMAIN_IDS=$(cat "$WORKSPACE/app/config/domains_urls.yml" | grep -Po 'id: ([0-9]+)$' | sed -r 's/id: ([0-9]+)/\1/')
@@ -91,6 +93,7 @@ echo -e "${BLUE}Building Docker images and starting up the containers...${NC}"
 # Export variables used in Docker Compose configuration
 export JOB_NAME
 export ELASTICSEARCH_NETWORK
+export ELASTIC_SEARCH_INDEX_PREFIX
 export ELASTICSEARCH_IP
 
 # Build the Docker image and start the containers
@@ -127,7 +130,7 @@ echo -e "${BLUE}Building the application...${NC}"
 sleep 10
 
 # Build the application inside php-fpm container
-docker-compose exec -T php-fpm ./phing db-create db-demo grunt error-pages-generate microservice-product-search-recreate-structure microservice-product-search-export-products warmup
+docker-compose exec -T php-fpm ./phing db-create db-demo grunt error-pages-generate product-search-recreate-structure product-search-export-products warmup
 
 # Display success message and available domains
 echo -e "${GREEN}Demo-shop \"$DEMO_DOMAIN\" successfully created!${NC}"

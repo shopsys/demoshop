@@ -1,7 +1,8 @@
-FROM php:7.2-fpm-stretch as base
+FROM php:7.3-fpm-stretch as base
 
 ARG project_root=.
 ENV REDIS_PREFIX=''
+ENV ELASTIC_SEARCH_INDEX_PREFIX=''
 
 # install required tools
 # git for computing diffs
@@ -60,7 +61,7 @@ RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-k
     apt-get update && apt-get install -y postgresql-10 postgresql-client-10 && apt-get clean
 
 # install redis extension
-RUN pecl install redis-4.0.2 && \
+RUN pecl install redis-4.1.1 && \
     docker-php-ext-enable redis
 
 # install locales and switch to en_US.utf8 in order to enable UTF-8 support

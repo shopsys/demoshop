@@ -11,12 +11,12 @@ class CurrentCategoryResolver
     /**
      * @var \Shopsys\FrameworkBundle\Model\Category\CategoryFacade
      */
-    private $categoryFacade;
+    protected $categoryFacade;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade
      */
-    private $productFacade;
+    protected $productFacade;
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Category\CategoryFacade $categoryFacade

@@ -23,7 +23,6 @@ class AppKernel extends Kernel
             new Intaro\PostgresSearchBundle\IntaroPostgresSearchBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Oneup\FlysystemBundle\OneupFlysystemBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),
             new Prezent\Doctrine\TranslatableBundle\PrezentDoctrineTranslatableBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
@@ -82,6 +81,7 @@ class AppKernel extends Kernel
             __DIR__ . '/config/parameters.yml',
             __DIR__ . '/config/paths.yml',
             __DIR__ . '/config/config.yml',
+            __DIR__ . '/config/directories.yml',
         ];
         switch ($this->getEnvironment()) {
             case EnvironmentType::DEVELOPMENT:

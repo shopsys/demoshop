@@ -27,30 +27,17 @@ services:
             target: production
         volumes:
             - web-volume:/var/www/html/web
+        networks:
+            - default
+            - shared-elastic
+        environment:
+            - ELASTIC_SEARCH_INDEX_PREFIX
 
     redis:
         image: redis:4.0-alpine
 
     smtp-server:
         image: namshi/smtp:latest
-
-    microservice-product-search:
-        image: shopsys/microservice-product-search:v7.0.0-beta5
-        environment:
-            - ELASTICSEARCH_HOSTS_STRING=$ELASTICSEARCH_IP:9200
-            - ELASTIC_SEARCH_INDEX_PREFIX=$JOB_NAME-
-        networks:
-            - default
-            - shared-elastic
-
-    microservice-product-search-export:
-        image: shopsys/microservice-product-search-export:v7.0.0-beta5
-        environment:
-            - ELASTICSEARCH_HOSTS_STRING=$ELASTICSEARCH_IP:9200
-            - ELASTIC_SEARCH_INDEX_PREFIX=$JOB_NAME-
-        networks:
-            - default
-            - shared-elastic
 
 volumes:
     web-volume: ~

@@ -49,7 +49,7 @@ class OrderDataMapper extends BaseOrderDataMapper
      * @param \Shopsys\ShopBundle\Model\Order\OrderData $orderData
      * @param \Shopsys\ShopBundle\Model\Order\FrontOrderData $frontOrderData
      */
-    private function fillPickUpPlaceDeliveryData(OrderData $orderData, FrontOrderData $frontOrderData)
+    protected function fillPickUpPlaceDeliveryData(OrderData $orderData, FrontOrderData $frontOrderData)
     {
         $orderData->deliveryFirstName = $frontOrderData->firstName;
         $orderData->deliveryLastName = $frontOrderData->lastName;

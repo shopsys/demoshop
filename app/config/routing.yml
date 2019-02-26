@@ -17,6 +17,21 @@ admin_flag_delete:
     requirements:
         id: \d+
 
+front_additional_image:
+    path: /%shopsys.content_dir_name%/images/{entityName}/{type}/{sizeName}/additional_{additionalIndex}_{imageId}.{extension}
+    defaults: { _controller: ShopsysShopBundle:Front\Image:getAdditionalImage }
+    requirements:
+        imageId: \d+
+        additionalIndex: \d+
+
+front_additional_image_without_type:
+    path: /%shopsys.content_dir_name%/images/{entityName}/{sizeName}/additional_{additionalIndex}_{imageId}.{extension}
+    defaults:
+        _controller: ShopsysShopBundle:Front\Image:getAdditionalImage
+        type: ~
+    requirements:
+        imageId: \d+
+
 admin_flag_list:
     path: /%admin_url%/product/flag/list/
     defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }

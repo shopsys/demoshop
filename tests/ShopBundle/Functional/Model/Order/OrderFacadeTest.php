@@ -8,7 +8,6 @@ use Shopsys\FrameworkBundle\DataFixtures\Demo\CurrencyDataFixture;
 use Shopsys\FrameworkBundle\DataFixtures\Demo\OrderStatusDataFixture;
 use Shopsys\FrameworkBundle\Model\Cart\CartFacade;
 use Shopsys\FrameworkBundle\Model\Cart\Item\CartItemFactory;
-use Shopsys\FrameworkBundle\Model\Customer\CustomerIdentifier;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItemData;
 use Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Order\OrderFacade;
@@ -46,13 +45,11 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
         /** @var \Shopsys\FrameworkBundle\Model\Cart\Item\CartItemFactory $cartItemFactory */
         $cartItemFactory = $this->getContainer()->get(CartItemFactory::class);
 
-        $cart = $cartFacade->getCartOfCurrentCustomer();
-
-        $customerIdentifier = new CustomerIdentifier('randomString');
+        $cart = $cartFacade->getCartOfCurrentCustomerCreateIfNotExists();
 
         $product = $productRepository->getById(1);
 
-        $cart->addProduct($customerIdentifier, $product, 1, $productPriceCalculation, $cartItemFactory);
+        $cart->addProduct($product, 1, $productPriceCalculation, $cartItemFactory);
 
         $transport = $transportRepository->getById(1);
         $payment = $paymentRepository->getById(1);
@@ -71,7 +68,7 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
         $orderData->street = 'street';
         $orderData->city = 'city';
         $orderData->postcode = 'postcode';
-        $orderData->country = $persistentReferenceFacade->getReference(CountryDataFixture::COUNTRY_CZECH_REPUBLIC_1);
+        $orderData->country = $persistentReferenceFacade->getReference(CountryDataFixture::COUNTRY_CZECH_REPUBLIC);
         $orderData->deliveryAddressSameAsBillingAddress = false;
         $orderData->deliveryFirstName = 'deliveryFirstName';
         $orderData->deliveryLastName = 'deliveryLastName';
@@ -80,7 +77,7 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
         $orderData->deliveryStreet = 'deliveryStreet';
         $orderData->deliveryCity = 'deliveryCity';
         $orderData->deliveryPostcode = 'deliveryPostcode';
-        $orderData->deliveryCountry = $persistentReferenceFacade->getReference(CountryDataFixture::COUNTRY_CZECH_REPUBLIC_1);
+        $orderData->deliveryCountry = $persistentReferenceFacade->getReference(CountryDataFixture::COUNTRY_CZECH_REPUBLIC);
         $orderData->note = 'note';
         $orderData->domainId = 1;
         $orderData->currency = $this->getReference(CurrencyDataFixture::CURRENCY_CZK);

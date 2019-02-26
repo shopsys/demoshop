@@ -6,8 +6,9 @@ use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Model\Cart\CartFacade;
 use Shopsys\FrameworkBundle\Model\Cart\CartFactory;
+use Shopsys\FrameworkBundle\Model\Cart\CartRepository;
 use Shopsys\FrameworkBundle\Model\Cart\Item\CartItemFactory;
-use Shopsys\FrameworkBundle\Model\Cart\Item\CartItemRepository;
+use Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcherFacade;
 use Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerIdentifier;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerIdentifierFactory;
@@ -144,9 +145,10 @@ class CartFacadeTest extends TransactionFunctionalTestCase
             $this->getContainer()->get(Domain::class),
             $this->getContainer()->get(CurrentCustomer::class),
             $this->getContainer()->get(CurrentPromoCodeFacade::class),
-            $this->getContainer()->get(CartItemRepository::class),
             $this->getContainer()->get(ProductPriceCalculationForUser::class),
-            $this->getContainer()->get(CartItemFactory::class)
+            $this->getContainer()->get(CartItemFactory::class),
+            $this->getContainer()->get(CartRepository::class),
+            $this->getContainer()->get(CartWatcherFacade::class)
         );
     }
 
@@ -156,9 +158,9 @@ class CartFacadeTest extends TransactionFunctionalTestCase
      */
     private function getCartByCustomerIdentifier(CustomerIdentifier $customerIdentifier)
     {
-        $cartFactory = $this->getContainer()->get(CartFactory::class);
+        $cartFacade = $this->createCartFacade($customerIdentifier);
 
-        return $cartFactory->get($customerIdentifier);
+        return $cartFacade->getCartByCustomerIdentifierCreateIfNotExists($customerIdentifier);
     }
 
     /**
