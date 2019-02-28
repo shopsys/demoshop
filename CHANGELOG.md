@@ -70,6 +70,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
     - GoogleFeedItemFactory: removed unused imports
+- [#38 - Pagination url parameter is fixed based on upgrade notes](https://github.com/shopsys/demoshop/pull/38)
 
 ### Removed
 - [#36 - Production Docker file was removed due to multistage build](https://github.com/shopsys/demoshop/pull/36)
