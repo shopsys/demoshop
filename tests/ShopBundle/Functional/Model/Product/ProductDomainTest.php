@@ -2,7 +2,7 @@
 
 namespace Tests\ShopBundle\Functional\Model\Product;
 
-use Shopsys\FrameworkBundle\DataFixtures\Demo\AvailabilityDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
 use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Product\ProductFactory;
 use Shopsys\ShopBundle\Model\Product\Product;

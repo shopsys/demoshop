@@ -2,7 +2,7 @@
 
 namespace Tests\ShopBundle\Functional\Model\Administrator\Security;
 
-use Shopsys\FrameworkBundle\DataFixtures\Demo\AdministratorDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\AdministratorDataFixture;
 use Shopsys\FrameworkBundle\Model\Administrator\Activity\AdministratorActivityFacade;
 use Shopsys\FrameworkBundle\Model\Administrator\Security\AdministratorFrontSecurityFacade;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;

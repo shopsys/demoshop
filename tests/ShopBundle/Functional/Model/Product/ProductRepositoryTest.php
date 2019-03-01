@@ -3,9 +3,9 @@
 namespace Tests\ShopBundle\Functional\Model\Product;
 
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\CategoryDataFixture;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\PricingGroupDataFixture;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\ProductDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Model\Category\Category;
 use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData;
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
@@ -155,7 +155,7 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
     public function testOrderingByProductPriorityInCategory()
     {
         $category = $this->getReference(CategoryDataFixture::CATEGORY_FOOD);
-        /* @var $category \Shopsys\FrameworkBundle\DataFixtures\Demo\CategoryDataFixture */
+        /* @var $category \Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture */
         $product1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 70);
         $product2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 71);
 

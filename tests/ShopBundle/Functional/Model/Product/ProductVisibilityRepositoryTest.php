@@ -3,11 +3,11 @@
 namespace Tests\ShopBundle\Functional\Model\Product;
 
 use DateTime;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\AvailabilityDataFixture;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\CategoryDataFixture;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\PricingGroupDataFixture;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\ProductDataFixture;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\UnitDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
 use Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupFacade;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;

@@ -2,8 +2,8 @@
 
 namespace Tests\ShopBundle\Functional\Model\Order\Status;
 
-use Shopsys\FrameworkBundle\DataFixtures\Demo\OrderDataFixture;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\OrderStatusDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\OrderDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\OrderStatusDataFixture;
 use Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Order\OrderFacade;
 use Shopsys\FrameworkBundle\Model\Order\Status\OrderStatusData;

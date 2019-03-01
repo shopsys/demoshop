@@ -70,6 +70,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - phing target build-demo is improved
     - translations from previous changes are fixed
     - promocode naming is unified
+    - datafixtures were copied into ShopBundle\Datafixture namespace
+    - datafixture services were registrered in Resources/config/services/commands.yml and Resources/config/services/data_fixtures.yml
+    - custom MailTemplates were merged
+    - base directory for data fixture files were changed in paths.yml
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)

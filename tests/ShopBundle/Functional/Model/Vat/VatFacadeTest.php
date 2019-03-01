@@ -2,9 +2,9 @@
 
 namespace Tests\ShopBundle\Functional\Model\Vat;
 
-use Shopsys\FrameworkBundle\DataFixtures\Demo\PaymentDataFixture;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\TransportDataFixture;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\VatDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\PaymentDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\TransportDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\VatDataFixture;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactory;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentFacade;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopsys\ShopBundle\DataFixtures\DemoMultidomain;
+namespace Shopsys\ShopBundle\DataFixtures\Demo;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Shopsys\FrameworkBundle\Component\DataFixture\AbstractReferenceFixture;
@@ -10,7 +10,7 @@ use Shopsys\FrameworkBundle\Model\Mail\MailTemplateData;
 use Shopsys\FrameworkBundle\Model\Mail\MailTemplateDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Mail\MailTemplateFacade;
 
-class MailTemplateDataFixture extends AbstractReferenceFixture
+class MultidomainMailTemplateDataFixture extends AbstractReferenceFixture
 {
     const DOMAIN_ID = 2;
 
