@@ -7,7 +7,7 @@ use Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer as BaseCurrentCustome
 class CurrentCustomer extends BaseCurrentCustomer
 {
     /**
-     * @return float
+     * @return int|string
      */
     public function getDiscountCoeficient()
     {
@@ -15,7 +15,7 @@ class CurrentCustomer extends BaseCurrentCustomer
         if ($user === null) {
             return 1;
         } else {
-            return (100 - $user->getDiscount()) / 100;
+            return json_encode((100 - $user->getDiscount()) / 100);
         }
     }
 }

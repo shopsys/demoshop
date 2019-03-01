@@ -74,6 +74,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - datafixture services were registrered in Resources/config/services/commands.yml and Resources/config/services/data_fixtures.yml
     - custom MailTemplates were merged
     - base directory for data fixture files were changed in paths.yml
+    - MoneyType is integrated into project
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)

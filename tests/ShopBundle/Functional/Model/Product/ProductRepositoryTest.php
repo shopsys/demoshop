@@ -3,14 +3,14 @@
 namespace Tests\ShopBundle\Functional\Model\Product;
 
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
-use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Model\Category\Category;
 use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData;
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
 use Shopsys\FrameworkBundle\Model\Product\ProductRepository;
+use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\ShopBundle\Model\Product\Product;
 use Shopsys\ShopBundle\Model\Product\ProductDataFactory;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;

@@ -124,8 +124,8 @@ msgstr "Zadejte prosím platné množství"
 msgid "Please enter zip code"
 msgstr "Vyplňte prosím PSČ"
 
-msgid "Price must be greater or equal to {{ compared_value }}"
-msgstr "Cena musí být větší nebo rovna {{ compared_value }}"
+msgid "Price must be greater or equal to zero"
+msgstr "Cena musí být větší nebo rovna nule"
 
 msgid "Quantity must be greater than {{ compared_value }}"
 msgstr "Množství musí být větší než {{ compared_value }}"
@@ -147,4 +147,3 @@ msgstr "Musíte souhlasit s obchodními podmínkami a zpracováním osobních ú
 
 msgid "Zip code cannot be longer than {{ limit }} characters"
 msgstr "PSČ nesmí být delší než {{ limit }} znaků"
-

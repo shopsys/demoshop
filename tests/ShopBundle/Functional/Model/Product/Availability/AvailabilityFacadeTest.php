@@ -2,11 +2,11 @@
 
 namespace Tests\ShopBundle\Functional\Model\Product\Availability;
 
-use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityData;
 use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityFacade;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
+use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\ShopBundle\Model\Product\ProductDataFactory;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 

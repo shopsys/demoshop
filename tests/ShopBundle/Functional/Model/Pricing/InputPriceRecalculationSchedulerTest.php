@@ -2,8 +2,8 @@
 
 namespace Tests\ShopBundle\Functional\Model\Pricing;
 
+use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Component\Setting\Setting;
-use Shopsys\ShopBundle\DataFixtures\Demo\CurrencyDataFixture;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactory;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentFacade;
 use Shopsys\FrameworkBundle\Model\Pricing\InputPriceRecalculationScheduler;
@@ -15,7 +15,9 @@ use Shopsys\FrameworkBundle\Model\Product\Availability\Availability;
 use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityData;
 use Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Transport\TransportFacade;
+use Shopsys\ShopBundle\DataFixtures\Demo\CurrencyDataFixture;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Tests\FrameworkBundle\Test\IsMoneyEqual;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
@@ -47,33 +49,41 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
     public function inputPricesTestDataProvider()
     {
         return [
-            ['inputPriceWithoutVat' => '100', 'inputPriceWithVat' => '121', 'vatPercent' => '21'],
-            ['inputPriceWithoutVat' => '17261.983471', 'inputPriceWithVat' => '20887', 'vatPercent' => '21'],
+            [
+                'inputPriceWithoutVat' => Money::create(100),
+                'inputPriceWithVat' => Money::create(121),
+                'vatPercent' => '21',
+            ],
+            [
+                'inputPriceWithoutVat' => Money::create('17261.983471'),
+                'inputPriceWithVat' => Money::create(20887),
+                'vatPercent' => '21',
+            ],
         ];
     }
 
     /**
      * @dataProvider inputPricesTestDataProvider
-     * @param mixed $inputPriceWithoutVat
-     * @param mixed $inputPriceWithVat
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $inputPriceWithoutVat
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $inputPriceWithVat
      * @param mixed $vatPercent
      */
     public function testOnKernelResponseRecalculateInputPricesWithoutVat(
-        $inputPriceWithoutVat,
-        $inputPriceWithVat,
+        Money $inputPriceWithoutVat,
+        Money $inputPriceWithVat,
         $vatPercent
     ) {
         $em = $this->getEntityManager();
 
-        /* @var $setting \Shopsys\FrameworkBundle\Component\Setting\Setting */
+        /** @var \Shopsys\FrameworkBundle\Component\Setting\Setting $setting */
         $setting = $this->getContainer()->get(Setting::class);
-        /* @var $inputPriceRecalculationScheduler \Shopsys\FrameworkBundle\Model\Pricing\InputPriceRecalculationScheduler */
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\InputPriceRecalculationScheduler $inputPriceRecalculationScheduler */
         $inputPriceRecalculationScheduler = $this->getContainer()->get(InputPriceRecalculationScheduler::class);
-        /* @var $paymentFacade \Shopsys\FrameworkBundle\Model\Payment\PaymentFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Payment\PaymentFacade $paymentFacade */
         $paymentFacade = $this->getContainer()->get(PaymentFacade::class);
-        /* @var $transportFacade \Shopsys\FrameworkBundle\Model\Transport\TransportFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Transport\TransportFacade $transportFacade */
         $transportFacade = $this->getContainer()->get(TransportFacade::class);
-        /** @var \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactory $paymentDataFactory */
+        /** @var \Shopsys\ShopBundle\Model\Payment\PaymentDataFactory $paymentDataFactory */
         $paymentDataFactory = $this->getContainer()->get(PaymentDataFactory::class);
         /** @var \Shopsys\ShopBundle\Model\Transport\TransportDataFactory $transportDataFactory */
         $transportDataFactory = $this->getContainer()->get(TransportDataFactoryInterface::class);
@@ -84,17 +94,15 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
         $vatData->name = 'vat';
         $vatData->percent = $vatPercent;
         $vat = new Vat($vatData);
-
         $availabilityData = new AvailabilityData();
         $availabilityData->dispatchTime = 0;
         $availability = new Availability($availabilityData);
-
         $em->persist($vat);
         $em->persist($availability);
 
-        /** @var $currency1 \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency */
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency1 */
         $currency1 = $this->getReference(CurrencyDataFixture::CURRENCY_CZK);
-        /** @var $currency2 \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency */
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency2 */
         $currency2 = $this->getReference(CurrencyDataFixture::CURRENCY_EUR);
 
         $paymentData = $paymentDataFactory->create();
@@ -109,9 +117,8 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
         $transportData->description = ['cs' => 'desc'];
         $transportData->pricesByCurrencyId = [$currency1->getId() => $inputPriceWithVat, $currency2->getId() => $inputPriceWithVat];
         $transportData->vat = $vat;
-        /* @var $transport \Shopsys\ShopBundle\Model\Transport\Transport */
+        /** @var \Shopsys\ShopBundle\Model\Transport\Transport $transport */
         $transport = $transportFacade->create($transportData);
-
         $em->flush();
 
         $filterResponseEventMock = $this->getMockBuilder(FilterResponseEvent::class)
@@ -127,32 +134,32 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
         $em->refresh($payment);
         $em->refresh($transport);
 
-        $this->assertSame(round($inputPriceWithoutVat, 6), round($payment->getPrice($currency1)->getPrice(), 6));
-        $this->assertSame(round($inputPriceWithoutVat, 6), round($transport->getPrice($currency1)->getPrice(), 6));
+        $this->assertThat($payment->getPrice($currency1)->getPrice(), new IsMoneyEqual($inputPriceWithoutVat));
+        $this->assertThat($transport->getPrice($currency1)->getPrice(), new IsMoneyEqual($inputPriceWithoutVat));
     }
 
     /**
      * @dataProvider inputPricesTestDataProvider
-     * @param mixed $inputPriceWithoutVat
-     * @param mixed $inputPriceWithVat
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $inputPriceWithoutVat
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $inputPriceWithVat
      * @param mixed $vatPercent
      */
     public function testOnKernelResponseRecalculateInputPricesWithVat(
-        $inputPriceWithoutVat,
-        $inputPriceWithVat,
+        Money $inputPriceWithoutVat,
+        Money $inputPriceWithVat,
         $vatPercent
     ) {
         $em = $this->getEntityManager();
 
-        /* @var $setting \Shopsys\FrameworkBundle\Component\Setting\Setting */
+        /** @var \Shopsys\FrameworkBundle\Component\Setting\Setting $setting */
         $setting = $this->getContainer()->get(Setting::class);
-        /* @var $inputPriceRecalculationScheduler \Shopsys\FrameworkBundle\Model\Pricing\InputPriceRecalculationScheduler */
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\InputPriceRecalculationScheduler $inputPriceRecalculationScheduler */
         $inputPriceRecalculationScheduler = $this->getContainer()->get(InputPriceRecalculationScheduler::class);
-        /* @var $paymentFacade \Shopsys\FrameworkBundle\Model\Payment\PaymentFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Payment\PaymentFacade $paymentFacade */
         $paymentFacade = $this->getContainer()->get(PaymentFacade::class);
-        /* @var $transportFacade \Shopsys\FrameworkBundle\Model\Transport\TransportFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Transport\TransportFacade $transportFacade */
         $transportFacade = $this->getContainer()->get(TransportFacade::class);
-        /** @var \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactory $paymentDataFactory */
+        /** @var \Shopsys\ShopBundle\Model\Payment\PaymentDataFactory $paymentDataFactory */
         $paymentDataFactory = $this->getContainer()->get(PaymentDataFactory::class);
         /** @var \Shopsys\ShopBundle\Model\Transport\TransportDataFactory $transportDataFactory */
         $transportDataFactory = $this->getContainer()->get(TransportDataFactoryInterface::class);
@@ -161,7 +168,7 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
 
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency1 */
         $currency1 = $this->getReference(CurrencyDataFixture::CURRENCY_CZK);
-        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency1 */
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency2 */
         $currency2 = $this->getReference(CurrencyDataFixture::CURRENCY_EUR);
 
         $vatData = new VatData();
@@ -173,18 +180,19 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
         $availability = new Availability($availabilityData);
         $em->persist($vat);
         $em->persist($availability);
+
         $paymentData = $paymentDataFactory->create();
         $paymentData->name = ['cs' => 'name'];
         $paymentData->pricesByCurrencyId = [$currency1->getId() => $inputPriceWithoutVat, $currency2->getId() => $inputPriceWithoutVat];
         $paymentData->vat = $vat;
-        /* @var $payment \Shopsys\FrameworkBundle\Model\Payment\Payment */
+        /** @var \Shopsys\FrameworkBundle\Model\Payment\Payment $payment */
         $payment = $paymentFacade->create($paymentData);
 
         $transportData = $transportDataFactory->create();
         $transportData->name = ['cs' => 'name'];
         $transportData->pricesByCurrencyId = [$currency1->getId() => $inputPriceWithoutVat, $currency2->getId() => $inputPriceWithoutVat];
         $transportData->vat = $vat;
-        /* @var $transport \Shopsys\ShopBundle\Model\Transport\Transport */
+        /** @var \Shopsys\ShopBundle\Model\Transport\Transport $transport */
         $transport = $transportFacade->create($transportData);
 
         $em->flush();
@@ -202,7 +210,7 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
         $em->refresh($payment);
         $em->refresh($transport);
 
-        $this->assertSame(round($inputPriceWithVat, 6), round($payment->getPrice($currency1)->getPrice(), 6));
-        $this->assertSame(round($inputPriceWithVat, 6), round($transport->getPrice($currency1)->getPrice(), 6));
+        $this->assertThat($payment->getPrice($currency1)->getPrice(), new IsMoneyEqual($inputPriceWithVat));
+        $this->assertThat($transport->getPrice($currency1)->getPrice(), new IsMoneyEqual($inputPriceWithVat));
     }
 }

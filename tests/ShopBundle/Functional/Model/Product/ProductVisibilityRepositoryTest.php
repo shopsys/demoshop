@@ -3,21 +3,22 @@
 namespace Tests\ShopBundle\Functional\Model\Product;
 
 use DateTime;
-use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
+use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupFacade;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator;
 use Shopsys\FrameworkBundle\Model\Product\ProductData;
+use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibility;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository;
+use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
 use Shopsys\ShopBundle\Model\Product\Product;
-use Shopsys\ShopBundle\Model\Product\ProductDataFactory;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
@@ -25,7 +26,7 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     /**
      * @return \Shopsys\ShopBundle\Model\Product\ProductData
      */
-    private function getDefaultProductData(): ProductData
+    private function getDefaultProductData()
     {
         $category = $this->getReference(CategoryDataFixture::CATEGORY_ELECTRONICS);
 
@@ -36,8 +37,8 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
         $vat = new Vat($vatData);
         $em->persist($vat);
 
-        $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
+        /** @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory $productDataFactory */
+        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
 
         $productData = $productDataFactory->create();
         $productData->name = ['cs' => 'Name', 'en' => 'Name'];
@@ -45,17 +46,34 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
         $productData->categoriesByDomainId = [1 => [$category]];
         $productData->availability = $this->getReference(AvailabilityDataFixture::AVAILABILITY_IN_STOCK);
         $productData->unit = $this->getReference(UnitDataFixture::UNIT_PIECES);
-        $this->setPriceForAllDomains($productData, 100);
+        $this->setPriceForAllDomains($productData, Money::create(100));
 
         return $productData;
+    }
+
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Product\ProductData $productData
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money|null $price
+     */
+    private function setPriceForAllDomains(ProductData $productData, ?Money $price)
+    {
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupFacade $pricingGroupFacade */
+        $pricingGroupFacade = $this->getContainer()->get(PricingGroupFacade::class);
+
+        $manualInputPrices = [];
+        foreach ($pricingGroupFacade->getAll() as $pricingGroup) {
+            $manualInputPrices[$pricingGroup->getId()] = $price;
+        }
+
+        $productData->manualInputPricesByPricingGroupId = $manualInputPrices;
     }
 
     public function testIsVisibleOnAnyDomainWhenHidden()
     {
         $em = $this->getEntityManager();
         $productFacade = $this->getContainer()->get(ProductFacade::class);
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator $productPriceRecalculator */
         $productPriceRecalculator = $this->getContainer()->get(ProductPriceRecalculator::class);
-        /* @var $productPriceRecalculator \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator */
 
         $productData = $this->getDefaultProductData();
         $productData->hidden = true;
@@ -66,19 +84,22 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
         $id = $product->getId();
         $em->clear();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
         $productVisibilityRepository->refreshProductsVisibility();
 
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $productAgain */
         $productAgain = $em->getRepository(Product::class)->find($id);
-        /* @var $productAgain \Shopsys\ShopBundle\Model\Product\Product */
 
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibility $productVisibility1 */
         $productVisibility1 = $em->getRepository(ProductVisibility::class)->findOneBy([
             'product' => $productAgain,
-            'pricingGroup' => $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1)->getId(),
+            'pricingGroup' => $pricingGroup->getId(),
             'domainId' => 1,
         ]);
-        /* @var $productVisibility1 \Shopsys\FrameworkBundle\Model\Product\ProductVisibility */
 
         $this->assertFalse($productAgain->isVisible());
         $this->assertFalse($productVisibility1->isVisible());
@@ -88,8 +109,8 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     {
         $em = $this->getEntityManager();
         $productFacade = $this->getContainer()->get(ProductFacade::class);
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator $productPriceRecalculator */
         $productPriceRecalculator = $this->getContainer()->get(ProductPriceRecalculator::class);
-        /* @var $productPriceRecalculator \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator */
 
         $productData = $this->getDefaultProductData();
         $product = $productFacade->create($productData);
@@ -99,19 +120,22 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
         $id = $product->getId();
         $em->clear();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
         $productVisibilityRepository->refreshProductsVisibility();
 
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $productAgain */
         $productAgain = $em->getRepository(Product::class)->find($id);
-        /* @var $productAgain \Shopsys\ShopBundle\Model\Product\Product */
 
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibility $productVisibility1 */
         $productVisibility1 = $em->getRepository(ProductVisibility::class)->findOneBy([
             'product' => $productAgain->getId(),
-            'pricingGroup' => $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1)->getId(),
+            'pricingGroup' => $pricingGroup->getId(),
             'domainId' => 1,
         ]);
-        /* @var $productVisibility1 \Shopsys\FrameworkBundle\Model\Product\ProductVisibility */
 
         $this->assertTrue($productAgain->isVisible());
         $this->assertTrue($productVisibility1->isVisible());
@@ -121,8 +145,8 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     {
         $em = $this->getEntityManager();
         $productFacade = $this->getContainer()->get(ProductFacade::class);
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator $productPriceRecalculator */
         $productPriceRecalculator = $this->getContainer()->get(ProductPriceRecalculator::class);
-        /* @var $productPriceRecalculator \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator */
 
         $sellingFrom = new DateTime('now');
         $sellingFrom->modify('+1 day');
@@ -136,12 +160,12 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
         $id = $product->getId();
         $em->clear();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
         $productVisibilityRepository->refreshProductsVisibility();
 
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $productAgain */
         $productAgain = $em->getRepository(Product::class)->find($id);
-        /* @var $productAgain \Shopsys\ShopBundle\Model\Product\Product */
 
         $this->assertFalse($productAgain->isVisible());
     }
@@ -150,8 +174,8 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     {
         $em = $this->getEntityManager();
         $productFacade = $this->getContainer()->get(ProductFacade::class);
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator $productPriceRecalculator */
         $productPriceRecalculator = $this->getContainer()->get(ProductPriceRecalculator::class);
-        /* @var $productPriceRecalculator \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator */
 
         $sellingTo = new DateTime('now');
         $sellingTo->modify('-1 day');
@@ -165,12 +189,12 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
         $id = $product->getId();
         $em->clear();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
         $productVisibilityRepository->refreshProductsVisibility();
 
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $productAgain */
         $productAgain = $em->getRepository(Product::class)->find($id);
-        /* @var $productAgain \Shopsys\ShopBundle\Model\Product\Product */
 
         $this->assertFalse($productAgain->isVisible());
     }
@@ -179,8 +203,8 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     {
         $em = $this->getEntityManager();
         $productFacade = $this->getContainer()->get(ProductFacade::class);
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator $productPriceRecalculator */
         $productPriceRecalculator = $this->getContainer()->get(ProductPriceRecalculator::class);
-        /* @var $productPriceRecalculator \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator */
 
         $sellingFrom = new DateTime('now');
         $sellingFrom->modify('-1 day');
@@ -197,12 +221,12 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
         $id = $product->getId();
         $em->clear();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
         $productVisibilityRepository->refreshProductsVisibility();
 
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $productAgain */
         $productAgain = $em->getRepository(Product::class)->find($id);
-        /* @var $productAgain \Shopsys\ShopBundle\Model\Product\Product */
 
         $this->assertTrue($productAgain->isVisible());
     }
@@ -211,11 +235,11 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     {
         $em = $this->getEntityManager();
         $productFacade = $this->getContainer()->get(ProductFacade::class);
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator $productPriceRecalculator */
         $productPriceRecalculator = $this->getContainer()->get(ProductPriceRecalculator::class);
-        /* @var $productPriceRecalculator \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator */
 
         $productData = $this->getDefaultProductData();
-        $this->setPriceForAllDomains($productData, 0);
+        $this->setPriceForAllDomains($productData, Money::zero());
         $product1 = $productFacade->create($productData);
 
         $this->setPriceForAllDomains($productData, null);
@@ -226,14 +250,14 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
         $product2Id = $product2->getId();
         $em->clear();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
         $productVisibilityRepository->refreshProductsVisibility();
 
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $product1Again */
         $product1Again = $em->getRepository(Product::class)->find($product1Id);
-        /* @var $product1Again \Shopsys\ShopBundle\Model\Product\Product */
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $product2Again */
         $product2Again = $em->getRepository(Product::class)->find($product2Id);
-        /* @var $product2Again \Shopsys\ShopBundle\Model\Product\Product */
 
         $this->assertFalse($product1Again->isVisible());
         $this->assertFalse($product2Again->isVisible());
@@ -242,10 +266,10 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     public function testIsVisibleWithFilledName()
     {
         $em = $this->getEntityManager();
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator $productPriceRecalculator */
         $productPriceRecalculator = $this->getContainer()->get(ProductPriceRecalculator::class);
-        /* @var $productPriceRecalculator \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator */
 
         $productData = $this->getDefaultProductData();
         $productData->name = ['cs' => 'Name', 'en' => 'Name'];
@@ -254,16 +278,19 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
 
         $em->clear();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
         $productVisibilityRepository->refreshProductsVisibility();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibility $productVisibility */
         $productVisibility = $em->getRepository(ProductVisibility::class)->findOneBy([
             'product' => $product,
-            'pricingGroup' => $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1)->getId(),
+            'pricingGroup' => $pricingGroup->getId(),
             'domainId' => 1,
         ]);
-        /* @var $productVisibility \Shopsys\FrameworkBundle\Model\Product\ProductVisibility */
 
         $this->assertTrue($productVisibility->isVisible());
     }
@@ -271,10 +298,10 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     public function testIsNotVisibleWithEmptyName()
     {
         $em = $this->getEntityManager();
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator $productPriceRecalculator */
         $productPriceRecalculator = $this->getContainer()->get(ProductPriceRecalculator::class);
-        /* @var $productPriceRecalculator \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator */
 
         $productData = $this->getDefaultProductData();
         $productData->name = ['cs' => null, 'en' => null];
@@ -283,16 +310,19 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
 
         $em->clear();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
         $productVisibilityRepository->refreshProductsVisibility();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibility $productVisibility */
         $productVisibility = $em->getRepository(ProductVisibility::class)->findOneBy([
             'product' => $product,
-            'pricingGroup' => $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1)->getId(),
+            'pricingGroup' => $pricingGroup->getId(),
             'domainId' => 1,
         ]);
-        /* @var $productVisibility \Shopsys\FrameworkBundle\Model\Product\ProductVisibility */
 
         $this->assertFalse($productVisibility->isVisible());
     }
@@ -300,10 +330,10 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     public function testIsVisibleInVisibileCategory()
     {
         $em = $this->getEntityManager();
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator $productPriceRecalculator */
         $productPriceRecalculator = $this->getContainer()->get(ProductPriceRecalculator::class);
-        /* @var $productPriceRecalculator \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator */
 
         $category = $this->getReference(CategoryDataFixture::CATEGORY_TOYS);
 
@@ -314,16 +344,19 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
 
         $em->clear();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
         $productVisibilityRepository->refreshProductsVisibility();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibility $productVisibility */
         $productVisibility = $em->getRepository(ProductVisibility::class)->findOneBy([
             'product' => $product,
-            'pricingGroup' => $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1)->getId(),
+            'pricingGroup' => $pricingGroup->getId(),
             'domainId' => 1,
         ]);
-        /* @var $productVisibility \Shopsys\FrameworkBundle\Model\Product\ProductVisibility */
 
         $this->assertTrue($productVisibility->isVisible());
     }
@@ -331,10 +364,10 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     public function testIsNotVisibleInHiddenCategory()
     {
         $em = $this->getEntityManager();
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator $productPriceRecalculator */
         $productPriceRecalculator = $this->getContainer()->get(ProductPriceRecalculator::class);
-        /* @var $productPriceRecalculator \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator */
 
         $productData = $this->getDefaultProductData();
         $productData->categoriesByDomainId = [];
@@ -343,13 +376,16 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
 
         $em->clear();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
         $productVisibilityRepository->refreshProductsVisibility();
+
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
 
         $productVisibility = $em->getRepository(ProductVisibility::class)->findOneBy([
             'product' => $product,
-            'pricingGroup' => $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1)->getId(),
+            'pricingGroup' => $pricingGroup->getId(),
             'domainId' => 1,
         ]);
 
@@ -359,34 +395,35 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     public function testIsNotVisibleWhenZeroManualPrice()
     {
         $em = $this->getEntityManager();
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator $productPriceRecalculator */
         $productPriceRecalculator = $this->getContainer()->get(ProductPriceRecalculator::class);
-        /* @var $productPriceRecalculator \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator */
 
         $productData = $this->getDefaultProductData();
+        $this->setPriceForAllDomains($productData, Money::create(10));
 
-        $this->setPriceForAllDomains($productData, 10);
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+        $pricingGroupWithZeroPriceId = $pricingGroup->getId();
 
-        $pricingGroupWithZeroPriceId = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1)->getId();
-
-        $productData->manualInputPricesByPricingGroupId[$pricingGroupWithZeroPriceId] = 0;
+        $productData->manualInputPricesByPricingGroupId[$pricingGroupWithZeroPriceId] = Money::zero();
 
         $product = $productFacade->create($productData);
         $productPriceRecalculator->runImmediateRecalculations();
 
         $em->clear();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
         $productVisibilityRepository->refreshProductsVisibility();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibility $productVisibility */
         $productVisibility = $em->getRepository(ProductVisibility::class)->findOneBy([
             'product' => $product,
             'pricingGroup' => $pricingGroupWithZeroPriceId,
             'domainId' => 1,
         ]);
-        /* @var $productVisibility \Shopsys\FrameworkBundle\Model\Product\ProductVisibility */
 
         $this->assertFalse($productVisibility->isVisible());
     }
@@ -394,16 +431,23 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     public function testIsNotVisibleWhenNullManualPrice()
     {
         $em = $this->getEntityManager();
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator $productPriceRecalculator */
         $productPriceRecalculator = $this->getContainer()->get(ProductPriceRecalculator::class);
-        /* @var $productPriceRecalculator \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator */
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupFacade $pricingGroupFacade */
+        $pricingGroupFacade = $this->getContainer()->get(PricingGroupFacade::class);
 
         $productData = $this->getDefaultProductData();
 
-        $this->setPriceForAllDomains($productData, 10);
+        $allPricingGroups = $pricingGroupFacade->getAll();
+        foreach ($allPricingGroups as $pricingGroup) {
+            $productData->manualInputPricesByPricingGroupId[$pricingGroup->getId()] = Money::create(10);
+        }
 
-        $pricingGroupWithNullPriceId = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1)->getId();
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+        $pricingGroupWithNullPriceId = $pricingGroup->getId();
         $productData->manualInputPricesByPricingGroupId[$pricingGroupWithNullPriceId] = null;
 
         $product = $productFacade->create($productData);
@@ -411,16 +455,16 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
 
         $em->clear();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
         $productVisibilityRepository->refreshProductsVisibility();
 
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibility $productVisibility */
         $productVisibility = $em->getRepository(ProductVisibility::class)->findOneBy([
             'product' => $product,
             'pricingGroup' => $pricingGroupWithNullPriceId,
             'domainId' => 1,
         ]);
-        /* @var $productVisibility \Shopsys\FrameworkBundle\Model\Product\ProductVisibility */
 
         $this->assertFalse($productVisibility->isVisible());
     }
@@ -428,21 +472,21 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     public function testRefreshProductsVisibilityVisibleVariants()
     {
         $em = $this->getEntityManager();
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
-        $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
+        /** @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory $productDataFactory */
+        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
 
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant1 */
         $variant1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '53');
-        /* @var $variant1 \Shopsys\ShopBundle\Model\Product\Product */
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant2 */
         $variant2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '54');
-        /* @var $variant2 \Shopsys\ShopBundle\Model\Product\Product */
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant3 */
         $variant3 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '69');
-        /* @var $variant3 \Shopsys\ShopBundle\Model\Product\Product */
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $mainVariant */
         $mainVariant = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '148');
-        /* @var $mainVariant \Shopsys\ShopBundle\Model\Product\Product */
 
         $variant1productData = $productDataFactory->createFromProduct($variant1);
         $variant1productData->hidden = true;
@@ -464,21 +508,21 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     public function testRefreshProductsVisibilityNotVisibleVariants()
     {
         $em = $this->getEntityManager();
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
-        $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
+        /** @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory $productDataFactory */
+        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
 
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant1 */
         $variant1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '53');
-        /* @var $variant1 \Shopsys\ShopBundle\Model\Product\Product */
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant2 */
         $variant2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '54');
-        /* @var $variant2 \Shopsys\ShopBundle\Model\Product\Product */
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant3 */
         $variant3 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '69');
-        /* @var $variant3 \Shopsys\ShopBundle\Model\Product\Product */
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $mainVariant */
         $mainVariant = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '148');
-        /* @var $mainVariant \Shopsys\ShopBundle\Model\Product\Product */
 
         $variant1productData = $productDataFactory->createFromProduct($variant1);
         $variant1productData->hidden = true;
@@ -508,21 +552,21 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     public function testRefreshProductsVisibilityNotVisibleMainVariant()
     {
         $em = $this->getEntityManager();
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository $productVisibilityRepository */
         $productVisibilityRepository = $this->getContainer()->get(ProductVisibilityRepository::class);
-        /* @var $productVisibilityRepository \Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository */
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
-        $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
+        /** @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory $productDataFactory */
+        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
 
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant1 */
         $variant1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '53');
-        /* @var $variant1 \Shopsys\ShopBundle\Model\Product\Product */
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant2 */
         $variant2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '54');
-        /* @var $variant2 \Shopsys\ShopBundle\Model\Product\Product */
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant3 */
         $variant3 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '69');
-        /* @var $variant3 \Shopsys\ShopBundle\Model\Product\Product */
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $mainVariant */
         $mainVariant = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '148');
-        /* @var $mainVariant \Shopsys\ShopBundle\Model\Product\Product */
 
         $mainVariantproductData = $productDataFactory->createFromProduct($mainVariant);
         $mainVariantproductData->hidden = true;
@@ -539,22 +583,5 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
         $this->assertFalse($variant2->isVisible());
         $this->assertFalse($variant3->isVisible());
         $this->assertFalse($mainVariant->isVisible());
-    }
-
-    /**
-     * @param \Shopsys\FrameworkBundle\Model\Product\ProductData $productData
-     * @param $price
-     */
-    private function setPriceForAllDomains(ProductData $productData, $price)
-    {
-        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupFacade $pricingGroupFacade */
-        $pricingGroupFacade = $this->getContainer()->get(PricingGroupFacade::class);
-
-        $manualInputPrices = [];
-        foreach ($pricingGroupFacade->getAll() as $pricingGroup) {
-            $manualInputPrices[$pricingGroup->getId()] = $price;
-        }
-
-        $productData->manualInputPricesByPricingGroupId = $manualInputPrices;
     }
 }

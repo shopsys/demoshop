@@ -19,9 +19,9 @@
             <div
                 class="js-range-slider"
                 data-minimum-input-id="{{ filterForm.minimalPrice.vars.id }}"
-                data-minimal-value="{{ priceRange.minimalPrice * discountCoeficient }}"
+                data-minimal-value="{{ priceRange.minimalPrice.multiply(discountCoeficient)|moneyFormat }}"
                 data-maximum-input-id="{{ filterForm.maximalPrice.vars.id }}"
-                data-maximal-value="{{ priceRange.maximalPrice * discountCoeficient}}"
+                data-maximal-value="{{ priceRange.maximalPrice.multiply(discountCoeficient)|moneyFormat }}"
             ></div>
             <div class="box-filter__price__values">
                 <div class="box-filter__price__values__item box-filter__price__values__item--from">

@@ -149,10 +149,10 @@ class ProductController extends FrontBaseController
     private function applyDiscountForPriceFilter(ProductFilterData $productFilterData)
     {
         if ($productFilterData->minimalPrice !== null) {
-            $productFilterData->minimalPrice /= $this->currentCustomer->getDiscountCoeficient();
+            $productFilterData->minimalPrice = $productFilterData->minimalPrice->divide($this->currentCustomer->getDiscountCoeficient(), 10);
         }
         if ($productFilterData->maximalPrice !== null) {
-            $productFilterData->maximalPrice /= $this->currentCustomer->getDiscountCoeficient();
+            $productFilterData->maximalPrice = $productFilterData->maximalPrice->divide($this->currentCustomer->getDiscountCoeficient(), 10);
         }
     }
 

@@ -2,16 +2,17 @@
 
 namespace Tests\ShopBundle\Functional\Model\Product;
 
-use Shopsys\ShopBundle\DataFixtures\Demo\BrandDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\FlagDataFixture;
-use Shopsys\FrameworkBundle\Model\Category\Category;
+use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Product\Filter\ParameterFilterData;
 use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData;
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
 use Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterRepository;
 use Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterValue;
 use Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacade;
+use Shopsys\ShopBundle\DataFixtures\Demo\BrandDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\FlagDataFixture;
+use Shopsys\ShopBundle\Model\Category\Category;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTestCase
@@ -21,7 +22,7 @@ class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTestCase
         $category = $this->getReference(CategoryDataFixture::CATEGORY_TV);
 
         $productFilterData = new ProductFilterData();
-        $productFilterData->minimalPrice = 1000;
+        $productFilterData->minimalPrice = Money::create(1000);
         $paginationResult = $this->getPaginationResultInCategory($productFilterData, $category);
 
         $this->assertCount(22, $paginationResult->getResults());
@@ -32,7 +33,7 @@ class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTestCase
         $category = $this->getReference(CategoryDataFixture::CATEGORY_TV);
 
         $productFilterData = new ProductFilterData();
-        $productFilterData->maximalPrice = 10000;
+        $productFilterData->maximalPrice = Money::create(10000);
         $paginationResult = $this->getPaginationResultInCategory($productFilterData, $category);
 
         $this->assertCount(22, $paginationResult->getResults());
@@ -159,8 +160,8 @@ class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTestCase
      */
     private function createParameterFilterData(array $namesByLocale, array $valuesTextsByLocales)
     {
+        /** @var \Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterRepository $parameterRepository */
         $parameterRepository = $this->getContainer()->get(ParameterRepository::class);
-        /* @var $parameterRepository \Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterRepository */
 
         $parameter = $parameterRepository->findParameterByNames($namesByLocale);
         $parameterValues = $this->getParameterValuesByLocalesAndTexts($valuesTextsByLocales);
@@ -178,8 +179,8 @@ class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTestCase
      */
     private function getParameterValuesByLocalesAndTexts(array $valuesTextsByLocales)
     {
+        /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-        /* @var $em \Doctrine\ORM\EntityManager */
         $parameterValues = [];
 
         foreach ($valuesTextsByLocales as $valueTextsByLocales) {
@@ -196,13 +197,13 @@ class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTestCase
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData $productFilterData
-     * @param \Shopsys\FrameworkBundle\Model\Category\Category $category
+     * @param \Shopsys\ShopBundle\Model\Category\Category $category
      * @return \Shopsys\FrameworkBundle\Component\Paginator\PaginationResult
      */
     private function getPaginationResultInCategory(ProductFilterData $productFilterData, Category $category)
     {
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacade $productOnCurrentDomainFacade */
         $productOnCurrentDomainFacade = $this->getContainer()->get(ProductOnCurrentDomainFacade::class);
-        /* @var $productOnCurrentDomainFacade \Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacade */
         $page = 1;
         $limit = PHP_INT_MAX;
 
