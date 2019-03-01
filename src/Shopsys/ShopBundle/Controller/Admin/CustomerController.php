@@ -378,7 +378,7 @@ class CustomerController extends BaseCustomerController
             try {
                 return $this->editCompanyWithMultipleUsers($billingAddress, $customerData);
             } catch (DuplicateEmailsException $exc) {
-                $this->getFlashMessageSender()->addErrorFlashTwig(t('One or more emails are duplicated or already used, e.g.: ' . $exc->getEmail()));
+                $this->getFlashMessageSender()->addErrorFlashTwig(t('One or more emails are duplicated or already used, e.g.:') . ' ' . $exc->getEmail());
                 $this->getFlashMessageSender()->addErrorFlashTwig(t('Please check the correctness of all data filled.'));
             }
         }

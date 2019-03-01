@@ -10,14 +10,14 @@ msgstr "Název města nesmí být delší než {{ limit }} znaků"
 msgid "Company name cannot be longer than {{ limit }} characters"
 msgstr "Název firmy nesmí být delší než {{ limit }} znaků"
 
-msgid "Discount percentage should be {{ limit }} or more."
-msgstr "Procentní sleva musí být větší nebo rovna {{ limit }}"
+msgid "Discount percentage needs to be valid number with range between 0 and 100."
+msgstr "Procentní sleva musí být celé číslo v rozmezí 0 až 100."
 
 msgid "Discount percentage should be {{ limit }} or less."
-msgstr "Procentní sleva musí být menší nebo rovna {{ limit }}"
+msgstr "Procentní sleva musí být menší nebo rovna {{ limit }}."
 
-msgid "Discount percentage needs to be valid number with range between 0 and 100"
-msgstr "Procentní sleva musí být celé číslo v rozmezí 0 až 100"
+msgid "Discount percentage should be {{ limit }} or more."
+msgstr "Procentní sleva musí být větší nebo rovna {{ limit }}."
 
 msgid "Email cannot be longer then {{ limit }} characters"
 msgstr "E-mail nesmí být delší než {{ limit }} znaků"
@@ -52,6 +52,9 @@ msgstr "Hesla se neshodují"
 msgid "Please check the correctness of all data filled."
 msgstr "Zkontrolujte prosím správnost vyplněných dat."
 
+msgid "Please choose a valid combination of transport and payment"
+msgstr "Prosím vyberte povolenou kombinaci dopravy a platby"
+
 msgid "Please choose country"
 msgstr "Prosím vyberte stát"
 
@@ -72,6 +75,9 @@ msgstr "Vyplňte prosím text"
 
 msgid "Please enter date of creation"
 msgstr "Vyplňte prosím datum vytvoření"
+
+msgid "Please enter discount percentage"
+msgstr "Vyplňte prosím procento slevy"
 
 msgid "Please enter e-mail"
 msgstr "Vyplňte prosím e-mail"

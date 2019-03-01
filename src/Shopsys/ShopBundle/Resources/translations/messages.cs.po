@@ -22,6 +22,9 @@ msgstr "Podpora 24/7"
 msgid "Accessories"
 msgstr "Příslušenství"
 
+msgid "Add company user"
+msgstr "Přidat uživatele firmy"
+
 msgid "Add to cart"
 msgstr "Vložit do košíku"
 
@@ -133,6 +136,9 @@ msgstr "Název firmy"
 msgid "Company number"
 msgstr "IČ"
 
+msgid "Company users"
+msgstr "Uživatelé firmy"
+
 msgid "Condition"
 msgstr "Stav zboží"
 
@@ -157,6 +163,18 @@ msgstr "Datum vytvoření"
 msgid "Current status"
 msgstr "Aktuální stav"
 
+msgid "Customer <strong><a href=\"{{ url }}\">{{ name }}</a></strong> created"
+msgstr "Zákazník <strong><a href=\"{{ url }}\">{{ name }}</a></strong> byl vytvořen"
+
+msgid "Customer <strong><a href=\"{{ url }}\">{{ name }}</a></strong> modified"
+msgstr "Zákazník <strong><a href=\"{{ url }}\">{{ name }}</a></strong> byl upraven"
+
+msgid "Customer <strong>{{ name }}</strong> deleted"
+msgstr "Zákazník <strong>{{ name }}</strong> byl smazán"
+
+msgid "Customer not found"
+msgstr "Zákazník nebyl nalezen"
+
 msgid "Customer with e-mail address <strong>{{ email }}</strong> doesn't exist. <a href=\"{{ registrationLink }}\"> Register</a>"
 msgstr "Zákazník s e-mailovou adresou <strong>{{ email }}</strong> neexistuje. <a href=\"{{ registrationLink }}\">Zaregistrovat</a>"
 
@@ -168,6 +186,9 @@ msgstr "Dodací adresa"
 
 msgid "Delivery data"
 msgstr "Dodací údaje"
+
+msgid "Description"
+msgstr "Popis"
 
 msgid "Detail"
 msgstr "Detail"
@@ -190,6 +211,9 @@ msgstr "Slevový kód byl odebrán z objednávky."
 msgid "Displaying"
 msgstr "Zobrazuji"
 
+msgid "Do you really want to remove this customer?"
+msgstr "Opravdu chcete odstranit tohoto zákazníka?"
+
 msgid "Do you want to receive the newest information about our shop? Subscribe to our e-mail newsletter."
 msgstr "Chcete dostávat nejnovější informace z našeho obchodu? Přihlašte se do našeho e-mailového zpravodaje."
 
@@ -210,6 +234,9 @@ msgstr "E-mail s odkazem na stránku s údaji o osobních údajích byl odeslán
 
 msgid "EAN"
 msgstr "EAN"
+
+msgid "Editing customer - %name%"
+msgstr "Editace zákazníka - %name%"
 
 msgid "Effectivness Hunter"
 msgstr "Effectivness Hunter"
@@ -289,11 +316,17 @@ msgstr "Zboží chci doručit na jinou adresu než fakturační"
 msgid "I want to subscribe to the newsletter"
 msgstr "Chci se přihlásit k odběru newsletteru"
 
+msgid "Id"
+msgstr ""
+
 msgid "Image"
 msgstr "Obrázek"
 
 msgid "Invalid login"
 msgstr "Byly zadány neplatné přihlašovací údaje"
+
+msgid "Is company with multiple users"
+msgstr "Firma s více uživateli"
 
 msgid "Items"
 msgstr "Položky"
@@ -372,6 +405,9 @@ msgstr "Není z čeho vybírat."
 
 msgid "Number of items"
 msgstr "Počet položek"
+
+msgid "One or more emails are duplicated or already used, e.g.:"
+msgstr "Jeden nebo více e-mailů je duplikován nebo se již používá, např.:"
 
 msgid "Online shop"
 msgstr "Internetový obchod"
@@ -565,6 +601,9 @@ msgstr "Výsledky hledání \"%searchText%\""
 msgid "Searching"
 msgstr "Vyhledávání"
 
+msgid "Selected customer doesn't exist."
+msgstr "Zvolený zákazník neexistuje."
+
 msgid "Selected product no longer available or doesn't exist."
 msgstr "Zvolené zboží již není v nabídce nebo neexistuje."
 
@@ -634,11 +673,14 @@ msgstr "Děkujeme, váš vzkaz byl odeslán."
 msgid "The link to change your password expired."
 msgstr "Platnost odkazu pro změnu hesla vypršela."
 
-msgid "The price of payment {{ transportName }} changed during ordering process. Check your order, please."
+msgid "The price of payment {{ paymentName }} changed during ordering process. Check your order, please."
 msgstr "V průběhu objednávkového procesu byla změněna cena platby {{ paymentName }}. Prosím, překontrolujte si objednávku."
 
 msgid "The price of shipping {{ transportName }} changed during ordering process. Check your order, please."
 msgstr "V průběhu objednávkového procesu byla změněna cena dopravy {{ transportName }}. Prosím, překontrolujte si objednávku."
+
+msgid "This account doesn't exist or password is incorrect"
+msgstr "Zadali jste špatné uživatelské jméno nebo heslo"
 
 msgid "This category contains no products."
 msgstr "Tato kategorie neobsahuje žádné produkty"
@@ -793,12 +835,17 @@ msgstr "zboží"
 msgid "records"
 msgstr "záznamů"
 
+msgid "unregistered customer"
+msgstr "neregistrovaný zákazník"
+
 msgid "{0} No product found | {1} 1 product found | [2,Inf] %totalProductCount% product found"
 msgstr "{0} Nebyl nalezen žádný produkt | {1} Celkem nalezen 1 produkt | [2,4] Celkem nalezeny %totalProductCount% produkty | [5,Inf] Celkem nalezeno %totalProductCount% produktů"
 
 msgid "{1} <strong class=\"cart__state\">%itemsCount%</strong> item for <strong class=\"cart__state\">%priceWithVat%</strong>|[2,Inf] <strong class=\"cart__state\">%itemsCount%</strong> items for <strong class=\"cart__state\">%priceWithVat%</strong>"
 msgstr "{1} <strong class=\"cart__state\">%itemsCount%</strong> položka za <strong class=\"cart__state\">%priceWithVat%</strong> |[2,4] <strong class=\"cart__state\">%itemsCount%</strong> položky za <strong class=\"cart__state\">%priceWithVat%</strong> |[5,Inf] <strong class=\"cart__state\">%itemsCount%</strong> položek za <strong class=\"cart__state\">%priceWithVat%</strong>"
 
+msgid "{1}Load next %loadNextCount% item|[2,Inf]Load next %loadNextCount% items"
+msgstr "{1}Načíst další položku|[2,4]Načíst další %loadNextCount% položky|[5,Inf]Načíst dalších %loadNextCount% položek"
+
 msgid "{1}Load next %loadNextCount% product|[2,Inf]Load next %loadNextCount% products"
 msgstr "[1,4]Načíst další %loadNextCount% zboží|[5,Inf]Načíst dalších %loadNextCount% zboží"
-

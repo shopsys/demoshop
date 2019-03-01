@@ -22,10 +22,10 @@ msgstr ""
 msgid "Accessories"
 msgstr ""
 
-msgid "Add to cart"
+msgid "Add company user"
 msgstr ""
 
-msgid "Added product will not have any individual discounts"
+msgid "Add to cart"
 msgstr ""
 
 msgid "Address"
@@ -133,6 +133,9 @@ msgstr ""
 msgid "Company number"
 msgstr ""
 
+msgid "Company users"
+msgstr ""
+
 msgid "Condition"
 msgstr ""
 
@@ -157,6 +160,18 @@ msgstr ""
 msgid "Current status"
 msgstr ""
 
+msgid "Customer <strong><a href=\"{{ url }}\">{{ name }}</a></strong> created"
+msgstr ""
+
+msgid "Customer <strong><a href=\"{{ url }}\">{{ name }}</a></strong> modified"
+msgstr ""
+
+msgid "Customer <strong>{{ name }}</strong> deleted"
+msgstr ""
+
+msgid "Customer not found"
+msgstr ""
+
 msgid "Customer with e-mail address <strong>{{ email }}</strong> doesn't exist. <a href=\"{{ registrationLink }}\"> Register</a>"
 msgstr ""
 
@@ -167,6 +182,9 @@ msgid "Delivery address"
 msgstr ""
 
 msgid "Delivery data"
+msgstr ""
+
+msgid "Description"
 msgstr ""
 
 msgid "Detail"
@@ -190,6 +208,9 @@ msgstr ""
 msgid "Displaying"
 msgstr ""
 
+msgid "Do you really want to remove this customer?"
+msgstr ""
+
 msgid "Do you want to receive the newest information about our shop? Subscribe to our e-mail newsletter."
 msgstr ""
 
@@ -206,6 +227,9 @@ msgid "E-mail with a link to the page with your personal data was sent to your e
 msgstr ""
 
 msgid "EAN"
+msgstr ""
+
+msgid "Editing customer - %name%"
 msgstr ""
 
 msgid "Effectivness Hunter"
@@ -283,10 +307,16 @@ msgstr ""
 msgid "I want to subscribe to the newsletter"
 msgstr ""
 
+msgid "Id"
+msgstr ""
+
 msgid "Image"
 msgstr ""
 
 msgid "Invalid login"
+msgstr ""
+
+msgid "Is company with multiple users"
 msgstr ""
 
 msgid "Items"
@@ -362,6 +392,9 @@ msgid "Nothing to choose from."
 msgstr ""
 
 msgid "Number of items"
+msgstr ""
+
+msgid "One or more emails are duplicated or already used, e.g.:"
 msgstr ""
 
 msgid "Online shop"
@@ -544,6 +577,9 @@ msgstr ""
 msgid "Searching"
 msgstr ""
 
+msgid "Selected customer doesn't exist."
+msgstr ""
+
 msgid "Selected product no longer available or doesn't exist."
 msgstr ""
 
@@ -607,10 +643,13 @@ msgstr ""
 msgid "The link to change your password expired."
 msgstr ""
 
-msgid "The price of payment {{ transportName }} changed during ordering process. Check your order, please."
+msgid "The price of payment {{ paymentName }} changed during ordering process. Check your order, please."
 msgstr ""
 
 msgid "The price of shipping {{ transportName }} changed during ordering process. Check your order, please."
+msgstr ""
+
+msgid "This account doesn't exist or password is incorrect"
 msgstr ""
 
 msgid "This category contains no products."
@@ -733,6 +772,9 @@ msgstr ""
 msgid "Your discount"
 msgstr ""
 
+msgid "Zasilkovna.cz - dispensing point"
+msgstr ""
+
 msgid "Zásilkovna"
 msgstr ""
 
@@ -763,10 +805,16 @@ msgstr ""
 msgid "records"
 msgstr ""
 
+msgid "unregistered customer"
+msgstr ""
+
 msgid "{0} No product found | {1} 1 product found | [2,Inf] %totalProductCount% product found"
 msgstr ""
 
 msgid "{1} <strong class=\"cart__state\">%itemsCount%</strong> item for <strong class=\"cart__state\">%priceWithVat%</strong>|[2,Inf] <strong class=\"cart__state\">%itemsCount%</strong> items for <strong class=\"cart__state\">%priceWithVat%</strong>"
+msgstr ""
+
+msgid "{1}Load next %loadNextCount% item|[2,Inf]Load next %loadNextCount% items"
 msgstr ""
 
 msgid "{1}Load next %loadNextCount% product|[2,Inf]Load next %loadNextCount% products"
