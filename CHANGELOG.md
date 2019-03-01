@@ -69,6 +69,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [#39 - Upgrade to stable version 7.0.0](https://github.com/shopsys/demoshop/pull/39)
     - phing target build-demo is improved
     - translations from previous changes are fixed
+    - promocode naming is unified
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
