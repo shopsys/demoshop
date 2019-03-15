@@ -17,9 +17,14 @@ parameters:
             - '*/tests/ShopBundle/Smoke/Http/RouteConfigCustomization.php'
             - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/MailTemplateDataFixture.php'
             - '*/src/Shopsys/ShopBundle/DataFixtures/DemoMultidomain/MailTemplateDataFixture.php'
+            - '*/src/Shopsys/ShopBundle/DataFixtures/*/*DataFixture.php'
+            - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/ProductDataFixtureLoader.php'
+
 
         ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
             - '*/tests/ShopBundle/Functional/Model/Product/ProductVisibilityRepositoryTest.php'
+            - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/MultidomainOrderDataFixture.phpFixture.php'
+            - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/OrderDataFixture.php'
 
         Shopsys\CodingStandards\Sniffs\ValidVariableNameSniff:
             - '*/tests/ShopBundle/Functional/EntityExtension/EntityExtensionTest.php'

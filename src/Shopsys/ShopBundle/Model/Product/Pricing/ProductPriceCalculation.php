@@ -2,6 +2,7 @@
 
 namespace Shopsys\ShopBundle\Model\Product\Pricing;
 
+use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Pricing\BasePriceCalculation;
 use Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup;
 use Shopsys\FrameworkBundle\Model\Pricing\PricingSetting;
@@ -104,9 +105,9 @@ class ProductPriceCalculation extends BaseProductPriceCalculation
     {
         $manualInputPrice = $this->productManualInputPriceRepository->findByProductAndPricingGroup($product, $pricingGroup);
         if ($manualInputPrice !== null) {
-            $inputPrice = $manualInputPrice->getInputPrice() * $discountCoeficient;
+            $inputPrice = ($manualInputPrice->getInputPrice() ?? Money::zero())->multiply($discountCoeficient);
         } else {
-            $inputPrice = 0;
+            $inputPrice = Money::zero();
         }
 
         $basePrice = $this->basePriceCalculation->calculateBasePrice(

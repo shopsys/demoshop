@@ -10,13 +10,13 @@ msgstr ""
 msgid "Company name cannot be longer than {{ limit }} characters"
 msgstr ""
 
-msgid "Discount percentage should be {{ limit }} or more."
+msgid "Discount percentage needs to be valid number with range between 0 and 100."
 msgstr ""
 
 msgid "Discount percentage should be {{ limit }} or less."
 msgstr ""
 
-msgid "Discount percentage needs to be valid number with range between 0 and 100"
+msgid "Discount percentage should be {{ limit }} or more."
 msgstr ""
 
 msgid "Email cannot be longer then {{ limit }} characters"
@@ -52,6 +52,9 @@ msgstr ""
 msgid "Please check the correctness of all data filled."
 msgstr ""
 
+msgid "Please choose a valid combination of transport and payment"
+msgstr ""
+
 msgid "Please choose country"
 msgstr ""
 
@@ -71,6 +74,9 @@ msgid "Please enter content"
 msgstr ""
 
 msgid "Please enter date of creation"
+msgstr ""
+
+msgid "Please enter discount percentage"
 msgstr ""
 
 msgid "Please enter e-mail"
@@ -118,7 +124,7 @@ msgstr ""
 msgid "Please enter zip code"
 msgstr ""
 
-msgid "Price must be greater or equal to {{ compared_value }}"
+msgid "Price must be greater or equal to zero"
 msgstr ""
 
 msgid "Quantity must be greater than {{ compared_value }}"

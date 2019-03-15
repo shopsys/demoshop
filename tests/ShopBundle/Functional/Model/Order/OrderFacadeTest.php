@@ -3,9 +3,7 @@
 namespace Tests\ShopBundle\Functional\Model\Order;
 
 use Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\CountryDataFixture;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\CurrencyDataFixture;
-use Shopsys\FrameworkBundle\DataFixtures\Demo\OrderStatusDataFixture;
+use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Cart\CartFacade;
 use Shopsys\FrameworkBundle\Model\Cart\Item\CartItemFactory;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItemData;
@@ -17,6 +15,9 @@ use Shopsys\FrameworkBundle\Model\Payment\PaymentRepository;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser;
 use Shopsys\FrameworkBundle\Model\Product\ProductRepository;
 use Shopsys\FrameworkBundle\Model\Transport\TransportRepository;
+use Shopsys\ShopBundle\DataFixtures\Demo\CountryDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\CurrencyDataFixture;
+use Shopsys\ShopBundle\DataFixtures\Demo\OrderStatusDataFixture;
 use Shopsys\ShopBundle\Model\Order\OrderData;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
@@ -24,29 +25,28 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
 {
     public function testCreate()
     {
+        /** @var \Shopsys\FrameworkBundle\Model\Cart\CartFacade $cartFacade */
         $cartFacade = $this->getContainer()->get(CartFacade::class);
-        /* @var $cartFacade \Shopsys\FrameworkBundle\Model\Cart\CartFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Order\OrderFacade $orderFacade */
         $orderFacade = $this->getContainer()->get(OrderFacade::class);
-        /* @var $orderFacade \Shopsys\FrameworkBundle\Model\Order\OrderFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Order\Preview\OrderPreviewFactory $orderPreviewFactory */
         $orderPreviewFactory = $this->getContainer()->get(OrderPreviewFactory::class);
-        /* @var $orderPreviewFactory \Shopsys\FrameworkBundle\Model\Order\Preview\OrderPreviewFactory */
+        /** @var \Shopsys\FrameworkBundle\Model\Order\OrderRepository $orderRepository */
         $orderRepository = $this->getContainer()->get(OrderRepository::class);
-        /* @var $orderRepository \Shopsys\FrameworkBundle\Model\Order\OrderRepository */
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductRepository $productRepository */
         $productRepository = $this->getContainer()->get(ProductRepository::class);
-        /* @var $productRepository \Shopsys\FrameworkBundle\Model\Product\ProductRepository */
+        /** @var \Shopsys\FrameworkBundle\Model\Transport\TransportRepository $transportRepository */
         $transportRepository = $this->getContainer()->get(TransportRepository::class);
-        /* @var $transportRepository \Shopsys\FrameworkBundle\Model\Transport\TransportRepository */
+        /** @var \Shopsys\FrameworkBundle\Model\Payment\PaymentRepository $paymentRepository */
         $paymentRepository = $this->getContainer()->get(PaymentRepository::class);
-        /* @var $paymentRepository \Shopsys\FrameworkBundle\Model\Payment\PaymentRepository */
+        /** @var \Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade $persistentReferenceFacade */
         $persistentReferenceFacade = $this->getContainer()->get(PersistentReferenceFacade::class);
-        /* @var $persistentReferenceFacade \Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade */
         /** @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser $productPriceCalculation */
         $productPriceCalculation = $this->getContainer()->get(ProductPriceCalculationForUser::class);
         /** @var \Shopsys\FrameworkBundle\Model\Cart\Item\CartItemFactory $cartItemFactory */
         $cartItemFactory = $this->getContainer()->get(CartItemFactory::class);
 
         $cart = $cartFacade->getCartOfCurrentCustomerCreateIfNotExists();
-
         $product = $productRepository->getById(1);
 
         $cart->addProduct($product, 1, $productPriceCalculation, $cartItemFactory);
@@ -116,15 +116,15 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
 
     public function testEdit()
     {
+        /** @var \Shopsys\FrameworkBundle\Model\Order\OrderFacade $orderFacade */
         $orderFacade = $this->getContainer()->get(OrderFacade::class);
-        /* @var $orderFacade \Shopsys\FrameworkBundle\Model\Order\OrderFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Order\OrderRepository $orderRepository */
         $orderRepository = $this->getContainer()->get(OrderRepository::class);
-        /* @var $orderRepository \Shopsys\FrameworkBundle\Model\Order\OrderRepository */
+        /** @var \Shopsys\ShopBundle\Model\Order\OrderDataFactory $orderDataFactory */
         $orderDataFactory = $this->getContainer()->get(OrderDataFactoryInterface::class);
-        /* @var $orderDataFactory \Shopsys\FrameworkBundle\Model\Order\OrderDataFactory */
 
+        /** @var \Shopsys\ShopBundle\Model\Order\Order $order */
         $order = $this->getReference('order_1');
-        /* @var $order \Shopsys\FrameworkBundle\Model\Order\Order */
 
         $this->assertCount(4, $order->getItems());
 
@@ -135,15 +135,15 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
 
         $orderItemData1 = new OrderItemData();
         $orderItemData1->name = 'itemName1';
-        $orderItemData1->priceWithoutVat = 100;
-        $orderItemData1->priceWithVat = 121;
+        $orderItemData1->priceWithoutVat = Money::create(100);
+        $orderItemData1->priceWithVat = Money::create(121);
         $orderItemData1->vatPercent = 21;
         $orderItemData1->quantity = 3;
 
         $orderItemData2 = new OrderItemData();
         $orderItemData2->name = 'itemName2';
-        $orderItemData2->priceWithoutVat = 333;
-        $orderItemData2->priceWithVat = 333;
+        $orderItemData2->priceWithoutVat = Money::create(333);
+        $orderItemData2->priceWithVat = Money::create(333);
         $orderItemData2->vatPercent = 0;
         $orderItemData2->quantity = 1;
 

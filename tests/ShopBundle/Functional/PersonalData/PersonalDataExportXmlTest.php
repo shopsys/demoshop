@@ -3,6 +3,7 @@
 namespace Tests\ShopBundle\Functional\PersonalData;
 
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
+use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Component\Xml\XmlNormalizer;
 use Shopsys\FrameworkBundle\Model\Country\Country;
 use Shopsys\FrameworkBundle\Model\Country\CountryData;
@@ -10,16 +11,16 @@ use Shopsys\FrameworkBundle\Model\Customer\BillingAddress;
 use Shopsys\FrameworkBundle\Model\Customer\BillingAddressData;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressData;
-use Shopsys\FrameworkBundle\Model\Customer\User;
-use Shopsys\FrameworkBundle\Model\Customer\UserData;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItem;
-use Shopsys\FrameworkBundle\Model\Order\Order;
-use Shopsys\FrameworkBundle\Model\Order\OrderData;
 use Shopsys\FrameworkBundle\Model\Order\Status\OrderStatus;
 use Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency;
 use Shopsys\FrameworkBundle\Model\Pricing\Currency\CurrencyData;
 use Shopsys\FrameworkBundle\Model\Pricing\Price;
-use Shopsys\ShopBundle\Model\Product\Product;
+use Shopsys\FrameworkBundle\Model\Product\Product;
+use Shopsys\ShopBundle\Model\Customer\User;
+use Shopsys\ShopBundle\Model\Customer\UserData;
+use Shopsys\ShopBundle\Model\Order\Order;
+use Shopsys\ShopBundle\Model\Order\OrderData;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
@@ -41,8 +42,9 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $currency = new Currency($currencyData);
         $order = $this->createOrder($currency, $status, $country);
         $product = $this->createMock(Product::class);
-        $price = new Price(1, 1);
-        $orderItem = new OrderItem($order, 'test', $price, 1, 1, OrderItem::TYPE_PRODUCT, 'ks', $product->getCatnum());
+        $price = new Price(Money::create(1), Money::create(1));
+        $orderItem = new OrderItem($order, 'test', $price, 1, 1, OrderItem::TYPE_PRODUCT, 'ks', 'cat');
+        $orderItem->setProduct($product);
         $order->addItem($orderItem);
         $order->setStatus($status);
 
@@ -66,9 +68,8 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
     private function createCountry()
     {
         $countryData = new CountryData();
-        $countryData->name = 'Czech Republic';
+        $countryData->names = ['cz' => 'Czech Republic'];
         $countryData->code = 'CZ';
-        $countryData->enabled = [1 => true];
         $country = new Country($countryData);
 
         return $country;
@@ -118,7 +119,7 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
     /**
      * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddress $billingAddress
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress $deliveryAddress
-     * @return \Shopsys\FrameworkBundle\Model\Customer\User
+     * @return \Shopsys\ShopBundle\Model\Customer\User
      */
     private function createUser(BillingAddress $billingAddress, DeliveryAddress $deliveryAddress)
     {
@@ -139,7 +140,7 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency
      * @param \Shopsys\FrameworkBundle\Model\Order\Status\OrderStatus $status
      * @param \Shopsys\FrameworkBundle\Model\Country\Country $country
-     * @return \Shopsys\FrameworkBundle\Model\Order\Order
+     * @return \Shopsys\ShopBundle\Model\Order\Order
      */
     private function createOrder(Currency $currency, OrderStatus $status, Country $country)
     {

@@ -4,6 +4,7 @@ namespace Tests\ShopBundle\Functional\Model\Cart;
 
 use DateTime;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
+use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Cart\CartFacade;
 use Shopsys\FrameworkBundle\Model\Cart\CartFactory;
 use Shopsys\FrameworkBundle\Model\Cart\CartRepository;
@@ -27,10 +28,14 @@ class CartFacadeDeleteOldCartsTest extends TransactionFunctionalTestCase
         $customerIdentifier = $this->getCustomerIdentifierForUnregisteredCustomer();
         $cartFacade = $this->getCartFacadeForUnregisteredCustomer();
         $cart = $this->createCartWithProduct($customerIdentifier, $cartFacade);
+
         $cart->setModifiedAt(new DateTime('- 61 days'));
+
         $em = $this->getEntityManager();
         $em->flush($cart);
+
         $cartFacade->deleteOldCarts();
+
         $this->assertCartIsDeleted($cartFacade, $customerIdentifier, 'Cart should be deleted');
     }
 
@@ -39,10 +44,14 @@ class CartFacadeDeleteOldCartsTest extends TransactionFunctionalTestCase
         $customerIdentifier = $this->getCustomerIdentifierForUnregisteredCustomer();
         $cartFacade = $this->getCartFacadeForUnregisteredCustomer();
         $cart = $this->createCartWithProduct($customerIdentifier, $cartFacade);
+
         $cart->setModifiedAt(new DateTime('- 59 days'));
+
         $em = $this->getEntityManager();
         $em->flush($cart);
+
         $cartFacade->deleteOldCarts();
+
         $this->assertCartIsNotDeleted($cartFacade, $customerIdentifier, 'Cart should not be deleted');
     }
 
@@ -51,10 +60,14 @@ class CartFacadeDeleteOldCartsTest extends TransactionFunctionalTestCase
         $customerIdentifier = $this->getCustomerIdentifierForRegisteredCustomer();
         $cartFacade = $this->getCartFacadeForRegisteredCustomer();
         $cart = $this->createCartWithProduct($customerIdentifier, $cartFacade);
+
         $cart->setModifiedAt(new DateTime('- 121 days'));
+
         $em = $this->getEntityManager();
         $em->flush($cart);
+
         $cartFacade->deleteOldCarts();
+
         $this->assertCartIsDeleted($cartFacade, $customerIdentifier, 'Cart should be deleted');
     }
 
@@ -63,10 +76,14 @@ class CartFacadeDeleteOldCartsTest extends TransactionFunctionalTestCase
         $customerIdentifier = $this->getCustomerIdentifierForRegisteredCustomer();
         $cartFacade = $this->getCartFacadeForRegisteredCustomer();
         $cart = $this->createCartWithProduct($customerIdentifier, $cartFacade);
+
         $cart->setModifiedAt(new DateTime('- 119 days'));
+
         $em = $this->getEntityManager();
         $em->flush($cart);
+
         $cartFacade->deleteOldCarts();
+
         $this->assertCartIsNotDeleted($cartFacade, $customerIdentifier, 'Cart should not be deleted');
     }
 
@@ -76,8 +93,9 @@ class CartFacadeDeleteOldCartsTest extends TransactionFunctionalTestCase
      */
     private function getProductById($productId)
     {
-        /** @var \Shopsys\ShopBundle\Model\Product\ProductFacade $productFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
+
         return $productFacade->getById($productId);
     }
 
@@ -88,7 +106,9 @@ class CartFacadeDeleteOldCartsTest extends TransactionFunctionalTestCase
     {
         /** @var \Shopsys\ShopBundle\Model\Customer\CustomerFacade $customerFacade */
         $customerFacade = $this->getContainer()->get(CustomerFacade::class);
+
         $user = $customerFacade->getUserById(1);
+
         return $this->getCartFacadeForCustomer($this->getCustomerIdentifierForRegisteredCustomer());
     }
 
@@ -130,7 +150,9 @@ class CartFacadeDeleteOldCartsTest extends TransactionFunctionalTestCase
         $customerIdentifierFactoryMock = $this->getMockBuilder(CustomerIdentifierFactory::class)
             ->disableOriginalConstructor()
             ->getMock();
+
         $customerIdentifierFactoryMock->method('get')->willReturn($customerIdentifier);
+
         return $customerIdentifierFactoryMock;
     }
 
@@ -163,6 +185,7 @@ class CartFacadeDeleteOldCartsTest extends TransactionFunctionalTestCase
     {
         $customerFacade = $this->getContainer()->get(CustomerFacade::class);
         $user = $customerFacade->getUserById(1);
+
         return new CustomerIdentifier('', $user);
     }
 
@@ -182,12 +205,17 @@ class CartFacadeDeleteOldCartsTest extends TransactionFunctionalTestCase
     private function createCartWithProduct(CustomerIdentifier $customerIdentifier, CartFacade $cartFacade)
     {
         $em = $this->getEntityManager();
+
         $product = $this->getProductById(1);
         $cart = $cartFacade->getCartByCustomerIdentifierCreateIfNotExists($customerIdentifier);
-        $cartItem = new CartItem($cart, $product, 1, '0.0');
+
+        $cartItem = new CartItem($cart, $product, 1, Money::zero());
+
         $em->persist($cartItem);
         $em->flush();
+
         $cart->addItem($cartItem);
+
         return $cart;
     }
 }

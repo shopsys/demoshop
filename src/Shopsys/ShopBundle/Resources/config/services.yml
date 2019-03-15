@@ -1,5 +1,7 @@
 imports:
     - { resource: forms.yml }
+    - { resource: services/commands.yml }
+    - { resource: services/data_fixtures.yml }
     - { resource: cron.yml }
 
 services:
@@ -24,10 +26,6 @@ services:
     Shopsys\ShopBundle\Model\:
         resource: '../../Model/**/*{Facade,Factory,Repository}.php'
 
-    Shopsys\ShopBundle\DataFixtures\:
-        resource: '../../DataFixtures/**/*DataFixture.php'
-        tags: ['doctrine.fixture.orm']
-
     League\Flysystem\MountManager:
         arguments:
             -
@@ -41,10 +39,6 @@ services:
     Shopsys\ShopBundle\Form\Front\Order\DomainAwareOrderFlowFactory: ~
 
     Shopsys\FrameworkBundle\Model\Order\Item\OrderItemDataFactoryInterface: '@Shopsys\ShopBundle\Model\Order\Item\OrderItemDataFactory'
-
-    # Don't load data fixtures from FrameworkBundle, because they are overridden in ShopBundle
-    Shopsys\FrameworkBundle\DataFixtures\Demo\MailTemplateDataFixture: ~
-    Shopsys\FrameworkBundle\DataFixtures\Demo\MultidomainMailTemplateDataFixture: ~
 
     Shopsys\FrameworkBundle\Model\Order\OrderFlowFactoryInterface: '@Shopsys\ShopBundle\Form\Front\Order\DomainAwareOrderFlowFactory'
 
@@ -148,3 +142,41 @@ services:
 
     Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer:
         alias: Shopsys\ShopBundle\Model\Customer\CurrentCustomer
+
+    Shopsys\ShopBundle\DataFixtures\ProductDataFixtureReferenceInjector: ~
+
+    Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixtureLoader: ~
+
+    Shopsys\ShopBundle\DataFixtures\Demo\ProductParametersFixtureLoader: ~
+
+    Shopsys\ShopBundle\DataFixtures\Performance\CategoryDataFixture:
+        arguments:
+            - "%shopsys.performance_data.category.counts_by_level%"
+
+    Shopsys\ShopBundle\DataFixtures\Performance\OrderDataFixture:
+        arguments:
+            - "%shopsys.performance_data.order.total_count%"
+            - "%shopsys.performance_data.order.item_count_per_order%"
+
+    Shopsys\ShopBundle\DataFixtures\Performance\ProductDataFixture:
+        arguments:
+            - "%shopsys.performance_data.product.total_count%"
+
+    Shopsys\ShopBundle\DataFixtures\Performance\UserDataFixture:
+        arguments:
+            - "%shopsys.performance_data.user.count_per_domain%"
+
+    Shopsys\ShopBundle\DataFixtures\Demo\ImageDataFixture:
+        arguments:
+            - '%shopsys.data_fixtures_images.resources_dir%'
+            - '%shopsys.image_dir%'
+            - '%shopsys.domain_images_dir%'
+        tags: ['doctrine.fixture.orm']
+
+    Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixtureCsvReader:
+        arguments:
+            - '%shopsys.data_fixtures.resource_products_filepath%'
+
+    Shopsys\ShopBundle\DataFixtures\Demo\UserDataFixtureLoader:
+        arguments:
+            - '%shopsys.data_fixtures.resource_customers_filepath%'
