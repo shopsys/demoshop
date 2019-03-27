@@ -63,7 +63,7 @@ class PickUpPlaceController extends FrontBaseController
         $countryCodes = array_map(function ($country) {
             /** @var $country \Shopsys\FrameworkBundle\Model\Country\Country */
             return strtolower($country->getCode());
-        }, $this->countryFacade->getAllOnCurrentDomain());
+        }, $this->countryFacade->getAllEnabledOnCurrentDomain());
 
         $pickUpPlaces = $this->pickUpPlaceFacade->findActiveBySearchQueryAndTransportType(
             $searchQuery,
