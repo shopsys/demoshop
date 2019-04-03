@@ -15,10 +15,12 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/styles/index' ~ getDomain().id ~ '_' ~ getCssVersion() ~ '.css') }}" media="screen, projection">
 
         <link rel="icon" type="image/png" href="{{ asset('assets/frontend/images/favicon.png') }}">
-        
+
         <!--[if lte IE 8 ]>
             <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/styles/index' ~ getDomain().id ~ '_' ~ getCssVersion() ~ '-ie8.css') }}" media="screen, projection">
         <![endif]-->
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/styles/print' ~ getDomain().id ~ '_' ~ getCssVersion() ~ '.css') }}" media="print">
 
         {# bootstrap/tooltip.js must be imported before bootstrap/popover.js #}
         {{ importJavascripts([

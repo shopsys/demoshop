@@ -1,5 +1,5 @@
 {% block header %}
-<div class="header__top">
+<div class="header__top dont-print">
     <div class="header__top__left">
         {% cache 'layout_article_menu' 5*60 %}
             {{ render(controller('ShopsysShopBundle:Front/Article:menu')) }}

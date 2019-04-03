@@ -7,7 +7,7 @@
                 <div class="list-products__item__in">
                     <a href="{{ url('front_product_detail', {'id': product.id}) }}" class="list-products__item__block">
 
-                        <div class="list-products__item__image">
+                        <div class="list-products__item__image dont-print">
                             {{ image(product, { size: 'list', alt: product.name }) }}
                         </div>
 
@@ -16,7 +16,7 @@
                                 {{ product.name }}
                             </{{ productHeadingTagName|default('h2') }}>
 
-                            <p class="list-products__item__info__description">
+                            <p class="list-products__item__info__description dont-print">
                                 {{ product.getShortDescription(domain.id) }}
                             </p>
                             {% set productSellingPrice = getProductSellingPrice(product) %}
