@@ -84,6 +84,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - create Shopsys\ShopBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig by extending Shopsys\FrameworkBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig
     - use private method recursivelyCountCategoriesInCategoryTree instead of array_sum
     - fix EntityExtensionTest
+    - improve deployment process and avoid possible Redis cache problems
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
