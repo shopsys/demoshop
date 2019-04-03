@@ -76,6 +76,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - base directory for data fixture files were changed in paths.yml
     - MoneyType is integrated into project
     - default image sizes were implemented for individual devices width
+- [#46 - Upgrade to version 7.1.0](https://github.com/shopsys/demoshop/pull/46)
+    - add support of functional tests of Redis
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
