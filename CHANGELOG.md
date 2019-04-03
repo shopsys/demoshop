@@ -81,6 +81,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - redesigned print page of product detail page
     - add custom message for unique e-mail validation
     - remove option `choice_name` from `brands` in ShopBundle/Form/Front/Product/ProductFilterFormType.php
+    - create Shopsys\ShopBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig by extending Shopsys\FrameworkBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
