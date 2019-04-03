@@ -79,6 +79,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [#46 - Upgrade to version 7.1.0](https://github.com/shopsys/demoshop/pull/46)
     - add support of functional tests of Redis
     - redesigned print page of product detail page
+    - add custom message for unique e-mail validation
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
