@@ -13,7 +13,7 @@
             {% endblock %}
         </div>
 
-        <div class="header__middle">
+        <div class="header__middle dont-print">
             {{ render(controller('ShopsysShopBundle:Front/Search:box')) }}
             {% if shopInfoPhoneNumber is not null or shopInfoPhoneHours is not null or shopInfoEmail is not null %}
                 <div class="contact-us">
@@ -37,7 +37,7 @@
             {% endif %}
         </div>
 
-        <div class="header__mobile">
+        <div class="header__mobile dont-print">
             <div class="header__mobile-button header__mobile-button--menu">
                 <span class="header__mobile-button__in js-responsive-toggle" data-element="js-categories" data-hide-on-click-out="true">
                     <i class="svg svg-burger-menu"></i>
@@ -53,7 +53,7 @@
                 </div>
             {% endif %}
 
-            <div class="header__mobile-button">
+            <div class="header__mobile-button dont-print">
                 <span class="header__mobile-button__in js-responsive-toggle" data-element="js-user-menu" data-hide-on-click-out="true">
                     <i class="svg svg-user"></i>
                 </span>
@@ -80,7 +80,7 @@
             </div>
         </div>
 
-        <div class="header__cart">
+        <div class="header__cart dont-print">
             {{ render(controller('ShopsysShopBundle:Front/Cart:box')) }}
         </div>
     </header>

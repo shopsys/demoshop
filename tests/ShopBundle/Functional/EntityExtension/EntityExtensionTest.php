@@ -56,6 +56,14 @@ class EntityExtensionTest extends TransactionFunctionalTestCase
             OrderItem::class => ExtendedOrderItem::class,
         ];
 
+        $applicationEntityExtensionMap = $this->getContainer()->getParameter('shopsys.entity_extension.map');
+
+        foreach ($applicationEntityExtensionMap as $baseClass => $extendedClass) {
+            if (!array_key_exists($baseClass, $entityExtensionMap)) {
+                $entityExtensionMap[$baseClass] = $extendedClass;
+            }
+        }
+
         $newEntities = [
             UnidirectionalEntity::class,
             ProductOneToOneBidirectionalEntity::class,

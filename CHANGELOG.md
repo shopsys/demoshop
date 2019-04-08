@@ -76,6 +76,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - base directory for data fixture files were changed in paths.yml
     - MoneyType is integrated into project
     - default image sizes were implemented for individual devices width
+- [#46 - Upgrade to version 7.1.0](https://github.com/shopsys/demoshop/pull/46)
+    - add support of functional tests of Redis
+    - redesigned print page of product detail page
+    - add custom message for unique e-mail validation
+    - remove option `choice_name` from `brands` in ShopBundle/Form/Front/Product/ProductFilterFormType.php
+    - create Shopsys\ShopBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig by extending Shopsys\FrameworkBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig
+    - use private method recursivelyCountCategoriesInCategoryTree instead of array_sum
+    - fix EntityExtensionTest
+    - improve deployment process and avoid possible Redis cache problems
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
