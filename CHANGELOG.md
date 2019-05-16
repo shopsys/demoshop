@@ -92,6 +92,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - upgraded other composer and npm dependencies
     - using `TransformString::removeDriveLetterFromPath` transformer for absolute paths in `local_filesystem`
     - using shorter syntax for mocked methods returning values in tests
+    - added extra error page when current domain cannot be resolved with explicit hint about `overwrite_domain_url` parameter (for TEST environment)
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
