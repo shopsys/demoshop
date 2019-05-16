@@ -99,6 +99,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - using redis as cache for doctrine and framework
     - moved `cron.yml` to a standard location
     - using interchangeable product filtering via Elasticsearch
+    - reconfigured `fm_elfinder` to use `main_filesystem`
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)

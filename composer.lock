@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03366659d0f04f9e110f3ed65b2ec196",
+    "content-hash": "37db88c7a02a6f5140bf20ef600f020e",
     "packages": [
         {
             "name": "arvenil/ninja-mutex",
@@ -360,21 +360,21 @@
         },
         {
             "name": "components/elfinder",
-            "version": "2.2",
+            "version": "3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helios-ag/elfinder-component.git",
-                "reference": "be24b2d2ab46fdc5d572b51f58a8c705fb136323"
+                "reference": "c1bd0d6ee831ffade55824bea430c2812aa8e859"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helios-ag/elfinder-component/zipball/be24b2d2ab46fdc5d572b51f58a8c705fb136323",
-                "reference": "be24b2d2ab46fdc5d572b51f58a8c705fb136323",
+                "url": "https://api.github.com/repos/helios-ag/elfinder-component/zipball/c1bd0d6ee831ffade55824bea430c2812aa8e859",
+                "reference": "c1bd0d6ee831ffade55824bea430c2812aa8e859",
                 "shasum": ""
             },
             "require": {
-                "components/jquery": ">=1.8 <4.0",
-                "components/jqueryui": ">1.11",
+                "components/jquery": ">=1.12.4 <4.0",
+                "components/jqueryui": ">=1.12.0",
                 "robloach/component-installer": "*"
             },
             "type": "component",
@@ -389,6 +389,7 @@
                     ],
                     "files": [
                         "dist/img/*.png",
+                        "dist/img/*.svg",
                         "dist/img/*.gif",
                         "dist/js/i18n/*.js"
                     ]
@@ -413,7 +414,7 @@
                 "elfinder",
                 "file manager"
             ],
-            "time": "2017-04-21T02:46:28+00:00"
+            "time": "2019-03-10T13:20:35+00:00"
         },
         {
             "name": "components/jquery",
@@ -2954,48 +2955,51 @@
         },
         {
             "name": "helios-ag/fm-elfinder-bundle",
-            "version": "6.2.1",
+            "version": "9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helios-ag/FMElfinderBundle.git",
-                "reference": "c8e483a8c5710bb7104e016a94b1c3f95793698a"
+                "reference": "8856ad127e4b7383926cf46713fdd373cdcfc530"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helios-ag/FMElfinderBundle/zipball/c8e483a8c5710bb7104e016a94b1c3f95793698a",
-                "reference": "c8e483a8c5710bb7104e016a94b1c3f95793698a",
+                "url": "https://api.github.com/repos/helios-ag/FMElfinderBundle/zipball/8856ad127e4b7383926cf46713fdd373cdcfc530",
+                "reference": "8856ad127e4b7383926cf46713fdd373cdcfc530",
                 "shasum": ""
             },
             "require": {
-                "components/elfinder": "~2.1",
-                "helios-ag/fm-elfinder-php-connector": "~2.5",
-                "php": ">=5.4",
+                "components/elfinder": "~3",
+                "php": "^5.6|^7.0",
                 "robloach/component-installer": "~0.2",
-                "symfony/form": "~2.4|~3.0",
-                "symfony/framework-bundle": "~2.4|~3.0",
-                "symfony/twig-bundle": "~2.4|~3.0"
+                "studio-42/elfinder": "~2.1",
+                "symfony/asset": "~2.8|~3.0|~4.0",
+                "symfony/form": "~2.8|~3.0|~4.0",
+                "symfony/framework-bundle": "~2.8|~3.0|~4.0",
+                "symfony/twig-bundle": "~2.8|~3.0|~4.0"
             },
             "require-dev": {
-                "matthiasnoback/symfony-config-test": "~1",
-                "matthiasnoback/symfony-dependency-injection-test": "~0.7",
-                "satooshi/php-coveralls": "~1",
-                "symfony/finder": "~2.4|3.0",
-                "symfony/phpunit-bridge": "~2.7|~3.0"
+                "matthiasnoback/symfony-config-test": "^3.0",
+                "matthiasnoback/symfony-dependency-injection-test": "^2",
+                "satooshi/php-coveralls": "~2",
+                "symfony/finder": "~3.0|~4.0",
+                "symfony/phpunit-bridge": "^4.0"
             },
             "suggest": {
-                "egeloen/ckeditor-bundle": "CKEditor Bundle by Egeloen",
-                "helios-ag/fm-summernote-bundle": "Summernote Bundle by me",
-                "helios-ag/fm-tinymce-bundle": "TinyMCE Bundle by me"
+                "barryvdh/elfinder-flysystem-driver": "Flysystem driver for elfinder",
+                "friendsofsymfony/ckeditor-bundle": "FOSCKEditorBundle WYSIWYG Editor Bundle",
+                "helios-ag/fm-summernote-bundle": "FMSummernoteBundle WYSIWYG Editor Bundle",
+                "helios-ag/fm-tinymce-bundle": "FMTinyMCEBundle WYSIWYG Editor Bundle",
+                "spatie/flysystem-dropbox": "Dropbox 2 Driver for Flysystem"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.1-dev"
+                    "dev-master": "9.0-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "FM\\ElfinderBundle\\": ""
+                    "FM\\ElfinderBundle\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3012,69 +3016,14 @@
                     "homepage": "https://github.com/helios-ag/FMElfinderBundle/contributors"
                 }
             ],
-            "description": "ElFinder bundle, adds ElFinder file manager to your Symfony2/3 project",
+            "description": "ElFinder bundle, adds ElFinder file manager to your Symfony project",
             "homepage": "https://github.com/helios-ag/FMElfinderBundle",
             "keywords": [
                 "elfinder",
                 "file manager",
                 "wysiwyg"
             ],
-            "time": "2016-09-03T14:00:30+00:00"
-        },
-        {
-            "name": "helios-ag/fm-elfinder-php-connector",
-            "version": "2.5.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/helios-ag/ElFinderPHP.git",
-                "reference": "d6b28121fd7aba089c02c5638cdda6466f760ffa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/helios-ag/ElFinderPHP/zipball/d6b28121fd7aba089c02c5638cdda6466f760ffa",
-                "reference": "d6b28121fd7aba089c02c5638cdda6466f760ffa",
-                "shasum": ""
-            },
-            "require": {
-                "intervention/image": "^2.3",
-                "php": ">=5.4"
-            },
-            "suggest": {
-                "aws/aws-sdk-php": "Allows you to use AWS S3 storage",
-                "dropbox-php/dropbox-php": "Allows you to use Dropbox storage"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "FM\\ElFinderPHP\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Al Ganiev",
-                    "email": "helios.ag@gmail.com"
-                },
-                {
-                    "name": "ElFinder authors",
-                    "homepage": "https://github.com/Studio-42/elFinder"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://github.com/helios-ag/ElFinderPHP/contributors"
-                }
-            ],
-            "description": "ElFinder PHP backend, 5.4 compliant",
-            "homepage": "http://github.com/helios-ag/ElFinderPHP",
-            "keywords": [
-                "elfinder",
-                "filemanager"
-            ],
-            "abandoned": true,
-            "time": "2018-03-06T09:13:27+00:00"
+            "time": "2019-05-11T11:51:03+00:00"
         },
         {
             "name": "heureka/overeno-zakazniky",
@@ -7237,28 +7186,26 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.6.2",
+            "version": "v2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "9a6513089a836744e70af0910ad45f50e603dcf5"
+                "reference": "ead5141731a21cfd0710b092351d923549d2b2ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/9a6513089a836744e70af0910ad45f50e603dcf5",
-                "reference": "9a6513089a836744e70af0910ad45f50e603dcf5",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/ead5141731a21cfd0710b092351d923549d2b2ad",
+                "reference": "ead5141731a21cfd0710b092351d923549d2b2ad",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-session": "*",
-                "php": ">=7.1"
+                "php": ">=5.4.4"
             },
             "require-dev": {
-                "nette/di": "^2.4 || ~3.0.0",
-                "nette/tester": "^2.2",
-                "nette/utils": "^2.4 || ^3.0",
-                "psr/log": "^1.0"
+                "nette/di": "~2.3",
+                "nette/tester": "~1.7"
             },
             "suggest": {
                 "https://nette.org/donate": "Please support Tracy via a donation"
@@ -7266,7 +7213,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -7274,7 +7221,7 @@
                     "src"
                 ],
                 "files": [
-                    "src/Tracy/shortcuts.php"
+                    "src/shortcuts.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -7291,7 +7238,7 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "😎 Tracy: the addictive tool to ease debugging PHP code for cool developers. Friendly design, logging, profiler, advanced features like debugging AJAX calls or CLI support. You will love it.",
+            "description": "? Tracy: the addictive tool to ease debugging PHP code for cool developers. Friendly design, logging, profiler, advanced features like debugging AJAX calls or CLI support. You will love it.",
             "homepage": "https://tracy.nette.org",
             "keywords": [
                 "Xdebug",
@@ -7300,7 +7247,7 @@
                 "nette",
                 "profiler"
             ],
-            "time": "2019-04-03T20:29:00+00:00"
+            "time": "2018-03-23T17:15:58+00:00"
         },
         {
             "name": "twig/extensions",
