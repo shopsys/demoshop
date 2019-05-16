@@ -89,6 +89,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - postgres service in `docker-compose.yml` uses the provided configuration file
     - updated nginx max body size limit
     - upgraded `shopsys/*` composer dependencies to `v7.2.0`
+    - upgraded other composer and npm dependencies
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
