@@ -25,6 +25,12 @@ msgstr "Příslušenství"
 msgid "Add company user"
 msgstr "Přidat uživatele firmy"
 
+msgid "Add item"
+msgstr "Přidat položku"
+
+msgid "Add product"
+msgstr "Přidat zboží"
+
 msgid "Add to cart"
 msgstr "Vložit do košíku"
 
@@ -51,6 +57,9 @@ msgstr "Zpět do košíku"
 
 msgid "Back to orders overview"
 msgstr "Zpět na přehled objednávek"
+
+msgid "Back to overview"
+msgstr "Zpět na přehled"
 
 msgid "Back to shipping and payment selection"
 msgstr "Zpět na výběr dopravy a platby"
@@ -172,6 +181,9 @@ msgstr "Zákazník <strong><a href=\"{{ url }}\">{{ name }}</a></strong> byl upr
 msgid "Customer <strong>{{ name }}</strong> deleted"
 msgstr "Zákazník <strong>{{ name }}</strong> byl smazán"
 
+msgid "Customer detail"
+msgstr "Karta zákazníka"
+
 msgid "Customer not found"
 msgstr "Zákazník nebyl nalezen"
 
@@ -222,6 +234,9 @@ msgstr "E-mail s odkazem na stránku s údaji o osobních údajích byl odeslán
 
 msgid "EAN"
 msgstr "EAN"
+
+msgid "Editing customer"
+msgstr "Editace zákazníka"
 
 msgid "Editing customer - %name%"
 msgstr "Editace zákazníka - %name%"
@@ -334,6 +349,9 @@ msgstr "Seznam podkategorií"
 msgid "Log in"
 msgstr "Přihlásit se"
 
+msgid "Log in as user"
+msgstr "Přihlásit za uživatele"
+
 msgid "Log out"
 msgstr "Odhlásit se"
 
@@ -366,6 +384,9 @@ msgstr "Novinky a slevy ve vašem e-mailu"
 
 msgid "No"
 msgstr "Ne"
+
+msgid "No customers found."
+msgstr "Nebyli nalezeni žádní zákazníci."
 
 msgid "No order so far."
 msgstr "Dosud nemáte žádnou objednávku."
@@ -420,6 +441,9 @@ msgstr "Objednat"
 
 msgid "Order completed"
 msgstr "Objednávka dokončena"
+
+msgid "Order items"
+msgstr "Položky objednávky"
 
 msgid "Order not found"
 msgstr "Objednávka nebyla nalezena"
@@ -697,6 +721,9 @@ msgstr "Do"
 msgid "To prevent the possibility of account theft, the change of the e-mail address must be dealt with individually. If your e-mail address has changed, please contact us."
 msgstr "Abychom předešli možnosti zcizení účtu, je třeba změnu e-mailu řešit individuálně. Pokud se Vám e-mailová adresa změnila, tak nás prosím kontaktujte."
 
+msgid "Total"
+msgstr "Celkem"
+
 msgid "Total amount of VAT"
 msgstr "Celková výše DPH"
 
@@ -733,6 +760,9 @@ msgstr "Nepodařilo se odstranit položku z košíku. Zřejmě vypršela platnos
 msgid "Unable to send some e-mails, please contact us for order verification."
 msgstr "Nepodařilo se odeslat některé e-maily, pro ověření objednávky nás prosím kontaktujte."
 
+msgid "Unit"
+msgstr "Jednotka"
+
 msgid "Unit price including VAT"
 msgstr "Jednotková cena s DPH"
 
@@ -744,6 +774,9 @@ msgstr "Uživatel nebyl nalezen."
 
 msgid "VAT rate"
 msgstr "Sazba DPH"
+
+msgid "VAT rate (%)"
+msgstr "Sazba DPH (%)"
 
 msgid "View all results"
 msgstr "Zobrazit všechny výsledky"
@@ -804,6 +837,9 @@ msgstr "Zasilkovna.cz - výdejní místo"
 
 msgid "Zásilkovna"
 msgstr "Zásilkovna"
+
+msgid "customers"
+msgstr "zákazníků"
 
 msgid "etc. Praha"
 msgstr "např. Praha"

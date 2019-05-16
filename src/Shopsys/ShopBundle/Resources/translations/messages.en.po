@@ -25,7 +25,16 @@ msgstr ""
 msgid "Add company user"
 msgstr ""
 
+msgid "Add item"
+msgstr ""
+
+msgid "Add product"
+msgstr ""
+
 msgid "Add to cart"
+msgstr ""
+
+msgid "Added product will not have any individual discounts"
 msgstr ""
 
 msgid "Address"
@@ -47,6 +56,9 @@ msgid "Back to cart"
 msgstr ""
 
 msgid "Back to orders overview"
+msgstr ""
+
+msgid "Back to overview"
 msgstr ""
 
 msgid "Back to shipping and payment selection"
@@ -169,6 +181,9 @@ msgstr ""
 msgid "Customer <strong>{{ name }}</strong> deleted"
 msgstr ""
 
+msgid "Customer detail"
+msgstr ""
+
 msgid "Customer not found"
 msgstr ""
 
@@ -215,6 +230,9 @@ msgid "E-mail with a link to the page with your personal data was sent to your e
 msgstr ""
 
 msgid "EAN"
+msgstr ""
+
+msgid "Editing customer"
 msgstr ""
 
 msgid "Editing customer - %name%"
@@ -325,6 +343,9 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
+msgid "Log in as user"
+msgstr ""
+
 msgid "Log out"
 msgstr ""
 
@@ -353,6 +374,9 @@ msgid "News & Sales in your e-mail"
 msgstr ""
 
 msgid "No"
+msgstr ""
+
+msgid "No customers found."
 msgstr ""
 
 msgid "No order so far."
@@ -407,6 +431,9 @@ msgid "Order [verb]"
 msgstr "Order"
 
 msgid "Order completed"
+msgstr ""
+
+msgid "Order items"
 msgstr ""
 
 msgid "Order not found"
@@ -667,6 +694,9 @@ msgstr ""
 msgid "To prevent the possibility of account theft, the change of the e-mail address must be dealt with individually. If your e-mail address has changed, please contact us."
 msgstr ""
 
+msgid "Total"
+msgstr ""
+
 msgid "Total amount of VAT"
 msgstr ""
 
@@ -703,6 +733,9 @@ msgstr ""
 msgid "Unable to send some e-mails, please contact us for order verification."
 msgstr ""
 
+msgid "Unit"
+msgstr ""
+
 msgid "Unit price including VAT"
 msgstr ""
 
@@ -713,6 +746,9 @@ msgid "User not found."
 msgstr ""
 
 msgid "VAT rate"
+msgstr ""
+
+msgid "VAT rate (%)"
 msgstr ""
 
 msgid "View all results"
@@ -773,6 +809,9 @@ msgid "Zasilkovna.cz - dispensing point"
 msgstr ""
 
 msgid "Zásilkovna"
+msgstr ""
+
+msgid "customers"
 msgstr ""
 
 msgid "etc. Praha"
