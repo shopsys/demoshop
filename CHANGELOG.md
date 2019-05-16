@@ -90,6 +90,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - updated nginx max body size limit
     - upgraded `shopsys/*` composer dependencies to `v7.2.0`
     - upgraded other composer and npm dependencies
+    - using `TransformString::removeDriveLetterFromPath` transformer for absolute paths in `local_filesystem`
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
