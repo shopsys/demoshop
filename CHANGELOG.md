@@ -96,6 +96,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - using standard redis separators (`:`) in prefixes
     - build version is used in redis prefix of the twig cache and contains the environment (avoids the usage of a wrong cache)
     - translations are extracted from overwritten templates now
+    - using redis as cache for doctrine and framework
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
