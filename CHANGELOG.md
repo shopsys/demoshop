@@ -85,6 +85,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - use private method recursivelyCountCategoriesInCategoryTree instead of array_sum
     - fix EntityExtensionTest
     - improve deployment process and avoid possible Redis cache problems
+- [#47 - Upgrade to version 7.2.0](https://github.com/shopsys/demoshop/pull/47)
+    - postgres service in `docker-compose.yml` uses the provided configuration file
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
