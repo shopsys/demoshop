@@ -14,6 +14,7 @@ parameters:
             - '*/tests/ShopBundle/Functional/Model/Order/OrderFacadeTest.php'
             - '*/tests/ShopBundle/Functional/Model/Order/Preview/OrderPreviewCalculationTest.php'
             - '*/tests/ShopBundle/Functional/Model/Pricing/InputPriceRecalculationSchedulerTest.php'
+            - '*/tests/ShopBundle/Functional/Model/Product/ProductOnCurrentDomainFacadeCountDataTest.php'
             - '*/tests/ShopBundle/Smoke/Http/RouteConfigCustomization.php'
             - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/MailTemplateDataFixture.php'
             - '*/src/Shopsys/ShopBundle/DataFixtures/DemoMultidomain/MailTemplateDataFixture.php'
@@ -22,6 +23,7 @@ parameters:
 
 
         ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
+            - '*/tests/ShopBundle/Functional/Model/Product/ProductOnCurrentDomainFacadeCountDataTest.php'
             - '*/tests/ShopBundle/Functional/Model/Product/ProductVisibilityRepositoryTest.php'
             - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/MultidomainOrderDataFixture.phpFixture.php'
             - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/OrderDataFixture.php'

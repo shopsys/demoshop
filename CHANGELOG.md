@@ -85,6 +85,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - use private method recursivelyCountCategoriesInCategoryTree instead of array_sum
     - fix EntityExtensionTest
     - improve deployment process and avoid possible Redis cache problems
+- [#47 - Upgrade to version 7.2.0](https://github.com/shopsys/demoshop/pull/47)
+    - postgres service in `docker-compose.yml` uses the provided configuration file
+    - updated nginx max body size limit
+    - upgraded `shopsys/*` composer dependencies to `v7.2.0`
+    - upgraded other composer and npm dependencies
+    - using `TransformString::removeDriveLetterFromPath` transformer for absolute paths in `local_filesystem`
+    - using shorter syntax for mocked methods returning values in tests
+    - added extra error page when current domain cannot be resolved with explicit hint about `overwrite_domain_url` parameter (for TEST environment)
+    - using standard redis separators (`:`) in prefixes
+    - build version is used in redis prefix of the twig cache and contains the environment (avoids the usage of a wrong cache)
+    - translations are extracted from overwritten templates now
+    - using redis as cache for doctrine and framework
+    - moved `cron.yml` to a standard location
+    - using interchangeable product filtering via Elasticsearch
+    - reconfigured `fm_elfinder` to use `main_filesystem`
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)

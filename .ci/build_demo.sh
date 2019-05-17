@@ -108,6 +108,8 @@ server {
     listen 80;
     server_name $DEMO_DOMAIN *.$DEMO_DOMAIN;
 
+    client_max_body_size 32M;
+
     location / {
         proxy_pass http://$JOB_NAME-upstream;
         proxy_redirect off;

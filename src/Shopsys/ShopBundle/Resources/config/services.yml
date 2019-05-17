@@ -1,8 +1,6 @@
 imports:
     - { resource: forms.yml }
-    - { resource: services/commands.yml }
-    - { resource: services/data_fixtures.yml }
-    - { resource: cron.yml }
+    - { resource: services/*.yml }
 
 services:
     _defaults:
@@ -65,6 +63,10 @@ services:
     Shopsys\ShopBundle\Model\Category\CurrentCategoryResolver: ~
 
     Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface: '@Shopsys\ShopBundle\Model\Product\ProductDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacadeInterface: '@Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainElasticFacade'
+
+    Shopsys\FrameworkBundle\Model\Product\Search\Export\ProductSearchExportRepository: '@Shopsys\FrameworkBundle\Model\Product\Search\Export\ProductSearchExportWithFilterRepository'
 
     Shopsys\ProductFeed\GoogleBundle\Model\FeedItem\GoogleFeedItemFactory: '@Shopsys\ShopBundle\Model\Product\Feed\Google\GoogleFeedItemFactory'
 
@@ -184,4 +186,3 @@ services:
     Shopsys\ShopBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig: ~
 
     Shopsys\FrameworkBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig: '@Shopsys\ShopBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig'
-
