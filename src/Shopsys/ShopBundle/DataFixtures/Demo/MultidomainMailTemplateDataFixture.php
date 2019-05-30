@@ -63,7 +63,7 @@ class MultidomainMailTemplateDataFixture extends AbstractReferenceFixture
                     <td style="background: #333; color: #fff;  padding: 20px;"><img src="' . $domainUrl . '/assets/frontend/images/demoshop.png" style="width:150px" /></td>
                 </tr>
                 <tr>
-                    <td style="padding: 20px;">Dobrý den,,<br />
+                    <td style="padding: 20px;">Dobrý den,<br />
                     Vaše objednávka byla úspěšně vytvořena. Stav objednávky můžete sledovat na tomto <a href="{order_detail_url}">odkaze</a>. O změně stavu objednávky Vás budeme informovat.<br />
                     &nbsp;
                     <table cellspacing="5" style="font-size:14px; width:100%">
@@ -106,7 +106,7 @@ class MultidomainMailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -141,7 +141,7 @@ class MultidomainMailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -176,7 +176,7 @@ class MultidomainMailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -211,7 +211,7 @@ class MultidomainMailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -245,7 +245,7 @@ class MultidomainMailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -301,7 +301,7 @@ class MultidomainMailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -337,7 +337,7 @@ class MultidomainMailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -376,7 +376,7 @@ class MultidomainMailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
