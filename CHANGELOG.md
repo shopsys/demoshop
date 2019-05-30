@@ -104,6 +104,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - upgraded `shopsys/*` composer dependencies to `v7.2.1`
     - call of `Form::isSubmitted()` was moved before `Form::isValid()`
     - typo categoriyWithLazyLoadedVisibleChildren was fixed in twig template
+    - elasticsearch index prefix is used also during tests
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
