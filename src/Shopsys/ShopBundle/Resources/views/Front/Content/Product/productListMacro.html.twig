@@ -1,4 +1,5 @@
 {% macro list(products, listCssClass, productHeadingTagName) %}
+    {% import '@ShopsysShop/Front/Inline/Product/productFlagsMacro.html.twig' as productFlags %}
     {% set domain = getDomain() %}
 
     <ul class="list-products js-list js-product-list {{ listCssClass|default('') }}">
@@ -9,6 +10,7 @@
 
                         <div class="list-products__item__image dont-print">
                             {{ image(product, { size: 'list', alt: product.name }) }}
+                            {{ productFlags.list(product, 'in-flag--in-list') }}
                         </div>
 
                         <div class="list-products__item__info">

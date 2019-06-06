@@ -49,6 +49,15 @@ class ProductFilterFormType extends AbstractType
                 'product_filter_config' => $config,
             ])
             ->add('inStock', CheckboxType::class, ['required' => false])
+            ->add('flags', ChoiceType::class, [
+                'required' => false,
+                'choices' => $config->getFlagChoices(),
+                'choice_label' => 'name',
+                'choice_value' => 'id',
+                'choice_name' => 'id',
+                'multiple' => true,
+                'expanded' => true,
+            ])
             ->add('brands', ChoiceType::class, [
                 'required' => false,
                 'choices' => $config->getBrandChoices(),

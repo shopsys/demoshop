@@ -1,4 +1,3 @@
-
 shopsys_framework:
     resource: "@ShopsysFrameworkBundle/Controller/Admin"
     prefix: /%admin_url%
@@ -10,12 +9,6 @@ shopsys_shop:
 
 elfinder:
     resource: "@FMElfinderBundle/Resources/config/routing.yml"
-
-admin_flag_delete:
-    path: /%admin_url%/product/flag/delete/{id}?routeCsrfToken={routeCsrfToken}
-    defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
-    requirements:
-        id: \d+
 
 front_additional_image:
     path: /%shopsys.content_dir_name%/images/{entityName}/{type}/{sizeName}/additional_{additionalIndex}_{imageId}.{extension}
@@ -31,10 +24,6 @@ front_additional_image_without_type:
         type: ~
     requirements:
         imageId: \d+
-
-admin_flag_list:
-    path: /%admin_url%/product/flag/list/
-    defaults: { _controller: ShopsysShopBundle:Front\Error:notFound }
 
 admin_customer_edit:
     path: /%admin_url%/customer/edit/{billingAddressId}
