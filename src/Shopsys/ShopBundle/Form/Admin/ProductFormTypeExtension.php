@@ -35,8 +35,6 @@ class ProductFormTypeExtension extends AbstractTypeExtension
             'choices' => $this->productConditionFacade->getAll(),
             'label' => t('Condition'),
         ]);
-
-        $basicInformationGroupBuilder->remove('flags');
     }
 
     /**

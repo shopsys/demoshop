@@ -105,6 +105,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - call of `Form::isSubmitted()` was moved before `Form::isValid()`
     - typo categoriyWithLazyLoadedVisibleChildren was fixed in twig template
     - elasticsearch index prefix is used also during tests
+- [#51 - the product flags functionality is now visible from admin and FE (revert of #13)](https://github.com/shopsys/demoshop/pull/51)
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)

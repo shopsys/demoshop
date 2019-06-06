@@ -262,6 +262,9 @@ msgstr ""
 msgid "First name"
 msgstr ""
 
+msgid "Flags"
+msgstr ""
+
 msgid "Forgot your password?"
 msgstr ""
 

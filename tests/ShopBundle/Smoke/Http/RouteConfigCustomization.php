@@ -233,15 +233,6 @@ class RouteConfigCustomization
                 $config->changeDefaultRequestDataSet($debugNote)
                     ->setParameter('id', $vat->getId())
                     ->setParameter('newId', $newVat->getId());
-            })
-            ->customizeByRouteName('admin_flag_list', function (RouteConfig $config) {
-                $config->changeDefaultRequestDataSet('Functionality of flags is hidden')
-                    ->setExpectedStatusCode(404);
-            })
-            ->customizeByRouteName('admin_flag_delete', function (RouteConfig $config) {
-                $config->changeDefaultRequestDataSet('Functionality of flags is hidden')
-                    ->setExpectedStatusCode(404)
-                    ->setParameter('id', 1);
             });
     }
 
