@@ -50,17 +50,13 @@ class LoadORMMetadataSubscriber extends BaseLoadORMMetadataSubscriber
                                 }
 
                                 // custom behavior as described in the annotation of the method
-                                $isDifferenceBetweenChildAssociationMappingAndParentAssociationMapping = $metadata->associationMappings[$name] !== $mapping;
-
-                                if ($isDifferenceBetweenChildAssociationMappingAndParentAssociationMapping) {
+                                if ($metadata->associationMappings[$name] !== $mapping) {
                                     $overriddingClassReflection = new \ReflectionClass($class);
                                     $overiddingClassProperties = $overriddingClassReflection->getProperties();
 
-                                    $isOverriddenPropertyInChildClass = $this->checkIsOverriddenPropertyInChildClass($overiddingClassProperties, $name, $class);
-                                }
-
-                                if (!$isDifferenceBetweenChildAssociationMappingAndParentAssociationMapping || !$isOverriddenPropertyInChildClass) {
-                                    $metadata->associationMappings[$name] = $mapping;
+                                    if (!$this->checkIsOverriddenPropertyInChildClass($overiddingClassProperties, $name, $class)) {
+                                        $metadata->associationMappings[$name] = $mapping;
+                                    }
                                 }
                             }
                         }

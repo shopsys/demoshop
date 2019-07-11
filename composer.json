@@ -95,7 +95,9 @@
         "phpstan/phpstan": "^0.11",
         "phpunit/phpunit": "^7.0",
         "shopsys/coding-standards": "v7.3.0",
-        "shopsys/http-smoke-testing": "v7.3.0"
+        "shopsys/http-smoke-testing": "v7.3.0",
+        "phpstan/phpstan-doctrine": "^0.11.2",
+        "phpstan/phpstan-phpunit": "^0.11.2"
     },
     "conflict": {
         "symfony/dependency-injection": "3.4.15|3.4.16"

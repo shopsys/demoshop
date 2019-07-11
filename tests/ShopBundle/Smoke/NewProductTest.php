@@ -68,12 +68,12 @@ class NewProductTest extends FunctionalTestCase
         $form['product_form[basicInformationGroup][ean]'] = '123456';
         $form['product_form[descriptionsGroup][descriptions][1]'] = 'test description';
         $this->fillManualInputPrices($form);
-        $form['product_form[pricesGroup][vat]']->select($this->getReference(VatDataFixture::VAT_ZERO)->getId());
+        $form['product_form[pricesGroup][vat]']->setValue($this->getReference(VatDataFixture::VAT_ZERO)->getId());
         $form['product_form[displayAvailabilityGroup][sellingFrom]'] = '1.1.1990';
         $form['product_form[displayAvailabilityGroup][sellingTo]'] = '1.1.2000';
         $form['product_form[displayAvailabilityGroup][stockGroup][stockQuantity]'] = '10';
-        $form['product_form[displayAvailabilityGroup][unit]']->select($this->getReference(UnitDataFixture::UNIT_CUBIC_METERS)->getId());
-        $form['product_form[displayAvailabilityGroup][availability]']->select($this->getReference(AvailabilityDataFixture::AVAILABILITY_IN_STOCK)->getId());
+        $form['product_form[displayAvailabilityGroup][unit]']->setValue($this->getReference(UnitDataFixture::UNIT_CUBIC_METERS)->getId());
+        $form['product_form[displayAvailabilityGroup][availability]']->setValue($this->getReference(AvailabilityDataFixture::AVAILABILITY_IN_STOCK)->getId());
     }
 
     /**

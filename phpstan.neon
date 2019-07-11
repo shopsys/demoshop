@@ -3,4 +3,6 @@ parameters:
         - '#Undefined variable: \$undefined#'
         # Add ignored errors here as regular expressions, e.g.:
         # - '#PHPUnit_Framework_MockObject_MockObject(.*) given#'
-
+    includes:
+        - vendor/phpstan/phpstan-doctrine/extension.neon
+        - vendor/phpstan/phpstan-phpunit/extension.neon

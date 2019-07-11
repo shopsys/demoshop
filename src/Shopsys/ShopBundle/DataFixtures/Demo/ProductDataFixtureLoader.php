@@ -4,6 +4,7 @@ namespace Shopsys\ShopBundle\DataFixtures\Demo;
 
 use DateTime;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
+use Shopsys\FrameworkBundle\Component\Domain\Exception\InvalidDomainIdException;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupFacade;
 use Shopsys\FrameworkBundle\Model\Product\Product;
@@ -338,7 +339,10 @@ class ProductDataFixtureLoader
             $manualPricesColumn = $row[self::COLUMN_MANUAL_PRICES_DOMAIN_1];
         } elseif ($domainId === 2) {
             $manualPricesColumn = $row[self::COLUMN_MANUAL_PRICES_DOMAIN_2];
+        } else {
+            throw new InvalidDomainIdException(sprintf('Invalid domain ID "%d"', $domainId));
         }
+
         $manualPricesFromCsv = $this->getProductManualPricesIndexedByPricingGroupFromString($manualPricesColumn);
         foreach ($manualPricesFromCsv as $pricingGroup => $manualPrice) {
             $pricingGroup = $this->pricingGroups[$pricingGroup];
