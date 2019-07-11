@@ -2,8 +2,8 @@
 
 This repository is Demoshop project of Shopsys Framework - a **scalable ecommerce framework** for fast-growing ecommerce sites created and maintained by in-house developers or outsourcing agencies.
 
-shopsys/demoshop repository contains demostration project to show how you can build your own project on top of Shopsys Framework. 
-It started in July of 2018 based on [shopsys/project-base](https://github.com/shopsys/project-base) and since then we added several new features that are not included in Shopsys Framework. 
+shopsys/demoshop repository contains demostration project to show how you can build your own project on top of Shopsys Framework.
+It started in July of 2018 based on [shopsys/project-base](https://github.com/shopsys/project-base) and since then we added several new features that are not included in Shopsys Framework.
 Its purpose is to demonstrate the possibilities of Shopsys Framework and also to test and validate all concepts of Shopsys Framework to ensure customizability and upgradability.
 
 For more informations about Shopsys Framework, please see [shopsys/shopsys](https://github.com/shopsys/shopsys) readme.
@@ -33,7 +33,7 @@ If you have some ideas or you want to help to improve Shopsys Framework Demoshop
 We are looking forward to your insights, feedback, and improvements.
 Thank you for helping us making Shopsys Framework Demoshop better.
 
-You can find all the necessary information in our [Contribution Guide](./CONTRIBUTING.md). 
+You can find all the necessary information in our [Contribution Guide](./CONTRIBUTING.md).
 
 ## Support
 What to do when you are in troubles or need some help?
