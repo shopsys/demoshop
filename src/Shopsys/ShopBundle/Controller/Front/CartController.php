@@ -6,21 +6,21 @@ use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\FlashMessage\ErrorExtractor;
 use Shopsys\FrameworkBundle\Model\Cart\AddProductResult;
 use Shopsys\FrameworkBundle\Model\Cart\CartFacade;
-use Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer;
 use Shopsys\FrameworkBundle\Model\Module\ModuleList;
 use Shopsys\FrameworkBundle\Model\Order\Preview\OrderPreviewFactory;
-use Shopsys\FrameworkBundle\Model\Product\Accessory\ProductAccessoryFacade;
 use Shopsys\FrameworkBundle\Model\Product\Product;
 use Shopsys\FrameworkBundle\Model\TransportAndPayment\FreeTransportAndPaymentFacade;
+use Shopsys\ReadModelBundle\Product\Action\ProductActionView;
+use Shopsys\ReadModelBundle\Product\Listed\ListedProductViewFacadeInterface;
 use Shopsys\ShopBundle\Form\Front\Cart\AddProductFormType;
 use Shopsys\ShopBundle\Form\Front\Cart\CartFormType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Csrf\CsrfToken;
 
 class CartController extends FrontBaseController
 {
     const AFTER_ADD_WINDOW_ACCESSORIES_LIMIT = 3;
-
     const RECALCULATE_ONLY_PARAMETER_NAME = 'recalculateOnly';
 
     /**
@@ -29,19 +29,9 @@ class CartController extends FrontBaseController
     private $cartFacade;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer
-     */
-    private $currentCustomer;
-
-    /**
      * @var \Shopsys\FrameworkBundle\Component\Domain\Domain
      */
     private $domain;
-
-    /**
-     * @var \Shopsys\FrameworkBundle\Model\Product\Accessory\ProductAccessoryFacade
-     */
-    private $productAccessoryFacade;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\TransportAndPayment\FreeTransportAndPaymentFacade
@@ -59,30 +49,32 @@ class CartController extends FrontBaseController
     private $errorExtractor;
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Product\Accessory\ProductAccessoryFacade $productAccessoryFacade
+     * @var \Shopsys\ReadModelBundle\Product\Listed\ListedProductViewFacadeInterface
+     */
+    private $listedProductViewFacade;
+
+    /**
      * @param \Shopsys\FrameworkBundle\Model\Cart\CartFacade $cartFacade
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer $currentCustomer
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
      * @param \Shopsys\FrameworkBundle\Model\TransportAndPayment\FreeTransportAndPaymentFacade $freeTransportAndPaymentFacade
      * @param \Shopsys\FrameworkBundle\Model\Order\Preview\OrderPreviewFactory $orderPreviewFactory
      * @param \Shopsys\FrameworkBundle\Component\FlashMessage\ErrorExtractor $errorExtractor
+     * @param \Shopsys\ReadModelBundle\Product\Listed\ListedProductViewFacadeInterface $listedProductViewFacade
      */
     public function __construct(
-        ProductAccessoryFacade $productAccessoryFacade,
         CartFacade $cartFacade,
-        CurrentCustomer $currentCustomer,
         Domain $domain,
         FreeTransportAndPaymentFacade $freeTransportAndPaymentFacade,
         OrderPreviewFactory $orderPreviewFactory,
-        ErrorExtractor $errorExtractor
+        ErrorExtractor $errorExtractor,
+        ListedProductViewFacadeInterface $listedProductViewFacade
     ) {
-        $this->productAccessoryFacade = $productAccessoryFacade;
         $this->cartFacade = $cartFacade;
-        $this->currentCustomer = $currentCustomer;
         $this->domain = $domain;
         $this->freeTransportAndPaymentFacade = $freeTransportAndPaymentFacade;
         $this->orderPreviewFactory = $orderPreviewFactory;
         $this->errorExtractor = $errorExtractor;
+        $this->listedProductViewFacade = $listedProductViewFacade;
     }
 
     /**
@@ -235,10 +227,8 @@ class CartController extends FrontBaseController
 
                 $this->sendAddProductResultFlashMessage($addProductResult);
 
-                $accessories = $this->productAccessoryFacade->getTopOfferedAccessories(
-                    $addProductResult->getCartItem()->getProduct(),
-                    $this->domain->getId(),
-                    $this->currentCustomer->getPricingGroup(),
+                $accessories = $this->listedProductViewFacade->getAccessories(
+                    $addProductResult->getCartItem()->getId(),
                     self::AFTER_ADD_WINDOW_ACCESSORIES_LIMIT
                 );
 
@@ -325,5 +315,23 @@ class CartController extends FrontBaseController
         }
 
         return $this->redirectToRoute('front_cart');
+    }
+
+    /**
+     * @param \Shopsys\ReadModelBundle\Product\Action\ProductActionView $productActionView
+     * @param string $type
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function productActionAction(ProductActionView $productActionView, $type = 'normal'): Response
+    {
+        $form = $this->createForm(AddProductFormType::class, ['productId' => $productActionView->getId()], [
+            'action' => $this->generateUrl('front_cart_add_product'),
+        ]);
+
+        return $this->render('@ShopsysShop/Front/Inline/Cart/productAction.html.twig', [
+            'form' => $form->createView(),
+            'productActionView' => $productActionView,
+            'type' => $type,
+        ]);
     }
 }

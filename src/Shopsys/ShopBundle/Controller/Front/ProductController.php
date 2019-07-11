@@ -16,6 +16,7 @@ use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingModeForList
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingModeForSearchFacade;
 use Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacadeInterface;
 use Shopsys\FrameworkBundle\Twig\RequestExtension;
+use Shopsys\ReadModelBundle\Product\Listed\ListedProductViewFacadeInterface;
 use Shopsys\ShopBundle\Form\Front\Product\ProductFilterFormType;
 use Shopsys\ShopBundle\Model\Customer\CurrentCustomer;
 use Symfony\Component\HttpFoundation\Request;
@@ -82,6 +83,11 @@ class ProductController extends FrontBaseController
     private $brandFacade;
 
     /**
+     * @var \Shopsys\ReadModelBundle\Product\Listed\ListedProductViewFacadeInterface
+     */
+    private $listedProductViewFacade;
+
+    /**
      * @param \Shopsys\FrameworkBundle\Twig\RequestExtension $requestExtension
      * @param \Shopsys\FrameworkBundle\Model\Category\CategoryFacade $categoryFacade
      * @param \Shopsys\ShopBundle\Model\Customer\CurrentCustomer $currentCustomer
@@ -92,7 +98,8 @@ class ProductController extends FrontBaseController
      * @param \Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingModeForBrandFacade $productListOrderingModeForBrandFacade
      * @param \Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingModeForSearchFacade $productListOrderingModeForSearchFacade
      * @param \Shopsys\FrameworkBundle\Model\Module\ModuleFacade $moduleFacade
-     * @param \Shopsys\FrameworkBundle\Model\Product\Brand\BrandFacade $brandFacade
+     * @param \Shopsys\FrameworkBundle\Model\Product\Brand\BrandFacade $brandFacade ,
+     * @param \Shopsys\ReadModelBundle\Product\Listed\ListedProductViewFacadeInterface $listedProductViewFacade
      */
     public function __construct(
         RequestExtension $requestExtension,
@@ -105,7 +112,8 @@ class ProductController extends FrontBaseController
         ProductListOrderingModeForBrandFacade $productListOrderingModeForBrandFacade,
         ProductListOrderingModeForSearchFacade $productListOrderingModeForSearchFacade,
         ModuleFacade $moduleFacade,
-        BrandFacade $brandFacade
+        BrandFacade $brandFacade,
+        ListedProductViewFacadeInterface $listedProductViewFacade
     ) {
         $this->requestExtension = $requestExtension;
         $this->categoryFacade = $categoryFacade;
@@ -118,6 +126,7 @@ class ProductController extends FrontBaseController
         $this->productListOrderingModeForSearchFacade = $productListOrderingModeForSearchFacade;
         $this->moduleFacade = $moduleFacade;
         $this->brandFacade = $brandFacade;
+        $this->listedProductViewFacade = $listedProductViewFacade;
     }
 
     /**
@@ -131,7 +140,7 @@ class ProductController extends FrontBaseController
             return $this->redirectToRoute('front_product_detail', ['id' => $product->getMainVariant()->getId()]);
         }
 
-        $accessories = $this->productOnCurrentDomainFacade->getAccessoriesForProduct($product);
+        $accessories = $this->listedProductViewFacade->getAllAccessories($product->getId());
         $variants = $this->productOnCurrentDomainFacade->getVariantsForProduct($product);
         $productMainCategory = $this->categoryFacade->getProductMainCategoryByDomainId($product, $this->domain->getId());
 
@@ -184,12 +193,12 @@ class ProductController extends FrontBaseController
 
         $this->applyDiscountForPriceFilter($productFilterData);
 
-        $paginationResult = $this->productOnCurrentDomainFacade->getPaginatedProductsInCategory(
+        $paginationResult = $this->listedProductViewFacade->getFilteredPaginatedInCategory(
+            $id,
             $productFilterData,
             $orderingModeId,
             $page,
-            self::PRODUCTS_PER_PAGE,
-            $id
+            self::PRODUCTS_PER_PAGE
         );
 
         $productFilterCountData = null;
@@ -237,11 +246,11 @@ class ProductController extends FrontBaseController
             $request
         );
 
-        $paginationResult = $this->productOnCurrentDomainFacade->getPaginatedProductsForBrand(
+        $paginationResult = $this->listedProductViewFacade->getPaginatedForBrand(
+            $id,
             $orderingModeId,
             $page,
-            self::PRODUCTS_PER_PAGE,
-            $id
+            self::PRODUCTS_PER_PAGE
         );
 
         $brand = $this->brandFacade->getById($id);
@@ -263,7 +272,7 @@ class ProductController extends FrontBaseController
      */
     public function searchAction(Request $request)
     {
-        $searchText = $request->query->get(self::SEARCH_TEXT_PARAMETER);
+        $searchText = $request->query->get(self::SEARCH_TEXT_PARAMETER, '');
 
         $requestPage = $request->get(self::PAGE_QUERY_PARAMETER);
         if (!$this->isRequestPageValid($requestPage)) {
@@ -283,7 +292,7 @@ class ProductController extends FrontBaseController
         ]);
         $filterForm->handleRequest($request);
 
-        $paginationResult = $this->productOnCurrentDomainFacade->getPaginatedProductsForSearch(
+        $paginationResult = $this->listedProductViewFacade->getFilteredPaginatedForSearch(
             $searchText,
             $productFilterData,
             $orderingModeId,
