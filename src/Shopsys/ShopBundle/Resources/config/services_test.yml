@@ -49,6 +49,12 @@ services:
     Shopsys\FrameworkBundle\Model\Order\OrderFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Order\OrderFactory
 
+    Shopsys\FrameworkBundle\Model\Order\Item\OrderItemDataFactoryInterface:
+        alias: Shopsys\ShopBundle\Model\Order\Item\OrderItemDataFactory
+
+    Shopsys\FrameworkBundle\Model\Order\Item\OrderItemFactoryInterface:
+        alias: Shopsys\FrameworkBundle\Model\Order\Item\OrderItemFactory
+
     Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Order\OrderDataFactory
 
