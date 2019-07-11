@@ -3,8 +3,8 @@
 namespace Tests\ShopBundle\Functional\Model\Product\Brand;
 
 use Shopsys\FrameworkBundle\Model\Product\Brand\Brand;
-use Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactory;
-use Shopsys\FrameworkBundle\Model\Product\Brand\BrandFactory;
+use Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface;
+use Shopsys\FrameworkBundle\Model\Product\Brand\BrandFactoryInterface;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class BrandDomainTest extends TransactionFunctionalTestCase
@@ -15,12 +15,12 @@ class BrandDomainTest extends TransactionFunctionalTestCase
     const DEMONSTRATIVE_SEO_H1 = 'Demonstrative seo h1';
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactory
+     * @var \Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface
      */
     private $brandDataFactory;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Product\Brand\BrandFactory
+     * @var \Shopsys\FrameworkBundle\Model\Product\Brand\BrandFactoryInterface
      */
     private $brandFactory;
 
@@ -32,8 +32,8 @@ class BrandDomainTest extends TransactionFunctionalTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->brandDataFactory = $this->getContainer()->get(BrandDataFactory::class);
-        $this->brandFactory = $this->getContainer()->get(BrandFactory::class);
+        $this->brandDataFactory = $this->getContainer()->get(BrandDataFactoryInterface::class);
+        $this->brandFactory = $this->getContainer()->get(BrandFactoryInterface::class);
         $this->em = $this->getEntityManager();
     }
 

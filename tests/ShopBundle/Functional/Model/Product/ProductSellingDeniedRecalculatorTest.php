@@ -2,6 +2,7 @@
 
 namespace Tests\ShopBundle\Functional\Model\Product;
 
+use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
 use Shopsys\FrameworkBundle\Model\Product\ProductSellingDeniedRecalculator;
 use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
@@ -17,8 +18,8 @@ class ProductSellingDeniedRecalculatorTest extends TransactionFunctionalTestCase
         /* @var $productSellingDeniedRecalculator \Shopsys\FrameworkBundle\Model\Product\ProductSellingDeniedRecalculator */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
         /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
-        $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
+        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
+        /* @var $productDataFactory \Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface */
 
         $variant1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '53');
         /* @var $variant1 \Shopsys\ShopBundle\Model\Product\Product */
@@ -53,8 +54,8 @@ class ProductSellingDeniedRecalculatorTest extends TransactionFunctionalTestCase
         /* @var $productSellingDeniedRecalculator \Shopsys\FrameworkBundle\Model\Product\ProductSellingDeniedRecalculator */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
         /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
-        $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
+        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
+        /* @var $productDataFactory \Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface */
 
         $variant1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '53');
         /* @var $variant1 \Shopsys\ShopBundle\Model\Product\Product */
@@ -95,8 +96,8 @@ class ProductSellingDeniedRecalculatorTest extends TransactionFunctionalTestCase
         /* @var $productSellingDeniedRecalculator \Shopsys\FrameworkBundle\Model\Product\ProductSellingDeniedRecalculator */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
         /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
-        $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
+        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
+        /* @var $productDataFactory \Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface */
 
         $variant1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '53');
         /* @var $variant1 \Shopsys\ShopBundle\Model\Product\Product */

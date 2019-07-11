@@ -3,6 +3,7 @@
 namespace Tests\ShopBundle\Functional\Model\Product;
 
 use ReflectionClass;
+use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
 use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
 use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
@@ -31,7 +32,7 @@ class ProductFacadeTest extends TransactionFunctionalTestCase
         $calculatedHidden,
         $calculatedSellingDenied
     ) {
-        $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
+        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
         $productData = $productDataFactory->create();
         $productData->hidden = $hidden;
         $productData->sellingDenied = $sellingDenied;
@@ -116,7 +117,7 @@ class ProductFacadeTest extends TransactionFunctionalTestCase
         /* @var $product \Shopsys\ShopBundle\Model\Product\Product */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
         /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
-        $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
+        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
         /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
 
         $reflectionClass = new ReflectionClass(Product::class);

@@ -22,8 +22,6 @@ services:
     Shopsys\FrameworkBundle\Model\Product\Search\Export\ProductSearchExportRepository:
         alias: Shopsys\FrameworkBundle\Model\Product\Search\Export\ProductSearchExportWithFilterRepository
 
-    Shopsys\ShopBundle\Model\Product\ProductDataFactory: ~
-
     Symfony\Component\Filesystem\Filesystem: ~
 
     joschi127_doctrine_entity_override.event_subscriber.load_orm_metadata:
@@ -45,24 +43,17 @@ services:
     Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory
 
-    Shopsys\ShopBundle\Model\Category\CategoryDataFactory: ~
-
-    Shopsys\ShopBundle\Model\Order\OrderFactory: ~
+    Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface:
+        alias: Shopsys\ShopBundle\Model\Customer\CustomerDataFactory
 
     Shopsys\FrameworkBundle\Model\Order\OrderFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Order\OrderFactory
 
-    Shopsys\ShopBundle\Model\Order\OrderDataFactory: ~
-
     Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Order\OrderDataFactory
 
-    Shopsys\ShopBundle\Model\Transport\TransportFactory: ~
-
     Shopsys\FrameworkBundle\Model\Transport\TransportFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Transport\TransportFactory
-
-    Shopsys\ShopBundle\Model\Transport\TransportDataFactory: ~
 
     Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Transport\TransportDataFactory
@@ -89,10 +80,11 @@ services:
     Shopsys\FrameworkBundle\Model\Order\OrderRepository:
         alias: Shopsys\ShopBundle\Model\Order\OrderRepository
 
-    Shopsys\ShopBundle\Model\Customer\UserDataFactory: ~
-
-    Shopsys\FrameworkBundle\Model\Customer\UserDataFactory:
+    Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Customer\UserDataFactory
+
+    Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface:
+        alias: Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactory
 
     Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculation:
         class: Shopsys\ShopBundle\Model\Product\Pricing\ProductPriceCalculation

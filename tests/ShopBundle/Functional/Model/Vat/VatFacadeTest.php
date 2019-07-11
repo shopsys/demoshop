@@ -2,7 +2,7 @@
 
 namespace Tests\ShopBundle\Functional\Model\Vat;
 
-use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactory;
+use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentFacade;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatFacade;
@@ -24,8 +24,8 @@ class VatFacadeTest extends TransactionFunctionalTestCase
         /* @var $transportFacade \Shopsys\FrameworkBundle\Model\Transport\TransportFacade */
         $transportDataFactory = $this->getContainer()->get(TransportDataFactoryInterface::class);
         /* @var $transportDataFactory \Shopsys\FrameworkBundle\Model\Transport\TransportDataFactory */
-        $paymentDataFactory = $this->getContainer()->get(PaymentDataFactory::class);
-        /* @var $paymentDataFactory \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactory */
+        $paymentDataFactory = $this->getContainer()->get(PaymentDataFactoryInterface::class);
+        /* @var $paymentDataFactory \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface */
         $paymentFacade = $this->getContainer()->get(PaymentFacade::class);
         /* @var $paymentFacade \Shopsys\FrameworkBundle\Model\Payment\PaymentFacade */
 
