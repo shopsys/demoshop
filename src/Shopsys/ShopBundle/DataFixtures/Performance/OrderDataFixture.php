@@ -357,11 +357,11 @@ class OrderDataFixture
      */
     private function getRandomCountryFromFirstDomain()
     {
-        $randomPaymentReferenceName = $this->faker->randomElement([
+        $randomCountryReferenceName = $this->faker->randomElement([
             CountryDataFixture::COUNTRY_CZECH_REPUBLIC,
             CountryDataFixture::COUNTRY_SLOVAKIA,
         ]);
 
-        return $this->persistentReferenceFacade->getReference($randomPaymentReferenceName);
+        return $this->persistentReferenceFacade->getReference($randomCountryReferenceName);
     }
 }
