@@ -1,0 +1,156 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+
+msgid "City name cannot be longer than {{ limit }} characters"
+msgstr "(de) City name cannot be longer than {{ limit }} characters"
+
+msgid "Company name cannot be longer than {{ limit }} characters"
+msgstr "(de) Company name cannot be longer than {{ limit }} characters"
+
+msgid "Discount percentage needs to be valid number with range between 0 and 100."
+msgstr "(de) Discount percentage needs to be valid number with range between 0 and 100."
+
+msgid "Discount percentage should be {{ limit }} or less."
+msgstr "(de) Discount percentage should be {{ limit }} or less."
+
+msgid "Discount percentage should be {{ limit }} or more."
+msgstr "(de) Discount percentage should be {{ limit }} or more."
+
+msgid "Email cannot be longer then {{ limit }} characters"
+msgstr "(de) Email cannot be longer then {{ limit }} characters"
+
+msgid "First name cannot be longer then {{ limit }} characters"
+msgstr "(de) First name cannot be longer then {{ limit }} characters"
+
+msgid "First name of contact person cannot be longer then {{ limit }} characters"
+msgstr "(de) First name of contact person cannot be longer then {{ limit }} characters"
+
+msgid "Identification number cannot be longer then {{ limit }} characters"
+msgstr "(de) Identification number cannot be longer then {{ limit }} characters"
+
+msgid "Last name cannot be longer than {{ limit }} characters"
+msgstr "(de) Last name cannot be longer than {{ limit }} characters"
+
+msgid "Last name of contact person cannot be longer than {{ limit }} characters"
+msgstr "(de) Last name of contact person cannot be longer than {{ limit }} characters"
+
+msgid "Password cannot be longer then {{ limit }} characters"
+msgstr "(de) Password cannot be longer then {{ limit }} characters"
+
+msgid "Password cannot be same as e-mail"
+msgstr "(de) Password cannot be same as e-mail"
+
+msgid "Password cannot be same as part of e-mail before at sign"
+msgstr "(de) Password cannot be same as part of e-mail before at sign"
+
+msgid "Passwords do not match"
+msgstr "(de) Passwords do not match"
+
+msgid "Please check the correctness of all data filled."
+msgstr "(de) Please check the correctness of all data filled."
+
+msgid "Please choose a valid combination of transport and payment"
+msgstr "(de) Please choose a valid combination of transport and payment"
+
+msgid "Please choose country"
+msgstr "(de) Please choose country"
+
+msgid "Please choose payment type"
+msgstr "(de) Please choose payment type"
+
+msgid "Please choose shipping type"
+msgstr "(de) Please choose shipping type"
+
+msgid "Please enter city"
+msgstr "(de) Please enter city"
+
+msgid "Please enter company name"
+msgstr "(de) Please enter company name"
+
+msgid "Please enter content"
+msgstr "(de) Please enter content"
+
+msgid "Please enter date of creation"
+msgstr "(de) Please enter date of creation"
+
+msgid "Please enter discount percentage"
+msgstr "(de) Please enter discount percentage"
+
+msgid "Please enter e-mail"
+msgstr "(de) Please enter e-mail"
+
+msgid "Please enter first name"
+msgstr "(de) Please enter first name"
+
+msgid "Please enter first name of contact person"
+msgstr "(de) Please enter first name of contact person"
+
+msgid "Please enter full name"
+msgstr "(de) Please enter full name"
+
+msgid "Please enter identification number"
+msgstr "(de) Please enter identification number"
+
+msgid "Please enter last name"
+msgstr "(de) Please enter last name"
+
+msgid "Please enter last name of contact person"
+msgstr "(de) Please enter last name of contact person"
+
+msgid "Please enter password"
+msgstr "(de) Please enter password"
+
+msgid "Please enter price in correct format (positive number with decimal separator)"
+msgstr "(de) Please enter price in correct format (positive number with decimal separator)"
+
+msgid "Please enter quantity"
+msgstr "(de) Please enter quantity"
+
+msgid "Please enter street"
+msgstr "(de) Please enter street"
+
+msgid "Please enter telephone number"
+msgstr "(de) Please enter telephone number"
+
+msgid "Please enter valid e-mail"
+msgstr "(de) Please enter valid e-mail"
+
+msgid "Please enter valid quantity"
+msgstr "(de) Please enter valid quantity"
+
+msgid "Please enter zip code"
+msgstr "(de) Please enter zip code"
+
+msgid "Price must be greater or equal to zero"
+msgstr "(de) Price must be greater or equal to zero"
+
+msgid "Quantity must be greater than {{ compared_value }}"
+msgstr "(de) Quantity must be greater than {{ compared_value }}"
+
+msgid "Street name cannot be longer than {{ limit }} characters"
+msgstr "(de) Street name cannot be longer than {{ limit }} characters"
+
+msgid "Tax number cannot be longer than {{ limit }} characters"
+msgstr "(de) Tax number cannot be longer than {{ limit }} characters"
+
+msgid "Telephone number cannot be longer than {{ limit }} characters"
+msgstr "(de) Telephone number cannot be longer than {{ limit }} characters"
+
+msgid "This e-mail is already registered"
+msgstr "(de) This e-mail is already registered"
+
+msgid "This field must be empty"
+msgstr "(de) This field must be empty"
+
+msgid "You have to agree with privacy policy"
+msgstr "(de) You have to agree with privacy policy"
+
+msgid "You have to agree with terms and conditions and privacy policy"
+msgstr "(de) You have to agree with terms and conditions and privacy policy"
+
+msgid "Zip code cannot be longer than {{ limit }} characters"
+msgstr "(de) Zip code cannot be longer than {{ limit }} characters"
+

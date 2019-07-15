@@ -1,0 +1,885 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+
+msgid "(If I buy on the company behalf)"
+msgstr "(de) (If I buy on the company behalf)"
+
+msgid "(Products will be delivered to this address)"
+msgstr "(de) (Products will be delivered to this address)"
+
+msgid "(This address will be on the tax invoice)"
+msgstr "(de) (This address will be on the tax invoice)"
+
+msgid "100% Satisfaction"
+msgstr "(de) 100% Satisfaction"
+
+msgid "24/7 Help Center"
+msgstr "(de) 24/7 Help Center"
+
+msgid "Accessories"
+msgstr "(de) Accessories"
+
+msgid "Add company user"
+msgstr "(de) Add company user"
+
+msgid "Add item"
+msgstr "(de) Add item"
+
+msgid "Add product"
+msgstr "(de) Add product"
+
+msgid "Add to cart"
+msgstr "(de) Add to cart"
+
+msgid "Added product will not have any individual discounts"
+msgstr "(de) Added product will not have any individual discounts"
+
+msgid "Address"
+msgstr "(de) Address"
+
+msgid "Amount"
+msgstr "(de) Amount"
+
+msgid "Apply"
+msgstr "(de) Apply"
+
+msgid "Attention! You are administrator logged in as the customer."
+msgstr "(de) Attention! You are administrator logged in as the customer."
+
+msgid "Back to buying"
+msgstr "(de) Back to buying"
+
+msgid "Back to cart"
+msgstr "(de) Back to cart"
+
+msgid "Back to orders overview"
+msgstr "(de) Back to orders overview"
+
+msgid "Back to overview"
+msgstr "(de) Back to overview"
+
+msgid "Back to shipping and payment selection"
+msgstr "(de) Back to shipping and payment selection"
+
+msgid "Back to store"
+msgstr "(de) Back to store"
+
+msgid "Basic"
+msgstr "(de) Basic"
+
+msgid "Basic information"
+msgstr "(de) Basic information"
+
+msgid "Bestsellers"
+msgstr "(de) Bestsellers"
+
+msgid "Billing address"
+msgstr "(de) Billing address"
+
+msgid "Billing data"
+msgstr "(de) Billing data"
+
+msgid "Brand"
+msgstr "(de) Brand"
+
+msgid "Brand overview"
+msgstr "(de) Brand overview"
+
+msgid "Cart"
+msgstr "(de) Cart"
+
+msgid "Catalogue number"
+msgstr "(de) Catalogue number"
+
+msgid "Category description above product list"
+msgstr "(de) Category description above product list"
+
+msgid "Category description under product list"
+msgstr "(de) Category description under product list"
+
+msgid "Change"
+msgstr "(de) Change"
+
+msgid "Changing password"
+msgstr "(de) Changing password"
+
+msgid "Check the address correctness"
+msgstr "(de) Check the address correctness"
+
+msgid "Choose"
+msgstr "(de) Choose"
+
+msgid "Choose pick up place"
+msgstr "(de) Choose pick up place"
+
+msgid "Choose variant"
+msgstr "(de) Choose variant"
+
+msgid "City"
+msgstr "(de) City"
+
+msgid "Clear filter"
+msgstr "(de) Clear filter"
+
+msgid "Clicking on the link below you can download in XML format your personal information, which we have in evidence in our online store %domain%."
+msgstr "(de) Clicking on the link below you can download in XML format your personal information, which we have in evidence in our online store %domain%."
+
+msgid "Close"
+msgstr "(de) Close"
+
+msgid "Close (Esc)"
+msgstr "(de) Close (Esc)"
+
+msgid "Company"
+msgstr "(de) Company"
+
+msgid "Company data"
+msgstr "(de) Company data"
+
+msgid "Company name"
+msgstr "(de) Company name"
+
+msgid "Company number"
+msgstr "(de) Company number"
+
+msgid "Company users"
+msgstr "(de) Company users"
+
+msgid "Condition"
+msgstr "(de) Condition"
+
+msgid "Contact Us"
+msgstr "(de) Contact Us"
+
+msgid "Contact us"
+msgstr "(de) Contact us"
+
+msgid "Continue in order"
+msgstr "(de) Continue in order"
+
+msgid "Continue to Order"
+msgstr "(de) Continue to Order"
+
+msgid "Country"
+msgstr "(de) Country"
+
+msgid "Creation date"
+msgstr "(de) Creation date"
+
+msgid "Current status"
+msgstr "(de) Current status"
+
+msgid "Customer <strong><a href=\"{{ url }}\">{{ name }}</a></strong> created"
+msgstr "(de) Customer <strong><a href=\"{{ url }}\">{{ name }}</a></strong> created"
+
+msgid "Customer <strong><a href=\"{{ url }}\">{{ name }}</a></strong> modified"
+msgstr "(de) Customer <strong><a href=\"{{ url }}\">{{ name }}</a></strong> modified"
+
+msgid "Customer <strong>{{ name }}</strong> deleted"
+msgstr "(de) Customer <strong>{{ name }}</strong> deleted"
+
+msgid "Customer detail"
+msgstr "(de) Customer detail"
+
+msgid "Customer not found"
+msgstr "(de) Customer not found"
+
+msgid "Customer with e-mail address <strong>{{ email }}</strong> doesn't exist. <a href=\"{{ registrationLink }}\"> Register</a>"
+msgstr "(de) Customer with e-mail address <strong>{{ email }}</strong> doesn't exist. <a href=\"{{ registrationLink }}\"> Register</a>"
+
+msgid "Date of subscription"
+msgstr "(de) Date of subscription"
+
+msgid "Delivery address"
+msgstr "(de) Delivery address"
+
+msgid "Delivery data"
+msgstr "(de) Delivery data"
+
+msgid "Description"
+msgstr "(de) Description"
+
+msgid "Detail"
+msgstr "(de) Detail"
+
+msgid "Discount"
+msgstr "(de) Discount"
+
+msgid "Displaying"
+msgstr "(de) Displaying"
+
+msgid "Do you really want to remove this customer?"
+msgstr "(de) Do you really want to remove this customer?"
+
+msgid "Do you want to receive the newest information about our shop? Subscribe to our e-mail newsletter."
+msgstr "(de) Do you want to receive the newest information about our shop? Subscribe to our e-mail newsletter."
+
+msgid "Download the personal information"
+msgstr "(de) Download the personal information"
+
+msgid "E-mail"
+msgstr "(de) E-mail"
+
+msgid "E-mail settings:"
+msgstr "(de) E-mail settings:"
+
+msgid "E-mail with a link to the export of your personal data was sent to your e-mail address."
+msgstr "(de) E-mail with a link to the export of your personal data was sent to your e-mail address."
+
+msgid "E-mail with a link to the page with your personal data was sent to your e-mail address."
+msgstr "(de) E-mail with a link to the page with your personal data was sent to your e-mail address."
+
+msgid "EAN"
+msgstr "(de) EAN"
+
+msgid "Editing customer"
+msgstr "(de) Editing customer"
+
+msgid "Editing customer - %name%"
+msgstr "(de) Editing customer - %name%"
+
+msgid "Effectivness Hunter"
+msgstr "(de) Effectivness Hunter"
+
+msgid "Empty cart"
+msgstr "(de) Empty cart"
+
+msgid "Enter e-mail"
+msgstr "(de) Enter e-mail"
+
+msgid "Error occurred"
+msgstr "(de) Error occurred"
+
+msgid "Error occurred when sending e-mail."
+msgstr "(de) Error occurred when sending e-mail."
+
+msgid "Fill in city or post number"
+msgstr "(de) Fill in city or post number"
+
+msgid "Finish the order"
+msgstr "(de) Finish the order"
+
+msgid "First name"
+msgstr "(de) First name"
+
+msgid "Flags"
+msgstr "(de) Flags"
+
+msgid "Forgot your password?"
+msgstr "(de) Forgot your password?"
+
+msgid "Forgotten password"
+msgstr "(de) Forgotten password"
+
+msgid "From"
+msgstr "(de) From"
+
+msgid "Full name"
+msgstr "(de) Full name"
+
+msgid "Go to cart"
+msgstr "(de) Go to cart"
+
+msgid "Great Value"
+msgstr "(de) Great Value"
+
+msgid "I agree with <a href=\"%termsAndConditionsUrl%\" target=\"_blank\">terms and conditions</a> and <a href=\"%privacyPolicyUrl%\" target=\"_blank\">privacy policy</a>."
+msgstr "(de) I agree with <a href=\"%termsAndConditionsUrl%\" target=\"_blank\">terms and conditions</a> and <a href=\"%privacyPolicyUrl%\" target=\"_blank\">privacy policy</a>."
+
+msgid "I agree with <a href=\"%termsAndConditionsUrl%\" target=\"_blank\">terms and conditions</a> and privacy policy."
+msgstr "(de) I agree with <a href=\"%termsAndConditionsUrl%\" target=\"_blank\">terms and conditions</a> and privacy policy."
+
+msgid "I agree with <a href=\"%url%\" target=\"_blank\">privacy policy</a>."
+msgstr "(de) I agree with <a href=\"%url%\" target=\"_blank\">privacy policy</a>."
+
+msgid "I agree with privacy policy."
+msgstr "(de) I agree with privacy policy."
+
+msgid "I agree with terms and conditions and <a href=\"%privacyPolicyUrl%\" target=\"_blank\">privacy policy</a>."
+msgstr "(de) I agree with terms and conditions and <a href=\"%privacyPolicyUrl%\" target=\"_blank\">privacy policy</a>."
+
+msgid "I agree with terms and conditions and privacy policy."
+msgstr "(de) I agree with terms and conditions and privacy policy."
+
+msgid "I buy on company behalf"
+msgstr "(de) I buy on company behalf"
+
+msgid "I do not agree with sending a Customer Verified satisfaction questionnaire that helps improve your service"
+msgstr "(de) I do not agree with sending a Customer Verified satisfaction questionnaire that helps improve your service"
+
+msgid "I understand"
+msgstr "(de) I understand"
+
+msgid "I want to deliver products to different address than the billing one"
+msgstr "(de) I want to deliver products to different address than the billing one"
+
+msgid "I want to subscribe to the newsletter"
+msgstr "(de) I want to subscribe to the newsletter"
+
+msgid "Id"
+msgstr "(de) Id"
+
+msgid "Image"
+msgstr "(de) Image"
+
+msgid "Invalid login"
+msgstr "(de) Invalid login"
+
+msgid "Is company with multiple users"
+msgstr "(de) Is company with multiple users"
+
+msgid "Items"
+msgstr "(de) Items"
+
+msgid "Jessica Fletcher"
+msgstr "(de) Jessica Fletcher"
+
+msgid "Last name"
+msgstr "(de) Last name"
+
+msgid "Link to password reset sent to e-mail <strong>{{ email }}</strong>."
+msgstr "(de) Link to password reset sent to e-mail <strong>{{ email }}</strong>."
+
+msgid "List of subcategories"
+msgstr "(de) List of subcategories"
+
+msgid "Log in"
+msgstr "(de) Log in"
+
+msgid "Log in as user"
+msgstr "(de) Log in as user"
+
+msgid "Log out"
+msgstr "(de) Log out"
+
+msgid "Login"
+msgstr "(de) Login"
+
+msgid "Master e-mail %masterMail% set"
+msgstr "(de) Master e-mail %masterMail% set"
+
+msgid "Following expressions are allowed in whitelist: %whitelist%."
+msgstr "(de) Following expressions are allowed in whitelist: %whitelist%."
+
+msgid "All e-mails will be sent only to entered addresses."
+msgstr "(de) All e-mails will be sent only to entered addresses."
+
+msgid "under heading"
+msgstr "(de) under heading"
+
+msgid "above footer"
+msgstr "(de) above footer"
+
+msgid "in category (above the category name)"
+msgstr "(de) in category (above the category name)"
+
+msgid "in left panel (under category tree)"
+msgstr "(de) in left panel (under category tree)"
+
+msgid "Menu"
+msgstr "(de) Menu"
+
+msgid "Message"
+msgstr "(de) Message"
+
+msgid "More information"
+msgstr "(de) More information"
+
+msgid "My orders"
+msgstr "(de) My orders"
+
+msgid "Name"
+msgstr "(de) Name"
+
+msgid "New"
+msgstr "(de) New"
+
+msgid "News & Sales in your e-mail"
+msgstr "(de) News & Sales in your e-mail"
+
+msgid "No"
+msgstr "(de) No"
+
+msgid "No customers found."
+msgstr "(de) No customers found."
+
+msgid "No order so far."
+msgstr "(de) No order so far."
+
+msgid "No personal data for this e-mail address"
+msgstr "(de) No personal data for this e-mail address"
+
+msgid "No pickup places found."
+msgstr "(de) No pickup places found."
+
+msgid "No products found for this brand"
+msgstr "(de) No products found for this brand"
+
+msgid "No results matching filter"
+msgstr "(de) No results matching filter"
+
+msgid "Note"
+msgstr "(de) Note"
+
+msgid "Nothing to choose from"
+msgstr "(de) Nothing to choose from"
+
+msgid "Nothing to choose from."
+msgstr "(de) Nothing to choose from."
+
+msgid "Number of items"
+msgstr "(de) Number of items"
+
+msgid "One or more emails are duplicated or already used, e.g.:"
+msgstr "(de) One or more emails are duplicated or already used, e.g.:"
+
+msgid "Online shop"
+msgstr "(de) Online shop"
+
+msgid "Oops! Error occurred."
+msgstr "(de) Oops! Error occurred."
+
+msgid "Operation failed"
+msgstr "(de) Operation failed"
+
+msgid "Order - personal data"
+msgstr "(de) Order - personal data"
+
+msgid "Order Nr."
+msgstr "(de) Order Nr."
+
+msgid "Order [noun]"
+msgstr "(de) Order"
+
+msgid "Order [verb]"
+msgstr "(de) Order"
+
+msgid "Order completed"
+msgstr "(de) Order completed"
+
+msgid "Order items"
+msgstr "(de) Order items"
+
+msgid "Order not found"
+msgstr "(de) Order not found"
+
+msgid "Order number"
+msgstr "(de) Order number"
+
+msgid "Order sent"
+msgstr "(de) Order sent"
+
+msgid "Orders"
+msgstr "(de) Orders"
+
+msgid "Our Buyer Protection covers your purchase from click to delivery."
+msgstr "(de) Our Buyer Protection covers your purchase from click to delivery."
+
+msgid "Our customers who bought this bought also"
+msgstr "(de) Our customers who bought this bought also"
+
+msgid "Page not found!"
+msgstr "(de) Page not found!"
+
+msgid "Page you are looking for either no longer exists or you entered wrong address."
+msgstr "(de) Page you are looking for either no longer exists or you entered wrong address."
+
+msgid "Password"
+msgstr "(de) Password"
+
+msgid "Password again"
+msgstr "(de) Password again"
+
+msgid "Password must be at least six characters and can't be the same as entered e-mail or its part before at sign."
+msgstr "(de) Password must be at least six characters and can't be the same as entered e-mail or its part before at sign."
+
+msgid "Password successfully changed"
+msgstr "(de) Password successfully changed"
+
+msgid "Pay with the world’s most popular and secure payment methods."
+msgstr "(de) Pay with the world’s most popular and secure payment methods."
+
+msgid "Payment"
+msgstr "(de) Payment"
+
+msgid "Payment method"
+msgstr "(de) Payment method"
+
+msgid "Payment selection"
+msgstr "(de) Payment selection"
+
+msgid "Personal data"
+msgstr "(de) Personal data"
+
+msgid "Personal data of registered customer"
+msgstr "(de) Personal data of registered customer"
+
+msgid "Personal information export"
+msgstr "(de) Personal information export"
+
+msgid "Personal information overview"
+msgstr "(de) Personal information overview"
+
+msgid "Please check the correctness of all data filled."
+msgstr "(de) Please check the correctness of all data filled."
+
+msgid "Please enter promo code."
+msgstr "(de) Please enter promo code."
+
+msgid "Please enter valid quantity you want to add to cart."
+msgstr "(de) Please enter valid quantity you want to add to cart."
+
+msgid "Please excuse this error, we are working on fixing it. If needed, contact us on %mail% or by phone %phone%."
+msgstr "(de) Please excuse this error, we are working on fixing it. If needed, contact us on %mail% or by phone %phone%."
+
+msgid "Please follow the instructions"
+msgstr "(de) Please follow the instructions"
+
+msgid "Please make sure that you entered right quantity of all items in cart."
+msgstr "(de) Please make sure that you entered right quantity of all items in cart."
+
+msgid "Popular categories"
+msgstr "(de) Popular categories"
+
+msgid "Postcode"
+msgstr "(de) Postcode"
+
+msgid "Price"
+msgstr "(de) Price"
+
+msgid "Price including VAT"
+msgstr "(de) Price including VAT"
+
+msgid "Product <strong>{{ name }}</strong> ({{ quantity|formatNumber }} {{ unitName }}) added to the cart"
+msgstr "(de) Product <strong>{{ name }}</strong> ({{ quantity|formatNumber }} {{ unitName }}) added to the cart"
+
+msgid "Product <strong>{{ name }}</strong> added to the cart (total amount {{ quantity|formatNumber }} {{ unitName }})"
+msgstr "(de) Product <strong>{{ name }}</strong> added to the cart (total amount {{ quantity|formatNumber }} {{ unitName }})"
+
+msgid "Product information"
+msgstr "(de) Product information"
+
+msgid "Product no longer on sale"
+msgstr "(de) Product no longer on sale"
+
+msgid "Product variants"
+msgstr "(de) Product variants"
+
+msgid "Product {{ name }} removed from cart"
+msgstr "(de) Product {{ name }} removed from cart"
+
+msgid "Products in cart overview"
+msgstr "(de) Products in cart overview"
+
+msgid "Products in stock only"
+msgstr "(de) Products in stock only"
+
+msgid "Promo code"
+msgstr "(de) Promo code"
+
+msgid "Promo code added to order"
+msgstr "(de) Promo code added to order"
+
+msgid "Promo code invalid. Check it, please."
+msgstr "(de) Promo code invalid. Check it, please."
+
+msgid "Promo code removed from order"
+msgstr "(de) Promo code removed from order"
+
+msgid "Refurbished"
+msgstr "(de) Refurbished"
+
+msgid "Register"
+msgstr "(de) Register"
+
+msgid "Registration"
+msgstr "(de) Registration"
+
+msgid "Remember my login"
+msgstr "(de) Remember my login"
+
+msgid "Reset password"
+msgstr "(de) Reset password"
+
+msgid "Round-the-clock assistance for a smooth shopping experience."
+msgstr "(de) Round-the-clock assistance for a smooth shopping experience."
+
+msgid "Rounding"
+msgstr "(de) Rounding"
+
+msgid "Save changes"
+msgstr "(de) Save changes"
+
+msgid "Search"
+msgstr "(de) Search"
+
+msgid "Search [verb]"
+msgstr "(de) Search"
+
+msgid "Search didn't find any products."
+msgstr "(de) Search didn't find any products."
+
+msgid "Search results for \"%searchText%\""
+msgstr "(de) Search results for \"%searchText%\""
+
+msgid "Searching"
+msgstr "(de) Searching"
+
+msgid "Selected customer doesn't exist."
+msgstr "(de) Selected customer doesn't exist."
+
+msgid "Selected product no longer available or doesn't exist."
+msgstr "(de) Selected product no longer available or doesn't exist."
+
+msgid "Send"
+msgstr "(de) Send"
+
+msgid "Serial number"
+msgstr "(de) Serial number"
+
+msgid "Set new password"
+msgstr "(de) Set new password"
+
+msgid "Shipping"
+msgstr "(de) Shipping"
+
+msgid "Shipping address"
+msgstr "(de) Shipping address"
+
+msgid "Shipping and payment"
+msgstr "(de) Shipping and payment"
+
+msgid "Shipping and payment <strong>for free!</strong>"
+msgstr "(de) Shipping and payment <strong>for free!</strong>"
+
+msgid "Shipping method"
+msgstr "(de) Shipping method"
+
+msgid "Shipping selection"
+msgstr "(de) Shipping selection"
+
+msgid "Shipping type"
+msgstr "(de) Shipping type"
+
+msgid "Show filters"
+msgstr "(de) Show filters"
+
+msgid "Special offers"
+msgstr "(de) Special offers"
+
+msgid "Status"
+msgstr "(de) Status"
+
+msgid "Street"
+msgstr "(de) Street"
+
+msgid "Subscription to e-mail newsletter"
+msgstr "(de) Subscription to e-mail newsletter"
+
+msgid "Tax number"
+msgstr "(de) Tax number"
+
+msgid "Technical parameters"
+msgstr "(de) Technical parameters"
+
+msgid "Telephone"
+msgstr "(de) Telephone"
+
+msgid "Thank you, your message has been sent."
+msgstr "(de) Thank you, your message has been sent."
+
+msgid "The link to change your password expired."
+msgstr "(de) The link to change your password expired."
+
+msgid "The price of payment {{ paymentName }} changed during ordering process. Check your order, please."
+msgstr "(de) The price of payment {{ paymentName }} changed during ordering process. Check your order, please."
+
+msgid "The price of shipping {{ transportName }} changed during ordering process. Check your order, please."
+msgstr "(de) The price of shipping {{ transportName }} changed during ordering process. Check your order, please."
+
+msgid "This account doesn't exist or password is incorrect"
+msgstr "(de) This account doesn't exist or password is incorrect"
+
+msgid "This category contains no products."
+msgstr "(de) This category contains no products."
+
+msgid "This product is no longer available for purchase. Have a look at similar products <a href=\"%url%\">here</a>."
+msgstr "(de) This product is no longer available for purchase. Have a look at similar products <a href=\"%url%\">here</a>."
+
+msgid "This site uses cookies."
+msgstr "(de) This site uses cookies."
+
+msgid "This site uses cookies. By staying on the site you agree with that."
+msgstr "(de) This site uses cookies. By staying on the site you agree with that."
+
+msgid "To"
+msgstr "(de) To"
+
+msgid "To prevent the possibility of account theft, the change of the e-mail address must be dealt with individually. If your e-mail address has changed, please contact us."
+msgstr "(de) To prevent the possibility of account theft, the change of the e-mail address must be dealt with individually. If your e-mail address has changed, please contact us."
+
+msgid "Total"
+msgstr "(de) Total"
+
+msgid "Total amount of VAT"
+msgstr "(de) Total amount of VAT"
+
+msgid "Total excluding VAT"
+msgstr "(de) Total excluding VAT"
+
+msgid "Total including VAT"
+msgstr "(de) Total including VAT"
+
+msgid "Total price excluding VAT"
+msgstr "(de) Total price excluding VAT"
+
+msgid "Total price including VAT"
+msgstr "(de) Total price including VAT"
+
+msgid "Try using web search"
+msgstr "(de) Try using web search"
+
+msgid "Uh-oh, uh-oh. And specially <strong>\"%status_code% %status_text%\"</strong>, as if it was on purpose!"
+msgstr "(de) Uh-oh, uh-oh. And specially <strong>\"%status_code% %status_text%\"</strong>, as if it was on purpose!"
+
+msgid "Unable to add product to cart"
+msgstr "(de) Unable to add product to cart"
+
+msgid "Unable to add product to cart:<br/><ul><li>{{ errors|raw }}</li></ul>"
+msgstr "(de) Unable to add product to cart:<br/><ul><li>{{ errors|raw }}</li></ul>"
+
+msgid "Unable to remove item from cart. The item is probably already removed."
+msgstr "(de) Unable to remove item from cart. The item is probably already removed."
+
+msgid "Unable to remove item from cart. The link for removing it probably expired, try it again."
+msgstr "(de) Unable to remove item from cart. The link for removing it probably expired, try it again."
+
+msgid "Unable to send some e-mails, please contact us for order verification."
+msgstr "(de) Unable to send some e-mails, please contact us for order verification."
+
+msgid "Unit"
+msgstr "(de) Unit"
+
+msgid "Unit price including VAT"
+msgstr "(de) Unit price including VAT"
+
+msgid "Used"
+msgstr "(de) Used"
+
+msgid "User not found."
+msgstr "(de) User not found."
+
+msgid "VAT rate"
+msgstr "(de) VAT rate"
+
+msgid "VAT rate (%)"
+msgstr "(de) VAT rate (%)"
+
+msgid "View all results"
+msgstr "(de) View all results"
+
+msgid "View more"
+msgstr "(de) View more"
+
+msgid "View results"
+msgstr "(de) View results"
+
+msgid "We are Responsible"
+msgstr "(de) We are Responsible"
+
+msgid "We offer competitive prices on our 100 million plus product range."
+msgstr "(de) We offer competitive prices on our 100 million plus product range."
+
+msgid "We will remember your login on this computer for 30 days."
+msgstr "(de) We will remember your login on this computer for 30 days."
+
+msgid "With sites in 5 languages, we ship to over 200 countries & regions."
+msgstr "(de) With sites in 5 languages, we ship to over 200 countries & regions."
+
+msgid "Worldwide Delivery"
+msgstr "(de) Worldwide Delivery"
+
+msgid "Yes"
+msgstr "(de) Yes"
+
+msgid "You have been successfully registered."
+msgstr "(de) You have been successfully registered."
+
+msgid "You have been successfully subscribed to our newsletter."
+msgstr "(de) You have been successfully subscribed to our newsletter."
+
+msgid "You have to be logged in to enter this page"
+msgstr "(de) You have to be logged in to enter this page"
+
+msgid "You still have to purchase products for <strong> %price% </strong> for <strong> free </strong> shipping and payment."
+msgstr "(de) You still have to purchase products for <strong> %price% </strong> for <strong> free </strong> shipping and payment."
+
+msgid "Your cart"
+msgstr "(de) Your cart"
+
+msgid "Your cart is empty"
+msgstr "(de) Your cart is empty"
+
+msgid "Your cart is unfortunately empty. To create order, you have to <a href=\"%url%\">choose</a> some product first"
+msgstr "(de) Your cart is unfortunately empty. To create order, you have to <a href=\"%url%\">choose</a> some product first"
+
+msgid "Your data had been successfully updated"
+msgstr "(de) Your data had been successfully updated"
+
+msgid "Your discount"
+msgstr "(de) Your discount"
+
+msgid "Zasilkovna.cz - dispensing point"
+msgstr "(de) Zasilkovna.cz - dispensing point"
+
+msgid "Zásilkovna"
+msgstr "(de) Zásilkovna"
+
+msgid "customers"
+msgstr "(de) customers"
+
+msgid "etc. Praha"
+msgstr "(de) etc. Praha"
+
+msgid "excluding VAT"
+msgstr "(de) excluding VAT"
+
+msgid "from"
+msgstr "(de) from"
+
+msgid "from %price%"
+msgstr "(de) from %price%"
+
+msgid "on homepage above popular categories (Primary)"
+msgstr "(de) on homepage above popular categories (Primary)"
+
+msgid "on homepage above popular categories (Secondary First)"
+msgstr "(de) on homepage above popular categories (Secondary First)"
+
+msgid "on homepage above popular categories (Secondary Second)"
+msgstr "(de) on homepage above popular categories (Secondary Second)"
+
+msgid "products"
+msgstr "(de) products"
+
+msgid "records"
+msgstr "(de) records"
+
+msgid "unregistered customer"
+msgstr "(de) unregistered customer"
+
+msgid "{0} No product found | {1} 1 product found | [2,Inf] %totalProductCount% product found"
+msgstr "(de) {0} No product found | {1} 1 product found | [2,Inf] %totalProductCount% product found"
+
+msgid "{1} <strong class=\"cart__state\">%itemsCount%</strong> item for <strong class=\"cart__state\">%priceWithVat%</strong>|[2,Inf] <strong class=\"cart__state\">%itemsCount%</strong> items for <strong class=\"cart__state\">%priceWithVat%</strong>"
+msgstr "(de) {1} <strong class=\"cart__state\">%itemsCount%</strong> item for <strong class=\"cart__state\">%priceWithVat%</strong>|[2,Inf] <strong class=\"cart__state\">%itemsCount%</strong> items for <strong class=\"cart__state\">%priceWithVat%</strong>"
+
+msgid "{1}Load next %loadNextCount% item|[2,Inf]Load next %loadNextCount% items"
+msgstr "(de) {1}Load next %loadNextCount% item|[2,Inf]Load next %loadNextCount% items"
+
+msgid "{1}Load next %loadNextCount% product|[2,Inf]Load next %loadNextCount% products"
+msgstr "(de) {1}Load next %loadNextCount% product|[2,Inf]Load next %loadNextCount% products"
+

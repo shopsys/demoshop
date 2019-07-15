@@ -21,6 +21,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - prices of products are recalculated for logged customers based on custom discount
     - discount works also for companies with multiple users
     - `filterFormMacro.html.twig` now counts with discount coeficient
+- [#55 - Public demoshop](https://github.com/shopsys/demoshop/pull/55)
+    - domains and domains_url search index routing were added for german locale
+    - CategoryRepositoryTest was fixed for third domain
+    - translations were copied from en language and prefixed with (de)
 
 ### Changed
 - [#1 - Basic changes in docs, readme etc. after copying from project-base](https://github.com/shopsys/demoshop/pull/1) : [@LukasHeinz]
