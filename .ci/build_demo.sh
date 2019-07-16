@@ -17,9 +17,9 @@ NC="\e[0m"
 DEMO_DOMAIN=$1
 JOB_NAME=${JOB_NAME:-$DEMO_DOMAIN}
 WORKSPACE=${WORKSPACE:-$PWD}
-ELASTICSEARCH_NETWORK=${ELASTICSEARCH_NETWORK:-shared-demo-elasticsearch-network}
+ELASTICSEARCH_NETWORK=${ELASTICSEARCH_NETWORK:-shared-demo-elasticsearch-icu-network}
 ELASTIC_SEARCH_INDEX_PREFIX=${JOB_NAME}-
-ELASTICSEARCH_CONTAINER=${ELASTICSEARCH_CONTAINER:-shared-demo-elasticsearch-instance}
+ELASTICSEARCH_CONTAINER=${ELASTICSEARCH_CONTAINER:-shared-demo-elasticsearch-icu-instance}
 
 if [[ ! "$DEMO_DOMAIN" =~ ^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$ ]]; then
     echo -e "${RED}Invalid demo domain!${NC}"
@@ -65,7 +65,8 @@ fi
 
 if [[ -z "$(docker ps -q -f name="$ELASTICSEARCH_CONTAINER")" ]]; then
     echo "Creating a shared elasticsearch container $ELASTICSEARCH_CONTAINER..."
-    docker run --name "$ELASTICSEARCH_CONTAINER" --ulimit "nofile=65536:65536" --env "discovery.type=single-node" -d "docker.elastic.co/elasticsearch/elasticsearch-oss:6.3.2"
+    docker build -t "elasticsearch-icu" "$WORKSPACE/docker/elasticsearch"
+    docker run --name "$ELASTICSEARCH_CONTAINER" --ulimit "nofile=65536:65536" --env "discovery.type=single-node" -d "elasticsearch-icu"
     echo "The elasticsearch container has been created."
     NETWORK_CONNECTION_REQUIRED='true'
 else

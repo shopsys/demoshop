@@ -3,7 +3,7 @@
 namespace Tests\ShopBundle\Functional\Model\Payment;
 
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
-use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactory;
+use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface;
@@ -15,8 +15,8 @@ class PaymentTest extends TransactionFunctionalTestCase
 {
     public function testRemoveTransportFromPaymentAfterDelete()
     {
-        $paymentDataFactory = $this->getContainer()->get(PaymentDataFactory::class);
-        /** @var \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactory $paymentDataFactory */
+        $paymentDataFactory = $this->getContainer()->get(PaymentDataFactoryInterface::class);
+        /** @var \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface $paymentDataFactory */
         $transportDataFactory = $this->getContainer()->get(TransportDataFactoryInterface::class);
         /** @var \Shopsys\ShopBundle\Model\Transport\TransportDataFactory $transportDataFactory */
         $em = $this->getEntityManager();

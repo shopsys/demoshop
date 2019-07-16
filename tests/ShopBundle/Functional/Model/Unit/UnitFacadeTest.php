@@ -2,12 +2,12 @@
 
 namespace Tests\ShopBundle\Functional\Model\Unit;
 
+use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
 use Shopsys\FrameworkBundle\Model\Product\Unit\UnitData;
 use Shopsys\FrameworkBundle\Model\Product\Unit\UnitFacade;
 use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
-use Shopsys\ShopBundle\Model\Product\ProductDataFactory;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class UnitFacadeTest extends TransactionFunctionalTestCase
@@ -17,8 +17,8 @@ class UnitFacadeTest extends TransactionFunctionalTestCase
         $em = $this->getEntityManager();
         $unitFacade = $this->getContainer()->get(UnitFacade::class);
         /* @var $unitFacade \Shopsys\FrameworkBundle\Model\Product\Unit\UnitFacade */
-        $productDataFactory = $this->getContainer()->get(ProductDataFactory::class);
-        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
+        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
+        /* @var $productDataFactory \Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
         /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
 

@@ -3,7 +3,7 @@
 namespace Tests\ShopBundle\Functional\Model\Order;
 
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
-use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactory;
+use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentFacade;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
@@ -426,11 +426,11 @@ class OrderTransportAndPaymentTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @return \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactory
+     * @return \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface
      */
     public function getPaymentDataFactory()
     {
-        return $this->getContainer()->get(PaymentDataFactory::class);
+        return $this->getContainer()->get(PaymentDataFactoryInterface::class);
     }
 
     /**

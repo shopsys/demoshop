@@ -106,6 +106,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - typo categoriyWithLazyLoadedVisibleChildren was fixed in twig template
     - elasticsearch index prefix is used also during tests
 - [#51 - the product flags functionality is now visible from admin and FE (revert of #13)](https://github.com/shopsys/demoshop/pull/51)
+- [#53 - Upgrade to version 7.3.0](https://github.com/shopsys/demoshop/pull/53)
+    - updated all shopsys/* composer dependencies to v7.3.0
+    - upgraded other composer dependencies
+    - updated migrations-lock.yml with new database migration
+    - incompatible excluded_404s from monolog is now unset
+    - updated Dockerfile production stage build
+    - updated Elasticsearch build configuration
+    - name.keyword field in Elasticsearch changed to sort properly in languages
+    - extended DI configuration
+    - removed useless route front_category_panel
+    - used phing configuration from shopsys/framework
+    - phpstan level raised to 1
+    - installation script now not running tests and standards checks
+    - fixed inconsistently named field shortDescription in Elasticsearch
+    - added test for creating product variants
+    - CustomerPassword:setNewPassword is now not indexed by robots
+    - password inputs now uses autocomplete=new-password
+    - tests updated to use interfaces of factories fetched from DIC
+    - removed trailing spaces in README file
+    - added test of order editing
+    - RedisFacadeTest is updated with version from 7.3.0
+    - added Elasticsearch structure update test
+    - read-model is now used for product lists
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)

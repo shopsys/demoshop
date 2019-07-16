@@ -119,7 +119,7 @@ COPY --chown=www-data:www-data / /var/www/html
 
 RUN composer install --optimize-autoloader --no-interaction --no-progress --no-dev
 
-RUN php phing composer npm dirs-create assets
+RUN php phing build-deploy-part-1-db-independent
 
 ########################################################################################################################
 

@@ -2,6 +2,8 @@
 
 namespace Tests\ShopBundle\Performance\Page;
 
+use RuntimeException;
+
 class PerformanceTestSamplesAggregator
 {
     /**
@@ -39,6 +41,10 @@ class PerformanceTestSamplesAggregator
                 if ($performanceTestSample->isSuccessful() || $worstStatusCode === null) {
                     $worstStatusCode = $performanceTestSample->getStatusCode();
                 }
+            }
+
+            if (!isset($performanceTestSample)) {
+                throw new RuntimeException('No performance test sample provided');
             }
 
             $aggregatedPerformanceTestSamples[$url] = new PerformanceTestSample(

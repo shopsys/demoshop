@@ -3,8 +3,8 @@
 namespace Tests\ShopBundle\Functional\Model\Payment;
 
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
-use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactory;
-use Shopsys\FrameworkBundle\Model\Payment\PaymentFactory;
+use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;
+use Shopsys\FrameworkBundle\Model\Payment\PaymentFactoryInterface;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class PaymentDomainTest extends TransactionFunctionalTestCase
@@ -30,8 +30,8 @@ class PaymentDomainTest extends TransactionFunctionalTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->paymentDataFactory = $this->getContainer()->get(PaymentDataFactory::class);
-        $this->paymentFactory = $this->getContainer()->get(PaymentFactory::class);
+        $this->paymentDataFactory = $this->getContainer()->get(PaymentDataFactoryInterface::class);
+        $this->paymentFactory = $this->getContainer()->get(PaymentFactoryInterface::class);
         $this->em = $this->getEntityManager();
     }
 

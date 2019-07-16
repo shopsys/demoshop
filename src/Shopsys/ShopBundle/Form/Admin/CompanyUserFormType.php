@@ -56,7 +56,7 @@ class CompanyUserFormType extends AbstractType
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'options' => [
-                    'attr' => ['autocomplete' => 'off'],
+                    'attr' => ['autocomplete' => 'new-password'],
                 ],
                 'first_options' => [
                     'constraints' => [

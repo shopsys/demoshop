@@ -5,6 +5,7 @@ namespace Tests\ShopBundle\Functional\Model\Pricing;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Component\Setting\Setting;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactory;
+use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentFacade;
 use Shopsys\FrameworkBundle\Model\Pricing\InputPriceRecalculationScheduler;
 use Shopsys\FrameworkBundle\Model\Pricing\InputPriceRecalculator;
@@ -83,8 +84,8 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
         $paymentFacade = $this->getContainer()->get(PaymentFacade::class);
         /** @var \Shopsys\FrameworkBundle\Model\Transport\TransportFacade $transportFacade */
         $transportFacade = $this->getContainer()->get(TransportFacade::class);
-        /** @var \Shopsys\ShopBundle\Model\Payment\PaymentDataFactory $paymentDataFactory */
-        $paymentDataFactory = $this->getContainer()->get(PaymentDataFactory::class);
+        /** @var \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface $paymentDataFactory */
+        $paymentDataFactory = $this->getContainer()->get(PaymentDataFactoryInterface::class);
         /** @var \Shopsys\ShopBundle\Model\Transport\TransportDataFactory $transportDataFactory */
         $transportDataFactory = $this->getContainer()->get(TransportDataFactoryInterface::class);
 
@@ -159,8 +160,8 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
         $paymentFacade = $this->getContainer()->get(PaymentFacade::class);
         /** @var \Shopsys\FrameworkBundle\Model\Transport\TransportFacade $transportFacade */
         $transportFacade = $this->getContainer()->get(TransportFacade::class);
-        /** @var \Shopsys\ShopBundle\Model\Payment\PaymentDataFactory $paymentDataFactory */
-        $paymentDataFactory = $this->getContainer()->get(PaymentDataFactory::class);
+        /** @var \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface $paymentDataFactory */
+        $paymentDataFactory = $this->getContainer()->get(PaymentDataFactoryInterface::class);
         /** @var \Shopsys\ShopBundle\Model\Transport\TransportDataFactory $transportDataFactory */
         $transportDataFactory = $this->getContainer()->get(TransportDataFactoryInterface::class);
 

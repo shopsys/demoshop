@@ -2,9 +2,9 @@
 
 namespace Tests\ShopBundle\Functional\Model\Category;
 
-use Shopsys\FrameworkBundle\Model\Category\CategoryFactory;
+use Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface;
+use Shopsys\FrameworkBundle\Model\Category\CategoryFactoryInterface;
 use Shopsys\ShopBundle\Model\Category\Category;
-use Shopsys\ShopBundle\Model\Category\CategoryDataFactory;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CategoryDomainTest extends TransactionFunctionalTestCase
@@ -33,8 +33,8 @@ class CategoryDomainTest extends TransactionFunctionalTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->categoryDataFactory = $this->getContainer()->get(CategoryDataFactory::class);
-        $this->categoryFactory = $this->getContainer()->get(CategoryFactory::class);
+        $this->categoryDataFactory = $this->getContainer()->get(CategoryDataFactoryInterface::class);
+        $this->categoryFactory = $this->getContainer()->get(CategoryFactoryInterface::class);
         $this->em = $this->getEntityManager();
     }
 

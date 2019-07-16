@@ -21,11 +21,6 @@ class CustomerFormTypeExtension extends AbstractTypeExtension
         $builderUserDataGroup = $builder->get('userData');
         $builderSystemDataGroup = $builderUserDataGroup->get('systemData');
 
-        if ($options['user'] !== null) {
-            $builderRegistrationDateField = $builderSystemDataGroup->get('createdAt');
-            $builderSystemDataGroup->remove('createdAt');
-        }
-
         $builderSystemDataGroup->add('discount', IntegerType::class, [
             'constraints' => [
                 new Constraints\NotBlank([
@@ -42,7 +37,10 @@ class CustomerFormTypeExtension extends AbstractTypeExtension
             'label' => t('Discount'),
         ]);
 
+        // remove field and add again to sort it after new discount field
         if ($options['user'] !== null) {
+            $builderRegistrationDateField = $builderSystemDataGroup->get('createdAt');
+            $builderSystemDataGroup->remove('createdAt');
             $builderSystemDataGroup->add($builderRegistrationDateField);
         }
 
