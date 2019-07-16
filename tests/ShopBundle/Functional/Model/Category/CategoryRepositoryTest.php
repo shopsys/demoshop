@@ -12,6 +12,7 @@ class CategoryRepositoryTest extends TransactionFunctionalTestCase
 {
     const FIRST_DOMAIN_ID = 1;
     const SECOND_DOMAIN_ID = 2;
+    const THIRD_DOMAIN_ID = 3;
 
     public function testDoNotGetCategoriesWithoutVisibleChildren()
     {
@@ -33,6 +34,7 @@ class CategoryRepositoryTest extends TransactionFunctionalTestCase
         $categoryData->enabled = [
             self::FIRST_DOMAIN_ID => false,
             self::SECOND_DOMAIN_ID => false,
+            self::THIRD_DOMAIN_ID => false,
         ];
         $categoryData->parent = $parentCategory;
         $categoryFacade->create($categoryData);
