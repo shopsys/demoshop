@@ -23,7 +23,7 @@
         }
     },
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "ext-bcmath": "*",
         "ext-ctype": "*",
         "ext-curl": "*",
@@ -119,10 +119,7 @@
     },
     "config": {
         "preferred-install": "dist",
-        "component-dir": "web/components",
-        "platform": {
-            "php": "7.1"
-        }
+        "component-dir": "web/components"
     },
     "extra": {
         "symfony-app-dir": "app",
