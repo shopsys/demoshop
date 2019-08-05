@@ -139,6 +139,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - `vim`, `nano`, `mc`, and `htop` installed in the `php-fpm` Docker image
     - updated `commerceguys/intl` to `v1.0`
     - `egeloen/ckeditor-bundle` replaced by `friendsofsymfony/ckeditor-bundle`
+    - simplified configuration of localized router
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
