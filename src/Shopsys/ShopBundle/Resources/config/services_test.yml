@@ -64,6 +64,9 @@ services:
     Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Transport\TransportDataFactory
 
+    Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityDataFactoryInterface:
+        alias: Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityDataFactory
+
     Shopsys\FrameworkBundle\Controller\Admin\CustomerController:
         class: Shopsys\ShopBundle\Controller\Admin\CustomerController
         tags: ['controller.service_arguments']
