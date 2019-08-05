@@ -136,6 +136,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [#56 - Upgrade to version 8.0.0](https://github.com/shopsys/demoshop/pull/56)
     - updated to PHP 7.2 in composer.json
     - updated all shopsys/* composer dependencies to v8.0.0 (written as ^8.0 for easier future upgrading)
+    - `vim`, `nano`, `mc`, and `htop` installed in the `php-fpm` Docker image
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)
