@@ -46,6 +46,6 @@ class PaymentTest extends TransactionFunctionalTestCase
         /* @var $transportFacade \Shopsys\FrameworkBundle\Model\Transport\TransportFacade */
         $transportFacade->deleteById($transport->getId());
 
-        $this->assertFalse($payment->getTransports()->contains($transport));
+        $this->assertNotContains($transport, $payment->getTransports());
     }
 }
