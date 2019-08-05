@@ -100,8 +100,3 @@ services:
 
     Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer:
         class: Shopsys\ShopBundle\Model\Customer\CurrentCustomer
-
-    Shopsys\ShopBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig: ~
-
-    Shopsys\FrameworkBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig: '@Shopsys\ShopBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig'
-
