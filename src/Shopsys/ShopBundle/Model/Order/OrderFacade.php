@@ -5,11 +5,14 @@ namespace Shopsys\ShopBundle\Model\Order;
 use Shopsys\FrameworkBundle\Model\Order\OrderFacade as BaseOrderFacade;
 use Shopsys\ShopBundle\Model\Customer\BillingAddress;
 
+/**
+ * @property \Shopsys\ShopBundle\Model\Order\OrderRepository $orderRepository
+ */
 class OrderFacade extends BaseOrderFacade
 {
     /**
      * @param \Shopsys\ShopBundle\Model\Customer\User[] $users
-     * @return \Shopsys\FrameworkBundle\Model\Order\Order[]
+     * @return \Shopsys\ShopBundle\Model\Order\Order[]
      */
     public function getOrderListByCustomers(array $users)
     {
@@ -19,7 +22,7 @@ class OrderFacade extends BaseOrderFacade
     /**
      * @param string $orderNumber
      * @param \Shopsys\ShopBundle\Model\Customer\BillingAddress $billingAddress
-     * @return \Shopsys\FrameworkBundle\Model\Order\Order
+     * @return \Shopsys\ShopBundle\Model\Order\Order
      */
     public function getByOrderNumberAndBillingAddress($orderNumber, BillingAddress $billingAddress)
     {
