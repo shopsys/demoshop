@@ -125,12 +125,11 @@ class ExtendedProduct extends Product
 
     /**
      * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
-     * @param \Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomainFactoryInterface $productCategoryDomainFactory
      * @param \Shopsys\ShopBundle\Model\Product\Product[]|null $variants
      */
-    protected function __construct(ProductData $productData, ProductCategoryDomainFactoryInterface $productCategoryDomainFactory, array $variants = null)
+    protected function __construct(ProductData $productData, array $variants = null)
     {
-        parent::__construct($productData, $productCategoryDomainFactory, $variants);
+        parent::__construct($productData, $variants);
         $this->oneToManyBidirectionalEntities = new ArrayCollection();
         $this->oneToManyUnidirectionalWithJoinTableEntities = new ArrayCollection();
         $this->oneToManySelfReferencingEntities = new ArrayCollection();
