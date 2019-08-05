@@ -9,10 +9,19 @@
             {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'footer'})) }}
         </div>
     </div>
+    <div class="web__line web__line--footer clearfix dont-print">
+        <div class="web__container footer__bottom">
+            <span class="footer__bottom__image-info">
+                {{ 'Demo product images by'|trans }}
+                <a href="https://www.artsperky.cz" target="_blank">artsperky.cz</a>.
+                {{ 'Do not distribute without permission.'|trans }}
+            </span>
+        </div>
+    </div>
     <div class="web__line">
         <footer class="web__container footer__bottom">
             <div class="footer__bottom__copyright dont-print">
-                Made with passion by <a href="https://www.shopsys.com/">Shopsys Framework</a>
+                {{ 'Powered by'|trans }} <a href="http://www.shopsys-framework.com/">Shopsys Framework</a>
             </div>
 
             <div class="footer__bottom__articles">
