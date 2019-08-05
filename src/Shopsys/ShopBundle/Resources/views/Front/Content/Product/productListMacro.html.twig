@@ -19,7 +19,10 @@
                             </{{ productHeadingTagName|default('h2') }}>
 
                             <p class="list-products__item__info__description dont-print">
-                                {{ productView.shortDescription }}
+                                {#
+                                DESIGN: temporary hidden
+                                productView.shortDescription
+                                #}
                             </p>
 
                             {% if productView.sellingPrice is not null %}
