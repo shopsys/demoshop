@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Model\Country;
 
 use Shopsys\FrameworkBundle\Model\Country\CountryFacade as BaseCountryFacade;
