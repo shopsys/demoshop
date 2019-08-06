@@ -20,6 +20,7 @@ parameters:
             - '*/src/Shopsys/ShopBundle/DataFixtures/DemoMultidomain/MailTemplateDataFixture.php'
             - '*/src/Shopsys/ShopBundle/DataFixtures/*/*DataFixture.php'
             - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/ProductDataFixtureLoader.php'
+            - '*/tests/ShopBundle/Functional/Model/Cart/CartMigrationFacadeTest.php'
 
 
         ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:

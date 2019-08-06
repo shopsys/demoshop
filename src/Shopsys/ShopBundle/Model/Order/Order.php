@@ -46,7 +46,8 @@ class Order extends BaseOrder
      * @param \Shopsys\ShopBundle\Model\Order\OrderData $orderData
      * @return \Shopsys\FrameworkBundle\Model\Order\OrderEditResult
      */
-    public function edit(BaseOrderData $orderData): OrderEditResult {
+    public function edit(BaseOrderData $orderData): OrderEditResult
+    {
         $orderEditResult = parent::edit($orderData);
         $this->pickUpPlace = $orderData->pickUpPlace;
 

@@ -20,8 +20,8 @@ use Symfony\Component\Security\Csrf\CsrfToken;
 
 class CartController extends FrontBaseController
 {
-    const AFTER_ADD_WINDOW_ACCESSORIES_LIMIT = 3;
-    const RECALCULATE_ONLY_PARAMETER_NAME = 'recalculateOnly';
+    public const AFTER_ADD_WINDOW_ACCESSORIES_LIMIT = 3;
+    public const RECALCULATE_ONLY_PARAMETER_NAME = 'recalculateOnly';
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Cart\CartFacade

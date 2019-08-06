@@ -3,7 +3,6 @@
 namespace Shopsys\ShopBundle\Controller\Front;
 
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
-use Shopsys\FrameworkBundle\Model\Advert\Advert;
 use Shopsys\FrameworkBundle\Model\Category\Category;
 use Shopsys\FrameworkBundle\Model\Category\CategoryFacade;
 use Shopsys\FrameworkBundle\Model\Module\ModuleFacade;
@@ -23,9 +22,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends FrontBaseController
 {
-    const SEARCH_TEXT_PARAMETER = 'q';
-    const PAGE_QUERY_PARAMETER = 'page';
-    const PRODUCTS_PER_PAGE = 12;
+    public const SEARCH_TEXT_PARAMETER = 'q';
+    public const PAGE_QUERY_PARAMETER = 'page';
+    public const PRODUCTS_PER_PAGE = 12;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterConfigFactory

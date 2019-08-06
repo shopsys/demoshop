@@ -12,7 +12,7 @@ use Shopsys\FrameworkBundle\Model\Mail\MailTemplateFacade;
 
 class MultidomainMailTemplateDataFixture extends AbstractReferenceFixture
 {
-    const DOMAIN_ID = 2;
+    public const DOMAIN_ID = 2;
 
     /**
      * @var \Shopsys\FrameworkBundle\Component\Domain\Domain

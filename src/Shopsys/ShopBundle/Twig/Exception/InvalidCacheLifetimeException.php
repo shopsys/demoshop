@@ -10,7 +10,7 @@ class InvalidCacheLifetimeException extends Exception implements TwigException
     /**
      * {@inheritdoc}
      */
-    public function __construct($lifetime, Exception $previous = null)
+    public function __construct($lifetime, ?Exception $previous = null)
     {
         $message = sprintf('Value of type "%s" is not a valid lifetime.', gettype($lifetime));
 

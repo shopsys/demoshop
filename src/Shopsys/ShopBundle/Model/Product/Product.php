@@ -23,7 +23,7 @@ class Product extends BaseProduct
      * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
      * @param \Shopsys\ShopBundle\Model\Product\Product[]|null $variants
      */
-    protected function __construct(ProductData $productData, array $variants = null)
+    protected function __construct(ProductData $productData, ?array $variants = null)
     {
         parent::__construct($productData, $variants);
         $this->condition = $productData->condition;
@@ -33,7 +33,8 @@ class Product extends BaseProduct
      * @param \Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomain[] $productCategoryDomains
      * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
      */
-    public function edit(array $productCategoryDomains, ProductData $productData) {
+    public function edit(array $productCategoryDomains, ProductData $productData)
+    {
         parent::edit($productCategoryDomains, $productData);
         $this->condition = $productData->condition;
     }

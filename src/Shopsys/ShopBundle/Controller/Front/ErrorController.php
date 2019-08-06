@@ -76,7 +76,7 @@ class ErrorController extends FrontBaseController
     public function showAction(
         Request $request,
         FlattenException $exception,
-        DebugLoggerInterface $logger = null
+        ?DebugLoggerInterface $logger = null
     ) {
         if ($this->isUnableToResolveDomainInNotDebug($exception)) {
             return $this->createUnableToResolveDomainResponse($request);
@@ -186,7 +186,7 @@ class ErrorController extends FrontBaseController
         $url = $request->getSchemeAndHttpHost() . $request->getBasePath();
         $content = sprintf("You are trying to access an unknown domain '%s'.", $url);
 
-        if (EnvironmentType::TEST === Environment::getEnvironment(false)) {
+        if (Environment::getEnvironment(false) === EnvironmentType::TEST) {
             $overwriteDomainUrl = $this->getParameter('overwrite_domain_url');
             $content .= sprintf(" TEST environment is active, current domain url is '%s'.", $overwriteDomainUrl);
         }
