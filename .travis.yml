@@ -10,7 +10,7 @@ addons:
 env:
     global:
         - DOCKER_COMPOSE_VERSION=1.24.0
-        - DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)"
+        -   DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)"
         - TRAVIS_USER_ID=$(id -u)
         - TRAVIS_GROUP_ID=$(id -g)
 

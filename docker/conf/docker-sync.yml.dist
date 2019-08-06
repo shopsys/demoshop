@@ -3,20 +3,19 @@ syncs:
     shopsys-framework-sync:
         sync_userid: 501
         src: './'
-        sync_excludes: [
-            'docker/',
-            '.git',
-            '.idea',
-            '.docker-sync',
-            '.DS_Store',
-            'docker',
-            'docs',
-            'kubernetes',
-            'nbproject',
-            'node_modules',
-            'var/cache',
-            'var/postgres-data',
-            'var/elasticsearch-data',
-            'web',
-            'vendor'
-        ]
+        sync_excludes:
+            - 'docker/'
+            - '.git'
+            - '.idea'
+            - '.docker-sync'
+            - '.DS_Store'
+            - 'docker'
+            - 'docs'
+            - 'kubernetes'
+            - 'nbproject'
+            - 'node_modules'
+            - 'var/cache'
+            - 'var/postgres-data'
+            - 'var/elasticsearch-data'
+            - 'web'
+            - 'vendor'
