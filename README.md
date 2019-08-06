@@ -20,7 +20,7 @@ And that is all!
 
 Create new project on Shopsys Framework easily from this package following one of the installation guides:
 
-* [Installation via Docker (recommended)](https://github.com/shopsys/shopsys/blob/master/docs/installation/installation-using-docker.md)
+* [Installation via Docker (recommended)](https://github.com/shopsys/shopsys/blob/master/docs/installation/installation-guide.md#installation-using-docker)
 * [Native installation](https://github.com/shopsys/shopsys/blob/master/docs/installation/native-installation.md)
 
 ## Documentation
