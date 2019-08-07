@@ -39,22 +39,33 @@ install:
 jobs:
     include:
         -   stage: prepare cache
-            name: "Cache built Docker images"
+            name: cache built Docker images
             script:
                 - docker-compose build --pull elasticsearch php-fpm
                 - docker-compose up -d elasticsearch php-fpm
                 - docker save $(docker-compose images elasticsearch php-fpm | tail -n +3 | awk '{print $2}') | gzip -1 -c > $CACHE_DOCKER_IMAGE_FILE
 
         -   stage: test
-            name: "Smoke, Functional and Acceptance Tests"
-            script:
-                - docker-compose up -d postgres elasticsearch redis selenium-server php-fpm webserver
-                - docker-compose exec php-fpm composer install --no-interaction
-                - docker-compose exec php-fpm ./phing db-create test-db-create build-demo-dev-quick error-pages-generate checks-ci
-
-        -   stage: test
-            name: "Standards, Unit Tests"
+            name: coding standards and unit tests
             script:
                 - docker-compose up -d postgres elasticsearch redis php-fpm
                 - docker-compose exec php-fpm composer install --no-interaction
                 - docker-compose exec php-fpm ./phing npm standards tests-unit
+
+        -   stage: test
+            name: functional and smoke tests
+            script:
+                - docker-compose up -d postgres elasticsearch redis php-fpm
+                - docker-compose exec php-fpm composer install --no-interaction
+                - docker-compose exec php-fpm ./phing db-create test-db-create build-demo-dev-quick error-pages-generate checks-internal
+                - docker-compose exec php-fpm ./phing test-db-demo test-product-search-recreate-structure test-product-search-export-products
+                - docker-compose exec php-fpm ./phing tests-functional tests-smoke
+
+        -   stage: test
+            name: acceptance tests
+            script:
+                - docker-compose up -d postgres elasticsearch redis selenium-server php-fpm webserver
+                - docker-compose exec php-fpm composer install --no-interaction
+                - docker-compose exec php-fpm ./phing db-create test-db-create build-demo-dev-quick error-pages-generate checks-internal
+                - docker-compose exec php-fpm ./phing test-db-demo test-product-search-recreate-structure test-product-search-export-products
+                - docker-compose exec php-fpm ./phing tests-acceptance
