@@ -1,71 +1,30 @@
 language: bash
 dist: xenial
 
-stages:
-    - prepare cache
-    - test
-
 services:
     - docker
-
-cache:
-    directories:
-        - $CACHE_DIR
 
 addons:
     apt:
         update: true
 env:
     global:
-        - CACHE_DIR=$HOME/.cache/docker
-        - CACHE_DOCKER_IMAGE_FILE=$CACHE_DIR/images.tar.gz
         - DOCKER_COMPOSE_VERSION=1.24.0
+        - DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)"
         - TRAVIS_USER_ID=$(id -u)
         - TRAVIS_GROUP_ID=$(id -g)
 
 before_install:
-    -   curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+    - curl -L $DOCKER_COMPOSE_URL > docker-compose
     - chmod +x docker-compose
     - sudo mv docker-compose /usr/local/bin
-    - mkdir -p $CACHE_DIR
     - cp -f ./docker/conf/docker-compose.yml.dist ./docker-compose.yml
     - "sed -i 's#www_data_uid: 1000#www_data_uid: $TRAVIS_USER_ID#' ./docker-compose.yml"
     - "sed -i 's#www_data_gid: 1000#www_data_uid: $TRAVIS_GROUP_ID#' ./docker-compose.yml"
 
 install:
-    - docker load < $CACHE_DOCKER_IMAGE_FILE || true
-    - sudo ionice -c 2 -n 0 nice -n -20 docker-compose pull postgres redis selenium-server webserver
+    - docker-compose up -d postgres elasticsearch redis selenium-server php-fpm webserver
+    - docker-compose exec php-fpm composer install --no-interaction
 
-jobs:
-    include:
-        -   stage: prepare cache
-            name: cache built Docker images
-            script:
-                - docker-compose build --pull elasticsearch php-fpm
-                - docker-compose up -d elasticsearch php-fpm
-                - docker save $(docker-compose images elasticsearch php-fpm | tail -n +3 | awk '{print $2}') | gzip -1 -c > $CACHE_DOCKER_IMAGE_FILE
-
-        -   stage: test
-            name: coding standards and unit tests
-            script:
-                - docker-compose up -d postgres elasticsearch redis php-fpm
-                - docker-compose exec php-fpm composer install --no-interaction
-                - docker-compose exec php-fpm ./phing npm standards tests-unit
-
-        -   stage: test
-            name: functional and smoke tests
-            script:
-                - docker-compose up -d postgres elasticsearch redis php-fpm
-                - docker-compose exec php-fpm composer install --no-interaction
-                - docker-compose exec php-fpm ./phing db-create test-db-create build-demo-dev-quick error-pages-generate checks-internal
-                - docker-compose exec php-fpm ./phing test-db-demo test-product-search-recreate-structure test-product-search-export-products
-                - docker-compose exec php-fpm ./phing tests-functional tests-smoke
-
-        -   stage: test
-            name: acceptance tests
-            script:
-                - docker-compose up -d postgres elasticsearch redis selenium-server php-fpm webserver
-                - docker-compose exec php-fpm composer install --no-interaction
-                - docker-compose exec php-fpm ./phing db-create test-db-create build-demo-dev-quick error-pages-generate checks-internal
-                - docker-compose exec php-fpm ./phing test-db-demo test-product-search-recreate-structure test-product-search-export-products
-                - docker-compose exec php-fpm ./phing tests-acceptance
+script:
+    - docker-compose exec php-fpm ./phing db-create test-db-create build-demo-dev tests-acceptance
