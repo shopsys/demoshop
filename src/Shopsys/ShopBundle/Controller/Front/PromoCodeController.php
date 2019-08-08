@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Controller\Front;
 
 use Shopsys\FrameworkBundle\Model\Order\PromoCode\CurrentPromoCodeFacade;
@@ -8,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PromoCodeController extends FrontBaseController
 {
-    const PROMO_CODE_PARAMETER = 'code';
+    public const PROMO_CODE_PARAMETER = 'code';
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Order\PromoCode\CurrentPromoCodeFacade

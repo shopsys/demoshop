@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Acceptance\acceptance;
 
 use Tests\ShopBundle\Acceptance\acceptance\PageObject\Front\LayoutPage;
@@ -8,7 +10,7 @@ use Tests\ShopBundle\Test\Codeception\AcceptanceTester;
 
 class CustomerRegistrationCest
 {
-    const MINIMUM_FORM_SUBMIT_WAIT_TIME = 10;
+    public const MINIMUM_FORM_SUBMIT_WAIT_TIME = 10;
 
     /**
      * @param \Tests\ShopBundle\Acceptance\acceptance\PageObject\Front\RegistrationPage $registrationPage

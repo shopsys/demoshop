@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Performance\Page;
 
 use Doctrine\DBAL\Logging\LoggerChain;
@@ -20,7 +22,7 @@ use Tests\ShopBundle\Smoke\Http\RouteConfigCustomization;
 
 class AllPagesTest extends KernelTestCase
 {
-    const PASSES = 5;
+    public const PASSES = 5;
 
     protected function setUp()
     {

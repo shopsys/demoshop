@@ -1,16 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Model\Order;
 
 use Doctrine\ORM\Mapping as ORM;
 use Shopsys\FrameworkBundle\Model\Customer\User;
-use Shopsys\FrameworkBundle\Model\Order\Item\OrderItemFactory;
-use Shopsys\FrameworkBundle\Model\Order\Item\OrderItemFactoryInterface;
-use Shopsys\FrameworkBundle\Model\Order\Item\OrderItemPriceCalculation;
 use Shopsys\FrameworkBundle\Model\Order\Order as BaseOrder;
 use Shopsys\FrameworkBundle\Model\Order\OrderData as BaseOrderData;
 use Shopsys\FrameworkBundle\Model\Order\OrderEditResult;
-use Shopsys\FrameworkBundle\Model\Order\OrderPriceCalculation;
 
 /**
  * @ORM\Table(name="orders")
@@ -27,11 +25,10 @@ class Order extends BaseOrder
     protected $pickUpPlace;
 
     /**
-     * Order constructor.
      * @param \Shopsys\ShopBundle\Model\Order\OrderData $orderData
      * @param string $orderNumber
      * @param string $urlHash
-     * @param \Shopsys\FrameworkBundle\Model\Customer\User|null $user
+     * @param \Shopsys\ShopBundle\Model\Customer\User|null $user
      */
     public function __construct(
         BaseOrderData $orderData,
@@ -39,29 +36,24 @@ class Order extends BaseOrder
         string $urlHash,
         ?User $user = null
     ) {
+        parent::__construct($orderData, $orderNumber, $urlHash, $user);
         if ($orderData->transport !== null && $orderData->transport->isPickUpPlaceType()) {
             $this->pickUpPlace = $orderData->pickUpPlace;
         } else {
             $this->pickUpPlace = null;
         }
-        parent::__construct($orderData, $orderNumber, $urlHash, $user);
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Order\OrderData $orderData
-     * @param \Shopsys\FrameworkBundle\Model\Order\Item\OrderItemPriceCalculation $orderItemPriceCalculation
-     * @param \Shopsys\FrameworkBundle\Model\Order\Item\OrderItemFactoryInterface $orderItemFactory
-     * @param \Shopsys\FrameworkBundle\Model\Order\OrderPriceCalculation $orderPriceCalculation
+     * @param \Shopsys\ShopBundle\Model\Order\OrderData $orderData
      * @return \Shopsys\FrameworkBundle\Model\Order\OrderEditResult
      */
-    public function edit(
-        BaseOrderData $orderData,
-        OrderItemPriceCalculation $orderItemPriceCalculation,
-        OrderItemFactoryInterface $orderItemFactory,
-        OrderPriceCalculation $orderPriceCalculation
-    ): OrderEditResult {
+    public function edit(BaseOrderData $orderData): OrderEditResult
+    {
+        $orderEditResult = parent::edit($orderData);
         $this->pickUpPlace = $orderData->pickUpPlace;
-        return parent::edit($orderData, $orderItemPriceCalculation, $orderItemFactory, $orderPriceCalculation);
+
+        return $orderEditResult;
     }
 
     /**

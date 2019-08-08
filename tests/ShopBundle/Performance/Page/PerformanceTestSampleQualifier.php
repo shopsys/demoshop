@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Performance\Page;
 
 class PerformanceTestSampleQualifier
 {
-    const STATUS_OK = 0;
-    const STATUS_WARNING = 1;
-    const STATUS_CRITICAL = 2;
+    public const STATUS_OK = 0;
+    public const STATUS_WARNING = 1;
+    public const STATUS_CRITICAL = 2;
 
     /**
      * @var int

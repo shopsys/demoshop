@@ -133,6 +133,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - RedisFacadeTest is updated with version from 7.3.0
     - added Elasticsearch structure update test
     - read-model is now used for product lists
+- [#56 - Upgrade to version 8.0.0](https://github.com/shopsys/demoshop/pull/56)
+    - updated to PHP 7.2 in composer.json
+    - updated all shopsys/* composer dependencies to v8.0.0 (written as ^8.0 for easier future upgrading)
+    - `vim`, `nano`, `mc`, and `htop` installed in the `php-fpm` Docker image
+    - updated `commerceguys/intl` to `v1.0`
+    - `egeloen/ckeditor-bundle` replaced by `friendsofsymfony/ckeditor-bundle`
+    - simplified configuration of localized router
+    - fixed directory path in `shopsys.domain_images_url_prefix`
+    - using Elasticsearch as a datasource for Read model
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)

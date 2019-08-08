@@ -36,6 +36,10 @@ RUN apt-get install -y \
     libzip-dev \
     libicu-dev \
     libpq-dev \
+    vim \
+    nano \
+    mc \
+    htop \
     autoconf && \
     apt-get clean
 

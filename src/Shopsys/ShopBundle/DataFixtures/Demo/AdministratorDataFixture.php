@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DataFixtures\Demo;
 
 use Doctrine\Common\Persistence\ObjectManager;
@@ -8,8 +10,8 @@ use Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade;
 
 class AdministratorDataFixture extends AbstractReferenceFixture
 {
-    const SUPERADMINISTRATOR = 'administrator_superadministrator';
-    const ADMINISTRATOR = 'administrator_administrator';
+    public const SUPERADMINISTRATOR = 'administrator_superadministrator';
+    public const ADMINISTRATOR = 'administrator_administrator';
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Functional\Model\Cart;
 
 use Shopsys\FrameworkBundle\Component\Money\Money;
@@ -10,7 +12,6 @@ use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Product\Availability\Availability;
 use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityData;
-use Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomainFactory;
 use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
 use Shopsys\ShopBundle\Model\Product\Product;
@@ -39,8 +40,8 @@ class CartItemTest extends TransactionFunctionalTestCase
         $productData->availability = $availability;
         $productData->unit = $this->getReference(UnitDataFixture::UNIT_PIECES);
 
-        $product1 = Product::create($productData, new ProductCategoryDomainFactory());
-        $product2 = Product::create($productData, new ProductCategoryDomainFactory());
+        $product1 = Product::create($productData);
+        $product2 = Product::create($productData);
         $em->persist($vat);
         $em->persist($availability);
         $em->persist($product1);

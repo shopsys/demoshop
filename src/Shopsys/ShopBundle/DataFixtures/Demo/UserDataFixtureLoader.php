@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DataFixtures\Demo;
 
 use Shopsys\FrameworkBundle\Component\Csv\CsvReader;
@@ -14,29 +16,29 @@ use Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface;
 
 class UserDataFixtureLoader
 {
-    const COLUMN_FIRSTNAME = 0;
-    const COLUMN_LASTNAME = 1;
-    const COLUMN_EMAIL = 2;
-    const COLUMN_PASSWORD = 3;
-    const COLUMN_COMPANY_CUSTOMER = 4;
-    const COLUMN_COMPANY_NAME = 5;
-    const COLUMN_COMPANY_NUMBER = 6;
-    const COLUMN_COMPANY_TAX_NUMBER = 7;
-    const COLUMN_STREET = 8;
-    const COLUMN_CITY = 9;
-    const COLUMN_POSTCODE = 10;
-    const COLUMN_TELEPHONE = 11;
-    const COLUMN_COUNTRY = 12;
-    const COLUMN_DELIVERY_ADDRESS_FILLED = 13;
-    const COLUMN_DELIVERY_CITY = 14;
-    const COLUMN_DELIVERY_COMPANY_NAME = 15;
-    const COLUMN_DELIVERY_FIRST_NAME = 16;
-    const COLUMN_DELIVERY_LAST_NAME = 17;
-    const COLUMN_DELIVERY_POSTCODE = 18;
-    const COLUMN_DELIVERY_STREET = 19;
-    const COLUMN_DELIVERY_TELEPHONE = 20;
-    const COLUMN_DELIVERY_COUNTRY = 21;
-    const COLUMN_DOMAIN_ID = 22;
+    public const COLUMN_FIRSTNAME = 0;
+    public const COLUMN_LASTNAME = 1;
+    public const COLUMN_EMAIL = 2;
+    public const COLUMN_PASSWORD = 3;
+    public const COLUMN_COMPANY_CUSTOMER = 4;
+    public const COLUMN_COMPANY_NAME = 5;
+    public const COLUMN_COMPANY_NUMBER = 6;
+    public const COLUMN_COMPANY_TAX_NUMBER = 7;
+    public const COLUMN_STREET = 8;
+    public const COLUMN_CITY = 9;
+    public const COLUMN_POSTCODE = 10;
+    public const COLUMN_TELEPHONE = 11;
+    public const COLUMN_COUNTRY = 12;
+    public const COLUMN_DELIVERY_ADDRESS_FILLED = 13;
+    public const COLUMN_DELIVERY_CITY = 14;
+    public const COLUMN_DELIVERY_COMPANY_NAME = 15;
+    public const COLUMN_DELIVERY_FIRST_NAME = 16;
+    public const COLUMN_DELIVERY_LAST_NAME = 17;
+    public const COLUMN_DELIVERY_POSTCODE = 18;
+    public const COLUMN_DELIVERY_STREET = 19;
+    public const COLUMN_DELIVERY_TELEPHONE = 20;
+    public const COLUMN_DELIVERY_COUNTRY = 21;
+    public const COLUMN_DOMAIN_ID = 22;
 
     /**
      * @var \Shopsys\FrameworkBundle\Component\Csv\CsvReader

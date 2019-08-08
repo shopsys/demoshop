@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DataFixtures\Demo;
 
 use Doctrine\Common\Persistence\ObjectManager;
@@ -10,9 +12,9 @@ use Shopsys\FrameworkBundle\Model\Product\Flag\FlagFacade;
 
 class FlagDataFixture extends AbstractReferenceFixture
 {
-    const FLAG_NEW_PRODUCT = 'flag_new_product';
-    const FLAG_TOP_PRODUCT = 'flag_top_product';
-    const FLAG_ACTION_PRODUCT = 'flag_action';
+    public const FLAG_NEW_PRODUCT = 'flag_new_product';
+    public const FLAG_TOP_PRODUCT = 'flag_top_product';
+    public const FLAG_ACTION_PRODUCT = 'flag_action';
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\Flag\FlagFacade

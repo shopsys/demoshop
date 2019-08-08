@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DataFixtures\Demo;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -10,11 +12,12 @@ use Shopsys\FrameworkBundle\Component\DataFixture\AbstractReferenceFixture;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\String\HashGenerator;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerFacade;
+use Shopsys\FrameworkBundle\Model\Customer\CustomerPasswordFacade;
 use Shopsys\FrameworkBundle\Model\Customer\User;
 
 class UserDataFixture extends AbstractReferenceFixture implements DependentFixtureInterface
 {
-    const USER_WITH_RESET_PASSWORD_HASH = 'user_with_reset_password_hash';
+    public const USER_WITH_RESET_PASSWORD_HASH = 'user_with_reset_password_hash';
 
     /** @var \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade */
     protected $customerFacade;
@@ -92,7 +95,7 @@ class UserDataFixture extends AbstractReferenceFixture implements DependentFixtu
      */
     protected function resetPassword(User $customer)
     {
-        $customer->resetPassword($this->hashGenerator);
+        $customer->setResetPasswordHash($this->hashGenerator->generateHash(CustomerPasswordFacade::RESET_PASSWORD_HASH_LENGTH));
         $this->em->flush($customer);
     }
 }

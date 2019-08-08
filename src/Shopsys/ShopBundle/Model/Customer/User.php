@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Model\Customer;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,7 +9,6 @@ use Shopsys\FrameworkBundle\Model\Customer\BillingAddress as BaseBillingAddress;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress;
 use Shopsys\FrameworkBundle\Model\Customer\User as BaseUser;
 use Shopsys\FrameworkBundle\Model\Customer\UserData as BaseUserData;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 /**
  * @ORM\Table(
@@ -40,26 +41,23 @@ class User extends BaseUser
      * @param \Shopsys\ShopBundle\Model\Customer\UserData $userData
      * @param \Shopsys\ShopBundle\Model\Customer\BillingAddress $billingAddress
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress|null $deliveryAddress
-     * @param \Shopsys\ShopBundle\Model\Customer\User|null $userByEmail
      */
     public function __construct(
         BaseUserData $userData,
         BaseBillingAddress $billingAddress,
-        ?DeliveryAddress $deliveryAddress,
-        ?self $userByEmail
+        ?DeliveryAddress $deliveryAddress
     ) {
+        parent::__construct($userData, $billingAddress, $deliveryAddress);
         $this->discount = $userData->discount;
-        parent::__construct($userData, $billingAddress, $deliveryAddress, $userByEmail);
     }
 
     /**
      * @param \Shopsys\ShopBundle\Model\Customer\UserData $userData
-     * @param \Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface $encoderFactory
      */
-    public function edit(BaseUserData $userData, EncoderFactoryInterface $encoderFactory)
+    public function edit(BaseUserData $userData)
     {
+        parent::edit($userData);
         $this->discount = $userData->discount;
-        parent::edit($userData, $encoderFactory);
     }
 
     /**

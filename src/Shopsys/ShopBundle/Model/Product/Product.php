@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Model\Product;
 
 use Doctrine\ORM\Mapping as ORM;
-use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculationScheduler;
 use Shopsys\FrameworkBundle\Model\Product\Product as BaseProduct;
-use Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomainFactoryInterface;
-use Shopsys\FrameworkBundle\Model\Product\ProductData as BaseProductData;
+use Shopsys\FrameworkBundle\Model\Product\ProductData;
 
 /**
  * @ORM\Table(name="products")
@@ -23,49 +23,22 @@ class Product extends BaseProduct
 
     /**
      * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
-     * @param \Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomainFactoryInterface $productCategoryDomainFactory
      * @param \Shopsys\ShopBundle\Model\Product\Product[]|null $variants
      */
-    protected function __construct(ProductData $productData, ProductCategoryDomainFactoryInterface $productCategoryDomainFactory, array $variants = null)
+    protected function __construct(ProductData $productData, ?array $variants = null)
     {
+        parent::__construct($productData, $variants);
         $this->condition = $productData->condition;
-        parent::__construct($productData, $productCategoryDomainFactory, $variants);
     }
 
     /**
+     * @param \Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomain[] $productCategoryDomains
      * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
-     * @param \Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomainFactoryInterface $productCategoryDomainFactory
-     * @return \Shopsys\ShopBundle\Model\Product\Product
      */
-    public static function create(BaseProductData $productData, ProductCategoryDomainFactoryInterface $productCategoryDomainFactory)
+    public function edit(array $productCategoryDomains, ProductData $productData)
     {
-        return new self($productData, $productCategoryDomainFactory, null);
-    }
-
-    /**
-     * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
-     * @param \Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomainFactoryInterface $productCategoryDomainFactory
-     * @param \Shopsys\ShopBundle\Model\Product\Product[] $variants
-     * @return \Shopsys\ShopBundle\Model\Product\Product
-     */
-    public static function createMainVariant(BaseProductData $productData, ProductCategoryDomainFactoryInterface $productCategoryDomainFactory, array $variants)
-    {
-        return new self($productData, $productCategoryDomainFactory, $variants);
-    }
-
-    /**
-     * @param \Shopsys\FrameworkBundle\Model\Product\ProductCategoryDomainFactoryInterface $productCategoryDomainFactory
-     * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
-     * @param \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculationScheduler $productPriceRecalculationScheduler
-     * @param \Shopsys\ShopBundle\Model\Product\ProductData
-     */
-    public function edit(
-        ProductCategoryDomainFactoryInterface $productCategoryDomainFactory,
-        BaseProductData $productData,
-        ProductPriceRecalculationScheduler $productPriceRecalculationScheduler
-    ) {
+        parent::edit($productCategoryDomains, $productData);
         $this->condition = $productData->condition;
-        parent::edit($productCategoryDomainFactory, $productData, $productPriceRecalculationScheduler);
     }
 
     /**

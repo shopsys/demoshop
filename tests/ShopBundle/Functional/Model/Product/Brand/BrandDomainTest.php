@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Functional\Model\Product\Brand;
 
 use Shopsys\FrameworkBundle\Model\Product\Brand\Brand;
@@ -9,10 +11,10 @@ use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class BrandDomainTest extends TransactionFunctionalTestCase
 {
-    const FIRST_DOMAIN_ID = 1;
-    const SECOND_DOMAIN_ID = 2;
-    const DEMONSTRATIVE_SEO_TITLE = 'Demonstrative seo title';
-    const DEMONSTRATIVE_SEO_H1 = 'Demonstrative seo h1';
+    public const FIRST_DOMAIN_ID = 1;
+    public const SECOND_DOMAIN_ID = 2;
+    public const DEMONSTRATIVE_SEO_TITLE = 'Demonstrative seo title';
+    public const DEMONSTRATIVE_SEO_H1 = 'Demonstrative seo h1';
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface

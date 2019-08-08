@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Acceptance\acceptance\PageObject\Admin;
 
 use Tests\ShopBundle\Acceptance\acceptance\PageObject\AbstractPage;
 
 class LoginPage extends AbstractPage
 {
-    const ADMIN_USERNAME = 'admin';
-    const ADMIN_PASSWORD = 'admin123';
+    public const ADMIN_USERNAME = 'admin';
+    public const ADMIN_PASSWORD = 'admin123';
 
     /**
      * @param string $username

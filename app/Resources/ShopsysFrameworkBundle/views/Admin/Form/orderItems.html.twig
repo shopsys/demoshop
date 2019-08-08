@@ -12,12 +12,22 @@
                         <tr>
                             <th class="table-col-30">{{ 'Name'|trans }}</th>
                             <th class="table-col-5">{{ 'Catalogue number'|trans }}</th>
-                            <th class="table-col-15 text-right">{{ 'Unit price including VAT'|trans }}</th>
+                            <th class="table-col-15 text-right">{{ 'Unit price including VAT'|trans }} ({{ currencySymbolByCurrencyId(order.currency.id) }})</th>
                             <th class="table-col-10 text-right">{{ 'Amount'|trans }}</th>
                             <th class="table-col-10 text-right">{{ 'Unit'|trans }}</th>
                             <th class="table-col-10 text-right">{{ 'VAT rate (%)'|trans }}</th>
-                            <th class="table-col-15 text-right text-no-wrap">{{ 'Total including VAT'|trans }}</th>
-                            <th class="table-col-15 text-right text-no-wrap">{{ 'Total excluding VAT'|trans }}</th>
+                            <th class="table-col-10 text-center">
+                                <span class="display-inline-block" style="width: 80px">
+                                    {{ 'Set prices manually'|trans }}
+                                    <i class="svg svg-info cursor-help js-tooltip"
+                                       data-toggle="tooltip" data-placement="bottom"
+                                       title="{{ 'All prices have to be handled manually if checked, otherwise the unit price without VAT and the total prices for that item will be recalculated automatically.'|trans }}"
+                                    ></i>
+                                </span>
+                            </th>
+                            <th class="table-col-15 text-right">{{ 'Unit price excluding VAT'|trans }} ({{ currencySymbolByCurrencyId(order.currency.id) }})</th>
+                            <th class="table-col-15 text-right">{{ 'Total including VAT'|trans }} ({{ currencySymbolByCurrencyId(order.currency.id) }})</th>
+                            <th class="table-col-15 text-right">{{ 'Total excluding VAT'|trans }} ({{ currencySymbolByCurrencyId(order.currency.id) }})</th>
                             <th ></th>
                     </tr>
                     </thead>
@@ -27,21 +37,21 @@
                         data-order-product-add-url="{{ url('admin_order_addproduct', { orderId: order.id }) }}"
                     >
                         {% for productItem in order.productItems %}
-                            {{ orderItemMacro.orderItem(form.itemsWithoutTransportAndPayment[productItem.id], productItem.id, orderItemTotalPricesById, order.currency, productItem) }}
+                            {{ orderItemMacro.orderItem(form.itemsWithoutTransportAndPayment[productItem.id], productItem.id, productItem) }}
                         {% endfor %}
 
                         {% for orderItemId, orderItemForm in form.itemsWithoutTransportAndPayment %}
                             {% if not orderItemForm.rendered %}
-                                {{ orderItemMacro.orderItem(orderItemForm, orderItemId, orderItemTotalPricesById, order.currency, null) }}
+                                {{ orderItemMacro.orderItem(orderItemForm, orderItemId, null) }}
                             {% endif %}
                         {% endfor %}
 
-                        {{ orderItemMacro.orderTransport(form.orderTransport, order, transportPricesWithVatByTransportId, transportVatPercentsByTransportId) }}
-                        {{ orderItemMacro.orderPayment(form.orderPayment, order, paymentPricesWithVatByPaymentId, paymentVatPercentsByPaymentId) }}
+                        {{ orderItemMacro.orderTransport(form.orderTransport, transportPricesWithVatByTransportId, transportVatPercentsByTransportId) }}
+                        {{ orderItemMacro.orderPayment(form.orderPayment, paymentPricesWithVatByPaymentId, paymentVatPercentsByPaymentId) }}
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="9">
+                            <td colspan="11">
                                 <a id="js-order-item-add" href="#" class="btn btn--plus">
                                     <i class="btn__icon">+</i>
                                     {{ 'Add item'|trans }}
@@ -53,13 +63,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="6">
+                            <th colspan="11">
                                 <i class="svg svg-info"></i>
                                 {{ 'Added product will not have any individual discounts'|trans }}
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="6">{{ 'Total'|trans }}:</th>
+                            <th colspan="8">{{ 'Total'|trans }}:</th>
                             <th class="text-right">{{ order.totalPriceWithVat|priceWithCurrency(order.currency) }}</th>
                             <th class="text-right">{{ order.totalPriceWithoutVat|priceWithCurrency(order.currency) }}</th>
                             <th></th>

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Model\Product;
 
 class ProductConditionFacade
 {
-    const CONDITION_NEW = 'new';
-    const CONDITION_REFURBISHED = 'refurbished';
-    const CONDITION_USED = 'used';
+    public const CONDITION_NEW = 'new';
+    public const CONDITION_REFURBISHED = 'refurbished';
+    public const CONDITION_USED = 'used';
 
     /**
      * @return array

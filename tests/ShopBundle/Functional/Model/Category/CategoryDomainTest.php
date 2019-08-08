@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Functional\Model\Category;
 
 use Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface;
@@ -9,11 +11,11 @@ use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CategoryDomainTest extends TransactionFunctionalTestCase
 {
-    const FIRST_DOMAIN_ID = 1;
-    const SECOND_DOMAIN_ID = 2;
-    const DEMONSTRATIVE_SEO_TITLE = 'Demonstrative seo title';
-    const DEMONSTRATIVE_SEO_META_DESCRIPTION = 'Demonstrative seo description';
-    const DEMONSTRATIVE_SEO_H1 = 'Demonstrative seo H1';
+    public const FIRST_DOMAIN_ID = 1;
+    public const SECOND_DOMAIN_ID = 2;
+    public const DEMONSTRATIVE_SEO_TITLE = 'Demonstrative seo title';
+    public const DEMONSTRATIVE_SEO_META_DESCRIPTION = 'Demonstrative seo description';
+    public const DEMONSTRATIVE_SEO_H1 = 'Demonstrative seo H1';
 
     /**
      * @var \Shopsys\ShopBundle\Model\Category\CategoryDataFactory

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Model\Article;
 
 use Shopsys\FrameworkBundle\Model\Article\Article as BaseArticle;

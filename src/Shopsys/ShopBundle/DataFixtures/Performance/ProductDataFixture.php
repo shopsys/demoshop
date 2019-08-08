@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DataFixtures\Performance;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,9 +24,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ProductDataFixture
 {
-    const BATCH_SIZE = 1000;
+    public const BATCH_SIZE = 1000;
 
-    const FIRST_PERFORMANCE_PRODUCT = 'first_performance_product';
+    public const FIRST_PERFORMANCE_PRODUCT = 'first_performance_product';
 
     /**
      * @var int

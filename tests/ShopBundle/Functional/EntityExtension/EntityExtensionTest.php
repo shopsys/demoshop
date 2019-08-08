@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Functional\EntityExtension;
 
 use Doctrine\Common\Annotations\AnnotationReader;
@@ -26,17 +28,17 @@ use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class EntityExtensionTest extends TransactionFunctionalTestCase
 {
-    const MAIN_PRODUCT_ID = 1;
-    const ONE_TO_ONE_SELF_REFERENCING_PRODUCT_ID = 2;
-    const ONE_TO_MANY_SELF_REFERENCING_PRODUCT_ID = 3;
-    const MANY_TO_MANY_SELF_REFERENCING_PRODUCT_ID = 4;
+    public const MAIN_PRODUCT_ID = 1;
+    public const ONE_TO_ONE_SELF_REFERENCING_PRODUCT_ID = 2;
+    public const ONE_TO_MANY_SELF_REFERENCING_PRODUCT_ID = 3;
+    public const MANY_TO_MANY_SELF_REFERENCING_PRODUCT_ID = 4;
 
-    const MAIN_CATEGORY_ID = 1;
-    const ONE_TO_ONE_SELF_REFERENCING_CATEGORY_ID = 2;
-    const ONE_TO_MANY_SELF_REFERENCING_CATEGORY_ID = 3;
-    const MANY_TO_MANY_SELF_REFERENCING_CATEGORY_ID = 4;
+    public const MAIN_CATEGORY_ID = 1;
+    public const ONE_TO_ONE_SELF_REFERENCING_CATEGORY_ID = 2;
+    public const ONE_TO_MANY_SELF_REFERENCING_CATEGORY_ID = 3;
+    public const MANY_TO_MANY_SELF_REFERENCING_CATEGORY_ID = 4;
 
-    const ORDER_ITEM_ID = 1;
+    public const ORDER_ITEM_ID = 1;
 
     /**
      * @var \Doctrine\ORM\EntityManager

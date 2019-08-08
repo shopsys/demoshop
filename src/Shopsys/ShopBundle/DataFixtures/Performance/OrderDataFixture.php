@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DataFixtures\Performance;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,9 +28,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class OrderDataFixture
 {
-    const PERCENTAGE_OF_ORDERS_BY_REGISTERED_USERS = 25;
+    public const PERCENTAGE_OF_ORDERS_BY_REGISTERED_USERS = 25;
 
-    const BATCH_SIZE = 10;
+    public const BATCH_SIZE = 10;
 
     /**
      * @var int
@@ -194,7 +196,7 @@ class OrderDataFixture
      * @param \Shopsys\FrameworkBundle\Model\Customer\User $user
      * @return \Shopsys\FrameworkBundle\Model\Order\OrderData
      */
-    private function createOrderData(User $user = null)
+    private function createOrderData(?User $user = null)
     {
         $orderData = $this->orderDataFactory->create();
 

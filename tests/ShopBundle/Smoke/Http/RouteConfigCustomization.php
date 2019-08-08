@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Smoke\Http;
 
 use Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade;
@@ -22,7 +24,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class RouteConfigCustomization
 {
-    const DEFAULT_ID_VALUE = 1;
+    public const DEFAULT_ID_VALUE = 1;
 
     /**
      * @var \Symfony\Component\DependencyInjection\ContainerInterface

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DataFixtures\Demo;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -14,7 +16,7 @@ use Shopsys\ShopBundle\DataFixtures\ProductDataFixtureReferenceInjector;
 
 class ProductDataFixture extends AbstractReferenceFixture implements DependentFixtureInterface
 {
-    const PRODUCT_PREFIX = 'product_';
+    public const PRODUCT_PREFIX = 'product_';
 
     /** @var \Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixtureLoader */
     protected $productDataFixtureLoader;

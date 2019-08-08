@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Twig;
 
 use Shopsys\FrameworkBundle\Twig\FormThemeExtension as BaseFormThemeExtension;

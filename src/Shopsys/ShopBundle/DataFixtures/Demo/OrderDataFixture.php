@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DataFixtures\Demo;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -17,7 +19,7 @@ use Shopsys\FrameworkBundle\Model\Order\Preview\OrderPreviewFactory;
 
 class OrderDataFixture extends AbstractReferenceFixture implements DependentFixtureInterface
 {
-    const ORDER_PREFIX = 'order_';
+    public const ORDER_PREFIX = 'order_';
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Customer\UserRepository
@@ -570,7 +572,7 @@ class OrderDataFixture extends AbstractReferenceFixture implements DependentFixt
     protected function createOrder(
         OrderData $orderData,
         array $products,
-        User $user = null
+        ?User $user = null
     ) {
         $quantifiedProducts = [];
         foreach ($products as $productReferenceName => $quantity) {

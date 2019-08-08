@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DataFixtures\Demo;
 
 use DateTime;
@@ -13,30 +15,30 @@ use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 
 class ProductDataFixtureLoader
 {
-    const COLUMN_NAME_CS = 0;
-    const COLUMN_NAME_EN = 1;
-    const COLUMN_CATNUM = 2;
-    const COLUMN_PARTNO = 3;
-    const COLUMN_EAN = 4;
-    const COLUMN_DESCRIPTION_CS = 5;
-    const COLUMN_DESCRIPTION_EN = 6;
-    const COLUMN_SHORT_DESCRIPTION_CS = 7;
-    const COLUMN_SHORT_DESCRIPTION_EN = 8;
-    const COLUMN_MANUAL_PRICES_DOMAIN_1 = 9;
-    const COLUMN_MANUAL_PRICES_DOMAIN_2 = 10;
-    const COLUMN_VAT = 11;
-    const COLUMN_SELLING_FROM = 12;
-    const COLUMN_SELLING_TO = 13;
-    const COLUMN_STOCK_QUANTITY = 14;
-    const COLUMN_UNIT = 15;
-    const COLUMN_AVAILABILITY = 16;
-    const COLUMN_PARAMETERS = 17;
-    const COLUMN_CATEGORIES_1 = 18;
-    const COLUMN_CATEGORIES_2 = 19;
-    const COLUMN_FLAGS = 20;
-    const COLUMN_SELLING_DENIED = 21;
-    const COLUMN_BRAND = 22;
-    const COLUMN_MAIN_VARIANT_CATNUM = 23;
+    public const COLUMN_NAME_CS = 0;
+    public const COLUMN_NAME_EN = 1;
+    public const COLUMN_CATNUM = 2;
+    public const COLUMN_PARTNO = 3;
+    public const COLUMN_EAN = 4;
+    public const COLUMN_DESCRIPTION_CS = 5;
+    public const COLUMN_DESCRIPTION_EN = 6;
+    public const COLUMN_SHORT_DESCRIPTION_CS = 7;
+    public const COLUMN_SHORT_DESCRIPTION_EN = 8;
+    public const COLUMN_MANUAL_PRICES_DOMAIN_1 = 9;
+    public const COLUMN_MANUAL_PRICES_DOMAIN_2 = 10;
+    public const COLUMN_VAT = 11;
+    public const COLUMN_SELLING_FROM = 12;
+    public const COLUMN_SELLING_TO = 13;
+    public const COLUMN_STOCK_QUANTITY = 14;
+    public const COLUMN_UNIT = 15;
+    public const COLUMN_AVAILABILITY = 16;
+    public const COLUMN_PARAMETERS = 17;
+    public const COLUMN_CATEGORIES_1 = 18;
+    public const COLUMN_CATEGORIES_2 = 19;
+    public const COLUMN_FLAGS = 20;
+    public const COLUMN_SELLING_DENIED = 21;
+    public const COLUMN_BRAND = 22;
+    public const COLUMN_MAIN_VARIANT_CATNUM = 23;
 
     /**
      * @var \Shopsys\ShopBundle\DataFixtures\Demo\ProductParametersFixtureLoader

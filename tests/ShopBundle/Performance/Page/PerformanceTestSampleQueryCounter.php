@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Performance\Page;
 
 use Doctrine\DBAL\Logging\SQLLogger;
@@ -14,7 +16,7 @@ class PerformanceTestSampleQueryCounter implements SQLLogger
     /**
      * {@inheritdoc}
      */
-    public function startQuery($sql, array $params = null, array $types = null)
+    public function startQuery($sql, ?array $params = null, ?array $types = null)
     {
         $this->queryCount++;
     }

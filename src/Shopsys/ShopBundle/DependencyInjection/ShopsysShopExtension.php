@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DependencyInjection;
 
 use Shopsys\FrameworkBundle\Component\Environment\EnvironmentType;
@@ -22,7 +24,7 @@ class ShopsysShopExtension extends ConfigurableExtension
             $loader->load('services_test.yml');
         }
 
-        $container->setParameter('shopsys.router.locale_router_filepaths', $config['router']['locale_router_filepaths']);
+        $container->setParameter('shopsys.router.locale_router_filepath_mask', $config['router']['locale_router_filepath_mask']);
         $container->setParameter('shopsys.router.friendly_url_router_filepath', $config['router']['friendly_url_router_filepath']);
     }
 }

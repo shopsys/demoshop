@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Acceptance\acceptance\PageObject\Front;
 
 use Tests\ShopBundle\Acceptance\acceptance\PageObject\AbstractPage;
 
 class OrderPage extends AbstractPage
 {
-    const FIRST_NAME_FIELD_NAME = 'order_personal_info_form[firstName]';
+    public const FIRST_NAME_FIELD_NAME = 'order_personal_info_form[firstName]';
 
     /**
      * @param string $transportTitle

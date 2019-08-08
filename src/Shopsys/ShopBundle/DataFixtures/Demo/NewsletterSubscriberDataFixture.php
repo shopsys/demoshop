@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DataFixtures\Demo;
 
 use Doctrine\Common\Persistence\ObjectManager;
@@ -8,7 +10,7 @@ use Shopsys\FrameworkBundle\Model\Newsletter\NewsletterFacade;
 
 class NewsletterSubscriberDataFixture extends AbstractReferenceFixture
 {
-    const FIRST_DOMAIN_ID = 1;
+    public const FIRST_DOMAIN_ID = 1;
 
     /** @var \Shopsys\FrameworkBundle\Model\Newsletter\NewsletterFacade */
     protected $newsletterFacade;

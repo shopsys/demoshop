@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Functional\Model\Newsletter\NewsletterRepository;
 
 use Doctrine\ORM\Internal\Hydration\IterableResult;
@@ -9,7 +11,7 @@ use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class GetAllEmailsDataIteratorMethodTest extends TransactionFunctionalTestCase
 {
-    const FIRST_DOMAIN_SUBSCRIBER_EMAIL = 'james.black@no-reply.com';
+    public const FIRST_DOMAIN_SUBSCRIBER_EMAIL = 'james.black@no-reply.com';
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Newsletter\NewsletterRepository

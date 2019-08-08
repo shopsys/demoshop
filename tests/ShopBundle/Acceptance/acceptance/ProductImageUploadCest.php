@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Acceptance\acceptance;
 
 use Tests\ShopBundle\Acceptance\acceptance\PageObject\Admin\EntityEditPage;
@@ -8,12 +10,12 @@ use Tests\ShopBundle\Test\Codeception\AcceptanceTester;
 
 class ProductImageUploadCest
 {
-    const IMAGE_UPLOAD_FIELD_ID = 'product_form_imageGroup_images_file';
-    const SAVE_BUTTON_NAME = 'product_form[save]';
+    public const IMAGE_UPLOAD_FIELD_ID = 'product_form_imageGroup_images_file';
+    public const SAVE_BUTTON_NAME = 'product_form[save]';
 
-    const EXPECTED_SUCCESS_MESSAGE = 'Product 22" Sencor SLE 22F46DM4 HELLO KITTY modified';
+    public const EXPECTED_SUCCESS_MESSAGE = 'Product 22" Sencor SLE 22F46DM4 HELLO KITTY modified';
 
-    const TEST_IMAGE_NAME = 'productTestImage.png';
+    public const TEST_IMAGE_NAME = 'productTestImage.png';
 
     /**
      * @param \Tests\ShopBundle\Test\Codeception\AcceptanceTester $me

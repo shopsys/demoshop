@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DataFixtures\Demo;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -15,9 +17,9 @@ use Symfony\Component\Finder\Finder;
 
 class ImageDataFixture extends AbstractReferenceFixture implements DependentFixtureInterface
 {
-    const IMAGES_TABLE_NAME = 'images';
+    public const IMAGES_TABLE_NAME = 'images';
 
-    const IMAGE_TYPE = 'jpg';
+    public const IMAGE_TYPE = 'jpg';
 
     /**
      * @var string

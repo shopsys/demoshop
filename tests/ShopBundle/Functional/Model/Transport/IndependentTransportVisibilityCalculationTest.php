@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Functional\Model\Transport;
 
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
@@ -11,8 +13,8 @@ use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class IndependentTransportVisibilityCalculationTest extends TransactionFunctionalTestCase
 {
-    const FIRST_DOMAIN_ID = 1;
-    const SECOND_DOMAIN_ID = 2;
+    public const FIRST_DOMAIN_ID = 1;
+    public const SECOND_DOMAIN_ID = 2;
 
     public function testIsIndependentlyVisible()
     {

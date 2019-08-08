@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Twig;
 
 use Asm89\Twig\CacheExtension\CacheStrategyInterface;

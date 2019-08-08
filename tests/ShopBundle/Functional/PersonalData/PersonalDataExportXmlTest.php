@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Functional\PersonalData;
 
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
@@ -25,9 +27,9 @@ use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
 {
-    const EMAIL = 'no-reply@shopsys.com';
-    const EXPECTED_XML_FILE_NAME = 'test.xml';
-    const DOMAIN_ID_FIRST = Domain::FIRST_DOMAIN_ID;
+    public const EMAIL = 'no-reply@shopsys.com';
+    public const EXPECTED_XML_FILE_NAME = 'test.xml';
+    public const DOMAIN_ID_FIRST = Domain::FIRST_DOMAIN_ID;
 
     public function testExportXml()
     {
@@ -131,7 +133,7 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $userData->email = 'no-reply@shopsys.com';
         $userData->telephone = '+420987654321';
 
-        $user = new User($userData, $billingAddress, $deliveryAddress, null);
+        $user = new User($userData, $billingAddress, $deliveryAddress);
 
         return $user;
     }
@@ -162,7 +164,7 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $orderData->deliveryAddressSameAsBillingAddress = true;
         $orderData->country = $country;
 
-        $order = new Order($orderData, 1523596513, 'hash');
+        $order = new Order($orderData, '1523596513', 'hash');
 
         return $order;
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Functional\Twig;
 
 use CommerceGuys\Intl\NumberFormat\NumberFormatRepository;
@@ -13,7 +15,7 @@ use Tests\ShopBundle\Test\FunctionalTestCase;
 
 class PriceExtensionTest extends FunctionalTestCase
 {
-    const NBSP = "\xc2\xa0";
+    public const NBSP = "\xc2\xa0";
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Pricing\Currency\CurrencyFacade

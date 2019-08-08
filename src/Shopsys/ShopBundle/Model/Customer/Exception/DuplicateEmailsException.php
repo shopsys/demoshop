@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Model\Customer\Exception;
 
 use Exception;
@@ -17,7 +19,7 @@ class DuplicateEmailsException extends Exception implements CustomerException
      * @param string $message
      * @param \Exception|null $previous
      */
-    public function __construct($email, $message = '', Exception $previous = null)
+    public function __construct($email, $message = '', ?Exception $previous = null)
     {
         $this->email = $email;
 

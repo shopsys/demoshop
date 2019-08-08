@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -24,12 +26,10 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('router')
                     ->children()
-                        ->arrayNode('locale_router_filepaths')
-                            ->defaultValue([])
-                            ->prototype('scalar')
+                        ->scalarNode('locale_router_filepath_mask')
                         ->end()
-                    ->end()
-                    ->scalarNode('friendly_url_router_filepath')
+                        ->scalarNode('friendly_url_router_filepath')
+                        ->end()
                     ->end()
                 ->end()
             ->end();

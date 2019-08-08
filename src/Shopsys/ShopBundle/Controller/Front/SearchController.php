@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Controller\Front;
 
 use Shopsys\FrameworkBundle\Model\Category\CategoryFacade;
@@ -8,8 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class SearchController extends FrontBaseController
 {
-    const AUTOCOMPLETE_CATEGORY_LIMIT = 3;
-    const AUTOCOMPLETE_PRODUCT_LIMIT = 5;
+    public const AUTOCOMPLETE_CATEGORY_LIMIT = 3;
+    public const AUTOCOMPLETE_PRODUCT_LIMIT = 5;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Category\CategoryFacade

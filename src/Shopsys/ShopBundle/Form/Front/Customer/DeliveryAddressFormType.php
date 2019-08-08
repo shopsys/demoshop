@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Form\Front\Customer;
 
 use Shopsys\FrameworkBundle\Form\ValidationGroup;
@@ -16,7 +18,7 @@ use Symfony\Component\Validator\Constraints;
 
 class DeliveryAddressFormType extends AbstractType
 {
-    const VALIDATION_GROUP_DIFFERENT_DELIVERY_ADDRESS = 'differentDeliveryAddress';
+    public const VALIDATION_GROUP_DIFFERENT_DELIVERY_ADDRESS = 'differentDeliveryAddress';
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Country\CountryFacade

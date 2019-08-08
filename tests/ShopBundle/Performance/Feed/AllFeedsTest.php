@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Performance\Feed;
 
 use Shopsys\FrameworkBundle\Component\Domain\Config\DomainConfig;
@@ -15,9 +17,9 @@ use Tests\ShopBundle\Performance\JmeterCsvReporter;
 
 class AllFeedsTest extends KernelTestCase
 {
-    const ROUTE_NAME_GENERATE_FEED = 'admin_feed_generate';
-    const ADMIN_USERNAME = 'admin';
-    const ADMIN_PASSWORD = 'admin123';
+    public const ROUTE_NAME_GENERATE_FEED = 'admin_feed_generate';
+    public const ADMIN_USERNAME = 'admin';
+    public const ADMIN_PASSWORD = 'admin123';
 
     /**
      * @var int

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Model\Product\Pricing;
 
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
@@ -72,7 +74,7 @@ class ProductPriceCalculationForUser extends BaseProductPriceCalculationForUser
      * @param \Shopsys\FrameworkBundle\Model\Customer\User|null $user
      * @return \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPrice
      */
-    public function calculatePriceForUserAndDomainId(Product $product, $domainId, User $user = null)
+    public function calculatePriceForUserAndDomainId(Product $product, $domainId, ?User $user = null)
     {
         if ($user === null) {
             $pricingGroup = $this->pricingGroupSettingFacade->getDefaultPricingGroupByDomainId($domainId);

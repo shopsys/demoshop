@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\ShopBundle\Test\Codeception;
 
 use Codeception\Actor;
@@ -22,8 +24,8 @@ use Tests\ShopBundle\Test\Codeception\_generated\AcceptanceTesterActions;
  */
 class AcceptanceTester extends Actor
 {
-    const DEFAULT_AJAX_TIMEOUT_SEC = 10;
-    const WAIT_TIMEOUT_SEC = 10;
+    public const DEFAULT_AJAX_TIMEOUT_SEC = 10;
+    public const WAIT_TIMEOUT_SEC = 10;
 
     use AcceptanceTesterActions;
 

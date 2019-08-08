@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\DataFixtures\Performance;
 
 use Faker\Generator as Faker;
@@ -14,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CategoryDataFixture
 {
-    const FIRST_PERFORMANCE_CATEGORY = 'first_performance_category';
+    public const FIRST_PERFORMANCE_CATEGORY = 'first_performance_category';
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface

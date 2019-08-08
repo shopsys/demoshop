@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Model\Transport;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -12,8 +14,8 @@ use Shopsys\FrameworkBundle\Model\Transport\TransportData as BaseTransportData;
  */
 class Transport extends BaseTransport
 {
-    const TYPE_DEFAULT = 'basic';
-    const TYPE_ZASILKOVNA = 'zasilkovna';
+    public const TYPE_DEFAULT = 'basic';
+    public const TYPE_ZASILKOVNA = 'zasilkovna';
 
     /**
      * @var string

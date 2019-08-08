@@ -1,6 +1,9 @@
 imports:
     - { resource: '%vendor_dir%/shopsys/coding-standards/easy-coding-standard.yml', ignore_errors: true  }
 
+services:
+    PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer: ~
+
 parameters:
     exclude_files:
         - '*/tests/ShopBundle/Test/Codeception/_generated/AcceptanceTesterActions.php'
@@ -20,6 +23,7 @@ parameters:
             - '*/src/Shopsys/ShopBundle/DataFixtures/DemoMultidomain/MailTemplateDataFixture.php'
             - '*/src/Shopsys/ShopBundle/DataFixtures/*/*DataFixture.php'
             - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/ProductDataFixtureLoader.php'
+            - '*/tests/ShopBundle/Functional/Model/Cart/CartMigrationFacadeTest.php'
 
 
         ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
@@ -33,6 +37,6 @@ parameters:
             - '*/tests/ShopBundle/Test/Codeception/_generated/AcceptanceTesterActions.php'
 
         Shopsys\CodingStandards\Sniffs\ObjectIsCreatedByFactorySniff:
-          - '*/tests/*'
+            - '*/tests/*'
         Shopsys\CodingStandards\Sniffs\ForbiddenDumpSniff:
-          - '*/tests/ShopBundle/Functional/Model/Cart/CartFacadeTest.php'
+            - '*/tests/ShopBundle/Functional/Model/Cart/CartFacadeTest.php'

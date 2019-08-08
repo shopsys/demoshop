@@ -3,7 +3,7 @@ services:
     postgres:
         image: postgres:10.5-alpine
         volumes:
-            - ./docker/postgres/postgres.conf:/var/lib/postgresql/data/postgresql.conf:ro
+            -   ./docker/postgres/postgres.conf:/var/lib/postgresql/data/postgresql.conf:ro
         environment:
             - PGDATA=/var/lib/postgresql/data/pgdata
             - POSTGRES_USER=root
@@ -19,8 +19,8 @@ services:
         depends_on:
             - php-fpm
         volumes:
-            - web-volume:/var/www/html/web
-            - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+            -   web-volume:/var/www/html/web
+            -   ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
         ports:
             - "8080"
 
@@ -30,7 +30,7 @@ services:
             dockerfile: docker/php-fpm/Dockerfile
             target: production
         volumes:
-            - web-volume:/var/www/html/web
+            -   web-volume:/var/www/html/web
         networks:
             - default
             - shared-elastic

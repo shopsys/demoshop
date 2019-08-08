@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopsys\ShopBundle\Model\Product\Feed\Google;
 
 use Shopsys\FrameworkBundle\Component\Domain\Config\DomainConfig;
