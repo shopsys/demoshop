@@ -10,6 +10,9 @@ use Shopsys\FrameworkBundle\Model\Customer\UserData as BaseUserData;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 /**
+ * @method BillingAddress getBillingAddress()
+ *
+ *
  * @ORM\Table(
  *     name="users",
  *     uniqueConstraints={

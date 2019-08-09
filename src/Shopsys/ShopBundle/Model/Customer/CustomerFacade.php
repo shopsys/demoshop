@@ -14,6 +14,9 @@ use Shopsys\FrameworkBundle\Model\Customer\UserFactoryInterface;
 use Shopsys\ShopBundle\Model\Customer\Exception\DuplicateEmailsException;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
+/**
+ * @method create(CustomerData $customerData): User
+ */
 class CustomerFacade extends BaseCustomerFacade
 {
     /**

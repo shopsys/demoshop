@@ -82,7 +82,7 @@ class CustomerController extends BaseCustomerController
     protected $userFactory;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\UserDataFactory
+     * @var \Shopsys\ShopBundle\Model\Customer\UserDataFactory
      */
     protected $userDataFactory;
 
@@ -112,7 +112,7 @@ class CustomerController extends BaseCustomerController
     protected $domainRouterFactory;
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface $userDataFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\UserDataFactory $userDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerListAdminFacade $customerListAdminFacade
      * @param \Shopsys\ShopBundle\Model\Customer\CustomerFacade $customerFacade
      * @param \Shopsys\FrameworkBundle\Model\AdminNavigation\BreadcrumbOverrider $breadcrumbOverrider
@@ -122,7 +122,7 @@ class CustomerController extends BaseCustomerController
      * @param \Shopsys\FrameworkBundle\Model\Order\OrderFacade $orderFacade
      * @param \Shopsys\FrameworkBundle\Model\Security\LoginAsUserFacade $loginAsUserFacade
      * @param \Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory $domainRouterFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface $customerDataFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\CustomerDataFactory $customerDataFactory
      * @param \Shopsys\ShopBundle\Model\Customer\BillingAddressFacade $billingAddressFacade
      * @param \Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory $billingAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\UserFactory $userFactory
@@ -186,6 +186,8 @@ class CustomerController extends BaseCustomerController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $customerData = $form->getData();
+
+            /** @var \Shopsys\ShopBundle\Model\Customer\User $user */
             $user = $this->customerFacade->create($customerData);
 
             $this->getFlashMessageSender()->addSuccessFlashTwig(
