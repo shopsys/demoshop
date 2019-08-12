@@ -64,7 +64,7 @@ class CustomerController extends BaseCustomerController
     protected $customerFacade;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface
+     * @var \Shopsys\ShopBundle\Model\Customer\CustomerDataFactory
      */
     protected $customerDataFactory;
 
@@ -124,7 +124,7 @@ class CustomerController extends BaseCustomerController
      * @param \Shopsys\FrameworkBundle\Model\Order\OrderFacade $orderFacade
      * @param \Shopsys\FrameworkBundle\Model\Security\LoginAsUserFacade $loginAsUserFacade
      * @param \Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory $domainRouterFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface $customerDataFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\CustomerDataFactory $customerDataFactory
      * @param \Shopsys\ShopBundle\Model\Customer\BillingAddressFacade $billingAddressFacade
      * @param \Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory $billingAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\UserFactory $userFactory
@@ -366,6 +366,7 @@ class CustomerController extends BaseCustomerController
         $customerData = $this->customerDataFactory->createFromUser($user);
 
         $usersByBillingAddress = $this->customerFacade->getAllByBillingAddress($billingAddress);
+
         $customerData->companyUsersData = $this->userDataFactory->createMultipleUserDataFromUsers($usersByBillingAddress);
 
         $form = $this->createForm(CustomerFormType::class, $customerData, [
