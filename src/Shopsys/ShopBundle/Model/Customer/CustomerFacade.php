@@ -16,6 +16,9 @@ use Shopsys\FrameworkBundle\Model\Customer\Mail\CustomerMailFacade;
 use Shopsys\FrameworkBundle\Model\Customer\UserFactoryInterface;
 use Shopsys\ShopBundle\Model\Customer\Exception\DuplicateEmailsException;
 
+/**
+ * @property \Shopsys\ShopBundle\Model\Customer\UserRepository $userRepository
+ */
 class CustomerFacade extends BaseCustomerFacade
 {
     /**
