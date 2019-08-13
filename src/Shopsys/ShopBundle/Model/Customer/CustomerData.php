@@ -9,6 +9,9 @@ use Shopsys\FrameworkBundle\Model\Customer\CustomerData as BaseCustomerData;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressData;
 use Shopsys\FrameworkBundle\Model\Customer\UserData;
 
+/**
+ * @property \Shopsys\ShopBundle\Model\Customer\UserData $userData
+ */
 class CustomerData extends BaseCustomerData
 {
     /**
