@@ -11,6 +11,7 @@ use Shopsys\FrameworkBundle\Model\Category\CategoryData as BaseCategoryData;
 
 /**
  * @property \Shopsys\ShopBundle\Model\Category\CategoryDomain[] $domains
+ * @method \Shopsys\ShopBundle\Model\Category\CategoryDomain getCategoryDomain($domainId)
  * @Gedmo\Tree(type="nested")
  * @ORM\Table(name="categories")
  * @ORM\Entity
