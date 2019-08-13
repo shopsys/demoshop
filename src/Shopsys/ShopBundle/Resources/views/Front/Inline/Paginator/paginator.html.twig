@@ -82,12 +82,6 @@
     </div>
 {% endmacro %}
 
-{% macro metaRobots(paginationResult) %}
-    {% if paginationResult.page != 1 %}
-        <meta name="robots" content="noindex, follow">
-    {% endif %}
-{% endmacro %}
-
 {% macro loadMoreButton(paginationResult, url = '', pageQueryParameter = 'page') %}
     <input type="button" class="js-load-more-button btn"
            data-page="{{ paginationResult.page }}"

@@ -4,10 +4,6 @@
 
 {% set domain = getDomain() %}
 
-{% block meta_robots %}
-    {{ paginator.metaRobots(paginationResult) }}
-{% endblock %}
-
 {% block title %}
     {{ brand.getSeoTitle(domain.id)|default(brand.name) }}
 {% endblock %}

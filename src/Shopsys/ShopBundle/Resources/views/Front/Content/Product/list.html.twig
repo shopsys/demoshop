@@ -5,10 +5,6 @@
 
 {% set domain = getDomain() %}
 
-{% block meta_robots %}
-    {{ paginator.metaRobots(paginationResult) }}
-{% endblock %}
-
 {% block meta_description %}
     {{- category.getSeoMetaDescription(domain.id)|default(getSeoMetaDescription()) -}}
 {% endblock %}
