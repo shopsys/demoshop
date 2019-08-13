@@ -11,7 +11,7 @@ class OrderRepository extends BaseOrderRepository
 {
     /**
      * @param \Shopsys\ShopBundle\Model\Customer\User[] $users
-     * @return \Shopsys\FrameworkBundle\Model\Order\Order[]
+     * @return \Shopsys\ShopBundle\Model\Order\Order[]
      */
     public function getOrderListByCustomers(array $users)
     {
@@ -30,7 +30,7 @@ class OrderRepository extends BaseOrderRepository
     /**
      * @param string $orderNumber
      * @param \Shopsys\ShopBundle\Model\Customer\BillingAddress $billingAddress
-     * @return \Shopsys\FrameworkBundle\Model\Order\Order
+     * @return \Shopsys\ShopBundle\Model\Order\Order
      */
     public function getByOrderNumberAndBillingAddress($orderNumber, BillingAddress $billingAddress)
     {
