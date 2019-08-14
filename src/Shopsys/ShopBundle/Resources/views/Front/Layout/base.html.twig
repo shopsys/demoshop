@@ -8,7 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="{% block meta_description %}{% endblock %}">
         <meta http-equiv="X-UA-Compatible" content="IE=11" />
-        {% block meta_robots %}{% endblock %}
+        {% block meta_robots %}
+            <meta name="robots" content="noindex, nofollow">
+        {% endblock %}
 
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i|Teko:600&amp;subset=latin-ext" rel="stylesheet">
 
