@@ -178,3 +178,5 @@ services:
     Shopsys\FrameworkBundle\Model\Administrator\AdministratorRepository: '@Shopsys\ShopBundle\Model\Administrator\AdministratorRepository'
 
     Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade: '@Shopsys\ShopBundle\Model\Administrator\AdministratorFacade'
+
+    Shopsys\FrameworkBundle\Model\Administrator\Security\AdministratorUserProvider: '@Shopsys\ShopBundle\Model\Administrator\Security\AdministratorUserProvider'
