@@ -142,6 +142,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - simplified configuration of localized router
     - fixed directory path in `shopsys.domain_images_url_prefix`
     - using Elasticsearch as a datasource for Read model
+- [#68 - Universal logging to administration of public demoshop](https://github.com/shopsys/demoshop/pull/68)
+    - admin with ID 2 is now known as default admin
+    - default admin cannot be changed or deleted
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)

@@ -104,3 +104,7 @@ services:
         class: Shopsys\ShopBundle\Model\Customer\CurrentCustomer
 
     Shopsys\ReadModelBundle\Product\Listed\ListedProductViewFacadeInterface: '@Shopsys\ReadModelBundle\Product\Listed\ListedProductViewElasticFacade'
+
+    Shopsys\FrameworkBundle\Model\Administrator\AdministratorRepository: '@Shopsys\ShopBundle\Model\Administrator\AdministratorRepository'
+
+    Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade: '@Shopsys\ShopBundle\Model\Administrator\AdministratorFacade'

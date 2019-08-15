@@ -174,3 +174,7 @@ services:
     Shopsys\ShopBundle\DataFixtures\Demo\UserDataFixtureLoader:
         arguments:
             - '%shopsys.data_fixtures.resource_customers_filepath%'
+
+    Shopsys\FrameworkBundle\Model\Administrator\AdministratorRepository: '@Shopsys\ShopBundle\Model\Administrator\AdministratorRepository'
+
+    Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade: '@Shopsys\ShopBundle\Model\Administrator\AdministratorFacade'
