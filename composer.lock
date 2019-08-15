@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7230aa6820de0b0bcaaa44c2fe8cda46",
+    "content-hash": "8b0444cf5adaf27c1884414a81c0c844",
     "packages": [
         {
             "name": "arvenil/ninja-mutex",
@@ -10994,16 +10994,16 @@
         },
         {
             "name": "sspooky13/yaml-standards",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sspooky13/yaml-standards.git",
-                "reference": "e57cc1688eb16b30c16143e1b92c9a62c0b308e6"
+                "reference": "e1c436c3f88b4f087dfc0dffde67c3ecdbd01975"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sspooky13/yaml-standards/zipball/e57cc1688eb16b30c16143e1b92c9a62c0b308e6",
-                "reference": "e57cc1688eb16b30c16143e1b92c9a62c0b308e6",
+                "url": "https://api.github.com/repos/sspooky13/yaml-standards/zipball/e1c436c3f88b4f087dfc0dffde67c3ecdbd01975",
+                "reference": "e1c436c3f88b4f087dfc0dffde67c3ecdbd01975",
                 "shasum": ""
             },
             "require": {
@@ -11055,7 +11055,7 @@
                 "yaml",
                 "yaml-standards"
             ],
-            "time": "2019-07-26T12:00:55+00:00"
+            "time": "2019-08-13T21:44:48+00:00"
         },
         {
             "name": "symplify/better-phpdoc-parser",
