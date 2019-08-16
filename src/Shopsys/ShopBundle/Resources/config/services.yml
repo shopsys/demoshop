@@ -180,3 +180,11 @@ services:
     Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade: '@Shopsys\ShopBundle\Model\Administrator\AdministratorFacade'
 
     Shopsys\FrameworkBundle\Model\Administrator\Security\AdministratorUserProvider: '@Shopsys\ShopBundle\Model\Administrator\Security\AdministratorUserProvider'
+
+    Shopsys\FrameworkBundle\Model\Mail\Mailer:
+        class: Shopsys\ShopBundle\Model\Mail\Mailer
+        arguments: ['@mailer', '@swiftmailer.transport.real', '%mailer_disable_delivery%', '@shopsys.shop.component.flash_message.sender.front']
+
+    Shopsys\ShopBundle\Controller\Admin\MailController:
+        tags: ['controller.service_arguments']
+        arguments: ['%mailer_disable_delivery%']
