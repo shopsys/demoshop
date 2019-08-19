@@ -6,6 +6,8 @@ namespace Shopsys\ShopBundle\DataFixtures\Demo;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Shopsys\FrameworkBundle\Component\DataFixture\AbstractReferenceFixture;
+use Shopsys\FrameworkBundle\Model\Administrator\AdministratorDataFactory;
+use Shopsys\FrameworkBundle\Model\Administrator\AdministratorDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade;
 
 class AdministratorDataFixture extends AbstractReferenceFixture
@@ -19,11 +21,18 @@ class AdministratorDataFixture extends AbstractReferenceFixture
     protected $administratorFacade;
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade $administratorFacade
+     * @var \Shopsys\FrameworkBundle\Model\Administrator\AdministratorDataFactoryInterface
      */
-    public function __construct(AdministratorFacade $administratorFacade)
+    private $administratorDataFactory;
+
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade $administratorFacade
+     * @param \Shopsys\FrameworkBundle\Model\Administrator\AdministratorDataFactoryInterface $administratorDataFactory
+     */
+    public function __construct(AdministratorFacade $administratorFacade, AdministratorDataFactoryInterface $administratorDataFactory)
     {
         $this->administratorFacade = $administratorFacade;
+        $this->administratorDataFactory = $administratorDataFactory;
     }
 
     /**
@@ -33,6 +42,14 @@ class AdministratorDataFixture extends AbstractReferenceFixture
     {
         $this->createAdministratorReference(1, self::SUPERADMINISTRATOR);
         $this->createAdministratorReference(2, self::ADMINISTRATOR);
+
+        $administratorData = $this->administratorDataFactory->create();
+        $administratorData->username = 'admintest';
+        $administratorData->realName = 'Admin Test';
+        $administratorData->email = 'no-reply@shopsys.com';
+        $administratorData->password = 'admin123';
+
+        $this->administratorFacade->create($administratorData);
     }
 
     /**

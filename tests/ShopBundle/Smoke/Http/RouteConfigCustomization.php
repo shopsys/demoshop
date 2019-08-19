@@ -151,7 +151,7 @@ class RouteConfigCustomization
             ->customize(function (RouteConfig $config, RouteInfo $info) {
                 if (preg_match('~^admin_~', $info->getRouteName())) {
                     $config->changeDefaultRequestDataSet('Log as "admin" to administration.')
-                        ->setAuth(new BasicHttpAuth('admin', 'admin123'));
+                        ->setAuth(new BasicHttpAuth('admintest', 'admin123'));
                 }
             })
             ->customize(function (RouteConfig $config, RouteInfo $info) {
@@ -181,8 +181,8 @@ class RouteConfigCustomization
                 $config->addExtraRequestDataSet('Superadmin can edit superadmin')
                     ->setAuth(new BasicHttpAuth('superadmin', 'admin123'))
                     ->setExpectedStatusCode(200);
-                $config->addExtraRequestDataSet('Editing normal administrator (with ID 2) should be OK.')
-                    ->setParameter('id', 2)
+                $config->addExtraRequestDataSet('Editing normal administrator (with ID 3) should be OK.')
+                    ->setParameter('id', 3)
                     ->setExpectedStatusCode(200);
             })
             ->customizeByRouteName('admin_administrator_myaccount', function (RouteConfig $config) {
