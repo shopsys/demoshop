@@ -22,6 +22,9 @@ msgstr ""
 msgid "Accessories"
 msgstr ""
 
+msgid "Account"
+msgstr ""
+
 msgid "Add company user"
 msgstr ""
 
@@ -38,6 +41,9 @@ msgid "Added product will not have any individual discounts"
 msgstr ""
 
 msgid "Address"
+msgstr ""
+
+msgid "All prices have to be handled manually if checked, otherwise the unit price without VAT and the total prices for that item will be recalculated automatically."
 msgstr ""
 
 msgid "Amount"
@@ -241,6 +247,9 @@ msgstr ""
 msgid "Effectivness Hunter"
 msgstr ""
 
+msgid "Email sending has been prevented so the demoshop is not abused for the spam distribution."
+msgstr ""
+
 msgid "Empty cart"
 msgstr ""
 
@@ -274,7 +283,13 @@ msgstr ""
 msgid "From"
 msgstr ""
 
+msgid "Frontend"
+msgstr ""
+
 msgid "Full name"
+msgstr ""
+
+msgid "Go to Frontend"
 msgstr ""
 
 msgid "Go to cart"
@@ -322,6 +337,9 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
+msgid "In the standard project, the email would be sent to your email address, but now the sending has been prevented so the demoshop is not abused for the spam distribution."
+msgstr ""
+
 msgid "Invalid login"
 msgstr ""
 
@@ -362,6 +380,9 @@ msgid "Message"
 msgstr ""
 
 msgid "More information"
+msgstr ""
+
+msgid "My account"
 msgstr ""
 
 msgid "My orders"
@@ -619,6 +640,9 @@ msgstr ""
 msgid "Set new password"
 msgstr ""
 
+msgid "Set prices manually"
+msgstr ""
+
 msgid "Shipping"
 msgstr ""
 
@@ -737,6 +761,9 @@ msgid "Unable to send some e-mails, please contact us for order verification."
 msgstr ""
 
 msgid "Unit"
+msgstr ""
+
+msgid "Unit price excluding VAT"
 msgstr ""
 
 msgid "Unit price including VAT"

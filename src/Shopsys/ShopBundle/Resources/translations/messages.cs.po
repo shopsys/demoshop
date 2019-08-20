@@ -22,6 +22,9 @@ msgstr "Podpora 24/7"
 msgid "Accessories"
 msgstr "Příslušenství"
 
+msgid "Account"
+msgstr "Účet"
+
 msgid "Add company user"
 msgstr "Přidat uživatele firmy"
 
@@ -39,6 +42,9 @@ msgstr "Na přidaný produkt se nebudou vztahovat žádné individuální slevy"
 
 msgid "Address"
 msgstr "Adresa"
+
+msgid "All prices have to be handled manually if checked, otherwise the unit price without VAT and the total prices for that item will be recalculated automatically."
+msgstr "Pokud je zaškrtnuto, všechny ceny je třeba nastavovat ručně, jinak se jednotková cena bez DPH a celkové ceny pro tuto položku přepočítají automaticky."
 
 msgid "Amount"
 msgstr "Množství"
@@ -244,6 +250,9 @@ msgstr "Editace zákazníka - %name%"
 msgid "Effectivness Hunter"
 msgstr "Effectivness Hunter"
 
+msgid "Email sending has been prevented so the demoshop is not abused for the spam distribution."
+msgstr "Odesílání emailů bylo zamezeno, aby nedošlo k zneužití demoshopu pro distribuci spamu."
+
 msgid "Empty cart"
 msgstr "Prázdný nákupní košík"
 
@@ -277,8 +286,14 @@ msgstr "Zapomenuté heslo"
 msgid "From"
 msgstr "Od"
 
+msgid "Frontend"
+msgstr "Frontend"
+
 msgid "Full name"
 msgstr "Celé jméno"
+
+msgid "Go to Frontend"
+msgstr "Přejít na Frontend"
 
 msgid "Go to cart"
 msgstr "Přejít do košíku"
@@ -320,10 +335,13 @@ msgid "I want to subscribe to the newsletter"
 msgstr "Chci se přihlásit k odběru newsletteru"
 
 msgid "Id"
-msgstr ""
+msgstr "ID"
 
 msgid "Image"
 msgstr "Obrázek"
+
+msgid "In the standard project, the email would be sent to your email address, but now the sending has been prevented so the demoshop is not abused for the spam distribution."
+msgstr "Na standardním projektu by byl právě odeslán email na Vaši emailovou adresu, ale na demoshopu bylo odesílání zamezeno, aby nedošlo ke zneužití pro distribuci spamu."
 
 msgid "Invalid login"
 msgstr "Byly zadány neplatné přihlašovací údaje"
@@ -369,6 +387,9 @@ msgstr "Další nejprodávanější"
 
 msgid "More information"
 msgstr "Více informací"
+
+msgid "My account"
+msgstr "Můj účet"
 
 msgid "My orders"
 msgstr "Mé objednávky"
@@ -637,6 +658,9 @@ msgstr "Výrobní číslo"
 msgid "Set new password"
 msgstr "Nastavit nové heslo"
 
+msgid "Set prices manually"
+msgstr "Manuálně nastavené ceny"
+
 msgid "Shipping"
 msgstr "Doprava"
 
@@ -762,6 +786,9 @@ msgstr "Nepodařilo se odeslat některé e-maily, pro ověření objednávky ná
 
 msgid "Unit"
 msgstr "Jednotka"
+
+msgid "Unit price excluding VAT"
+msgstr "Jednotková cena bez DPH"
 
 msgid "Unit price including VAT"
 msgstr "Jednotková cena s DPH"

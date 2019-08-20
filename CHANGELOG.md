@@ -146,6 +146,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - admin with ID 2 is now known as default admin
     - default admin cannot be changed or deleted
     - multiple users can log with same credentials in multiple browsers
+- [#69 - email are now disabled on demoshop in order to prevent spam distribution](https://github.com/shopsys/demoshop/pull/69)
+    - emails are disabled
+    - flash message is presented in case when email should have been sent
+    - information is also presented in mail templates in administration
 
 ### Fixed
 - [#8 - Category now has second description attribute that is displayed on the product list page above the product list](https://github.com/shopsys/demoshop/pull/8)

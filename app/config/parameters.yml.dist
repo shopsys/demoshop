@@ -13,8 +13,8 @@ parameters:
     mailer_host: smtp-server
     mailer_user: ~
     mailer_password: ~
-    mailer_disable_delivery: false
-    mailer_master_email_address: no-reply@shopsys.com
+    mailer_disable_delivery: true
+    mailer_master_email_address: ~
     mailer_delivery_whitelist: [/@shopsys\.com$/]
 
     secret: ThisTokenIsNotSoSecretChangeIt
