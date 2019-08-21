@@ -2,155 +2,151 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
+"Language: de\n"
 
 msgid "City name cannot be longer than {{ limit }} characters"
-msgstr "(de) City name cannot be longer than {{ limit }} characters"
+msgstr "Der Name der Stadt darf nicht länger als {{ limit }}} Zeichen sein"
 
 msgid "Company name cannot be longer than {{ limit }} characters"
-msgstr "(de) Company name cannot be longer than {{ limit }} characters"
+msgstr "Der Firmenname darf nicht länger als {{{ limit }}} Zeichen sein"
 
 msgid "Discount percentage needs to be valid number with range between 0 and 100."
-msgstr "(de) Discount percentage needs to be valid number with range between 0 and 100."
+msgstr "Der Rabattprozentsatz muss eine gültige Zahl mit einem Bereich zwischen 0 und 100 sein."
 
 msgid "Discount percentage should be {{ limit }} or less."
-msgstr "(de) Discount percentage should be {{ limit }} or less."
+msgstr "Der Rabattprozentsatz sollte {{ limit }}} oder weniger sein."
 
 msgid "Discount percentage should be {{ limit }} or more."
-msgstr "(de) Discount percentage should be {{ limit }} or more."
+msgstr "Der Rabattprozentsatz sollte {{ limit }}} oder mehr sein."
 
 msgid "Email cannot be longer then {{ limit }} characters"
-msgstr "(de) Email cannot be longer then {{ limit }} characters"
+msgstr "E-Mails dürfen nicht länger als {{ limit }}} Zeichen sein"
 
 msgid "First name cannot be longer then {{ limit }} characters"
-msgstr "(de) First name cannot be longer then {{ limit }} characters"
+msgstr "Vorname darf nicht länger als {{ limit }}} Zeichen sein"
 
 msgid "First name of contact person cannot be longer then {{ limit }} characters"
-msgstr "(de) First name of contact person cannot be longer then {{ limit }} characters"
+msgstr "Der Vorname der Kontaktperson darf nicht länger als {{ limit }}} Zeichen sein"
 
 msgid "Identification number cannot be longer then {{ limit }} characters"
-msgstr "(de) Identification number cannot be longer then {{ limit }} characters"
+msgstr "Die Identifikationsnummer darf nicht länger als {{ limit }}} Zeichen sein"
 
 msgid "Last name cannot be longer than {{ limit }} characters"
-msgstr "(de) Last name cannot be longer than {{ limit }} characters"
+msgstr "Der Nachname darf nicht länger als {{{ limit }}} Zeichen sein"
 
 msgid "Last name of contact person cannot be longer than {{ limit }} characters"
-msgstr "(de) Last name of contact person cannot be longer than {{ limit }} characters"
+msgstr "Der Nachname der Kontaktperson darf nicht länger als {{{ limit }}} Zeichen sein"
 
 msgid "Password cannot be longer then {{ limit }} characters"
-msgstr "(de) Password cannot be longer then {{ limit }} characters"
+msgstr "Das Passwort darf nicht länger als {{ limit }}} Zeichen sein"
 
 msgid "Password cannot be same as e-mail"
-msgstr "(de) Password cannot be same as e-mail"
+msgstr "Das Passwort darf nicht mit der E-Mail übereinstimmen"
 
 msgid "Password cannot be same as part of e-mail before at sign"
-msgstr "(de) Password cannot be same as part of e-mail before at sign"
+msgstr "Das Passwort kann nicht mit dem Teil der E-Mail vor der At-Zeichen identisch sein"
 
 msgid "Passwords do not match"
-msgstr "(de) Passwords do not match"
+msgstr "Passwörter stimmen nicht überein"
 
 msgid "Please check the correctness of all data filled."
-msgstr "(de) Please check the correctness of all data filled."
+msgstr "Bitte überprüfen Sie die Richtigkeit aller ausgefüllten Daten."
 
 msgid "Please choose a valid combination of transport and payment"
-msgstr "(de) Please choose a valid combination of transport and payment"
+msgstr "Bitte wählen Sie eine gültige Kombination aus Transport und Zahlung"
 
 msgid "Please choose country"
-msgstr "(de) Please choose country"
+msgstr "Bitte wählen Sie den Staat aus"
 
 msgid "Please choose payment type"
-msgstr "(de) Please choose payment type"
+msgstr "Bitte wählen Sie die Zahlungsart aus"
 
 msgid "Please choose shipping type"
-msgstr "(de) Please choose shipping type"
+msgstr "Bitte wählen Sie die Versandart aus"
 
 msgid "Please enter city"
-msgstr "(de) Please enter city"
+msgstr "Bitte geben Sie Ihre Stadt ein"
 
 msgid "Please enter company name"
-msgstr "(de) Please enter company name"
+msgstr "Bitte geben Sie den Firmennamen ein"
 
 msgid "Please enter content"
-msgstr "(de) Please enter content"
+msgstr "Bitte geben Sie den Inhalt ein"
 
 msgid "Please enter date of creation"
-msgstr "(de) Please enter date of creation"
+msgstr "Bitte geben Sie das Erstellungsdatum ein"
 
 msgid "Please enter discount percentage"
-msgstr "(de) Please enter discount percentage"
+msgstr "Bitte geben Sie den Rabattprozentsatz ein"
 
 msgid "Please enter e-mail"
-msgstr "(de) Please enter e-mail"
+msgstr "Bitte geben Sie Ihre E-Mail-Adresse ein"
 
 msgid "Please enter first name"
-msgstr "(de) Please enter first name"
+msgstr "Bitte Vorname eingeben"
 
 msgid "Please enter first name of contact person"
-msgstr "(de) Please enter first name of contact person"
+msgstr "Bitte geben Sie den Vornamen der Kontaktperson ein"
 
 msgid "Please enter full name"
-msgstr "(de) Please enter full name"
+msgstr "Bitte geben Sie den vollständigen Namen ein"
 
 msgid "Please enter identification number"
-msgstr "(de) Please enter identification number"
+msgstr "Bitte geben Sie die Identifikationsnummer ein"
 
 msgid "Please enter last name"
-msgstr "(de) Please enter last name"
+msgstr "Bitte geben Sie den Nachnamen ein"
 
 msgid "Please enter last name of contact person"
-msgstr "(de) Please enter last name of contact person"
+msgstr "Bitte geben Sie den Nachnamen der Kontaktperson ein"
 
 msgid "Please enter password"
-msgstr "(de) Please enter password"
+msgstr "Bitte Passwort eingeben"
 
 msgid "Please enter price in correct format (positive number with decimal separator)"
-msgstr "(de) Please enter price in correct format (positive number with decimal separator)"
+msgstr "Bitte geben Sie den Preis im richtigen Format ein (positive Zahl mit Dezimaltrennzeichen)"
 
 msgid "Please enter quantity"
-msgstr "(de) Please enter quantity"
+msgstr "Bitte geben Sie die Menge ein"
 
 msgid "Please enter street"
-msgstr "(de) Please enter street"
+msgstr "Bitte geben Sie die Straße ein"
 
 msgid "Please enter telephone number"
-msgstr "(de) Please enter telephone number"
+msgstr "Bitte geben Sie die Telefonnummer ein"
 
 msgid "Please enter valid e-mail"
-msgstr "(de) Please enter valid e-mail"
+msgstr "Bitte geben Sie eine gültige E-Mail Adresse ein"
 
 msgid "Please enter valid quantity"
-msgstr "(de) Please enter valid quantity"
+msgstr "Bitte geben Sie eine gültige Menge ein"
 
 msgid "Please enter zip code"
-msgstr "(de) Please enter zip code"
+msgstr "Bitte geben Sie die Postleitzahl ein"
 
 msgid "Price must be greater or equal to zero"
-msgstr "(de) Price must be greater or equal to zero"
+msgstr "Der Preis muss größer als Null oder gleich Null sein"
 
 msgid "Quantity must be greater than {{ compared_value }}"
-msgstr "(de) Quantity must be greater than {{ compared_value }}"
+msgstr "Die Menge muss größer als {{Vergleichswert }}} sein"
 
 msgid "Street name cannot be longer than {{ limit }} characters"
-msgstr "(de) Street name cannot be longer than {{ limit }} characters"
+msgstr "Der Straßenname darf nicht länger als {{ limit }}} Zeichen sein"
 
 msgid "Tax number cannot be longer than {{ limit }} characters"
-msgstr "(de) Tax number cannot be longer than {{ limit }} characters"
+msgstr "Die Steuernummer darf nicht länger als {{{ limit }}} Zeichen sein"
 
 msgid "Telephone number cannot be longer than {{ limit }} characters"
-msgstr "(de) Telephone number cannot be longer than {{ limit }} characters"
+msgstr "Die Telefonnummer darf nicht länger als {{{ limit }}} Zeichen sein"
 
 msgid "This e-mail is already registered"
-msgstr "(de) This e-mail is already registered"
-
-msgid "This field must be empty"
-msgstr "(de) This field must be empty"
+msgstr "Diese E-Mail ist bereits registriert"
 
 msgid "You have to agree with privacy policy"
-msgstr "(de) You have to agree with privacy policy"
+msgstr "Sie müssen mit der Datenschutzerklärung einverstanden sein"
 
 msgid "You have to agree with terms and conditions and privacy policy"
-msgstr "(de) You have to agree with terms and conditions and privacy policy"
+msgstr "Sie müssen mit den Allgemeinen Geschäftsbedingungen und der Datenschutzerklärung einverstanden sein"
 
 msgid "Zip code cannot be longer than {{ limit }} characters"
-msgstr "(de) Zip code cannot be longer than {{ limit }} characters"
-
+msgstr "Die Postleitzahl darf nicht länger als {{{ limit }}} Zeichen sein"

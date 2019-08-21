@@ -188,6 +188,7 @@ class ProductDataFixture
             }
             $productData = $this->productDataFixtureLoader->createProductDataFromRowForFirstDomain($row);
             $this->productDataFixtureLoader->updateProductDataFromCsvRowForSecondDomain($productData, $row);
+            $this->productDataFixtureLoader->updateProductDataFromCsvRowForThirdDomain($productData, $row);
             $this->makeProductDataUnique($productData);
             $this->setRandomPerformanceCategoriesToProductData($productData);
             $product = $this->productFacade->create($productData);
