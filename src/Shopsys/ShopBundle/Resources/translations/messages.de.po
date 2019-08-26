@@ -176,13 +176,13 @@ msgid "Current status"
 msgstr "Aktueller Status"
 
 msgid "Customer <strong><a href=\"{{ url }}\">{{ name }}</a></strong> created"
-msgstr "Kunde <strong><a href=\"{{ url }}\">{{ Name }}}}</a></strong> erstellt"
+msgstr "Kunde <strong><a href=\"{{ url }}\">{{ name }}</a></strong> erstellt"
 
 msgid "Customer <strong><a href=\"{{ url }}\">{{ name }}</a></strong> modified"
-msgstr "Kunde <strong><a href=\"{{ url }}\">{{ Name }}}}</a></strong> modifiziert"
+msgstr "Kunde <strong><a href=\"{{ url }}\">{{ name }}</a></strong> modifiziert"
 
 msgid "Customer <strong>{{ name }}</strong> deleted"
-msgstr "Kunde <strong>{{ Name }}}</strong> gelöscht"
+msgstr "Kunde <strong>{{ name }}</strong> gelöscht"
 
 msgid "Customer detail"
 msgstr "Kundendetails"
@@ -191,7 +191,7 @@ msgid "Customer not found"
 msgstr "Kunde nicht gefunden"
 
 msgid "Customer with e-mail address <strong>{{ email }}</strong> doesn't exist. <a href=\"{{ registrationLink }}\"> Register</a>"
-msgstr "Kunde mit E-Mail-Adresse <strong>{{ E-Mail }}}</strong> existiert nicht. <a href=\"{{ registrationLink }}\"> Registrieren</a>"
+msgstr "Kunde mit E-Mail-Adresse <strong>{{ email }}</strong> existiert nicht. <a href=\"{{ registrationLink }}\"> Registrieren</a>"
 
 msgid "Date of subscription"
 msgstr "Datum des Abonnements"
@@ -239,7 +239,7 @@ msgid "Editing customer"
 msgstr "Kunden bearbeiten"
 
 msgid "Editing customer - %name%"
-msgstr "Kunden bearbeiten - %name%%%"
+msgstr "Kunden bearbeiten - %name%"
 
 msgid "Effectivness Hunter"
 msgstr "Effektivität Jäger"
@@ -341,7 +341,7 @@ msgid "Last name"
 msgstr "Nachname"
 
 msgid "Link to password reset sent to e-mail <strong>{{ email }}</strong>."
-msgstr "Link zum Zurücksetzen des Passworts wurde an E-Mail <strong>{{ E-Mail }}}</strong> gesendet."
+msgstr "Link zum Zurücksetzen des Passworts wurde an E-Mail <strong>{{ email }}</strong> gesendet."
 
 msgid "List of subcategories"
 msgstr "Liste der Unterkategorien"
@@ -533,10 +533,10 @@ msgid "Price including VAT"
 msgstr "Preis inklusive Mehrwertsteuer"
 
 msgid "Product <strong>{{ name }}</strong> ({{ quantity|formatNumber }} {{ unitName }}) added to the cart"
-msgstr "Produkt <strong>{{ Name }}}}</strong> ({{ quantity|formatNumber }}} {{ unitName }}}) in den Warenkorb gelegt"
+msgstr "Produkt <strong>{{ name }}</strong> ({{ quantity|formatNumber }} {{ unitName }}) in den Warenkorb gelegt"
 
 msgid "Product <strong>{{ name }}</strong> added to the cart (total amount {{ quantity|formatNumber }} {{ unitName }})"
-msgstr "Produkt <strong>{{ Name }}</strong> in den Warenkorb gelegt (Gesamtmenge {{ Menge|Formatanzahl }}} {{ Einheitsname }}})"
+msgstr "Produkt <strong>{{ name }}</strong> in den Warenkorb gelegt (Gesamtmenge {{ quantity|formatNumber }} {{ unitName }})"
 
 msgid "Product information"
 msgstr "Produktinformation"
@@ -548,7 +548,7 @@ msgid "Product variants"
 msgstr "Produktvarianten"
 
 msgid "Product {{ name }} removed from cart"
-msgstr "Das Produkt {{ Name }}} wurde aus dem Warenkorb entfernt"
+msgstr "Das Produkt {{ name }} wurde aus dem Warenkorb entfernt"
 
 msgid "Products in cart overview"
 msgstr "Produkte in der Warenkorbübersicht"
@@ -602,7 +602,7 @@ msgid "Search didn't find any products."
 msgstr "Die Suche hat keine Produkte gefunden."
 
 msgid "Search results for \"%searchText%\""
-msgstr "Suchergebnisse für \" %searchText% \""
+msgstr "Suchergebnisse für \"%searchText%\""
 
 msgid "Searching"
 msgstr "Es wird gesucht..."
@@ -677,10 +677,10 @@ msgid "The link to change your password expired."
 msgstr "Der Link zum Ändern Ihres Passworts ist abgelaufen."
 
 msgid "The price of payment {{ paymentName }} changed during ordering process. Check your order, please."
-msgstr "Der Preis der Zahlung {{ paymentName }}} hat sich während des Bestellvorgangs geändert. Überprüfen Sie bitte Ihre Bestellung."
+msgstr "Der Preis der Zahlung {{ paymentName }} hat sich während des Bestellvorgangs geändert. Überprüfen Sie bitte Ihre Bestellung."
 
 msgid "The price of shipping {{ transportName }} changed during ordering process. Check your order, please."
-msgstr "Der Preis für den Versand {{ transportName }}} hat sich während des Bestellvorgangs geändert. Überprüfen Sie bitte Ihre Bestellung."
+msgstr "Der Preis für den Versand {{ transportName }} hat sich während des Bestellvorgangs geändert. Überprüfen Sie bitte Ihre Bestellung."
 
 msgid "This account doesn't exist or password is incorrect"
 msgstr "Dieses Konto existiert nicht oder das Passwort ist falsch"
@@ -731,7 +731,7 @@ msgid "Unable to add product to cart"
 msgstr "Produkt kann nicht in den Warenkorb gelegt werden"
 
 msgid "Unable to add product to cart:<br/><ul><li>{{ errors|raw }}</li></ul>"
-msgstr "Produkt kann nicht in den Warenkorb gelegt werden: <br/><ul><li>errors|raw }}}}</li></ul>"
+msgstr "Produkt kann nicht in den Warenkorb gelegt werden: <br/><ul><li>{{ errors|raw }}</li></ul>"
 
 msgid "Unable to remove item from cart. The item is probably already removed."
 msgstr "Der Artikel kann nicht aus dem Warenkorb entfernt werden. Der Artikel ist wahrscheinlich bereits entfernt."
@@ -800,7 +800,7 @@ msgid "You have to be logged in to enter this page"
 msgstr "Du musst eingeloggt sein, um diese Seite zu betreten"
 
 msgid "You still have to purchase products for <strong> %price% </strong> for <strong> free </strong> shipping and payment."
-msgstr "Sie müssen noch Produkte für <strong>%Preis% </strong>für <strong>kostenlosen </strong>Versand und Bezahlung kaufen."
+msgstr "Sie müssen noch Produkte für <strong>%price% </strong>für <strong>kostenlosen </strong>Versand und Bezahlung kaufen."
 
 msgid "Your cart"
 msgstr "Ihr Warenkorb"
@@ -836,7 +836,7 @@ msgid "from"
 msgstr "von"
 
 msgid "from %price%"
-msgstr "ab %Preis% Preis"
+msgstr "ab %price% Preis"
 
 msgid "on homepage above popular categories (Primary)"
 msgstr "auf der Homepage über den populären Kategorien (Primär)"
@@ -857,10 +857,10 @@ msgid "unregistered customer"
 msgstr "nicht registrierter Kunde"
 
 msgid "{0} No product found | {1} 1 product found | [2,Inf] %totalProductCount% product found"
-msgstr "{0} Kein Produkt gefunden | {1} 1 Produkt gefunden | [2,Inf] %totalProduktanzahl% Produkt gefunden"
+msgstr "{0} Kein Produkt gefunden | {1} 1 Produkt gefunden | [2,Inf] %totalProductCount% Produkt gefunden"
 
 msgid "{1} <strong class=\"cart__state\">%itemsCount%</strong> item for <strong class=\"cart__state\">%priceWithVat%</strong>|[2,Inf] <strong class=\"cart__state\">%itemsCount%</strong> items for <strong class=\"cart__state\">%priceWithVat%</strong>"
-msgstr "{1} <strong class=\"cart__state\">%itemsCount%</strong> Artikel für <strong class=\"cart__state\">%priceWithVat%|</strong>[2,Inf] <strong class=\"cart__state\">%itemsCount%</strong> Artikel für <strong class=\"cart__state\">%priceWithVat%%</strong>"
+msgstr "{1} <strong class=\"cart__state\">%itemsCount%</strong> Artikel für <strong class=\"cart__state\">%priceWithVat%|</strong>[2,Inf] <strong class=\"cart__state\">%itemsCount%</strong> Artikel für <strong class=\"cart__state\">%priceWithVat%</strong>"
 
 msgid "{1}Load next %loadNextCount% item|[2,Inf]Load next %loadNextCount% items"
 msgstr "{1}Laden des nächsten %loadNextCount% Elements|[2,Inf]Laden des nächsten %loadNextCount% Elements"

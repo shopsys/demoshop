@@ -5,40 +5,40 @@ msgstr ""
 "Language: de\n"
 
 msgid "City name cannot be longer than {{ limit }} characters"
-msgstr "Der Name der Stadt darf nicht länger als {{ limit }}} Zeichen sein"
+msgstr "Der Name der Stadt darf nicht länger als {{ limit }} Zeichen sein"
 
 msgid "Company name cannot be longer than {{ limit }} characters"
-msgstr "Der Firmenname darf nicht länger als {{{ limit }}} Zeichen sein"
+msgstr "Der Firmenname darf nicht länger als {{ limit }} Zeichen sein"
 
 msgid "Discount percentage needs to be valid number with range between 0 and 100."
 msgstr "Der Rabattprozentsatz muss eine gültige Zahl mit einem Bereich zwischen 0 und 100 sein."
 
 msgid "Discount percentage should be {{ limit }} or less."
-msgstr "Der Rabattprozentsatz sollte {{ limit }}} oder weniger sein."
+msgstr "Der Rabattprozentsatz sollte {{ limit }} oder weniger sein."
 
 msgid "Discount percentage should be {{ limit }} or more."
-msgstr "Der Rabattprozentsatz sollte {{ limit }}} oder mehr sein."
+msgstr "Der Rabattprozentsatz sollte {{ limit }} oder mehr sein."
 
 msgid "Email cannot be longer then {{ limit }} characters"
-msgstr "E-Mails dürfen nicht länger als {{ limit }}} Zeichen sein"
+msgstr "E-Mails dürfen nicht länger als {{ limit }} Zeichen sein"
 
 msgid "First name cannot be longer then {{ limit }} characters"
-msgstr "Vorname darf nicht länger als {{ limit }}} Zeichen sein"
+msgstr "Vorname darf nicht länger als {{ limit }} Zeichen sein"
 
 msgid "First name of contact person cannot be longer then {{ limit }} characters"
-msgstr "Der Vorname der Kontaktperson darf nicht länger als {{ limit }}} Zeichen sein"
+msgstr "Der Vorname der Kontaktperson darf nicht länger als {{ limit }} Zeichen sein"
 
 msgid "Identification number cannot be longer then {{ limit }} characters"
-msgstr "Die Identifikationsnummer darf nicht länger als {{ limit }}} Zeichen sein"
+msgstr "Die Identifikationsnummer darf nicht länger als {{ limit }} Zeichen sein"
 
 msgid "Last name cannot be longer than {{ limit }} characters"
-msgstr "Der Nachname darf nicht länger als {{{ limit }}} Zeichen sein"
+msgstr "Der Nachname darf nicht länger als {{ limit }} Zeichen sein"
 
 msgid "Last name of contact person cannot be longer than {{ limit }} characters"
-msgstr "Der Nachname der Kontaktperson darf nicht länger als {{{ limit }}} Zeichen sein"
+msgstr "Der Nachname der Kontaktperson darf nicht länger als {{ limit }} Zeichen sein"
 
 msgid "Password cannot be longer then {{ limit }} characters"
-msgstr "Das Passwort darf nicht länger als {{ limit }}} Zeichen sein"
+msgstr "Das Passwort darf nicht länger als {{ limit }} Zeichen sein"
 
 msgid "Password cannot be same as e-mail"
 msgstr "Das Passwort darf nicht mit der E-Mail übereinstimmen"
@@ -128,16 +128,16 @@ msgid "Price must be greater or equal to zero"
 msgstr "Der Preis muss größer als Null oder gleich Null sein"
 
 msgid "Quantity must be greater than {{ compared_value }}"
-msgstr "Die Menge muss größer als {{Vergleichswert }}} sein"
+msgstr "Die Menge muss größer als {{ compared_value }} sein"
 
 msgid "Street name cannot be longer than {{ limit }} characters"
-msgstr "Der Straßenname darf nicht länger als {{ limit }}} Zeichen sein"
+msgstr "Der Straßenname darf nicht länger als {{ limit }} Zeichen sein"
 
 msgid "Tax number cannot be longer than {{ limit }} characters"
-msgstr "Die Steuernummer darf nicht länger als {{{ limit }}} Zeichen sein"
+msgstr "Die Steuernummer darf nicht länger als {{ limit }} Zeichen sein"
 
 msgid "Telephone number cannot be longer than {{ limit }} characters"
-msgstr "Die Telefonnummer darf nicht länger als {{{ limit }}} Zeichen sein"
+msgstr "Die Telefonnummer darf nicht länger als {{ limit }} Zeichen sein"
 
 msgid "This e-mail is already registered"
 msgstr "Diese E-Mail ist bereits registriert"
@@ -149,4 +149,4 @@ msgid "You have to agree with terms and conditions and privacy policy"
 msgstr "Sie müssen mit den Allgemeinen Geschäftsbedingungen und der Datenschutzerklärung einverstanden sein"
 
 msgid "Zip code cannot be longer than {{ limit }} characters"
-msgstr "Die Postleitzahl darf nicht länger als {{{ limit }}} Zeichen sein"
+msgstr "Die Postleitzahl darf nicht länger als {{ limit }} Zeichen sein"
