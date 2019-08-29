@@ -860,7 +860,7 @@ msgid "{0} No product found | {1} 1 product found | [2,Inf] %totalProductCount% 
 msgstr "{0} Kein Produkt gefunden | {1} 1 Produkt gefunden | [2,Inf] %totalProductCount% Produkt gefunden"
 
 msgid "{1} <strong class=\"cart__state\">%itemsCount%</strong> item for <strong class=\"cart__state\">%priceWithVat%</strong>|[2,Inf] <strong class=\"cart__state\">%itemsCount%</strong> items for <strong class=\"cart__state\">%priceWithVat%</strong>"
-msgstr "{1} <strong class=\"cart__state\">%itemsCount%</strong> Artikel für <strong class=\"cart__state\">%priceWithVat%|</strong>[2,Inf] <strong class=\"cart__state\">%itemsCount%</strong> Artikel für <strong class=\"cart__state\">%priceWithVat%</strong>"
+msgstr "{1} <strong class=\"cart__state\">%itemsCount%</strong> Artikel für <strong class=\"cart__state\">%priceWithVat%</strong>|[2,Inf] <strong class=\"cart__state\">%itemsCount%</strong> Artikel für <strong class=\"cart__state\">%priceWithVat%</strong>"
 
 msgid "{1}Load next %loadNextCount% item|[2,Inf]Load next %loadNextCount% items"
 msgstr "{1}Laden des nächsten %loadNextCount% Elements|[2,Inf]Laden des nächsten %loadNextCount% Elements"
