@@ -22,6 +22,13 @@ class LoginController extends BaseLoginController
      */
     private $domainContextSwitcher;
 
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Security\Authenticator $authenticator
+     * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
+     * @param \Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory $domainRouterFactory
+     * @param \Shopsys\ShopBundle\Component\Router\DomainContextSwitcher $domainContextSwitcher
+     * @param \Shopsys\FrameworkBundle\Model\Security\AdministratorLoginFacade $administratorLoginFacade
+     */
     public function __construct(
         Authenticator $authenticator,
         Domain $domain,
@@ -32,7 +39,6 @@ class LoginController extends BaseLoginController
         parent::__construct($authenticator, $domain, $domainRouterFactory, $administratorLoginFacade);
         $this->domainContextSwitcher = $domainContextSwitcher;
     }
-
 
     /**
      * @Route("/", name="admin_login")

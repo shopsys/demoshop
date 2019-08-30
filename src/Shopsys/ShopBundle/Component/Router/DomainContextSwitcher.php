@@ -19,6 +19,10 @@ class DomainContextSwitcher
      */
     private $domainRouterFactory;
 
+    /**
+     * @param \Symfony\Component\Routing\RouterInterface $router
+     * @param \Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory $domainRouterFactory
+     */
     public function __construct(RouterInterface $router, DomainRouterFactory $domainRouterFactory)
     {
         $this->router = $router;
@@ -26,6 +30,7 @@ class DomainContextSwitcher
     }
 
     /**
+     * @param int $domainId
      * @param \Shopsys\FrameworkBundle\Component\Router\DomainRouter $domainRouter
      */
     public function changeRouterContext(int $domainId): void
