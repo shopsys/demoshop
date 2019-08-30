@@ -6,6 +6,7 @@ namespace Shopsys\ShopBundle\Controller\Admin;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Shopsys\FrameworkBundle\Component\Domain\AdminDomainTabsFacade;
+use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\Grid\GridFactory;
 use Shopsys\FrameworkBundle\Component\Grid\QueryBuilderDataSource;
 use Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory;
@@ -26,6 +27,7 @@ use Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Customer\UserFactory;
 use Shopsys\FrameworkBundle\Model\Order\OrderFacade;
 use Shopsys\FrameworkBundle\Model\Security\LoginAsUserFacade;
+use Shopsys\ShopBundle\Component\Router\DomainContextSwitcher;
 use Shopsys\ShopBundle\Model\Customer\BillingAddress;
 use Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory;
 use Shopsys\ShopBundle\Model\Customer\BillingAddressFacade;
@@ -114,6 +116,11 @@ class CustomerController extends BaseCustomerController
     protected $domainRouterFactory;
 
     /**
+     * @var \Shopsys\ShopBundle\Component\Router\DomainContextSwitcher
+     */
+    private $domainContextSwitcher;
+
+    /**
      * @param \Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface $userDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerListAdminFacade $customerListAdminFacade
      * @param \Shopsys\ShopBundle\Model\Customer\CustomerFacade $customerFacade
@@ -130,6 +137,7 @@ class CustomerController extends BaseCustomerController
      * @param \Shopsys\FrameworkBundle\Model\Customer\UserFactory $userFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressDataFactory $deliveryAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFactory $deliveryAddressFactory
+     * @param \Shopsys\ShopBundle\Component\Router\DomainContextSwitcher $domainContextSwitcher
      */
     public function __construct(
         UserDataFactoryInterface $userDataFactory,
@@ -147,8 +155,11 @@ class CustomerController extends BaseCustomerController
         BillingAddressDataFactory $billingAddressDataFactory,
         UserFactory $userFactory,
         DeliveryAddressDataFactory $deliveryAddressDataFactory,
-        DeliveryAddressFactory $deliveryAddressFactory
+        DeliveryAddressFactory $deliveryAddressFactory,
+        DomainContextSwitcher $domainContextSwitcher
     ) {
+        parent::__construct($userDataFactory, $customerListAdminFacade, $customerFacade, $breadcrumbOverrider, $administratorGridFacade, $gridFactory, $adminDomainTabsFacade, $orderFacade, $loginAsUserFacade, $domainRouterFactory, $customerDataFactory);
+
         $this->customerListAdminFacade = $customerListAdminFacade;
         $this->adminDomainTabsFacade = $adminDomainTabsFacade;
         $this->gridFactory = $gridFactory;
@@ -164,8 +175,7 @@ class CustomerController extends BaseCustomerController
         $this->breadcrumbOverrider = $breadcrumbOverrider;
         $this->orderFacade = $orderFacade;
         $this->domainRouterFactory = $domainRouterFactory;
-
-        parent::__construct($userDataFactory, $customerListAdminFacade, $customerFacade, $breadcrumbOverrider, $administratorGridFacade, $gridFactory, $adminDomainTabsFacade, $orderFacade, $loginAsUserFacade, $domainRouterFactory, $customerDataFactory);
+        $this->domainContextSwitcher = $domainContextSwitcher;
     }
 
     /**
@@ -439,6 +449,7 @@ class CustomerController extends BaseCustomerController
      */
     protected function getSsoLoginAsUserUrl(User $user)
     {
+        $this->domainContextSwitcher->changeRouterContext($user->getDomainId());
         $loginAsUserUrl = $this->generateUrl(
             'admin_customer_loginasuser',
             [
@@ -447,6 +458,7 @@ class CustomerController extends BaseCustomerController
             UrlGeneratorInterface::ABSOLUTE_URL
         );
 
+        $this->domainContextSwitcher->changeRouterContext(Domain::MAIN_ADMIN_DOMAIN_ID);
         $ssoLoginAsUserUrl = $this->generateUrl(
             'admin_login_sso',
             [
