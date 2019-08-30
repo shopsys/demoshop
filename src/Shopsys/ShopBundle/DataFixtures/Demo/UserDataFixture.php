@@ -11,6 +11,7 @@ use Faker\Generator;
 use Shopsys\FrameworkBundle\Component\DataFixture\AbstractReferenceFixture;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\String\HashGenerator;
+use Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactory;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerFacade;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerPasswordFacade;
 use Shopsys\FrameworkBundle\Model\Customer\User;
@@ -18,9 +19,13 @@ use Shopsys\FrameworkBundle\Model\Customer\User;
 class UserDataFixture extends AbstractReferenceFixture implements DependentFixtureInterface
 {
     public const USER_WITH_RESET_PASSWORD_HASH = 'user_with_reset_password_hash';
+    public const USER_WITH_10_PERCENT_DISCOUNT = 'user_with_10_percent_discount';
 
     /** @var \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade */
     protected $customerFacade;
+
+    /** @var \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactory */
+    protected $customerDataFactory;
 
     /** @var \Shopsys\ShopBundle\DataFixtures\Demo\UserDataFixtureLoader */
     protected $loaderService;
@@ -36,6 +41,7 @@ class UserDataFixture extends AbstractReferenceFixture implements DependentFixtu
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade $customerFacade
+     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactory $customerDataFactory
      * @param \Shopsys\ShopBundle\DataFixtures\Demo\UserDataFixtureLoader $loaderService
      * @param \Faker\Generator $faker
      * @param \Doctrine\ORM\EntityManagerInterface $em
@@ -43,12 +49,14 @@ class UserDataFixture extends AbstractReferenceFixture implements DependentFixtu
      */
     public function __construct(
         CustomerFacade $customerFacade,
+        CustomerDataFactory $customerDataFactory,
         UserDataFixtureLoader $loaderService,
         Generator $faker,
         EntityManagerInterface $em,
         HashGenerator $hashGenerator
     ) {
         $this->customerFacade = $customerFacade;
+        $this->customerDataFactory = $customerDataFactory;
         $this->loaderService = $loaderService;
         $this->faker = $faker;
         $this->em = $em;
@@ -77,6 +85,11 @@ class UserDataFixture extends AbstractReferenceFixture implements DependentFixtu
                 $this->resetPassword($customer);
                 $this->addReference(self::USER_WITH_RESET_PASSWORD_HASH, $customer);
             }
+
+            if ($customer->getId() === 2) {
+                $this->addDiscount($customer, 10);
+                $this->addReference(self::USER_WITH_10_PERCENT_DISCOUNT, $customer);
+            }
         }
     }
 
@@ -97,5 +110,16 @@ class UserDataFixture extends AbstractReferenceFixture implements DependentFixtu
     {
         $customer->setResetPasswordHash($this->hashGenerator->generateHash(CustomerPasswordFacade::RESET_PASSWORD_HASH_LENGTH));
         $this->em->flush($customer);
+    }
+
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Customer\User $customer
+     * @param int $discount
+     */
+    protected function addDiscount(User $customer, int $discount): void
+    {
+        $customerData = $this->customerDataFactory->createFromUser($customer);
+        $customerData->userData->discount = $discount;
+        $this->customerFacade->editByAdmin($customer->getId(), $customerData);
     }
 }
