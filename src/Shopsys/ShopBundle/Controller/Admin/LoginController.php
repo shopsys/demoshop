@@ -6,22 +6,38 @@ namespace Shopsys\ShopBundle\Controller\Admin;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
-use Shopsys\FrameworkBundle\Component\Router\DomainRouter;
+use Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory;
 use Shopsys\FrameworkBundle\Controller\Admin\LoginController as BaseLoginController;
+use Shopsys\FrameworkBundle\Model\Security\AdministratorLoginFacade;
+use Shopsys\FrameworkBundle\Model\Security\Authenticator;
 use Shopsys\FrameworkBundle\Model\Security\Roles;
+use Shopsys\ShopBundle\Component\Router\DomainContextSwitcher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LoginController extends BaseLoginController
 {
     /**
-     * @param \Shopsys\FrameworkBundle\Component\Router\DomainRouter $domainRouter
+     * @var \Shopsys\ShopBundle\Component\Router\DomainContextSwitcher
      */
-    private function changeDomainContext(DomainRouter $domainRouter)
-    {
-        $mainAdminDomainHost = $domainRouter->getContext()->getHost();
-        $context = $this->container->get('router')->getContext();
-        $context->setHost($mainAdminDomainHost);
+    private $domainContextSwitcher;
+
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Security\Authenticator $authenticator
+     * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
+     * @param \Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory $domainRouterFactory
+     * @param \Shopsys\ShopBundle\Component\Router\DomainContextSwitcher $domainContextSwitcher
+     * @param \Shopsys\FrameworkBundle\Model\Security\AdministratorLoginFacade $administratorLoginFacade
+     */
+    public function __construct(
+        Authenticator $authenticator,
+        Domain $domain,
+        DomainRouterFactory $domainRouterFactory,
+        DomainContextSwitcher $domainContextSwitcher,
+        AdministratorLoginFacade $administratorLoginFacade
+    ) {
+        parent::__construct($authenticator, $domain, $domainRouterFactory, $administratorLoginFacade);
+        $this->domainContextSwitcher = $domainContextSwitcher;
     }
 
     /**
@@ -34,8 +50,7 @@ class LoginController extends BaseLoginController
     {
         $currentDomainId = $this->domain->getId();
         if ($currentDomainId !== Domain::MAIN_ADMIN_DOMAIN_ID && !$this->isGranted(Roles::ROLE_ADMIN)) {
-            $mainAdminDomainRouter = $this->domainRouterFactory->getRouter(Domain::MAIN_ADMIN_DOMAIN_ID);
-            $this->changeDomainContext($mainAdminDomainRouter);
+            $this->domainContextSwitcher->changeRouterContext(Domain::MAIN_ADMIN_DOMAIN_ID);
 
             $redirectTo = $this->generateUrl(
                 'admin_login_sso',
@@ -62,8 +77,7 @@ class LoginController extends BaseLoginController
         $administrator = $this->getUser();
         /* @var $administrator \Shopsys\FrameworkBundle\Model\Administrator\Administrator */
         $multidomainToken = $this->administratorLoginFacade->generateMultidomainLoginTokenWithExpiration($administrator);
-        $originalDomainRouter = $this->domainRouterFactory->getRouter((int)$originalDomainId);
-        $this->changeDomainContext($originalDomainRouter);
+        $this->domainContextSwitcher->changeRouterContext((int)$originalDomainId);
 
         $redirectTo = $this->generateUrl(
             'admin_login_authorization',

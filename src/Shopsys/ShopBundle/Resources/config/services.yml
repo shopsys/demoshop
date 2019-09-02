@@ -95,6 +95,10 @@ services:
         tags:
             - { name: twig.extension }
 
+    Shopsys\ShopBundle\Component\Router\DomainContextSwitcher:
+        arguments:
+            - '@router'
+
     Shopsys\FrameworkBundle\Model\Order\OrderFactoryInterface: '@Shopsys\ShopBundle\Model\Order\OrderFactory'
 
     Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface: '@Shopsys\ShopBundle\Model\Order\OrderDataFactory'
