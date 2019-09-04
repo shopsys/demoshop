@@ -1,0 +1,21 @@
+{% if domainId == 1 %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-402396-40"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date()); gtag('config', 'UA-402396-40');
+    </script>
+{% elseif domainId == 2 %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-402396-42"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date()); gtag('config', 'UA-402396-42');
+    </script>
+{% elseif domainId == 3 %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-402396-41"></script>
+    <script> window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date()); gtag('config', 'UA-402396-41');
+    </script>
+{% endif %}
