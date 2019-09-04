@@ -28,6 +28,8 @@ class OrderCest
         $me->amOnPage('/tv-audio/');
         $productListPage->addProductToCartByName('Defender 2.0 SPK-480');
         $me->clickByText('Go to cart');
+
+        $me->scrollTo(['css' => '#cart_form_submit']);
         $me->clickByText('Continue to Order');
 
         $orderPage->assertTransportIsNotSelected('Czech post');
@@ -35,6 +37,7 @@ class OrderCest
         $orderPage->assertPaymentIsNotSelected('Cash on delivery');
         $orderPage->selectPayment('Cash on delivery');
         $me->waitForAjax();
+        $me->scrollTo(['css' => '#transport_and_payment_form_save']);
         $me->clickByText('Continue in order');
         $me->clickByText('Back to shipping and payment selection');
 
@@ -57,6 +60,8 @@ class OrderCest
         $me->amOnPage('/tv-audio/');
         $productListPage->addProductToCartByName('Defender 2.0 SPK-480');
         $me->clickByText('Go to cart');
+
+        $me->scrollTo(['css' => '#cart_form_submit']);
         $me->clickByText('Continue to Order');
 
         $orderPage->assertTransportIsNotSelected('Czech post');
@@ -64,6 +69,7 @@ class OrderCest
         $orderPage->assertPaymentIsNotSelected('Cash on delivery');
         $orderPage->selectPayment('Cash on delivery');
         $me->waitForAjax();
+        $me->scrollTo(['css' => '#transport_and_payment_form_save']);
         $me->clickByText('Continue in order');
         $me->amOnPage('/order/');
 
@@ -83,15 +89,20 @@ class OrderCest
         $me->amOnPage('/tv-audio/');
         $productListPage->addProductToCartByName('Defender 2.0 SPK-480');
         $me->clickByText('Go to cart');
+
+        $me->scrollTo(['css' => '#cart_form_submit']);
         $me->clickByText('Continue to Order');
+
         $orderPage->selectTransport('Czech post');
         $orderPage->selectPayment('Cash on delivery');
         $me->waitForAjax();
+        $me->scrollTo(['css' => '#transport_and_payment_form_save'], null, 100);
         $me->clickByText('Continue in order');
 
         $orderPage->fillFirstName('Jan');
         $me->clickByText('Back to shipping and payment selection');
         $me->amOnPage('/order/');
+        $me->scrollTo(['css' => '#transport_and_payment_form_save'], null, 100);
         $me->clickByText('Continue in order');
 
         $orderPage->assertFirstNameIsFilled('Jan');
@@ -139,17 +150,21 @@ class OrderCest
         $me->amOnPage('/tv-audio/');
         $productListPage->addProductToCartByName('Defender 2.0 SPK-480');
         $me->clickByText('Go to cart');
+
+        $me->scrollTo(['css' => '#cart_form_submit']);
         $me->clickByText('Continue to Order');
 
         $orderPage->selectTransport('Czech post');
         $orderPage->selectPayment('Cash on delivery');
         $me->waitForAjax();
+        $me->scrollTo(['css' => '#transport_and_payment_form_save'], null, 100);
         $me->clickByText('Continue in order');
 
         $orderPage->fillPersonalInfo('Karel', 'Novák', 'no-reply@shopsys.com', '123456789');
         $orderPage->fillBillingAddress('Koksární 10', 'Ostrava', '702 00');
         $orderPage->acceptLegalConditions();
 
+        $me->scrollTo(['css' => '#order_personal_info_form_save'], null, 100);
         $me->clickByText('Finish the order');
 
         $me->see('Order sent');

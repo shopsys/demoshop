@@ -145,6 +145,7 @@ class CartPage extends AbstractPage
     public function removePromoCode()
     {
         $removePromoCodeButton = $this->webDriver->findElement(WebDriverBy::cssSelector('#js-promo-code-remove-button'));
+        $this->tester->scrollTo(['css' => '#js-promo-code-remove-button'], null, 100);
         $this->tester->clickByElement($removePromoCodeButton);
         $this->tester->waitForAjax();
     }
