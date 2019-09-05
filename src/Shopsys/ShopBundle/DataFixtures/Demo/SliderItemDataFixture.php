@@ -43,7 +43,7 @@ class SliderItemDataFixture extends AbstractReferenceFixture
         $sliderItemData->domainId = Domain::FIRST_DOMAIN_ID;
 
         $sliderItemData->name = 'Shopsys';
-        $sliderItemData->link = 'http://www.shopsys.cz/';
+        $sliderItemData->link = 'https://www.shopsys.com/';
         $sliderItemData->hidden = false;
 
         $this->sliderItemFacade->create($sliderItemData);

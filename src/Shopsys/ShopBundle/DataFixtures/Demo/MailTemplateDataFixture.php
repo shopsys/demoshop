@@ -104,7 +104,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -135,7 +135,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -168,7 +168,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -200,7 +200,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -232,7 +232,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -285,7 +285,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -317,7 +317,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
@@ -348,7 +348,7 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
                     <table style="width:100%">
                         <tbody>
                             <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="http://www.shopsys-framework.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
+                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
                                 <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
                             </tr>
                         </tbody>
