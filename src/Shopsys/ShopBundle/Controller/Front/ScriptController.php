@@ -51,6 +51,13 @@ class ScriptController extends FrontBaseController
         ]);
     }
 
+    public function embedAllPagesGoogleTagManagerScriptAction()
+    {
+        return $this->render('@ShopsysShop/Front/Inline/MeasuringScript/googleTagManager.html.twig', [
+            'domainId' => $this->domain->getId(),
+        ]);
+    }
+
     /**
      * @param \Shopsys\FrameworkBundle\Model\Order\Order $order
      */
