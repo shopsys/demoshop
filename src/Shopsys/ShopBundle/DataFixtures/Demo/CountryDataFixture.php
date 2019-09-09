@@ -44,6 +44,7 @@ class CountryDataFixture extends AbstractReferenceFixture
         $countryData->names = [
             'cs' => 'Česká republika',
             'en' => 'Czech republic',
+            'de' => 'Tschechische Republik',
         ];
         $countryData->code = 'CZ';
         $this->createCountry($countryData, self::COUNTRY_CZECH_REPUBLIC);
@@ -52,6 +53,7 @@ class CountryDataFixture extends AbstractReferenceFixture
         $countryData->names = [
             'cs' => 'Slovenská republika',
             'en' => 'Slovakia',
+            'de' => 'Slowakei',
         ];
         $countryData->code = 'SK';
 

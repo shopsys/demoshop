@@ -10,5 +10,5 @@ domains:
 
     -   id: 3
         name: de.shopsys
-        locale: en
+        locale: de
         styles_directory: domain2

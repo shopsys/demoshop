@@ -107,6 +107,7 @@ class MultidomainOrderDataFixture extends AbstractReferenceFixture implements De
         $orderData->domainId = $domainId;
         $orderData->currency = $this->getReference(CurrencyDataFixture::CURRENCY_EUR);
         $orderData->createdAt = $this->faker->dateTimeBetween('-1 week', 'now');
+
         $this->createOrder(
             $orderData,
             [

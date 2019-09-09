@@ -47,6 +47,7 @@ class TransportDataFixture extends AbstractReferenceFixture implements Dependent
         $transportData->name = [
             'cs' => 'Česká pošta - balík do ruky',
             'en' => 'Czech post',
+            'de' => '(DE) Czech post',
         ];
         $transportData->pricesByCurrencyId = [
             $this->getReference(CurrencyDataFixture::CURRENCY_CZK)->getId() => Money::create('99.95'),
@@ -59,6 +60,7 @@ class TransportDataFixture extends AbstractReferenceFixture implements Dependent
         $transportData->name = [
             'cs' => 'PPL',
             'en' => 'PPL',
+            'de' => '(DE) PPL',
         ];
         $transportData->pricesByCurrencyId = [
             $this->getReference(CurrencyDataFixture::CURRENCY_CZK)->getId() => Money::create('199.95'),
@@ -71,6 +73,7 @@ class TransportDataFixture extends AbstractReferenceFixture implements Dependent
         $transportData->name = [
             'cs' => 'Osobní převzetí',
             'en' => 'Personal collection',
+            'de' => '(DE) Personal collection',
         ];
         $transportData->pricesByCurrencyId = [
             $this->getReference(CurrencyDataFixture::CURRENCY_CZK)->getId() => Money::zero(),
@@ -79,10 +82,12 @@ class TransportDataFixture extends AbstractReferenceFixture implements Dependent
         $transportData->description = [
             'cs' => 'Uvítá Vás milý personál!',
             'en' => 'You will be welcomed by friendly staff!',
+            'de' => '(DE) You will be welcomed by friendly staff!',
         ];
         $transportData->instructions = [
             'cs' => 'Těšíme se na Vaši návštěvu.',
             'en' => 'We are looking forward to your visit.',
+            'de' => '(DE) We are looking forward to your visit.',
         ];
         $transportData->vat = $this->getReference(VatDataFixture::VAT_ZERO);
         $this->createTransport(self::TRANSPORT_PERSONAL, $transportData);

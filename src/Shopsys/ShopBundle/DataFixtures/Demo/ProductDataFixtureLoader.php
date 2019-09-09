@@ -17,28 +17,33 @@ class ProductDataFixtureLoader
 {
     public const COLUMN_NAME_CS = 0;
     public const COLUMN_NAME_EN = 1;
-    public const COLUMN_CATNUM = 2;
-    public const COLUMN_PARTNO = 3;
-    public const COLUMN_EAN = 4;
-    public const COLUMN_DESCRIPTION_CS = 5;
-    public const COLUMN_DESCRIPTION_EN = 6;
-    public const COLUMN_SHORT_DESCRIPTION_CS = 7;
-    public const COLUMN_SHORT_DESCRIPTION_EN = 8;
-    public const COLUMN_MANUAL_PRICES_DOMAIN_1 = 9;
-    public const COLUMN_MANUAL_PRICES_DOMAIN_2 = 10;
-    public const COLUMN_VAT = 11;
-    public const COLUMN_SELLING_FROM = 12;
-    public const COLUMN_SELLING_TO = 13;
-    public const COLUMN_STOCK_QUANTITY = 14;
-    public const COLUMN_UNIT = 15;
-    public const COLUMN_AVAILABILITY = 16;
-    public const COLUMN_PARAMETERS = 17;
-    public const COLUMN_CATEGORIES_1 = 18;
-    public const COLUMN_CATEGORIES_2 = 19;
-    public const COLUMN_FLAGS = 20;
-    public const COLUMN_SELLING_DENIED = 21;
-    public const COLUMN_BRAND = 22;
-    public const COLUMN_MAIN_VARIANT_CATNUM = 23;
+    public const COLUMN_NAME_DE = 2;
+    public const COLUMN_CATNUM = 3;
+    public const COLUMN_PARTNO = 4;
+    public const COLUMN_EAN = 5;
+    public const COLUMN_DESCRIPTION_CS = 6;
+    public const COLUMN_DESCRIPTION_EN = 7;
+    public const COLUMN_DESCRIPTION_DE = 8;
+    public const COLUMN_SHORT_DESCRIPTION_CS = 9;
+    public const COLUMN_SHORT_DESCRIPTION_EN = 10;
+    public const COLUMN_SHORT_DESCRIPTION_DE = 11;
+    public const COLUMN_MANUAL_PRICES_DOMAIN_1 = 12;
+    public const COLUMN_MANUAL_PRICES_DOMAIN_2 = 13;
+    public const COLUMN_MANUAL_PRICES_DOMAIN_3 = 14;
+    public const COLUMN_VAT = 15;
+    public const COLUMN_SELLING_FROM = 16;
+    public const COLUMN_SELLING_TO = 17;
+    public const COLUMN_STOCK_QUANTITY = 18;
+    public const COLUMN_UNIT = 19;
+    public const COLUMN_AVAILABILITY = 20;
+    public const COLUMN_PARAMETERS = 21;
+    public const COLUMN_CATEGORIES_1 = 22;
+    public const COLUMN_CATEGORIES_2 = 23;
+    public const COLUMN_CATEGORIES_3 = 24;
+    public const COLUMN_FLAGS = 25;
+    public const COLUMN_SELLING_DENIED = 26;
+    public const COLUMN_BRAND = 27;
+    public const COLUMN_MAIN_VARIANT_CATNUM = 28;
 
     /**
      * @var \Shopsys\ShopBundle\DataFixtures\Demo\ProductParametersFixtureLoader
@@ -261,6 +266,21 @@ class ProductDataFixtureLoader
     }
 
     /**
+     * @param \Shopsys\FrameworkBundle\Model\Product\ProductData $productData
+     * @param array $row
+     */
+    public function updateProductDataFromCsvRowForThirdDomain(ProductData $productData, array $row)
+    {
+        $domainId = 3;
+        $productData->descriptions[$domainId] = $row[$this->getDescriptionColumnForDomain($domainId)];
+        $productData->shortDescriptions[$domainId] = $row[$this->getShortDescriptionColumnForDomain($domainId)];
+        $productData->name['de'] = $row[self::COLUMN_NAME_DE];
+        $this->setProductDataPricesFromCsv($row, $productData, $domainId);
+        $productData->categoriesByDomainId[$domainId] =
+            $this->getValuesByKeyString($row[self::COLUMN_CATEGORIES_3], $this->categories);
+    }
+
+    /**
      * @param int $domainId
      * @return int
      */
@@ -273,6 +293,8 @@ class ProductDataFixtureLoader
                 return self::COLUMN_SHORT_DESCRIPTION_CS;
             case 'en':
                 return self::COLUMN_SHORT_DESCRIPTION_EN;
+            case 'de':
+                return self::COLUMN_SHORT_DESCRIPTION_DE;
             default:
                 throw new \Shopsys\FrameworkBundle\Component\DataFixture\Exception\UnsupportedLocaleException($locale);
         }
@@ -291,6 +313,8 @@ class ProductDataFixtureLoader
                 return self::COLUMN_DESCRIPTION_CS;
             case 'en':
                 return self::COLUMN_DESCRIPTION_EN;
+            case 'de':
+                return self::COLUMN_DESCRIPTION_DE;
             default:
                 throw new \Shopsys\FrameworkBundle\Component\DataFixture\Exception\UnsupportedLocaleException($locale);
         }
@@ -341,6 +365,8 @@ class ProductDataFixtureLoader
             $manualPricesColumn = $row[self::COLUMN_MANUAL_PRICES_DOMAIN_1];
         } elseif ($domainId === 2) {
             $manualPricesColumn = $row[self::COLUMN_MANUAL_PRICES_DOMAIN_2];
+        } elseif ($domainId === 3) {
+            $manualPricesColumn = $row[self::COLUMN_MANUAL_PRICES_DOMAIN_3];
         } else {
             throw new InvalidDomainIdException(sprintf('Invalid domain ID "%d"', $domainId));
         }
@@ -384,6 +410,8 @@ class ProductDataFixtureLoader
                 return self::COLUMN_NAME_CS;
             case 'en':
                 return self::COLUMN_NAME_EN;
+            case 'de':
+                return self::COLUMN_NAME_DE;
             default:
                 throw new \Shopsys\FrameworkBundle\Component\DataFixture\Exception\UnsupportedLocaleException($this->domain->getDomainConfigById($domainId)->getLocale());
         }

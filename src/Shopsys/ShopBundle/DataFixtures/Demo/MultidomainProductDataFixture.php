@@ -115,6 +115,7 @@ class MultidomainProductDataFixture extends AbstractReferenceFixture implements 
     {
         $productData = $this->productDataFactory->createFromProduct($product);
         $this->productDataFixtureLoader->updateProductDataFromCsvRowForSecondDomain($productData, $row);
+        $this->productDataFixtureLoader->updateProductDataFromCsvRowForThirdDomain($productData, $row);
         $this->productFacade->edit($product->getId(), $productData);
     }
 
