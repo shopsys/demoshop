@@ -22,6 +22,9 @@ msgstr "24/7 Hilfe-Center"
 msgid "Accessories"
 msgstr "Zubehör"
 
+msgid "Account"
+msgstr ""
+
 msgid "Add company user"
 msgstr "Firmenbenutzer hinzufügen"
 
@@ -244,6 +247,9 @@ msgstr "Kunden bearbeiten - %name%"
 msgid "Effectivness Hunter"
 msgstr "Effektivität Jäger"
 
+msgid "Email sending has been prevented so the demoshop is not abused for the spam distribution."
+msgstr "Das Versenden von E-Mail wurde verhindert, damit der Demoshop nicht für die Spam-Verteilung missbraucht wird."
+
 msgid "Empty cart"
 msgstr "Leerer Warenkorb"
 
@@ -277,8 +283,14 @@ msgstr "Passwort vergessen"
 msgid "From"
 msgstr "Von"
 
+msgid "Frontend"
+msgstr "Frontend"
+
 msgid "Full name"
 msgstr "Vollständiger Name"
+
+msgid "Go to Frontend"
+msgstr "Gehe zum Frontend"
 
 msgid "Go to cart"
 msgstr "Zum Warenkorb gehen"
@@ -325,6 +337,9 @@ msgstr "ID"
 msgid "Image"
 msgstr "Bild"
 
+msgid "In the standard project, the email would be sent to your email address, but now the sending has been prevented so the demoshop is not abused for the spam distribution."
+msgstr "Im Standardprojekt würde die E-Mail an Ihre E-Mail-Adresse gesendet, aber jetzt wurde das Senden verhindert, damit der Demoshop nicht für die Spam-Verteilung missbraucht wird."
+
 msgid "Invalid login"
 msgstr "Ungültiger Anmeldung"
 
@@ -366,6 +381,9 @@ msgstr "Nachricht"
 
 msgid "More information"
 msgstr "Mehr Informationen"
+
+msgid "My account"
+msgstr "Mein Benutzerkonto"
 
 msgid "My orders"
 msgstr "Meine Bestellungen"
@@ -823,6 +841,12 @@ msgstr "Zasilkovna.cz - Ausgabestelle"
 msgid "Zásilkovna"
 msgstr "Zásilkovna"
 
+msgid "alphabetically A -> Z"
+msgstr "alphabetisch A -> Z"
+
+msgid "alphabetically Z -> A"
+msgstr "alphabetisch Z -> A"
+
 msgid "customers"
 msgstr "Kunden"
 
@@ -837,6 +861,12 @@ msgstr "von"
 
 msgid "from %price%"
 msgstr "ab %price% Preis"
+
+msgid "from most expensive"
+msgstr "vom teuersten"
+
+msgid "from the cheapest"
+msgstr "vom billigsten"
 
 msgid "on homepage above popular categories (Primary)"
 msgstr "auf der Homepage über den populären Kategorien (Primär)"
