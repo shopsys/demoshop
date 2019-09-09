@@ -2,6 +2,7 @@
 
 @web-footer-background: @color-3;
 @web-header-background: @color-3;
+@web-header-min-height: 86px;
 
 img {
     max-width: 100%;
@@ -77,6 +78,7 @@ img {
 
     &__header {
         margin-bottom: @margin-gap/2;
+        min-height: @web-header-min-height;
 
         background-color: @web-header-background;
         border-top: 1px solid rgba(255,255,255,0.1);
