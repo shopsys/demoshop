@@ -23,7 +23,7 @@ msgid "Accessories"
 msgstr "Zubehör"
 
 msgid "Account"
-msgstr ""
+msgstr "Benutzerkonto"
 
 msgid "Add company user"
 msgstr "Firmenbenutzer hinzufügen"
@@ -720,6 +720,9 @@ msgstr "Zu"
 
 msgid "To prevent the possibility of account theft, the change of the e-mail address must be dealt with individually. If your e-mail address has changed, please contact us."
 msgstr "Um die Möglichkeit eines Accountdiebstahls zu verhindern, muss die Änderung der E-Mail-Adresse individuell behandelt werden. Wenn sich Ihre E-Mail-Adresse geändert hat, kontaktieren Sie uns bitte."
+
+msgid "TOP"
+msgstr "TOP"
 
 msgid "Total"
 msgstr "Gesamt"
