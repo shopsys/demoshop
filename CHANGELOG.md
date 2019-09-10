@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - CategoryRepositoryTest was fixed for third domain
     - translations were copied from en language and prefixed with (de)
 - [#81 - added google tag manager scripts](https://github.com/shopsys/demoshop/pull/81)
+- [#80 - added chatbot](https://github.com/shopsys/demoshop/pull/80)
+    - there is now chatbot displayed on all pages to allow visitors of demoshop to contact Shopsys directly
 
 ### Changed
 - [#1 - Basic changes in docs, readme etc. after copying from project-base](https://github.com/shopsys/demoshop/pull/1) : [@LukasHeinz]

@@ -50,6 +50,7 @@
             'admin/components/*.js',
             'admin/*.js',
             'custom_admin/*.js',
+            'frontend/plugins/chatbot.js',
         ]) }}
         {{ js_validator_config() }}
         {{ init_js_validation() }}
@@ -76,5 +77,11 @@
         {% if app.environment == 'dev' %}
             <script async src="//localhost:35729/livereload.js"></script>
         {% endif %}
+
+        <style type="text/css">
+            .chatlio-widget {
+                bottom: 40px;
+            }
+        </style>
     </body>
 </html>
