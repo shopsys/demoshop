@@ -71,29 +71,12 @@
                 &__link {
                     display: block;
                     position: relative;
-                    padding: 15px;
+                    padding: 10px;
 
                     color: @color-base;
-                    font-size: 16px;
+                    font-size: 13px;
                     font-weight: 700;
                     text-decoration: none;
-
-                    &:after {
-                        position: absolute;
-                        top: 0;
-                        right: 100%;
-                        bottom: 0;
-                        left: 0;
-                        content: ' ';
-
-                        background-color: fade(@list-menu-color-link, 5%);
-                        transition: @transition;
-                    }
-
-                    &:hover:after {
-                        right: 0;
-
-                    }
                 }
             }
         }
