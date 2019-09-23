@@ -50,15 +50,14 @@
 
             display: none;
             position: absolute;
-            top: 26px;
+            top: 30px;
             left: 50%;
             margin-left: -70px;
             width: 140px;
             z-index: 30;
 
             background: @color-f;
-            border: 1px solid @color-border;
-            border-top: 0;
+            border: 3px solid @color-border-light;
 
             .menu-iconic__item:hover & {
                 display: block;
@@ -71,7 +70,13 @@
 
                 &__link {
                     display: block;
-                    padding: 5px 10px;
+                    position: relative;
+                    padding: 10px;
+
+                    color: @color-base;
+                    font-size: 13px;
+                    font-weight: 700;
+                    text-decoration: none;
                 }
             }
         }

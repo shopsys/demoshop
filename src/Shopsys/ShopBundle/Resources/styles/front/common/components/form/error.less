@@ -29,9 +29,9 @@
     }
 
     &--choice {
-        right: auto;
-        top: -3px;
-        margin-bottom: -5px;
+        position: absolute;
+        top: -15px;
+        left: 100%;
     }
 
     &--line-block {
@@ -66,8 +66,8 @@
         position: absolute;
         top: 100%;
         left: 50%;
-        width: 120px;
-        margin-left: -60px;
+        width: 130px;
+        margin-left: -65px;
         margin-top: 10px;
         padding: 5px;
         display: none;
@@ -76,6 +76,7 @@
 
         background: rgba(0,0,0, 0.7);
         color: @color-f;
+        word-wrap: break-word;
 
         &:after {
             position: absolute;
@@ -115,18 +116,18 @@
             font-size: 12px;
             color: @color-f;
         }
-        
+
         &.right {
             left: -170%;
-            
+
             &:after {
                 left: 87%;
             }
         }
-        
+
         &.left {
             left: 60px;
-            
+
             &:after {
                 left: 9%;
             }

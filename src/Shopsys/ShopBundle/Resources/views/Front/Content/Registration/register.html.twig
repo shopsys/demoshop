@@ -30,7 +30,7 @@
                     <div class="form-choice__input">
                         {{ form_widget(form.privacyPolicy) }}
                     </div>
-                    <div class="form-choice__label">
+                    <div class="form-choice__label form-choice__label--checkbox">
                         <label for="{{ form.privacyPolicy.vars.id }}">
                             {% if privacyPolicyArticle is not null %}
                                 {% set articleUrl = url('front_article_detail', {'id': privacyPolicyArticle.id}) %}
