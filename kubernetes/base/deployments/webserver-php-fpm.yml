@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: webserver-php-fpm
+    labels:
+        app: webserver-php-fpm
+spec:
+    replicas: 1
+    strategy:
+        rollingUpdate:
+            maxSurge: 1
+            maxUnavailable: 0
+        type: RollingUpdate
+    selector:
+        matchLabels:
+            app: webserver-php-fpm
+    template:
+        metadata:
+            labels:
+                app: webserver-php-fpm
+        spec:
+            hostAliases:
+                -   ip: "127.0.0.1"
+                    hostnames:
+                        - "webserver-php-fpm"
+                        - "php-fpm"
+                        - "webserver"
+                        - "{{FIRST_DOMAIN_HOSTNAME}}"
+                        - "{{SECOND_DOMAIN_HOSTNAME}}"
+                        - "{{THIRD_DOMAIN_HOSTNAME}}"
+            volumes:
+                -   name: source-codes
+                    emptyDir: {}
+                -   name: domains-urls
+                    configMap:
+                        name: domains-urls
+                -   name: parameters
+                    configMap:
+                        name: parameters
+                -   name: nginx-configuration
+                    configMap:
+                        name: nginx-configuration
+                        items:
+                            -   key: nginx.conf
+                                path: default.conf
+            initContainers:
+                -   name: copy-source-codes-to-volume
+                    image: "{{DOCKER_PHP_FPM_IMAGE}}"
+                    securityContext:
+                        runAsUser: 33
+                    command: ["sh", "-c", "cp -r /var/www/html/. /tmp/source-codes"]
+                    volumeMounts:
+                        -   name: source-codes
+                            mountPath: /tmp/source-codes
+                        -   name: domains-urls
+                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/domains_urls.yml"
+                            subPath: domains_urls.yml
+                        -   name: parameters
+                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/parameters.yml"
+                            subPath: parameters.yml
+                -   name: initialize-database
+                    image: "{{DOCKER_PHP_FPM_IMAGE}}"
+                    securityContext:
+                        runAsUser: 33
+                    command: ["sh", "-c", "cd /var/www/html && ./phing db-create dirs-create db-demo product-search-recreate-structure product-search-export-products grunt error-pages-generate warmup"]
+                    volumeMounts:
+                        -   name: source-codes
+                            mountPath: /var/www/html
+                        -   name: domains-urls
+                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/domains_urls.yml"
+                            subPath: domains_urls.yml
+                        -   name: parameters
+                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/parameters.yml"
+                            subPath: parameters.yml
+            containers:
+                -   image: "{{DOCKER_PHP_FPM_IMAGE}}"
+                    name: php-fpm
+                    securityContext:
+                        runAsUser: 33
+                    workingDir: /var/www/html
+                    volumeMounts:
+                        -   name: source-codes
+                            mountPath: /var/www/html
+                        -   name: domains-urls
+                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/domains_urls.yml"
+                            subPath: domains_urls.yml
+                        -   name: parameters
+                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/parameters.yml"
+                            subPath: parameters.yml
+                -   image: nginx:1.13.10-alpine
+                    name: webserver
+                    ports:
+                        -   containerPort: 8080
+                            name: http
+                    volumeMounts:
+                        -   name: nginx-configuration
+                            mountPath: /etc/nginx/conf.d
+                        -   name: source-codes
+                            mountPath: /var/www/html
+                    lifecycle:
+                        preStop:
+                            exec:
+                                command:
+                                    - nginx -s quit

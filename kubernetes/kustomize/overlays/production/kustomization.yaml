@@ -1,0 +1,12 @@
+bases:
+    - ../../../base
+resources:
+    - ./namespace.yaml
+    - ./tls-secret.yml
+patches:
+    - ./ingress-patch.yaml
+namespace: production
+configMapGenerator:
+    -   name: nginx-configuration
+        files:
+            - config/webserver-php-fpm/nginx.conf

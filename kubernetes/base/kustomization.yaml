@@ -1,0 +1,20 @@
+resources:
+    - deployments/elasticsearch.yml
+    - deployments/postgres.yml
+    - deployments/redis.yml
+    - deployments/webserver-php-fpm.yml
+    - services/elasticsearch.yml
+    - services/postgres.yml
+    - services/redis.yml
+    - services/webserver-php-fpm.yml
+    - ingress.yml
+configMapGenerator:
+    -   name: postgres-configuration
+        files:
+            - config/postgres/postgres.conf
+    -   name: domains-urls
+        files:
+            - config/app/config/domains_urls.yml
+    -   name: parameters
+        files:
+            - config/app/config/parameters.yml
