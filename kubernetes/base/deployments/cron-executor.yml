@@ -1,0 +1,81 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+    name: cron-executor
+spec:
+    concurrencyPolicy: Forbid
+    failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 1
+    startingDeadlineSeconds: 600 # Prevents disable creating cron jobs
+    schedule: "*/5 * * * *"
+    jobTemplate:
+        spec:
+            backoffLimit: 0
+            activeDeadlineSeconds: 86400
+            template:
+                spec:
+                    volumes:
+                        -   name: source-codes
+                            emptyDir: {}
+                        -   name: domains-urls
+                            configMap:
+                                name: domains-urls
+                        -   name: parameters
+                            configMap:
+                                name: parameters
+                        -   name: nginx-configuration
+                            configMap:
+                                name: nginx-configuration
+                                items:
+                                    -   key: nginx.conf
+                                        path: default.conf
+                    initContainers:
+                        -   name: copy-source-codes-to-volume
+                            image: "{{DOCKER_PHP_FPM_IMAGE}}"
+                            securityContext:
+                                runAsUser: 33
+                            command: ["sh", "-c", "cp -r /var/www/html/. /tmp/source-codes"]
+                            volumeMounts:
+                                -   name: source-codes
+                                    mountPath: /tmp/source-codes
+                                -   name: domains-urls
+                                    mountPath: "{{PATH_CONFIG_DIRECTORY}}/domains_urls.yml"
+                                    subPath: domains_urls.yml
+                                -   name: parameters
+                                    mountPath: "{{PATH_CONFIG_DIRECTORY}}/parameters.yml"
+                                    subPath: parameters.yml
+                        -   name: initialize-database
+                            image: "{{DOCKER_PHP_FPM_IMAGE}}"
+                            securityContext:
+                                runAsUser: 33
+                            command: ["sh", "-c", "cd /var/www/html && ./phing product-search-export-products grunt error-pages-generate warmup"]
+                            volumeMounts:
+                                -   name: source-codes
+                                    mountPath: /var/www/html
+                                -   name: domains-urls
+                                    mountPath: "{{PATH_CONFIG_DIRECTORY}}/domains_urls.yml"
+                                    subPath: domains_urls.yml
+                                -   name: parameters
+                                    mountPath: "{{PATH_CONFIG_DIRECTORY}}/parameters.yml"
+                                    subPath: parameters.yml
+                    containers:
+                        -   name: cron-executor
+                            image: "{{DOCKER_PHP_FPM_IMAGE}}"
+                            args:
+                                - /bin/sh
+                                - -c
+                                - ./phing cron
+                            securityContext:
+                                runAsUser: 33
+                            imagePullPolicy: Always
+                            workingDir: /var/www/html
+                            volumeMounts:
+                                -   name: source-codes
+                                    mountPath: /var/www/html
+                                -   name: domains-urls
+                                    mountPath: "{{PATH_CONFIG_DIRECTORY}}/domains_urls.yml"
+                                    subPath: domains_urls.yml
+                                -   name: parameters
+                                    mountPath: "{{PATH_CONFIG_DIRECTORY}}/parameters.yml"
+                                    subPath: parameters.yml
+                    restartPolicy: Never
