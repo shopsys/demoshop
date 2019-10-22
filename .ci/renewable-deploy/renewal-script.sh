@@ -16,7 +16,7 @@ POD_POSTGRES=$(kubectl get pods -l app=postgres -o=jsonpath='{.items[0].metadata
 
 # Download fashionable data from google storage
 gsutil cp gs://${GOOGLE_CLOUD_STORAGE_BUCKET_NAME_DEMO_FILES}/demo-sql.sql demo-sql.sql
-kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- wget -O web-content.zip https://storage.googleapis.com/${GOOGLE_CLOUD_STORAGE_BUCKET_NAME_DEMO_FILES}/web-content.zip
+kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- wget -O web-content.zip https://storage.googleapis.com/${GOOGLE_CLOUD_STORAGE_BUCKET_NAME_DEMO_FILES}/web-content.zip --no-cache
 kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- unzip -o web-content.zip
 
 kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- php phing maintenance-on
