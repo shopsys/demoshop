@@ -6,7 +6,7 @@ gcloud auth activate-service-account --key-file /tmp/infrastructure/google-cloud
 
 # when cluster is not up and running the result of `gcloud container clusters list` is empty
 IS_CLUSTER_UP=$(gcloud container clusters list --filter name=${GOOGLE_CLOUD_CLUSTER_NAME})
-if [ -z ${IS_CLUSTER_UP} ]; then
+if [ -z "${IS_CLUSTER_UP}" ]; then
   echo "Cluster \"${GOOGLE_CLOUD_CLUSTER_NAME}\" does not exist."
   echo "Creating cluster..."
   gcloud container clusters create ${GOOGLE_CLOUD_CLUSTER_NAME}
