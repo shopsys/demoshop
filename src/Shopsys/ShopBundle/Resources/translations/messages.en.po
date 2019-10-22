@@ -52,6 +52,9 @@ msgstr ""
 msgid "Apply"
 msgstr ""
 
+msgid "Attention! Demoshop refreshes presentation data every day at 2 AM."
+msgstr ""
+
 msgid "Attention! You are administrator logged in as the customer."
 msgstr ""
 

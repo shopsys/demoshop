@@ -3,21 +3,22 @@
 
 {% block html_body %}
     {% set adminLoggedAsCustomer = is_granted(constant('Shopsys\\FrameworkBundle\\Model\\Security\\Roles::ROLE_ADMIN_AS_CUSTOMER')) %}
-    {% if adminLoggedAsCustomer or isMailerSettingUnusual() %}
-        <div class="window-bar dont-print">
-            {% if adminLoggedAsCustomer %}
-                <div class="window-bar__item">
-                    {{ 'Attention! You are administrator logged in as the customer.'|trans }}
-                    <a href="{{ url('front_logout', { _csrf_token: csrf_token('frontend_logout')}) }}">{{ 'Log out'|trans }}</a>
-                </div>
-            {% endif %}
-            {% if isMailerSettingUnusual() %}
-                <div class="window-bar__item">
-                    {{ getMailerSettingInfo() }}
-                </div>
-            {% endif %}
+    <div class="window-bar dont-print">
+        <div class="window-bar__item">
+            {{ 'Attention! Demoshop refreshes presentation data every day at 2 AM.'| trans }}
         </div>
-    {% endif %}
+        {% if adminLoggedAsCustomer %}
+            <div class="window-bar__item">
+                {{ 'Attention! You are administrator logged in as the customer.'|trans }}
+                <a href="{{ url('front_logout', { _csrf_token: csrf_token('frontend_logout')}) }}">{{ 'Log out'|trans }}</a>
+            </div>
+        {% endif %}
+        {% if isMailerSettingUnusual() %}
+            <div class="window-bar__item">
+                {{ getMailerSettingInfo() }}
+            </div>
+        {% endif %}
+    </div>
     <div class="web__in">
         <div class="web__line web__line--dark">
             <div class="web__container">

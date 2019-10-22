@@ -52,6 +52,9 @@ msgstr "Množství"
 msgid "Apply"
 msgstr "Uplatnit"
 
+msgid "Attention! Demoshop refreshes presentation data every day at 2 AM."
+msgstr "Upozornění! Demoshop obnovuje prezentační data každý den ve 2 hodiny."
+
 msgid "Attention! You are administrator logged in as the customer."
 msgstr "Pozor! Jste jako administrátor přihlášen za zákazníka."
 
