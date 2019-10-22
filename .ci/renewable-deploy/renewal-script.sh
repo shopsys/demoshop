@@ -25,11 +25,11 @@ kubectl exec ${POD_POSTGRES} -- dropdb shopsys
 kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- php phing db-create
 kubectl exec -i ${POD_POSTGRES} -- psql shopsys < demo-sql.sql
 
-kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- php phing clean db-migrations
+kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- php phing clean-cache db-migrations
 
 # remove actual images, copy new ones, remove temp files
 kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- rm -r web/content web-content.zip
 kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- mv web-content web/content
 rm -r demo-sql.sql
 
-kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- php phing clean product-search-export-products maintenance-off
+kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- php phing clean-cache product-search-export-products maintenance-off
