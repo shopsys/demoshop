@@ -11,7 +11,7 @@ kubectl config set-context --current --namespace=production
 # Listing pods to know what is really running - only for debugging purposes
 kubectl get pods -l app=webserver-php-fpm
 # Find running webserver and postgres
-POD_PHP_FPM=$(kubectl get pods -l app=webserver-php-fpm -o=jsonpath='{.items[0].metadata.name}')
+POD_PHP_FPM=$(kubectl get pods -l app=webserver-php-fpm | grep "Running" | awk '{print $1}')
 POD_POSTGRES=$(kubectl get pods -l app=postgres -o=jsonpath='{.items[0].metadata.name}')
 
 # Download fashionable data from google storage
