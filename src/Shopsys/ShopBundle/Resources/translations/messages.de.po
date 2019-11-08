@@ -53,7 +53,7 @@ msgid "Apply"
 msgstr "Anwenden"
 
 msgid "Attention! Demoshop refreshes presentation data every day at 2 AM."
-msgstr "(DE) Attention! Demoshop refreshes presentation data every day at 2 AM."
+msgstr "Beachtung! Demoshop aktualisiert die Präsentationsdaten jeden Tag um 2 Uhr morgens."
 
 msgid "Attention! You are administrator logged in as the customer."
 msgstr "Achtung! Sie sind Administrator, aber Sie haben sich als Kunde angemeldet."
