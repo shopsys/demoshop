@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Twig;
 
 use CommerceGuys\Intl\NumberFormat\NumberFormatRepository;
+use Shopsys\FrameworkBundle\Component\CurrencyFormatter\CurrencyFormatterFactory;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Localization\IntlCurrencyRepository;
@@ -42,6 +43,11 @@ class PriceExtensionTest extends FunctionalTestCase
      */
     private $numberFormatRepository;
 
+    /**
+     * @var \Shopsys\FrameworkBundle\Component\CurrencyFormatter\CurrencyFormatterFactory
+     */
+    private $currencyFormatterFactory;
+
     protected function setUp()
     {
         $this->currencyFacade = $this->getContainer()->get(CurrencyFacade::class);
@@ -49,6 +55,7 @@ class PriceExtensionTest extends FunctionalTestCase
         $this->localization = $this->getContainer()->get(Localization::class);
         $this->intlCurrencyRepository = $this->getContainer()->get(IntlCurrencyRepository::class);
         $this->numberFormatRepository = $this->getContainer()->get(NumberFormatRepository::class);
+        $this->currencyFormatterFactory = $this->getContainer()->get(CurrencyFormatterFactory::class);
 
         parent::setUp();
     }
@@ -139,7 +146,8 @@ class PriceExtensionTest extends FunctionalTestCase
             $this->domain,
             $this->localization,
             $this->numberFormatRepository,
-            $this->intlCurrencyRepository
+            $this->intlCurrencyRepository,
+            $this->currencyFormatterFactory
         );
 
         $this->assertSame($result, $priceExtension->priceFilter($input));
