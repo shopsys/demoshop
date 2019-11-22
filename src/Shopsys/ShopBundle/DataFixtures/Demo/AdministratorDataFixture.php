@@ -16,7 +16,7 @@ class AdministratorDataFixture extends AbstractReferenceFixture
     public const ADMINISTRATOR = 'administrator_administrator';
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade
+     * @var \Shopsys\ShopBundle\Model\Administrator\AdministratorFacade
      */
     protected $administratorFacade;
 
@@ -26,7 +26,7 @@ class AdministratorDataFixture extends AbstractReferenceFixture
     private $administratorDataFactory;
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade $administratorFacade
+     * @param \Shopsys\ShopBundle\Model\Administrator\AdministratorFacade $administratorFacade
      * @param \Shopsys\FrameworkBundle\Model\Administrator\AdministratorDataFactoryInterface $administratorDataFactory
      */
     public function __construct(AdministratorFacade $administratorFacade, AdministratorDataFactoryInterface $administratorDataFactory)

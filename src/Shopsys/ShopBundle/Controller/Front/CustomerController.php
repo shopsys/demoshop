@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 class CustomerController extends FrontBaseController
 {
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade
+     * @var \Shopsys\ShopBundle\Model\Customer\CustomerFacade
      */
     private $customerFacade;
 
@@ -32,7 +32,7 @@ class CustomerController extends FrontBaseController
     private $orderItemPriceCalculation;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Order\OrderFacade
+     * @var \Shopsys\ShopBundle\Model\Order\OrderFacade
      */
     private $orderFacade;
 
@@ -42,17 +42,17 @@ class CustomerController extends FrontBaseController
     private $loginAsUserFacade;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface
+     * @var \Shopsys\ShopBundle\Model\Customer\CustomerDataFactory
      */
     private $customerDataFactory;
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade $customerFacade
-     * @param \Shopsys\FrameworkBundle\Model\Order\OrderFacade $orderFacade
+     * @param \Shopsys\ShopBundle\Model\Customer\CustomerFacade $customerFacade
+     * @param \Shopsys\ShopBundle\Model\Order\OrderFacade $orderFacade
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
      * @param \Shopsys\FrameworkBundle\Model\Order\Item\OrderItemPriceCalculation $orderItemPriceCalculation
      * @param \Shopsys\FrameworkBundle\Model\Security\LoginAsUserFacade $loginAsUserFacade
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface $customerDataFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\CustomerDataFactory $customerDataFactory
      */
     public function __construct(
         CustomerFacade $customerFacade,
@@ -115,7 +115,7 @@ class CustomerController extends FrontBaseController
         }
 
         $user = $this->getUser();
-        /* @var $user \Shopsys\FrameworkBundle\Model\Customer\User */
+        /* @var $user \Shopsys\ShopBundle\Model\Customer\User */
 
         if ($user->getBillingAddress()->isCompanyWithMultipleUsers()) {
             $users = $this->customerFacade->getUsersByBillingAddressAndDomain($user->getBillingAddress(), $user->getDomainId());
@@ -161,10 +161,10 @@ class CustomerController extends FrontBaseController
             try {
                 if ($user->getBillingAddress()->isCompanyWithMultipleUsers()) {
                     $order = $this->orderFacade->getByOrderNumberAndBillingAddress($orderNumber, $user->getBillingAddress());
-                /* @var $order \Shopsys\FrameworkBundle\Model\Order\Order */
+                /* @var $order \Shopsys\ShopBundle\Model\Order\Order */
                 } else {
                     $order = $this->orderFacade->getByOrderNumberAndUser($orderNumber, $user);
-                    /* @var $order \Shopsys\FrameworkBundle\Model\Order\Order */
+                    /* @var $order \Shopsys\ShopBundle\Model\Order\Order */
                 }
             } catch (\Shopsys\FrameworkBundle\Model\Order\Exception\OrderNotFoundException $ex) {
                 $this->getFlashMessageSender()->addErrorFlash(t('Order not found'));
@@ -172,7 +172,7 @@ class CustomerController extends FrontBaseController
             }
         } else {
             $order = $this->orderFacade->getByUrlHashAndDomain($urlHash, $this->domain->getId());
-            /* @var $order \Shopsys\FrameworkBundle\Model\Order\Order */
+            /* @var $order \Shopsys\ShopBundle\Model\Order\Order */
         }
 
         $orderItemTotalPricesById = $this->orderItemPriceCalculation->calculateTotalPricesIndexedById($order->getItems());

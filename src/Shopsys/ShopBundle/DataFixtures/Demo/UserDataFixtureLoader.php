@@ -51,7 +51,7 @@ class UserDataFixtureLoader
     protected $path;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface
+     * @var \Shopsys\ShopBundle\Model\Customer\UserDataFactory
      */
     protected $userDataFactory;
 
@@ -61,12 +61,12 @@ class UserDataFixtureLoader
     protected $countries;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface
+     * @var \Shopsys\ShopBundle\Model\Customer\CustomerDataFactory
      */
     protected $customerDataFactory;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface
+     * @var \Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory
      */
     protected $billingAddressDataFactory;
 
@@ -83,9 +83,9 @@ class UserDataFixtureLoader
     /**
      * @param string $path
      * @param \Shopsys\FrameworkBundle\Component\Csv\CsvReader $csvReader
-     * @param \Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface $userDataFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface $customerDataFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface $billingAddressDataFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\UserDataFactory $userDataFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\CustomerDataFactory $customerDataFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory $billingAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressDataFactoryInterface $deliveryAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
      */
@@ -117,7 +117,7 @@ class UserDataFixtureLoader
 
     /**
      * @param int $domainId
-     * @return  \Shopsys\FrameworkBundle\Model\Customer\CustomerData[]
+     * @return  \Shopsys\ShopBundle\Model\Customer\CustomerData[]
      */
     public function getCustomersDataByDomainId($domainId)
     {
@@ -163,7 +163,7 @@ class UserDataFixtureLoader
 
     /**
      * @param array $row
-     * @return \Shopsys\FrameworkBundle\Model\Customer\CustomerData
+     * @return \Shopsys\ShopBundle\Model\Customer\CustomerData
      */
     protected function getCustomerDataFromCsvRow(array $row)
     {

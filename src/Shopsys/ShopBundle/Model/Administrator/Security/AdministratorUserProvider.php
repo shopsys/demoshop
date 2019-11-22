@@ -10,11 +10,16 @@ use Shopsys\FrameworkBundle\Model\Administrator\Security\AdministratorUserProvid
 use Shopsys\FrameworkBundle\Model\Security\TimelimitLoginInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @property \Shopsys\ShopBundle\Model\Administrator\AdministratorRepository $administratorRepository
+ * @method __construct(\Shopsys\ShopBundle\Model\Administrator\AdministratorRepository $administratorRepository, \Shopsys\FrameworkBundle\Model\Administrator\Activity\AdministratorActivityFacade $administratorActivityFacade)
+ * @method \Shopsys\ShopBundle\Model\Administrator\Administrator loadUserByUsername(string $username)
+ */
 class AdministratorUserProvider extends BaseAdministratorUserProvider
 {
     /**
      * @param \Symfony\Component\Security\Core\User\UserInterface $userInterface
-     * @return \Shopsys\FrameworkBundle\Model\Administrator\Administrator
+     * @return \Shopsys\ShopBundle\Model\Administrator\Administrator
      */
     public function refreshUser(UserInterface $userInterface)
     {
@@ -24,7 +29,7 @@ class AdministratorUserProvider extends BaseAdministratorUserProvider
             throw new \Symfony\Component\Security\Core\Exception\UnsupportedUserException($message);
         }
 
-        /** @var \Shopsys\FrameworkBundle\Model\Administrator\Administrator $administrator */
+        /** @var \Shopsys\ShopBundle\Model\Administrator\Administrator $administrator */
         $administrator = $userInterface;
 
         $freshAdministrator = $this->administratorRepository->findById($administrator->getId());

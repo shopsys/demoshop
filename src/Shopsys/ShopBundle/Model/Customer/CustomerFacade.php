@@ -16,10 +16,25 @@ use Shopsys\FrameworkBundle\Model\Customer\Mail\CustomerMailFacade;
 use Shopsys\FrameworkBundle\Model\Customer\UserFactoryInterface;
 use Shopsys\ShopBundle\Model\Customer\Exception\DuplicateEmailsException;
 
+/**
+ * @property \Shopsys\ShopBundle\Model\Customer\UserRepository $userRepository
+ * @property \Shopsys\ShopBundle\Model\Customer\BillingAddressFactory $billingAddressFactory
+ * @property \Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory $billingAddressDataFactory
+ * @method \Shopsys\ShopBundle\Model\Customer\User getUserById(int $userId)
+ * @method \Shopsys\ShopBundle\Model\Customer\User|null findUserByEmailAndDomain(string $email, int $domainId)
+ * @method \Shopsys\ShopBundle\Model\Customer\User register(\Shopsys\ShopBundle\Model\Customer\UserData $userData)
+ * @method \Shopsys\ShopBundle\Model\Customer\User create(\Shopsys\ShopBundle\Model\Customer\CustomerData $customerData)
+ * @method \Shopsys\ShopBundle\Model\Customer\User edit(int $userId, \Shopsys\ShopBundle\Model\Customer\CustomerData $customerData)
+ * @method editDeliveryAddress(\Shopsys\ShopBundle\Model\Customer\User $user, \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressData $deliveryAddressData)
+ * @method \Shopsys\ShopBundle\Model\Customer\User editByAdmin(int $userId, \Shopsys\ShopBundle\Model\Customer\CustomerData $customerData)
+ * @method \Shopsys\ShopBundle\Model\Customer\User editByCustomer(int $userId, \Shopsys\ShopBundle\Model\Customer\CustomerData $customerData)
+ * @method amendCustomerDataFromOrder(\Shopsys\ShopBundle\Model\Customer\User $user, \Shopsys\ShopBundle\Model\Order\Order $order)
+ * @method setEmail(string $email, \Shopsys\ShopBundle\Model\Customer\User $user)
+ */
 class CustomerFacade extends BaseCustomerFacade
 {
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface
+     * @var \Shopsys\ShopBundle\Model\Customer\CustomerDataFactory
      */
     protected $customerDataFactory;
 
@@ -31,11 +46,11 @@ class CustomerFacade extends BaseCustomerFacade
     /**
      * @param \Doctrine\ORM\EntityManagerInterface $em
      * @param \Shopsys\ShopBundle\Model\Customer\UserRepository $userRepository
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface $customerDataFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\CustomerDataFactory $customerDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\Mail\CustomerMailFacade $customerMailFacade
-     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface $billingAddressFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\BillingAddressFactory $billingAddressFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFactoryInterface $deliveryAddressFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface $billingAddressDataFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\BillingAddressDataFactory $billingAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\UserFactoryInterface $userFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerPasswordFacade $customerPasswordFacade
      */
@@ -56,7 +71,7 @@ class CustomerFacade extends BaseCustomerFacade
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddress $billingAddress
+     * @param \Shopsys\ShopBundle\Model\Customer\BillingAddress $billingAddress
      * @param int $domainId
      * @return \Shopsys\ShopBundle\Model\Customer\User[]
      */
@@ -75,7 +90,7 @@ class CustomerFacade extends BaseCustomerFacade
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddress $billingAddress
+     * @param \Shopsys\ShopBundle\Model\Customer\BillingAddress $billingAddress
      * @return \Shopsys\ShopBundle\Model\Customer\User
      */
     public function getUserByBillingAddress(BillingAddress $billingAddress)
@@ -118,7 +133,7 @@ class CustomerFacade extends BaseCustomerFacade
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddress $billingAddress
+     * @param \Shopsys\ShopBundle\Model\Customer\BillingAddress $billingAddress
      * @param \Shopsys\ShopBundle\Model\Customer\CustomerData $companyData
      */
     protected function removeOldCompanyUsers(BillingAddress $billingAddress, CustomerData $companyData)
@@ -208,7 +223,7 @@ class CustomerFacade extends BaseCustomerFacade
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddress $billingAddress
+     * @param \Shopsys\ShopBundle\Model\Customer\BillingAddress $billingAddress
      * @param \Shopsys\ShopBundle\Model\Customer\CustomerData $companyData
      * @throws \Shopsys\ShopBundle\Model\Customer\Exception\DuplicateEmailsException
      */

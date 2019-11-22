@@ -59,7 +59,7 @@ class OrderController extends FrontBaseController
     private $orderDataMapper;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Order\OrderFacade
+     * @var \Shopsys\ShopBundle\Model\Order\OrderFacade
      */
     private $orderFacade;
 
@@ -114,7 +114,7 @@ class OrderController extends FrontBaseController
     private $newsletterFacade;
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Order\OrderFacade $orderFacade
+     * @param \Shopsys\ShopBundle\Model\Order\OrderFacade $orderFacade
      * @param \Shopsys\FrameworkBundle\Model\Cart\CartFacade $cartFacade
      * @param \Shopsys\FrameworkBundle\Model\Order\Preview\OrderPreviewFactory $orderPreviewFactory
      * @param \Shopsys\FrameworkBundle\Model\Transport\TransportPriceCalculation $transportPriceCalculation
@@ -123,7 +123,7 @@ class OrderController extends FrontBaseController
      * @param \Shopsys\FrameworkBundle\Model\Transport\TransportFacade $transportFacade
      * @param \Shopsys\FrameworkBundle\Model\Payment\PaymentFacade $paymentFacade
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Currency\CurrencyFacade $currencyFacade
-     * @param \Shopsys\FrameworkBundle\Model\Order\OrderDataMapper $orderDataMapper
+     * @param \Shopsys\ShopBundle\Model\Order\OrderDataMapper $orderDataMapper
      * @param \Shopsys\ShopBundle\Form\Front\Order\DomainAwareOrderFlowFactory $domainAwareOrderFlowFactory
      * @param \Symfony\Component\HttpFoundation\Session\SessionInterface $session
      * @param \Shopsys\FrameworkBundle\Model\Order\Watcher\TransportAndPaymentWatcher $transportAndPaymentWatcher
@@ -296,9 +296,9 @@ class OrderController extends FrontBaseController
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Order\OrderData $orderData
+     * @param \Shopsys\ShopBundle\Model\Order\OrderData $orderData
      * @param \Shopsys\FrameworkBundle\Model\Order\Preview\OrderPreview $orderPreview
-     * @param \Shopsys\FrameworkBundle\Model\Transport\Transport[] $transports
+     * @param \Shopsys\ShopBundle\Model\Transport\Transport[] $transports
      * @param \Shopsys\FrameworkBundle\Model\Payment\Payment[] $payments
      */
     private function checkTransportAndPaymentChanges(
@@ -383,7 +383,7 @@ class OrderController extends FrontBaseController
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Order\Order $order
+     * @param \Shopsys\ShopBundle\Model\Order\Order $order
      */
     private function sendMail($order)
     {

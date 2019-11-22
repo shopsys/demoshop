@@ -6,6 +6,9 @@ namespace Shopsys\ShopBundle\Model\Customer;
 
 use Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer as BaseCurrentCustomer;
 
+/**
+ * @method \Shopsys\ShopBundle\Model\Customer\User|null findCurrentUser()
+ */
 class CurrentCustomer extends BaseCurrentCustomer
 {
     /**

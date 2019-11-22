@@ -328,7 +328,7 @@ class ProductController extends FrontBaseController
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Category\Category $category
+     * @param \Shopsys\ShopBundle\Model\Category\Category $category
      * @return \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterConfig
      */
     private function createProductFilterConfigForCategory(Category $category)
@@ -355,7 +355,7 @@ class ProductController extends FrontBaseController
 
     /**
      * @param string|null $searchText
-     * @return \Shopsys\FrameworkBundle\Model\Category\Category[]
+     * @return \Shopsys\ShopBundle\Model\Category\Category[]
      */
     private function searchCategories($searchText)
     {

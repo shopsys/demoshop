@@ -19,7 +19,7 @@ class MultidomainUserDataFixture extends AbstractReferenceFixture implements Dep
     protected $loaderService;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade
+     * @var \Shopsys\ShopBundle\Model\Customer\CustomerFacade
      */
     protected $customerFacade;
 
@@ -35,7 +35,7 @@ class MultidomainUserDataFixture extends AbstractReferenceFixture implements Dep
 
     /**
      * @param \Shopsys\ShopBundle\DataFixtures\Demo\UserDataFixtureLoader $loaderService
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade $customerFacade
+     * @param \Shopsys\ShopBundle\Model\Customer\CustomerFacade $customerFacade
      * @param \Faker\Generator $faker
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
      */

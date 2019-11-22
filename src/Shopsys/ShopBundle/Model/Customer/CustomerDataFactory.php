@@ -8,6 +8,9 @@ use Shopsys\FrameworkBundle\Model\Customer\CustomerData as BaseCustomerData;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactory as BaseCustomerDataFactory;
 use Shopsys\FrameworkBundle\Model\Customer\User as BaseUser;
 
+/**
+ * @method \Shopsys\ShopBundle\Model\Customer\CustomerData createAmendedByOrder(\Shopsys\ShopBundle\Model\Customer\User $user, \Shopsys\ShopBundle\Model\Order\Order $order)
+ */
 class CustomerDataFactory extends BaseCustomerDataFactory
 {
     /**
