@@ -7,6 +7,14 @@ namespace Shopsys\ShopBundle\Model\Administrator;
 use Doctrine\ORM\QueryBuilder;
 use Shopsys\FrameworkBundle\Model\Administrator\AdministratorRepository as BaseAdministratorRepository;
 
+/**
+ * @method \Shopsys\ShopBundle\Model\Administrator\Administrator|null findById(int $administratorId)
+ * @method \Shopsys\ShopBundle\Model\Administrator\Administrator getById(int $administratorId)
+ * @method \Shopsys\ShopBundle\Model\Administrator\Administrator getByValidMultidomainLoginToken(string $multidomainLoginToken)
+ * @method \Shopsys\ShopBundle\Model\Administrator\Administrator|null findByUserName(string $administratorUserName)
+ * @method \Shopsys\ShopBundle\Model\Administrator\Administrator getByUserName(string $administratorUserName)
+ * @method \Shopsys\ShopBundle\Model\Administrator\Administrator[] getAllSuperadmins()
+ */
 class AdministratorRepository extends BaseAdministratorRepository
 {
     /**

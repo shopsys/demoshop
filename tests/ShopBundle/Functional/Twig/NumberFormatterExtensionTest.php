@@ -53,7 +53,7 @@ class NumberFormatterExtensionTest extends FunctionalTestCase
         /* @var $numberFormatRepository \CommerceGuys\Intl\NumberFormat\NumberFormatRepository */
         $numberFormatRepository = $this->getContainer()->get(NumberFormatRepository::class);
 
-        /** @var AdministrationFacade $administrationFacade */
+        /** @var \Shopsys\FrameworkBundle\Model\Administration\AdministrationFacade $administrationFacade */
         $administrationFacade = $this->getContainer()->get(AdministrationFacade::class);
 
         $numberFormatterExtension = new NumberFormatterExtension($localizationMock, $numberFormatRepository, $administrationFacade);

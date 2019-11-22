@@ -9,6 +9,13 @@ use Shopsys\FrameworkBundle\Form\Admin\QuickSearch\QuickSearchFormData;
 use Shopsys\FrameworkBundle\Model\Customer\BillingAddress as BaseBillingAddress;
 use Shopsys\FrameworkBundle\Model\Customer\UserRepository as BaseUserRepository;
 
+/**
+ * @method \Shopsys\ShopBundle\Model\Customer\User|null findUserByEmailAndDomain(string $email, int $domainId)
+ * @method \Shopsys\ShopBundle\Model\Customer\User|null getUserByEmailAndDomain(string $email, int $domainId)
+ * @method \Shopsys\ShopBundle\Model\Customer\User getUserById(int $id)
+ * @method \Shopsys\ShopBundle\Model\Customer\User|null findById(int $id)
+ * @method \Shopsys\ShopBundle\Model\Customer\User|null findByIdAndLoginToken(int $id, string $loginToken)
+ */
 class UserRepository extends BaseUserRepository
 {
     /**
@@ -80,7 +87,7 @@ class UserRepository extends BaseUserRepository
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddress $billingAddress
+     * @param \Shopsys\ShopBundle\Model\Customer\BillingAddress $billingAddress
      * @return \Shopsys\ShopBundle\Model\Customer\User
      */
     public function getUserByBillingAddress(BillingAddress $billingAddress)

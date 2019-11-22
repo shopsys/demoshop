@@ -61,7 +61,7 @@ class ProductDataFixtureLoader
     protected $availabilities;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Category\Category[]
+     * @var \Shopsys\ShopBundle\Model\Category\Category[]
      */
     protected $categories;
 
@@ -86,7 +86,7 @@ class ProductDataFixtureLoader
     protected $pricingGroups;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface
+     * @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory
      */
     protected $productDataFactory;
 
@@ -102,7 +102,7 @@ class ProductDataFixtureLoader
 
     /**
      * @param \Shopsys\ShopBundle\DataFixtures\Demo\ProductParametersFixtureLoader $productParametersFixtureLoader
-     * @param \Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface $productDataFactory
+     * @param \Shopsys\ShopBundle\Model\Product\ProductDataFactory $productDataFactory
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupFacade $pricingGroupFacade
      */
@@ -121,7 +121,7 @@ class ProductDataFixtureLoader
     /**
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat[] $vats
      * @param \Shopsys\FrameworkBundle\Model\Product\Availability\Availability[] $availabilities
-     * @param \Shopsys\FrameworkBundle\Model\Category\Category[] $categories
+     * @param \Shopsys\ShopBundle\Model\Category\Category[] $categories
      * @param \Shopsys\FrameworkBundle\Model\Product\Flag\Flag[] $flags
      * @param \Shopsys\FrameworkBundle\Model\Product\Brand\Brand[] $brands
      * @param \Shopsys\FrameworkBundle\Model\Product\Unit\Unit[] $units
@@ -148,7 +148,7 @@ class ProductDataFixtureLoader
 
     /**
      * @param array $row
-     * @return \Shopsys\FrameworkBundle\Model\Product\ProductData
+     * @return \Shopsys\ShopBundle\Model\Product\ProductData
      */
     public function createProductDataFromRowForFirstDomain($row)
     {
@@ -175,7 +175,7 @@ class ProductDataFixtureLoader
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Product\ProductData $productData
+     * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
      * @param array $row
      */
     protected function updateProductDataFromCsvRowForFirstDomain(ProductData $productData, array $row)
@@ -251,7 +251,7 @@ class ProductDataFixtureLoader
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Product\ProductData $productData
+     * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
      * @param array $row
      */
     public function updateProductDataFromCsvRowForSecondDomain(ProductData $productData, array $row)
@@ -266,7 +266,7 @@ class ProductDataFixtureLoader
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Product\ProductData $productData
+     * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
      * @param array $row
      */
     public function updateProductDataFromCsvRowForThirdDomain(ProductData $productData, array $row)
@@ -356,7 +356,7 @@ class ProductDataFixtureLoader
 
     /**
      * @param array $row
-     * @param \Shopsys\FrameworkBundle\Model\Product\ProductData $productData
+     * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
      * @param int $domainId
      */
     protected function setProductDataPricesFromCsv(array $row, ProductData $productData, $domainId)

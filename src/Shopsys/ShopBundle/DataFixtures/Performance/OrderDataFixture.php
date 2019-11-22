@@ -73,7 +73,7 @@ class OrderDataFixture
     private $persistentReferenceFacade;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Order\OrderFacade
+     * @var \Shopsys\ShopBundle\Model\Order\OrderFacade
      */
     private $orderFacade;
 
@@ -88,7 +88,7 @@ class OrderDataFixture
     private $productFacade;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade
+     * @var \Shopsys\ShopBundle\Model\Customer\CustomerFacade
      */
     private $customerFacade;
 
@@ -98,7 +98,7 @@ class OrderDataFixture
     private $progressBarFactory;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface
+     * @var \Shopsys\ShopBundle\Model\Order\OrderDataFactory
      */
     private $orderDataFactory;
 
@@ -109,12 +109,12 @@ class OrderDataFixture
      * @param \Shopsys\FrameworkBundle\Component\Doctrine\SqlLoggerFacade $sqlLoggerFacade
      * @param \Faker\Generator $faker
      * @param \Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade $persistentReferenceFacade
-     * @param \Shopsys\FrameworkBundle\Model\Order\OrderFacade $orderFacade
+     * @param \Shopsys\ShopBundle\Model\Order\OrderFacade $orderFacade
      * @param \Shopsys\FrameworkBundle\Model\Order\Preview\OrderPreviewFactory $orderPreviewFactory
      * @param \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade $customerFacade
+     * @param \Shopsys\ShopBundle\Model\Customer\CustomerFacade $customerFacade
      * @param \Shopsys\FrameworkBundle\Component\Console\ProgressBarFactory $progressBarFactory
-     * @param \Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface $orderDataFactory
+     * @param \Shopsys\ShopBundle\Model\Order\OrderDataFactory $orderDataFactory
      */
     public function __construct(
         $orderTotalCount,
@@ -193,8 +193,8 @@ class OrderDataFixture
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Customer\User $user
-     * @return \Shopsys\FrameworkBundle\Model\Order\OrderData
+     * @param \Shopsys\ShopBundle\Model\Customer\User $user
+     * @return \Shopsys\ShopBundle\Model\Order\OrderData
      */
     private function createOrderData(?User $user = null)
     {
@@ -271,7 +271,7 @@ class OrderDataFixture
         $firstPerformanceProduct = $this->persistentReferenceFacade->getReference(
             PerformanceProductDataFixture::FIRST_PERFORMANCE_PRODUCT
         );
-        /* @var $firstPerformanceProduct \Shopsys\FrameworkBundle\Model\Product\Product */
+        /* @var $firstPerformanceProduct \Shopsys\ShopBundle\Model\Product\Product */
 
         $qb = $this->em->createQueryBuilder()
             ->select('p.id')
@@ -298,7 +298,7 @@ class OrderDataFixture
         $firstPerformanceUser = $this->persistentReferenceFacade->getReference(
             PerformanceUserDataFixture::FIRST_PERFORMANCE_USER
         );
-        /* @var $firstPerformanceUser \Shopsys\FrameworkBundle\Model\Customer\User */
+        /* @var $firstPerformanceUser \Shopsys\ShopBundle\Model\Customer\User */
 
         $qb = $this->em->createQueryBuilder()
             ->select('u.id')
@@ -312,7 +312,7 @@ class OrderDataFixture
     }
 
     /**
-     * @return \Shopsys\FrameworkBundle\Model\Customer\User|null
+     * @return \Shopsys\ShopBundle\Model\Customer\User|null
      */
     private function getRandomUserOrNull()
     {
@@ -327,7 +327,7 @@ class OrderDataFixture
     }
 
     /**
-     * @return \Shopsys\FrameworkBundle\Model\Transport\Transport
+     * @return \Shopsys\ShopBundle\Model\Transport\Transport
      */
     private function getRandomTransport()
     {

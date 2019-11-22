@@ -13,6 +13,16 @@ use Shopsys\FrameworkBundle\Model\Order\OrderEditResult;
 /**
  * @ORM\Table(name="orders")
  * @ORM\Entity
+ * @property \Shopsys\ShopBundle\Model\Customer\User|null $customer
+ * @property \Shopsys\ShopBundle\Model\Transport\Transport $transport
+ * @property \Shopsys\ShopBundle\Model\Administrator\Administrator|null $createdAsAdministrator
+ * @method editData(\Shopsys\ShopBundle\Model\Order\OrderData $orderData)
+ * @method editOrderTransport(\Shopsys\ShopBundle\Model\Order\OrderData $orderData)
+ * @method editOrderPayment(\Shopsys\ShopBundle\Model\Order\OrderData $orderData)
+ * @method setDeliveryAddress(\Shopsys\ShopBundle\Model\Order\OrderData $orderData)
+ * @method \Shopsys\ShopBundle\Model\Transport\Transport getTransport()
+ * @method \Shopsys\ShopBundle\Model\Customer\User|null getCustomer()
+ * @method \Shopsys\ShopBundle\Model\Administrator\Administrator|null getCreatedAsAdministrator()
  */
 class Order extends BaseOrder
 {

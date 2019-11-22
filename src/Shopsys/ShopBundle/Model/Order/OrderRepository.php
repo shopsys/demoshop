@@ -7,11 +7,22 @@ namespace Shopsys\ShopBundle\Model\Order;
 use Shopsys\FrameworkBundle\Model\Order\OrderRepository as BaseOrderRepository;
 use Shopsys\ShopBundle\Model\Customer\BillingAddress;
 
+/**
+ * @method \Shopsys\ShopBundle\Model\Order\Order[] getOrdersByUserId(int $userId)
+ * @method \Shopsys\ShopBundle\Model\Order\Order|null findLastByUserId(int $userId)
+ * @method \Shopsys\ShopBundle\Model\Order\Order|null findById(int $id)
+ * @method \Shopsys\ShopBundle\Model\Order\Order getById(int $id)
+ * @method \Shopsys\ShopBundle\Model\Order\Order[] getCustomerOrderList(\Shopsys\ShopBundle\Model\Customer\User $user)
+ * @method \Shopsys\ShopBundle\Model\Order\Order[] getOrderListForEmailByDomainId(string $email, int $domainId)
+ * @method \Shopsys\ShopBundle\Model\Order\Order getByUrlHashAndDomain(string $urlHash, int $domainId)
+ * @method \Shopsys\ShopBundle\Model\Order\Order getByOrderNumberAndUser(string $orderNumber, \Shopsys\ShopBundle\Model\Customer\User $user)
+ * @method \Shopsys\ShopBundle\Model\Order\Order|null findByUrlHashIncludingDeletedOrders(string $urlHash)
+ */
 class OrderRepository extends BaseOrderRepository
 {
     /**
      * @param \Shopsys\ShopBundle\Model\Customer\User[] $users
-     * @return \Shopsys\FrameworkBundle\Model\Order\Order[]
+     * @return \Shopsys\ShopBundle\Model\Order\Order[]
      */
     public function getOrderListByCustomers(array $users)
     {
@@ -30,7 +41,7 @@ class OrderRepository extends BaseOrderRepository
     /**
      * @param string $orderNumber
      * @param \Shopsys\ShopBundle\Model\Customer\BillingAddress $billingAddress
-     * @return \Shopsys\FrameworkBundle\Model\Order\Order
+     * @return \Shopsys\ShopBundle\Model\Order\Order
      */
     public function getByOrderNumberAndBillingAddress($orderNumber, BillingAddress $billingAddress)
     {

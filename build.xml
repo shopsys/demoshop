@@ -8,6 +8,7 @@
     <property name="path.framework" value="${path.vendor}/shopsys/framework"/>
 
     <property name="phpstan.level" value="1"/>
+    <property name="check-and-fix-annotations" value="true"/>
 
     <import file="${path.framework}/build.xml"/>
 

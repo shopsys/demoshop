@@ -163,7 +163,7 @@ class ImageDataFixture extends AbstractReferenceFixture implements DependentFixt
 
         foreach ($categoriesImagesData as $imageId => $categoryName) {
             $category = $this->getReference($categoryName);
-            /* @var $category \Shopsys\FrameworkBundle\Model\Category\Category */
+            /* @var $category \Shopsys\ShopBundle\Model\Category\Category */
 
             $this->saveImageIntoDb($category->getId(), 'category', $imageId);
         }
@@ -195,7 +195,7 @@ class ImageDataFixture extends AbstractReferenceFixture implements DependentFixt
 
         foreach ($transportsImagesData as $imageId => $transportName) {
             $transport = $this->getReference($transportName);
-            /* @var $transport \Shopsys\FrameworkBundle\Model\Transport\Transport */
+            /* @var $transport \Shopsys\ShopBundle\Model\Transport\Transport */
 
             $this->saveImageIntoDb($transport->getId(), 'transport', $imageId);
         }

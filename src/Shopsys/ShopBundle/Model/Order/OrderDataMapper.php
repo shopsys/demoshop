@@ -10,6 +10,9 @@ use Shopsys\FrameworkBundle\Model\Order\OrderDataMapper as BaseOrderDataMapper;
 use Shopsys\ShopBundle\Model\Country\CountryFacade;
 use Shopsys\ShopBundle\Model\Transport\Transport;
 
+/**
+ * @property \Shopsys\ShopBundle\Model\Order\OrderDataFactory $orderDataFactory
+ */
 class OrderDataMapper extends BaseOrderDataMapper
 {
     /**
@@ -18,7 +21,7 @@ class OrderDataMapper extends BaseOrderDataMapper
     protected $countryFacade;
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface $orderDataFactory
+     * @param \Shopsys\ShopBundle\Model\Order\OrderDataFactory $orderDataFactory
      * @param \Shopsys\ShopBundle\Model\Country\CountryFacade $countryFacade
      */
     public function __construct(OrderDataFactoryInterface $orderDataFactory, CountryFacade $countryFacade)

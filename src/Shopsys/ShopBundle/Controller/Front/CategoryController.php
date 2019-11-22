@@ -34,7 +34,7 @@ class CategoryController extends FrontBaseController
     private $topCategoryFacade;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer
+     * @var \Shopsys\ShopBundle\Model\Customer\CurrentCustomer
      */
     private $currentCustomer;
 
@@ -43,7 +43,7 @@ class CategoryController extends FrontBaseController
      * @param \Shopsys\FrameworkBundle\Model\Category\CategoryFacade $categoryFacade
      * @param \Shopsys\ShopBundle\Model\Category\CurrentCategoryResolver $currentCategoryResolver
      * @param \Shopsys\FrameworkBundle\Model\Category\TopCategory\TopCategoryFacade $topCategoryFacade
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer $currentCustomer
+     * @param \Shopsys\ShopBundle\Model\Customer\CurrentCustomer $currentCustomer
      */
     public function __construct(
         Domain $domain,
@@ -115,7 +115,7 @@ class CategoryController extends FrontBaseController
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Category\Category[] $categories
+     * @param \Shopsys\ShopBundle\Model\Category\Category[] $categories
      * @param bool $showProductsCountByCategory
      */
     public function categoryListAction(array $categories, $showProductsCountByCategory = true)

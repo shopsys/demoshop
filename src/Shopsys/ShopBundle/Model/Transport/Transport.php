@@ -11,6 +11,9 @@ use Shopsys\FrameworkBundle\Model\Transport\TransportData as BaseTransportData;
 /**
  * @ORM\Table(name="transports")
  * @ORM\Entity
+ * @method setTranslations(\Shopsys\ShopBundle\Model\Transport\TransportData $transportData)
+ * @method setDomains(\Shopsys\ShopBundle\Model\Transport\TransportData $transportData)
+ * @method createDomains(\Shopsys\ShopBundle\Model\Transport\TransportData $transportData)
  */
 class Transport extends BaseTransport
 {

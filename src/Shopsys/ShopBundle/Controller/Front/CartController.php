@@ -153,7 +153,7 @@ class CartController extends FrontBaseController
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Product\Product $product
+     * @param \Shopsys\ShopBundle\Model\Product\Product $product
      * @param string $type
      */
     public function addProductFormAction(Product $product, $type = 'normal')

@@ -71,7 +71,7 @@ class ProductPriceCalculationForUser extends BaseProductPriceCalculationForUser
     /**
      * @param \Shopsys\ShopBundle\Model\Product\Product $product
      * @param int $domainId
-     * @param \Shopsys\FrameworkBundle\Model\Customer\User|null $user
+     * @param \Shopsys\ShopBundle\Model\Customer\User|null $user
      * @return \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPrice
      */
     public function calculatePriceForUserAndDomainId(Product $product, $domainId, ?User $user = null)
