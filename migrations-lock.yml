@@ -328,3 +328,12 @@
 20190521071335:
     class: Shopsys\FrameworkBundle\Migrations\Version20190521071335
     skip: false
+20190823110846:
+    class: Shopsys\FrameworkBundle\Migrations\Version20190823110846
+    skip: false
+20191029123329:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191029123329
+    skip: false
+20191029210140:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191029210140
+    skip: false
