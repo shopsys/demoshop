@@ -18,7 +18,7 @@
     </h1>
 
     <div class="wrap-border--bold wrap-border--inner-padding">
-        <p>{{ article.createdAt|date('j.n.Y') }}</p>
+        <p>{{ article.createdAt|formatDate }}</p>
 
         <div class="in-user-text">
             {{ article.text|raw }}

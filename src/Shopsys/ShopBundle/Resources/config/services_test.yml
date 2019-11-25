@@ -6,9 +6,6 @@ services:
 
     CommerceGuys\Intl\NumberFormat\NumberFormatRepository: ~
 
-    Shopsys\FrameworkBundle\Component\Localization\DateTimeFormatter:
-        factory: ['@Shopsys\FrameworkBundle\Model\Localization\CustomDateTimeFormatterFactory', create]
-
     Shopsys\FrameworkBundle\Model\Localization\IntlCurrencyRepository: ~
 
     Shopsys\FrameworkBundle\Component\EntityExtension\EntityNameResolver:
