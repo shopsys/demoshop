@@ -35,6 +35,10 @@ services:
         class: Shopsys\ShopBundle\Controller\Admin\CustomerController
         tags: ['controller.service_arguments']
 
+    Shopsys\FrameworkBundle\Controller\Admin\PromoCodeController:
+        arguments:
+            $useInlineEditation: false
+
     Shopsys\ShopBundle\Form\Front\Order\DomainAwareOrderFlowFactory: ~
 
     Shopsys\FrameworkBundle\Model\Order\Item\OrderItemDataFactoryInterface: '@Shopsys\ShopBundle\Model\Order\Item\OrderItemDataFactory'
@@ -79,9 +83,8 @@ services:
 
     twig_cache_extension.cache_provider:
         class: Doctrine\Common\Cache\RedisCache
-        factory: 'Shopsys\FrameworkBundle\Component\Doctrine\Cache\RedisCacheFactory:create'
-        arguments:
-            - '@snc_redis.twig'
+        calls:
+            - { method: setRedis, arguments: ['@snc_redis.twig'] }
 
     twig_cache_extension.cache_strategy:
         class: Shopsys\ShopBundle\Twig\CurrentDomainLifetimeCacheStrategy

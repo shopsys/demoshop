@@ -8,7 +8,7 @@ use Tests\ShopBundle\Acceptance\acceptance\PageObject\Admin\InlineEditPage;
 use Tests\ShopBundle\Acceptance\acceptance\PageObject\Admin\LoginPage;
 use Tests\ShopBundle\Test\Codeception\AcceptanceTester;
 
-class PromoCodeInlineEditCest
+class VatInlineEditCest
 {
     /**
      * @param \Tests\ShopBundle\Test\Codeception\AcceptanceTester $me
