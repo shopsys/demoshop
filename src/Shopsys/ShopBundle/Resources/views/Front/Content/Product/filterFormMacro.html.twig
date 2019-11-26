@@ -34,8 +34,16 @@
                 </div>
             </div>
             <div class="display-none">
-                {{ form_row(filterForm.minimalPrice, {label: 'From'|trans, symbolAfterInput: currencySymbolByDomainId(getDomain().id), attr: { class: 'js-product-filter-call-change-after-reset'} }) }}
-                {{ form_row(filterForm.maximalPrice, {label: 'To'|trans, symbolAfterInput: currencySymbolByDomainId(getDomain().id), attr: { class: 'js-product-filter-call-change-after-reset'} }) }}
+                {{ form_row(filterForm.minimalPrice, {
+                    label: 'From'|trans,
+                    symbolAfterInput: currencySymbolByDomainId(getDomain().id),
+                    attr: { class: 'js-product-filter-call-change-after-reset', placeholder:priceRange.minimalPrice|price }
+                }) }}
+                {{ form_row(filterForm.maximalPrice, {
+                    label: 'To'|trans,
+                    symbolAfterInput: currencySymbolByDomainId(getDomain().id),
+                    attr: { class: 'js-product-filter-call-change-after-reset', placeholder:priceRange.maximalPrice|price }
+                }) }}
             </div>
         </div>
 
