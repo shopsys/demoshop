@@ -23,7 +23,8 @@ class RegistrationPage extends AbstractPage
         $this->tester->fillFieldByName('registration_form[email]', $email);
         $this->tester->fillFieldByName('registration_form[password][first]', $firstPassword);
         $this->tester->fillFieldByName('registration_form[password][second]', $secondPassword);
-        $this->tester->checkOptionByLabel('I agree with privacy policy');
+        $translatedLabelForAgreementWithPrivacyPolicy = t('I agree with privacy policy.', [], 'messages', $this->tester->getFrontendLocale());
+        $this->tester->checkOptionByLabel($translatedLabelForAgreementWithPrivacyPolicy);
         $this->tester->wait(TimedFormTypeExtension::MINIMUM_FORM_FILLING_SECONDS);
         $this->tester->clickByName('registration_form[save]');
     }
@@ -45,7 +46,7 @@ class RegistrationPage extends AbstractPage
     }
 
     /**
-     * @param $fieldClass $text
+     * @param string $fieldClass
      * @param string $text
      */
     private function seeErrorForField($fieldClass, $text)
@@ -55,6 +56,6 @@ class RegistrationPage extends AbstractPage
         // Error message might be in fancy title - hover over field
         $this->tester->moveMouseOverByCss($fieldClass);
 
-        $this->tester->see($text);
+        $this->tester->seeTranslationFrontend($text, 'validators');
     }
 }

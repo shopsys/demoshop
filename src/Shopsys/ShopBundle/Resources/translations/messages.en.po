@@ -43,6 +43,9 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
+msgid "Administration"
+msgstr ""
+
 msgid "All prices have to be handled manually if checked, otherwise the unit price without VAT and the total prices for that item will be recalculated automatically."
 msgstr ""
 
@@ -208,6 +211,9 @@ msgstr ""
 msgid "Delivery data"
 msgstr ""
 
+msgid "Demo product images by"
+msgstr ""
+
 msgid "Description"
 msgstr ""
 
@@ -218,6 +224,9 @@ msgid "Discount"
 msgstr ""
 
 msgid "Displaying"
+msgstr ""
+
+msgid "Do not distribute without permission."
 msgstr ""
 
 msgid "Do you really want to remove this customer?"
@@ -352,9 +361,6 @@ msgstr ""
 msgid "Items"
 msgstr ""
 
-msgid "Jessica Fletcher"
-msgstr ""
-
 msgid "Last name"
 msgstr ""
 
@@ -374,6 +380,9 @@ msgid "Log out"
 msgstr ""
 
 msgid "Login"
+msgstr ""
+
+msgid "Martin Chefmaster"
 msgstr ""
 
 msgid "Menu"
@@ -545,6 +554,9 @@ msgid "Popular categories"
 msgstr ""
 
 msgid "Postcode"
+msgstr ""
+
+msgid "Powered by"
 msgstr ""
 
 msgid "Price"

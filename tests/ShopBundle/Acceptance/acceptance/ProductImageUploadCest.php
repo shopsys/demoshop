@@ -10,12 +10,10 @@ use Tests\ShopBundle\Test\Codeception\AcceptanceTester;
 
 class ProductImageUploadCest
 {
-    public const IMAGE_UPLOAD_FIELD_ID = 'product_form_imageGroup_images_file';
-    public const SAVE_BUTTON_NAME = 'product_form[save]';
+    protected const IMAGE_UPLOAD_FIELD_ID = 'product_form_imageGroup_images_file';
+    protected const SAVE_BUTTON_NAME = 'product_form[save]';
 
-    public const EXPECTED_SUCCESS_MESSAGE = 'Product 22" Sencor SLE 22F46DM4 HELLO KITTY modified';
-
-    public const TEST_IMAGE_NAME = 'productTestImage.png';
+    protected const TEST_IMAGE_NAME = 'productTestImage.png';
 
     /**
      * @param \Tests\ShopBundle\Test\Codeception\AcceptanceTester $me
@@ -29,6 +27,9 @@ class ProductImageUploadCest
         $me->amOnPage('/admin/product/edit/1');
         $entityEditPage->uploadTestImage(self::IMAGE_UPLOAD_FIELD_ID, self::TEST_IMAGE_NAME);
         $me->clickByName(self::SAVE_BUTTON_NAME);
-        $me->see(self::EXPECTED_SUCCESS_MESSAGE);
+        $me->seeTranslationAdmin('Product <strong><a href=\"{{ url }}\">{{ product|productDisplayName }}</a></strong> modified', 'messages', [
+            '{{ url }}' => '',
+            '{{ product|productDisplayName }}' => t('22" Sencor SLE 22F46DM4 HELLO KITTY', [], 'dataFixtures', $me->getAdminLocale()),
+        ]);
     }
 }

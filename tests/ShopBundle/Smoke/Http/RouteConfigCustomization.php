@@ -201,7 +201,7 @@ class RouteConfigCustomization
                     ->setParameter('categoryId', 2);
             })
             ->customizeByRouteName('admin_pricinggroup_delete', function (RouteConfig $config) {
-                $pricingGroup = $this->getPersistentReference(PricingGroupDataFixture::PRICING_GROUP_PARTNER_DOMAIN_1);
+                $pricingGroup = $this->getPersistentReference(PricingGroupDataFixture::PRICING_GROUP_PARTNER, Domain::FIRST_DOMAIN_ID);
                 /* @var $pricingGroup \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup */
 
                 $debugNote = sprintf('Delete pricing group "%s".', $pricingGroup->getName());
@@ -398,14 +398,17 @@ class RouteConfigCustomization
 
     /**
      * @param string $name
+     * @param int|null $domainId
      * @return object
      */
-    private function getPersistentReference($name)
+    private function getPersistentReference($name, ?int $domainId = null)
     {
+        /** @var \Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade $persistentReferenceFacade */
         $persistentReferenceFacade = $this->container
             ->get(PersistentReferenceFacade::class);
-        /* @var $persistentReferenceFacade \Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade */
-
+        if ($domainId !== null) {
+            return $persistentReferenceFacade->getReferenceForDomain($name, $domainId);
+        }
         return $persistentReferenceFacade->getReference($name);
     }
 

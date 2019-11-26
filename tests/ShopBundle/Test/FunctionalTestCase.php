@@ -16,11 +16,16 @@ abstract class FunctionalTestCase extends WebTestCase
      */
     private $client;
 
+    /**
+     * @var \Shopsys\FrameworkBundle\Component\Domain\Domain|null
+     */
+    private $domain;
+
     protected function setUpDomain()
     {
-        $domain = $this->getContainer()->get(Domain::class);
-        /* @var $domain \Shopsys\FrameworkBundle\Component\Domain\Domain */
-        $domain->switchDomainById(1);
+        /** @var \Shopsys\FrameworkBundle\Component\Domain\Domain $domain */
+        $this->domain = $this->getContainer()->get(Domain::class);
+        $this->domain->switchDomainById(Domain::FIRST_DOMAIN_ID);
     }
 
     protected function setUp()
@@ -80,10 +85,40 @@ abstract class FunctionalTestCase extends WebTestCase
      */
     protected function getReference($referenceName)
     {
+        /** @var \Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade $persistentReferenceFacade */
         $persistentReferenceFacade = $this->getContainer()
             ->get(PersistentReferenceFacade::class);
-        /* @var $persistentReferenceFacade \Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade */
 
         return $persistentReferenceFacade->getReference($referenceName);
+    }
+
+    /**
+     * @param string $referenceName
+     * @param int $domainId
+     * @return object
+     */
+    protected function getReferenceForDomain(string $referenceName, int $domainId)
+    {
+        /** @var \Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade $persistentReferenceFacade */
+        $persistentReferenceFacade = $this->getContainer()
+            ->get(PersistentReferenceFacade::class);
+
+        return $persistentReferenceFacade->getReferenceForDomain($referenceName, $domainId);
+    }
+
+    protected function skipTestIfFirstDomainIsNotInEnglish()
+    {
+        if ($this->getFirstDomainLocale() !== 'en') {
+            $this->markTestSkipped('Tests for product searching are run only when the first domain has English locale');
+        }
+    }
+
+    /**
+     * We can use the shorthand here as $this->domain->switchDomainById(1) is called in setUp()
+     * @return string
+     */
+    protected function getFirstDomainLocale(): string
+    {
+        return $this->domain->getLocale();
     }
 }

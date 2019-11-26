@@ -31,6 +31,10 @@ parameters:
             - '*/tests/ShopBundle/Functional/Model/Product/ProductVisibilityRepositoryTest.php'
             - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/MultidomainOrderDataFixture.phpFixture.php'
             - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/OrderDataFixture.php'
+            - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/ProductDataFixture.php'
+
+        PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff:
+            - '*/src/Shopsys/ShopBundle/DataFixtures/Demo/ProductDataFixture.php'
 
         Shopsys\CodingStandards\Sniffs\ValidVariableNameSniff:
             - '*/tests/ShopBundle/Functional/EntityExtension/EntityExtensionTest.php'

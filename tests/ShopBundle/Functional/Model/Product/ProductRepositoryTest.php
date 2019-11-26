@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Product;
 
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
-use Shopsys\FrameworkBundle\Model\Category\Category;
 use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData;
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
 use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
@@ -14,6 +13,7 @@ use Shopsys\FrameworkBundle\Model\Product\ProductRepository;
 use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
 use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
 use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
+use Shopsys\ShopBundle\Model\Category\Category;
 use Shopsys\ShopBundle\Model\Product\Product;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
@@ -45,14 +45,15 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
      */
     private function getAllListableQueryBuilderTest($productReferenceId, $isExpectedInResult)
     {
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductRepository $productRepository */
         $productRepository = $this->getContainer()->get(ProductRepository::class);
-        /* @var $productRepository \Shopsys\FrameworkBundle\Model\Product\ProductRepository */
-        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
-        /* @var $pricingGroup \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup */
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
 
+        /** @var \Shopsys\FrameworkBundle\Component\Domain\Domain $domain */
         $domain = $this->getContainer()->get(Domain::class);
-        /* @var $domain \Shopsys\FrameworkBundle\Component\Domain\Domain */
 
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . $productReferenceId);
         $productId = $product->getId();
 
@@ -90,14 +91,15 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
      */
     private function getAllSellableQueryBuilderTest($productReferenceId, $isExpectedInResult)
     {
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductRepository $productRepository */
         $productRepository = $this->getContainer()->get(ProductRepository::class);
-        /* @var $productRepository \Shopsys\FrameworkBundle\Model\Product\ProductRepository */
-        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
-        /* @var $pricingGroup \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup */
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
 
+        /** @var \Shopsys\FrameworkBundle\Component\Domain\Domain $domain */
         $domain = $this->getContainer()->get(Domain::class);
-        /* @var $domain \Shopsys\FrameworkBundle\Component\Domain\Domain */
 
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . $productReferenceId);
         $productId = $product->getId();
 
@@ -135,14 +137,14 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
      */
     private function getAllOfferedQueryBuilderTest($productReferenceId, $isExpectedInResult)
     {
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductRepository $productRepository */
         $productRepository = $this->getContainer()->get(ProductRepository::class);
-        /* @var $productRepository \Shopsys\FrameworkBundle\Model\Product\ProductRepository */
-        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
-        /* @var $pricingGroup \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup */
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
 
+        /** @var \Shopsys\FrameworkBundle\Component\Domain\Domain $domain */
         $domain = $this->getContainer()->get(Domain::class);
-        /* @var $domain \Shopsys\FrameworkBundle\Component\Domain\Domain */
-
+        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . $productReferenceId);
         $productId = $product->getId();
 
@@ -156,8 +158,8 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
 
     public function testOrderingByProductPriorityInCategory()
     {
+        /** @var \Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture $category */
         $category = $this->getReference(CategoryDataFixture::CATEGORY_FOOD);
-        /* @var $category \Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture */
         $product1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 70);
         $product2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 71);
 
@@ -199,7 +201,8 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
         /** @var \Shopsys\FrameworkBundle\Model\Product\ProductRepository $productRepository */
         $productRepository = $this->getContainer()->get(ProductRepository::class);
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
-        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+        $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
+
         /** @var \Shopsys\FrameworkBundle\Component\Domain\Domain $domain */
         $domain = $this->getContainer()->get(Domain::class);
         /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
@@ -207,19 +210,23 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
         $product2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 2);
         $product3 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 3);
         $product4 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 4);
+
         $sortedProducts = [
             $product4,
             $product1,
             $product3,
             $product2,
         ];
+
         $sortedProductIds = [
             $product4->getId(),
             $product1->getId(),
             $product3->getId(),
             $product2->getId(),
         ];
+
         $results = $productRepository->getOfferedByIds($domain->getId(), $pricingGroup, $sortedProductIds);
+
         $this->assertSame($sortedProducts, $results);
     }
 
@@ -229,10 +236,10 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
      */
     private function setProductOrderingPriority(Product $product, $priority)
     {
+        /** @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory $productDataFactory */
         $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
-        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
 
         $productData = $productDataFactory->createFromProduct($product);
         $productData->orderingPriority = $priority;
@@ -245,15 +252,17 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
      */
     private function getProductsForSearchOrderedByPriority($searchText)
     {
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductRepository $productRepository */
         $productRepository = $this->getContainer()->get(ProductRepository::class);
-        /* @var $productRepository \Shopsys\FrameworkBundle\Model\Product\ProductRepository */
-        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
-        /* @var $pricingGroup \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup */
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
+        /** @var \Shopsys\FrameworkBundle\Component\Domain\Domain $domain */
+        $domain = $this->getContainer()->get(Domain::class);
 
         $paginationResult = $productRepository->getPaginationResultForSearchListable(
             $searchText,
-            1,
-            'cs',
+            Domain::FIRST_DOMAIN_ID,
+            $domain->getDomainConfigById(Domain::FIRST_DOMAIN_ID)->getLocale(),
             new ProductFilterData(),
             ProductListOrderingConfig::ORDER_BY_PRIORITY,
             $pricingGroup,
@@ -265,20 +274,22 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Category\Category $category
+     * @param \Shopsys\ShopBundle\Model\Category\Category $category
      * @return \Shopsys\ShopBundle\Model\Product\Product[]
      */
     private function getProductsInCategoryOrderedByPriority(Category $category)
     {
+        /** @var \Shopsys\FrameworkBundle\Model\Product\ProductRepository $productRepository */
         $productRepository = $this->getContainer()->get(ProductRepository::class);
-        /* @var $productRepository \Shopsys\FrameworkBundle\Model\Product\ProductRepository */
-        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
-        /* @var $pricingGroup \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup */
+        /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
+        $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
+        /** @var \Shopsys\FrameworkBundle\Component\Domain\Domain $domain */
+        $domain = $this->getContainer()->get(Domain::class);
 
         $paginationResult = $productRepository->getPaginationResultForListableInCategory(
             $category,
-            1,
-            'cs',
+            Domain::FIRST_DOMAIN_ID,
+            $domain->getDomainConfigById(Domain::FIRST_DOMAIN_ID)->getLocale(),
             new ProductFilterData(),
             ProductListOrderingConfig::ORDER_BY_PRIORITY,
             $pricingGroup,

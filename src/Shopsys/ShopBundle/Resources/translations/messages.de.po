@@ -43,6 +43,9 @@ msgstr "Hinzugefügte Produkt hat keine individuellen Rabatte"
 msgid "Address"
 msgstr "Adresse"
 
+msgid "Administration"
+msgstr ""
+
 msgid "All prices have to be handled manually if checked, otherwise the unit price without VAT and the total prices for that item will be recalculated automatically."
 msgstr "Alle Preise müssen manuell eingegeben werden, wenn das Kontrollkästchen aktiviert ist. Andernfalls werden der Stückpreis ohne MwSt. und die Gesamtpreise für diesen Artikel automatisch neu berechnet."
 
@@ -208,6 +211,9 @@ msgstr "Lieferadresse"
 msgid "Delivery data"
 msgstr "Lieferdaten"
 
+msgid "Demo product images by"
+msgstr ""
+
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -219,6 +225,9 @@ msgstr "Rabatt"
 
 msgid "Displaying"
 msgstr "Anzeigen"
+
+msgid "Do not distribute without permission."
+msgstr ""
 
 msgid "Do you really want to remove this customer?"
 msgstr "Möchten Sie diesen Kunden wirklich entfernen?"
@@ -375,6 +384,9 @@ msgstr "Abmelden"
 
 msgid "Login"
 msgstr "Anmeldung"
+
+msgid "Martin Chefmaster"
+msgstr ""
 
 msgid "Menu"
 msgstr "Menü"
@@ -547,6 +559,9 @@ msgstr "Beliebte Kategorien"
 msgid "Postcode"
 msgstr "Postleitzahl"
 
+msgid "Powered by"
+msgstr ""
+
 msgid "Price"
 msgstr "Preis"
 
@@ -682,6 +697,9 @@ msgstr "Straße"
 msgid "Subscription to e-mail newsletter"
 msgstr "Anmeldung zum E-Mail-Newsletter"
 
+msgid "TOP"
+msgstr "TOP"
+
 msgid "Tax number"
 msgstr "Steuernummer"
 
@@ -723,9 +741,6 @@ msgstr "Zu"
 
 msgid "To prevent the possibility of account theft, the change of the e-mail address must be dealt with individually. If your e-mail address has changed, please contact us."
 msgstr "Um die Möglichkeit eines Accountdiebstahls zu verhindern, muss die Änderung der E-Mail-Adresse individuell behandelt werden. Wenn sich Ihre E-Mail-Adresse geändert hat, kontaktieren Sie uns bitte."
-
-msgid "TOP"
-msgstr "TOP"
 
 msgid "Total"
 msgstr "Gesamt"
