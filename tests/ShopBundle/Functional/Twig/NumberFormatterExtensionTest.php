@@ -12,7 +12,7 @@ use Tests\ShopBundle\Test\FunctionalTestCase;
 
 class NumberFormatterExtensionTest extends FunctionalTestCase
 {
-    public const NBSP = "\xc2\xa0";
+    protected const NBSP = "\xc2\xa0";
 
     public function formatNumberDataProvider()
     {
@@ -50,7 +50,7 @@ class NumberFormatterExtensionTest extends FunctionalTestCase
         $localizationMock->expects($this->any())->method('getLocale')
             ->willReturn($locale);
 
-        /* @var $numberFormatRepository \CommerceGuys\Intl\NumberFormat\NumberFormatRepository */
+        /** @var \CommerceGuys\Intl\NumberFormat\NumberFormatRepository $numberFormatRepository */
         $numberFormatRepository = $this->getContainer()->get(NumberFormatRepository::class);
 
         /** @var \Shopsys\FrameworkBundle\Model\Administration\AdministrationFacade $administrationFacade */

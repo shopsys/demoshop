@@ -6,8 +6,6 @@ services:
 
     CommerceGuys\Intl\NumberFormat\NumberFormatRepository: ~
 
-    Shopsys\FrameworkBundle\Model\Localization\IntlCurrencyRepository: ~
-
     Shopsys\FrameworkBundle\Component\EntityExtension\EntityNameResolver:
         class: Tests\ShopBundle\Functional\EntityExtension\OverwritableEntityNameResolver
         arguments:
@@ -106,6 +104,22 @@ services:
 
     Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade: '@Shopsys\ShopBundle\Model\Administrator\AdministratorFacade'
 
+    Shopsys\FrameworkBundle\Model\Localization\Localization:
+        arguments:
+            $adminLocale: '%shopsys.admin_locale%'
+
+    Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory:
+        arguments: ['%router.resource%']
+
     Shopsys\FrameworkBundle\Component\CurrencyFormatter\CurrencyFormatterFactory: ~
 
+    CommerceGuys\Intl\Currency\CurrencyRepositoryInterface:
+        class: Shopsys\FrameworkBundle\Model\Localization\IntlCurrencyRepository
+
+    Shopsys\FrameworkBundle\Twig\NumberFormatterExtension: ~
+
     Shopsys\FrameworkBundle\Model\Administration\AdministrationFacade: ~
+
+    Shopsys\FrameworkBundle\Model\Pricing\PriceConverter: ~
+
+    Shopsys\FrameworkBundle\Model\Pricing\Rounding: ~

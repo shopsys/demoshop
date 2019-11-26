@@ -15,11 +15,6 @@ use Shopsys\FrameworkBundle\Model\Mail\MailTemplateFactoryInterface;
 class MailTemplateDataFixture extends AbstractReferenceFixture
 {
     /**
-     * @var \Shopsys\FrameworkBundle\Component\Domain\Domain
-     */
-    protected $domain;
-
-    /**
      * @var \Shopsys\FrameworkBundle\Model\Mail\MailTemplateFactoryInterface
      */
     protected $mailTemplateFactory;
@@ -30,18 +25,23 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
     protected $mailTemplateDataFactory;
 
     /**
-     * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
+     * @var \Shopsys\FrameworkBundle\Component\Domain\Domain
+     */
+    protected $domain;
+
+    /**
      * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateFactoryInterface $mailTemplateFactory
      * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateDataFactoryInterface $mailTemplateDataFactory
+     * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
      */
     public function __construct(
-        Domain $domain,
         MailTemplateFactoryInterface $mailTemplateFactory,
-        MailTemplateDataFactoryInterface $mailTemplateDataFactory
+        MailTemplateDataFactoryInterface $mailTemplateDataFactory,
+        Domain $domain
     ) {
-        $this->domain = $domain;
         $this->mailTemplateFactory = $mailTemplateFactory;
         $this->mailTemplateDataFactory = $mailTemplateDataFactory;
+        $this->domain = $domain;
     }
 
     /**
@@ -49,337 +49,116 @@ class MailTemplateDataFixture extends AbstractReferenceFixture
      */
     public function load(ObjectManager $manager)
     {
-        $domainUrl = $this->domain->getDomainConfigById(Domain::FIRST_DOMAIN_ID)->getUrl();
-
         $mailTemplateData = $this->mailTemplateDataFactory->create();
         $mailTemplateData->sendMail = true;
 
-        $mailTemplateData->subject = 'Thank you for your order no. {number} placed at {date}';
-        $mailTemplateData->body = '<table cellspacing="0" style="background:#ffffff; border:1px solid #333333; font-family:Arial; font-size:14px; width:100%">
-            <tbody>
-                <tr>
-                    <td style="background: #333; color: #fff;  padding: 20px;"><img src="' . $domainUrl . '/assets/frontend/images/demoshop.png" style="width:150px" /></td>
-                </tr>
-                <tr>
-                    <td style="padding: 20px;">Dear customer,<br />
-                    Thank you for your order. Your order number {number} has been placed successfully. You can view the order status <a href="{order_detail_url}">here</a>. You will be contacted when the order state changes.<br />
-                    &nbsp;
-                    <table cellspacing="5" style="font-size:14px; width:100%">
-                        <tbody>
-                            <tr>
-                                <td>Shipping:</td>
-                                <td>{transport}</td>
-                            </tr>
-                            <tr>
-                                <td>Payment:</td>
-                                <td>{payment}</td>
-                            </tr>
-                            <tr>
-                                <td>Total price including VAT:</td>
-                                <td>{total_price}</td>
-                            </tr>
-                            <tr>
-                                <td>Note:</td>
-                                <td>{note}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">{products}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" style="text-align: left;">{transport_instructions}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" style="text-align: left;">{payment_instructions}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <br />
-                    Thank your for your purchase.<br />
-                    <br />
-                    Regards,<br />
-                    Team Demoshop</td>
-                </tr>
-                <tr>
-                    <td style="background: #333; color: #fff; padding: 20px;">
-                    <table style="width:100%">
-                        <tbody>
-                            <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
-                                <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>';
+        foreach ($this->domain->getAll() as $domainConfig) {
+            $domainId = $domainConfig->getId();
+            $locale = $domainConfig->getLocale();
+            $mailTemplateData->subject = t('Thank you for your order no. {number} placed at {date}', [], 'dataFixtures', $locale);
+            $mailTemplateData->body = t('Dear customer,<br /><br />'
+                . 'Your order has been placed successfully.<br /><br />'
+                . 'You will be contacted when the order state changes.<br />'
+                . 'Order number: {number} <br />'
+                . 'Date and time of creation: {date} <br />'
+                . 'E-shop link: {url} <br />'
+                . 'Order detail link: {order_detail_url} <br />'
+                . 'Shipping: {transport} <br />'
+                . 'Payment: {payment} <br />'
+                . 'Total price including VAT: {total_price} <br />'
+                . 'Billing address:<br /> {billing_address} <br />'
+                . 'Delivery address: {delivery_address} <br />'
+                . 'Note: {note} <br />'
+                . 'Products: {products} <br />'
+                . '{transport_instructions} <br />'
+                . '{payment_instructions}', [], 'dataFixtures', $locale);
 
-        $this->createMailTemplate($manager, 'order_status_1', $mailTemplateData);
+            $this->createMailTemplate($manager, 'order_status_1', $mailTemplateData, $domainId);
 
-        $mailTemplateData->sendMail = false;
-        $mailTemplateData->subject = 'Order status has changed';
-        $mailTemplateData->body = '<table cellspacing="0" style="background:#ffffff; border:1px solid #333333; font-family:Arial; font-size:14px; width:100%">
-            <tbody>
-                <tr>
-                    <td style="background: #333; color: #fff;  padding: 20px;"><img src="' . $domainUrl . '/assets/frontend/images/demoshop.png" style="width:150px" /></td>
-                </tr>
-                <tr>
-                    <td style="padding: 20px;">Dear customer,<br />
-                    Your order {number} is being processed. For more details about your order you can click <a href="{order_detail_url}">here</a>.<br />
-                    <br />
-                    Regards,<br />
-                    Team Demoshop</td>
-                </tr>
-                <tr>
-                    <td style="background: #333; color: #fff; padding: 20px;">
-                    <table style="width:100%">
-                        <tbody>
-                            <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
-                                <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>';
+            $mailTemplateData->sendMail = false;
+            $mailTemplateData->subject = t('Order status has changed', [], 'dataFixtures', $locale);
+            $mailTemplateData->body = t('Dear customer, <br /><br />'
+                . 'Your order is being processed.', [], 'dataFixtures', $locale);
 
-        $this->createMailTemplate($manager, 'order_status_2', $mailTemplateData);
+            $this->createMailTemplate($manager, 'order_status_2', $mailTemplateData, $domainId);
 
-        $mailTemplateData->subject = 'Order status has changed';
-        $mailTemplateData->body = '<table cellspacing="0" style="background:#ffffff; border:1px solid #333333; font-family:Arial; font-size:14px; width:100%">
-            <tbody>
-                <tr>
-                    <td style="background: #333; color: #fff;  padding: 20px;"><img src="' . $domainUrl . '/assets/frontend/images/demoshop.png" style="width:150px" /></td>
-                </tr>
-                <tr>
-                    <td style="padding: 20px;">Dear customer,<br />
-                    Processing your order&nbsp;{number} has been finished. Thank you for your purchase.&nbsp;<br />
-                    <br />
-                    We will again look forward to your visit to&nbsp;{url}<br />
-                    <br />
-                    <br />
-                    Regards,<br />
-                    Team Demoshop</td>
-                </tr>
-                <tr>
-                    <td style="background: #333; color: #fff; padding: 20px;">
-                    <table style="width:100%">
-                        <tbody>
-                            <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
-                                <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>';
+            $mailTemplateData->subject = t('Order status has changed', [], 'dataFixtures', $locale);
+            $mailTemplateData->body = t('Dear customer, <br /><br />'
+                . 'Processing your order has been finished.', [], 'dataFixtures', $locale);
 
-        $this->createMailTemplate($manager, 'order_status_3', $mailTemplateData);
+            $this->createMailTemplate($manager, 'order_status_3', $mailTemplateData, $domainId);
 
-        $mailTemplateData->subject = 'Order status has changed';
-        $mailTemplateData->body = '<table cellspacing="0" style="background:#ffffff; border:1px solid #333333; font-family:Arial; font-size:14px; width:100%">
-            <tbody>
-                <tr>
-                    <td style="background: #333; color: #fff;  padding: 20px;"><img src="' . $domainUrl . '/assets/frontend/images/demoshop.png" style="width:150px" /></td>
-                </tr>
-                <tr>
-                    <td style="padding: 20px;">Dear customer,<br />
-                    Your order {number} has been cancelled.<br />
-                    <br />
-                    We will again look forward to your visit to&nbsp;{url}<br />
-                    <br />
-                    Regards,<br />
-                    Team Demoshop</td>
-                </tr>
-                <tr>
-                    <td style="background: #333; color: #fff; padding: 20px;">
-                    <table style="width:100%">
-                        <tbody>
-                            <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
-                                <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>';
+            $mailTemplateData->subject = t('Order status has changed', [], 'dataFixtures', $locale);
+            $mailTemplateData->body = t('Dear customer, <br /><br />'
+                . 'Your order has been cancelled.', [], 'dataFixtures', $locale);
 
-        $this->createMailTemplate($manager, 'order_status_4', $mailTemplateData);
+            $this->createMailTemplate($manager, 'order_status_4', $mailTemplateData, $domainId);
 
-        $mailTemplateData->sendMail = true;
-        $mailTemplateData->subject = 'Reset password request';
-        $mailTemplateData->body = '<table cellspacing="0" style="background:#ffffff; border:1px solid #333333; font-family:Arial; font-size:14px; width:100%">
-            <tbody>
-                <tr>
-                    <td style="background: #333; color: #fff;  padding: 20px;"><img src="' . $domainUrl . '/assets/frontend/images/demoshop.png" style="width:150px" /></td>
-                </tr>
-                <tr>
-                    <td style="padding: 20px;">Dear customer,<br />
-                    <br />
-                    You can set a new password following this link: <a href="{new_password_url}">{new_password_url}</a><br />
-                    <br />
-                    Regards,<br />
-                    Team Demoshop</td>
-                </tr>
-                <tr>
-                    <td style="background: #333; color: #fff; padding: 20px;">
-                    <table style="width:100%">
-                        <tbody>
-                            <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
-                                <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>';
+            $mailTemplateData->sendMail = true;
+            $mailTemplateData->subject = t('Reset password request', [], 'dataFixtures', $locale);
+            $mailTemplateData->body = t('Dear customer.<br /><br />'
+                . 'You can set a new password following this link: <a href="{new_password_url}">{new_password_url}</a>', [], 'dataFixtures', $locale);
 
-        $this->createMailTemplate($manager, MailTemplate::RESET_PASSWORD_NAME, $mailTemplateData);
+            $this->createMailTemplate($manager, MailTemplate::RESET_PASSWORD_NAME, $mailTemplateData, $domainId);
 
-        $mailTemplateData->subject = 'Registration completed';
-        $mailTemplateData->body = '<table cellspacing="0" style="background:#ffffff; border:1px solid #333333; font-family:Arial; font-size:14px; width:100%">
-            <tbody>
-                <tr>
-                    <td style="background: #333; color: #fff;  padding: 20px;"><img src="' . $domainUrl . '/assets/frontend/images/demoshop.png" style="width:150px" /></td>
-                </tr>
-                <tr>
-                    <td style="padding: 20px;">Dear customer,<br />
-                    your registration is completed.
-                    <table style="width:100%">
-                        <tbody>
-                            <tr>
-                                <td>Name:</td>
-                                <td>{first_name} {last_name}</td>
-                            </tr>
-                            <tr>
-                                <td>Email:</td>
-                                <td>{email}</td>
-                            </tr>
-                            <tr>
-                                <td>E-shop link:</td>
-                                <td>{url}</td>
-                            </tr>
-                            <tr>
-                                <td>Log in page:</td>
-                                <td>{login_page}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <br />
-                    We will again look forward to your visit.<br />
-                    <br />
-                    Regards,<br />
-                    Team Demoshop<br />
-                    &nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="background: #333; color: #fff; padding: 20px;">
-                    <table style="width:100%">
-                        <tbody>
-                            <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
-                                <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>';
+            $mailTemplateData->subject = t('Registration completed', [], 'dataFixtures', $locale);
+            $mailTemplateData->body = t('Dear customer, <br /><br />'
+                . 'your registration is completed. <br />'
+                . 'Name: {first_name} {last_name}<br />'
+                . 'Email: {email}<br />'
+                . 'E-shop link: {url}<br />'
+                . 'Log in page: {login_page}', [], 'dataFixtures', $locale);
 
-        $this->createMailTemplate($manager, MailTemplate::REGISTRATION_CONFIRM_NAME, $mailTemplateData);
+            $this->createMailTemplate($manager, MailTemplate::REGISTRATION_CONFIRM_NAME, $mailTemplateData, $domainId);
 
-        $mailTemplateData->subject = 'Personal overview - {domain}';
-        $mailTemplateData->body = '<table cellspacing="0" style="background:#ffffff; border:1px solid #333333; font-family:Arial; font-size:14px; width:100%">
-            <tbody>
-                <tr>
-                    <td style="background: #333; color: #fff;  padding: 20px;"><img src="' . $domainUrl . '/assets/frontend/images/demoshop.png" style="width:150px" /></td>
-                </tr>
-                <tr>
-                    <td style="padding: 20px;">Dear customer,<br />
-                    For your email, we record personal overview that you can view <a href="{url}">here</a>.<br />
-                    The link is valid for 24 hours.<br />
-                    <br />
-                    <br />
-                    Regards,<br />
-                    Team Demoshop</td>
-                </tr>
-                <tr>
-                    <td style="background: #333; color: #fff; padding: 20px;">
-                    <table style="width:100%">
-                        <tbody>
-                            <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
-                                <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>';
+            $mailTemplateData->subject = t('Personal information overview - {domain}', [], 'dataFixtures', $locale);
+            $mailTemplateData->body = t('Dear customer, <br /><br />
+            based on your email {email}, we are sending you a link to your personal details. By clicking on the link below, you will be taken to a page listing all the<br/>
+            personal details which we have in evidence in our online store {domain}. 
+            <br/><br/>
+            To overview your personal information please click here - {url} <br/>
+            The link is valid for next 24 hours.<br/>
+            Best Regards <br/><br/>
+            team of {domain}', [], 'dataFixtures', $locale);
 
-        $this->createMailTemplate($manager, MailTemplate::PERSONAL_DATA_ACCESS_NAME, $mailTemplateData);
+            $this->createMailTemplate($manager, MailTemplate::PERSONAL_DATA_ACCESS_NAME, $mailTemplateData, $domainId);
 
-        $mailTemplateData->subject = 'Personal information export - {domain}';
-        $mailTemplateData->body = '<table cellspacing="0" style="background:#ffffff; border:1px solid #333333; font-family:Arial; font-size:14px; width:100%">
-            <tbody>
-                <tr>
-                    <td style="background: #333; color: #fff;  padding: 20px;"><img src="' . $domainUrl . '/assets/frontend/images/demoshop.png" style="width:150px" /></td>
-                </tr>
-                <tr>
-                    <td style="padding: 20px;">Dear customer,<br />
-                    You can find your personal information export <a href="{url}">here</a>.<br />
-                    The link is valid for 24 hours.<br />
-                    <br />
-                    Regards,<br />
-                    Tem Demoshop</td>
-                </tr>
-                <tr>
-                    <td style="background: #333; color: #fff; padding: 20px;">
-                    <table style="width:100%">
-                        <tbody>
-                            <tr>
-                                <td style="color: #fff; width: 50%;">Made with passion by <a href="https://www.shopsys.com/" style="color: #01AEFF;">Shopsys Framework</a></td>
-                                <td style="color: #fff; width: 50%; text-align: right;"><a href="tel:+420123456789" style="color: #fff;">+420123456789</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>';
+            $mailTemplateData->subject = t('Personal information export - {domain}', [], 'dataFixtures', $locale);
+            $mailTemplateData->body = t('Dear customer, <br/><br/>
+based on your email {email}, we are sending you a link where you can download your personal details registered on our online store in readable format. Clicking on the link will take you to a page where you’ll be able to download these informations, which we have in evidence in our online store {domain}. 
+<br/><br/>
+To download your personal information please click here - {url}<br/> 
+The link is valid for next 24 hours.
+<br/><br/>
+Best regards<br/>
+team of {domain}
+', [], 'dataFixtures', $locale);
 
-        $this->createMailTemplate($manager, MailTemplate::PERSONAL_DATA_EXPORT_NAME, $mailTemplateData);
+            $this->createMailTemplate($manager, MailTemplate::PERSONAL_DATA_EXPORT_NAME, $mailTemplateData, $domainId);
+        }
     }
 
     /**
-     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @param \Shopsys\FrameworkBundle\Component\EntityExtension\EntityManagerDecorator $manager
      * @param mixed $name
      * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateData $mailTemplateData
+     * @param int $domainId
      */
-    private function createMailTemplate(
+    protected function createMailTemplate(
         ObjectManager $manager,
         $name,
-        MailTemplateData $mailTemplateData
+        MailTemplateData $mailTemplateData,
+        int $domainId
     ) {
         $repository = $manager->getRepository(MailTemplate::class);
 
         $mailTemplate = $repository->findOneBy([
             'name' => $name,
-            'domainId' => Domain::FIRST_DOMAIN_ID,
+            'domainId' => $domainId,
         ]);
 
         if ($mailTemplate === null) {
-            $mailTemplate = $this->mailTemplateFactory->create($name, Domain::FIRST_DOMAIN_ID, $mailTemplateData);
+            $mailTemplate = $this->mailTemplateFactory->create($name, $domainId, $mailTemplateData);
         } else {
             $mailTemplate->edit($mailTemplateData);
         }

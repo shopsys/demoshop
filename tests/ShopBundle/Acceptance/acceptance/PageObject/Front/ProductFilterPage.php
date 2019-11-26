@@ -12,7 +12,7 @@ use Tests\ShopBundle\Test\Codeception\Module\StrictWebDriver;
 class ProductFilterPage extends AbstractPage
 {
     // Product filter waits for more requests before evaluation
-    public const PRE_EVALUATION_WAIT = 2;
+    protected const PRE_EVALUATION_WAIT = 2;
 
     /**
      * @param \Tests\ShopBundle\Test\Codeception\Module\StrictWebDriver $strictWebDriver
@@ -32,7 +32,10 @@ class ProductFilterPage extends AbstractPage
          * The input for minimal price is hidden by design so Codeception is not able to fill it directly.
          * There is a jQueryUI price slider in the filter form but making Codeception to handle it correctly would be overkill.
          */
-        $this->tester->executeJS(sprintf('$("#product_filter_form_minimalPrice").val(%.2f).change()', $price));
+        $this->tester->executeJS(sprintf(
+            '$("#product_filter_form_minimalPrice").val(%.2f).change()',
+            $this->tester->getPriceWithVatConvertedToDomainDefaultCurrency($price)
+        ));
         $this->waitForFilter();
     }
 
@@ -45,7 +48,10 @@ class ProductFilterPage extends AbstractPage
          * The input for maximal price is hidden by design so Codeception is not able to fill it directly.
          * There is a jQueryUI price slider in the filter form but making Codeception to handle it correctly would be overkill.
          */
-        $this->tester->executeJS(sprintf('$("#product_filter_form_maximalPrice").val(%.2f).change()', $price));
+        $this->tester->executeJS(sprintf(
+            '$("#product_filter_form_maximalPrice").val(%.2f).change()',
+            $this->tester->getPriceWithVatConvertedToDomainDefaultCurrency($price)
+        ));
         $this->waitForFilter();
     }
 
@@ -82,6 +88,7 @@ class ProductFilterPage extends AbstractPage
      */
     private function findParameterElementByLabel($parameterLabel)
     {
+        $translatedParameterLabel = t($parameterLabel, [], 'dataFixtures', $this->tester->getFrontendLocale());
         $parameterItems = $this->webDriver->findElements(
             WebDriverBy::cssSelector('#product_filter_form_parameters .js-product-filter-parameter')
         );
@@ -90,7 +97,7 @@ class ProductFilterPage extends AbstractPage
             try {
                 $itemLabel = $item->findElement(WebDriverBy::cssSelector('.js-product-filter-parameter-label'));
 
-                if (stripos($itemLabel->getText(), $parameterLabel) !== false) {
+                if (stripos($itemLabel->getText(), $translatedParameterLabel) !== false) {
                     return $item;
                 }
             } catch (\Facebook\WebDriver\Exception\NoSuchElementException $ex) {
@@ -98,7 +105,7 @@ class ProductFilterPage extends AbstractPage
             }
         }
 
-        $message = 'Unable to find parameter with label "' . $parameterLabel . '" in product filter.';
+        $message = sprintf('Unable to find parameter with label "%s" (translated to "%s") in product filter.', $parameterLabel, $translatedParameterLabel);
         throw new \Facebook\WebDriver\Exception\NoSuchElementException($message);
     }
 
@@ -109,11 +116,12 @@ class ProductFilterPage extends AbstractPage
      */
     private function getLabelElementByParameterValueText($parameterElement, $parameterValueText)
     {
+        $translatedParameterValueText = t($parameterValueText, [], 'dataFixtures', $this->tester->getFrontendLocale());
         $labelElements = $parameterElement->findElements(WebDriverBy::cssSelector('.js-product-filter-parameter-value'));
 
         foreach ($labelElements as $labelElement) {
             try {
-                if (stripos($labelElement->getText(), $parameterValueText) !== false) {
+                if (stripos($labelElement->getText(), $translatedParameterValueText) !== false) {
                     return $labelElement;
                 }
             } catch (\Facebook\WebDriver\Exception\NoSuchElementException $ex) {
@@ -121,7 +129,7 @@ class ProductFilterPage extends AbstractPage
             }
         }
 
-        $message = 'Unable to find parameter value with label "' . $parameterValueText . '" in product filter.';
+        $message = sprintf('Unable to find parameter value with label "%s" (translated to %s) in product filter.', $parameterValueText, $translatedParameterValueText);
         throw new \Facebook\WebDriver\Exception\NoSuchElementException($message);
     }
 }
