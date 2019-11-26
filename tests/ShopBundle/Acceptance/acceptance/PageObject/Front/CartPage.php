@@ -46,6 +46,29 @@ class CartPage extends AbstractPage
 
     /**
      * @param string $productName
+     * @param string $price
+     */
+    public function assertProductPriceRoundedByCurrency($productName, $price)
+    {
+        $convertedPrice = $this->tester->getPriceWithVatConvertedToDomainDefaultCurrency($price);
+        $formattedPriceWithCurrency = $this->tester->getFormattedPriceWithCurrencySymbolRoundedByCurrencyOnFrontend(Money::create($convertedPrice));
+        $productPriceCell = $this->getProductTotalPriceCellByName($productName);
+        $this->tester->seeInElement($formattedPriceWithCurrency, $productPriceCell);
+    }
+
+    /**
+     * @param string $price
+     */
+    public function assertTotalPriceWithVatRoundedByCurrency($price)
+    {
+        $formattedPriceWithCurrency = $this->tester->getFormattedPriceWithCurrencySymbolRoundedByCurrencyOnFrontend(Money::create($price));
+        $orderPriceCell = $this->getTotalProductsPriceCell();
+        $message = t('Total price including VAT', [], 'messages', $this->tester->getFrontendLocale());
+        $this->tester->seeInElement($message . ': ' . $formattedPriceWithCurrency, $orderPriceCell);
+    }
+
+    /**
+     * @param string $productName
      * @param int $quantity
      */
     public function changeProductQuantity($productName, $quantity)
