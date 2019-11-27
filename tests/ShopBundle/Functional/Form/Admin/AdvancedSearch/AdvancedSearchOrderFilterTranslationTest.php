@@ -4,29 +4,32 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Form\Admin\AdvancedSearch;
 
-use Shopsys\FrameworkBundle\Form\Admin\AdvancedSearch\AdvancedSearchOrderFilterTranslation;
-use Shopsys\FrameworkBundle\Model\AdvancedSearch\OrderAdvancedSearchConfig;
 use Tests\ShopBundle\Test\FunctionalTestCase;
 
 class AdvancedSearchOrderFilterTranslationTest extends FunctionalTestCase
 {
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\AdvancedSearch\OrderAdvancedSearchConfig
+     * @inject
+     */
+    private $orderAdvancedSearchConfig;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Form\Admin\AdvancedSearch\AdvancedSearchOrderFilterTranslation
+     * @inject
+     */
+    private $advancedSearchOrderFilterTranslation;
+
     public function testTranslateFilterName()
     {
-        $advancedSearchConfig = $this->getContainer()->get(OrderAdvancedSearchConfig::class);
-        /* @var $advancedSearchConfig \Shopsys\FrameworkBundle\Model\AdvancedSearch\OrderAdvancedSearchConfig */
-        $advancedSearchOrderFilterTranslation = $this->getContainer()->get(AdvancedSearchOrderFilterTranslation::class);
-        /* @var $advancedSearchOrderFilterTranslation \Shopsys\FrameworkBundle\Form\Admin\AdvancedSearch\AdvancedSearchOrderFilterTranslation */
-
-        foreach ($advancedSearchConfig->getAllFilters() as $filter) {
-            $this->assertNotEmpty($advancedSearchOrderFilterTranslation->translateFilterName($filter->getName()));
+        foreach ($this->orderAdvancedSearchConfig->getAllFilters() as $filter) {
+            $this->assertNotEmpty($this->advancedSearchOrderFilterTranslation->translateFilterName($filter->getName()));
         }
     }
 
     public function testTranslateFilterNameNotFoundException()
     {
-        $advancedSearchTranslator = new AdvancedSearchOrderFilterTranslation();
-
         $this->expectException(\Shopsys\FrameworkBundle\Model\AdvancedSearch\Exception\AdvancedSearchTranslationNotFoundException::class);
-        $advancedSearchTranslator->translateFilterName('nonexistingFilterName');
+        $this->advancedSearchOrderFilterTranslation->translateFilterName('nonexistingFilterName');
     }
 }

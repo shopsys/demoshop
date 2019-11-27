@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b386f15f468c4b56a3edff100ef724fb",
+    "content-hash": "aab0fd7a115df64da0c3eb7a0cc475d2",
     "packages": [
         {
             "name": "arvenil/ninja-mutex",
@@ -11490,6 +11490,104 @@
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
             "time": "2019-06-13T22:48:21+00:00"
+        },
+        {
+            "name": "zalas/injector",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jakzal/injector.git",
+                "reference": "80b48ce4dee3b3389678823e2098719a9a3daacb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jakzal/injector/zipball/80b48ce4dee3b3389678823e2098719a9a3daacb",
+                "reference": "80b48ce4dee3b3389678823e2098719a9a3daacb",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2",
+                "phpdocumentor/reflection-docblock": "^4.0.1",
+                "psr/container": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "zalas/phpunit-doubles": "^1.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zalas\\Injector\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Zalas",
+                    "email": "jakub@zalas.pl"
+                }
+            ],
+            "description": "Injects services from a PSR-11 service container into objects",
+            "time": "2019-06-08T07:53:41+00:00"
+        },
+        {
+            "name": "zalas/phpunit-injector",
+            "version": "v1.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jakzal/phpunit-injector.git",
+                "reference": "8685a19a7cd90f7801830eeb8a9e4f4da1fabfc0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jakzal/phpunit-injector/zipball/8685a19a7cd90f7801830eeb8a9e4f4da1fabfc0",
+                "reference": "8685a19a7cd90f7801830eeb8a9e4f4da1fabfc0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "phpunit/phpunit": "^7.0",
+                "psr/container": "^1.0",
+                "zalas/injector": "^1.0"
+            },
+            "require-dev": {
+                "symfony/config": "^3.4 || ^4.0",
+                "symfony/dependency-injection": "^3.4 || ^4.0",
+                "symfony/framework-bundle": "^3.4||^4.0",
+                "symfony/http-kernel": "^3.4 || ^4.0",
+                "zalas/phpunit-globals": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zalas\\Injector\\PHPUnit\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Zalas",
+                    "email": "jakub@zalas.pl"
+                }
+            ],
+            "description": "Injects services from a PSR-11 dependency injection container to PHPUnit test cases",
+            "time": "2018-07-25T22:54:30+00:00"
         }
     ],
     "aliases": [],

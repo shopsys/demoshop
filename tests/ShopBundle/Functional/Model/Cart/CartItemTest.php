@@ -12,17 +12,22 @@ use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Product\Availability\Availability;
 use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityData;
-use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
 use Shopsys\ShopBundle\Model\Product\Product;
+use Shopsys\ShopBundle\Model\Product\ProductData;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CartItemTest extends TransactionFunctionalTestCase
 {
+    /**
+     * @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory
+     * @inject
+     */
+    private $productDataFactory;
+
     public function testIsSimilarItemAs()
     {
         $em = $this->getEntityManager();
-        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
 
         $customerIdentifier = new CustomerIdentifier('randomString');
 
@@ -33,7 +38,8 @@ class CartItemTest extends TransactionFunctionalTestCase
         $availabilityData = new AvailabilityData();
         $availabilityData->dispatchTime = 0;
         $availability = new Availability($availabilityData);
-        $productData = $productDataFactory->create();
+        /** @var \Shopsys\ShopBundle\Model\Product\ProductData $productData */
+        $productData = $this->productDataFactory->create();
         $productData->name = [];
         $productData->price = 100;
         $productData->vat = $vat;

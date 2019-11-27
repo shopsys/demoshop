@@ -5,26 +5,29 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Administrator;
 
 use DateTime;
-use Shopsys\FrameworkBundle\Model\Administrator\AdministratorRepository;
 use Shopsys\ShopBundle\DataFixtures\Demo\AdministratorDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class AdministratorRepositoryTest extends TransactionFunctionalTestCase
 {
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Administrator\AdministratorRepository
+     * @inject
+     */
+    private $administratorRepository;
+
     public function testGetByValidMultidomainLogin()
     {
         $validMultidomainLoginToken = 'validMultidomainLoginToken';
         $multidomainLoginTokenExpiration = new DateTime('+60 seconds');
 
-        $administrator = $this->getReference(AdministratorDataFixture::ADMINISTRATOR);
         /* @var $administrator \Shopsys\FrameworkBundle\Model\Administrator\Administrator */
-        $administratorRepository = $this->getContainer()->get(AdministratorRepository::class);
-        /* @var $administratorRepository \Shopsys\FrameworkBundle\Model\Administrator\AdministratorRepository */
+        $administrator = $this->getReference(AdministratorDataFixture::ADMINISTRATOR);
 
         $administrator->setMultidomainLoginTokenWithExpiration($validMultidomainLoginToken, $multidomainLoginTokenExpiration);
         $this->getEntityManager()->flush($administrator);
 
-        $administratorFromDb = $administratorRepository->getByValidMultidomainLoginToken($validMultidomainLoginToken);
+        $administratorFromDb = $this->administratorRepository->getByValidMultidomainLoginToken($validMultidomainLoginToken);
 
         $this->assertSame($administrator, $administratorFromDb);
     }
@@ -35,17 +38,15 @@ class AdministratorRepositoryTest extends TransactionFunctionalTestCase
         $invalidMultidomainLoginToken = 'invalidMultidomainLoginToken';
         $multidomainLoginTokenExpiration = new DateTime('+60 seconds');
 
-        $administrator = $this->getReference(AdministratorDataFixture::ADMINISTRATOR);
         /* @var $administrator \Shopsys\FrameworkBundle\Model\Administrator\Administrator */
-        $administratorRepository = $this->getContainer()->get(AdministratorRepository::class);
-        /* @var $administratorRepository \Shopsys\FrameworkBundle\Model\Administrator\AdministratorRepository */
+        $administrator = $this->getReference(AdministratorDataFixture::ADMINISTRATOR);
 
         $administrator->setMultidomainLoginTokenWithExpiration($validMultidomainLoginToken, $multidomainLoginTokenExpiration);
         $this->getEntityManager()->flush($administrator);
 
         $this->expectException('\Shopsys\FrameworkBundle\Model\Administrator\Security\Exception\InvalidTokenException');
 
-        $administratorRepository->getByValidMultidomainLoginToken($invalidMultidomainLoginToken);
+        $this->administratorRepository->getByValidMultidomainLoginToken($invalidMultidomainLoginToken);
     }
 
     public function testGetByValidMultidomainLoginTokenExpiredTokenException()
@@ -53,16 +54,14 @@ class AdministratorRepositoryTest extends TransactionFunctionalTestCase
         $validMultidomainLoginToken = 'validMultidomainLoginToken';
         $multidomainLoginTokenExpiration = new DateTime('-60 seconds');
 
-        $administrator = $this->getReference(AdministratorDataFixture::ADMINISTRATOR);
         /* @var $administrator \Shopsys\FrameworkBundle\Model\Administrator\Administrator */
-        $administratorRepository = $this->getContainer()->get(AdministratorRepository::class);
-        /* @var $administratorRepository \Shopsys\FrameworkBundle\Model\Administrator\AdministratorRepository */
+        $administrator = $this->getReference(AdministratorDataFixture::ADMINISTRATOR);
 
         $administrator->setMultidomainLoginTokenWithExpiration($validMultidomainLoginToken, $multidomainLoginTokenExpiration);
         $this->getEntityManager()->flush($administrator);
 
         $this->expectException('\Shopsys\FrameworkBundle\Model\Administrator\Security\Exception\InvalidTokenException');
 
-        $administratorRepository->getByValidMultidomainLoginToken($validMultidomainLoginToken);
+        $this->administratorRepository->getByValidMultidomainLoginToken($validMultidomainLoginToken);
     }
 }

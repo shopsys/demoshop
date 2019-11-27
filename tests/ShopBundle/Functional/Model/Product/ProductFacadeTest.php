@@ -5,19 +5,33 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Product;
 
 use ReflectionClass;
-use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculationScheduler;
-use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
-use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
 use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
 use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
 use Shopsys\ShopBundle\DataFixtures\Demo\VatDataFixture;
 use Shopsys\ShopBundle\Model\Product\Product;
-use Shopsys\ShopBundle\Model\Product\ProductDataFactory;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class ProductFacadeTest extends TransactionFunctionalTestCase
 {
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade
+     * @inject
+     */
+    private $productFacade;
+
+    /**
+     * @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory
+     * @inject
+     */
+    private $productDataFactory;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculationScheduler
+     * @inject
+     */
+    private $productPriceRecalculationScheduler;
+
     /**
      * @dataProvider getTestHandleOutOfStockStateDataProvider
      * @param mixed $hidden
@@ -35,8 +49,7 @@ class ProductFacadeTest extends TransactionFunctionalTestCase
         $calculatedHidden,
         $calculatedSellingDenied
     ) {
-        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
-        $productData = $productDataFactory->create();
+        $productData = $this->productDataFactory->create();
         $productData->hidden = $hidden;
         $productData->sellingDenied = $sellingDenied;
         $productData->stockQuantity = $stockQuantity;
@@ -47,14 +60,11 @@ class ProductFacadeTest extends TransactionFunctionalTestCase
         $productData->vat = $this->getReference(VatDataFixture::VAT_HIGH);
         $productData->unit = $this->getReference(UnitDataFixture::UNIT_PIECES);
 
-        $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
-
-        $product = $productFacade->create($productData);
+        $product = $this->productFacade->create($productData);
 
         $this->getEntityManager()->clear();
 
-        $productFromDb = $productFacade->getById($product->getId());
+        $productFromDb = $this->productFacade->getById($product->getId());
 
         $this->assertSame($productFromDb->getCalculatedHidden(), $calculatedHidden);
         $this->assertSame($calculatedSellingDenied, $productFromDb->getCalculatedSellingDenied());
@@ -116,34 +126,27 @@ class ProductFacadeTest extends TransactionFunctionalTestCase
 
     public function testEditMarkProductForVisibilityRecalculation()
     {
-        $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
         /* @var $product \Shopsys\ShopBundle\Model\Product\Product */
-        $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /* @var $productFacade \Shopsys\FrameworkBundle\Model\Product\ProductFacade */
-        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
-        /* @var $productDataFactory \Shopsys\ShopBundle\Model\Product\ProductDataFactory */
+        $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
 
         $reflectionClass = new ReflectionClass(Product::class);
         $reflectionPropertyRecalculateVisibility = $reflectionClass->getProperty('recalculateVisibility');
         $reflectionPropertyRecalculateVisibility->setAccessible(true);
         $reflectionPropertyRecalculateVisibility->setValue($product, false);
 
-        $productFacade->edit($product->getId(), $productDataFactory->createFromProduct($product));
+        $this->productFacade->edit($product->getId(), $this->productDataFactory->createFromProduct($product));
 
         $this->assertSame(true, $reflectionPropertyRecalculateVisibility->getValue($product));
     }
 
     public function testEditSchedulesPriceRecalculation()
     {
-        $productFacade = $this->getContainer()->get(ProductFacade::class);
-        $productPriceRecalculationScheduler = $this->getContainer()->get(ProductPriceRecalculationScheduler::class);
-        $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
         /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 1);
         $productId = $product->getId();
 
-        $productFacade->edit($productId, $productDataFactory->create());
+        $this->productFacade->edit($productId, $this->productDataFactory->create());
 
-        $this->assertArrayHasKey($productId, $productPriceRecalculationScheduler->getProductsForImmediateRecalculation());
+        $this->assertArrayHasKey($productId, $this->productPriceRecalculationScheduler->getProductsForImmediateRecalculation());
     }
 }

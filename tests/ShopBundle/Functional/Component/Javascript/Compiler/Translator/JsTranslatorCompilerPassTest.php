@@ -5,17 +5,20 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Component\Javascript\Compiler\Translator;
 
 use Shopsys\FrameworkBundle\Component\Javascript\Compiler\JsCompiler;
-use Shopsys\FrameworkBundle\Component\Javascript\Compiler\Translator\JsTranslatorCompilerPass;
 use Tests\ShopBundle\Test\FunctionalTestCase;
 
 class JsTranslatorCompilerPassTest extends FunctionalTestCase
 {
+    /**
+     * @var \Shopsys\FrameworkBundle\Component\Javascript\Compiler\Translator\JsTranslatorCompilerPass
+     * @inject
+     */
+    private $jsTranslatorCompilerPass;
+
     public function testProcess()
     {
-        $translator = $this->getContainer()->get('translator');
         /* @var $translator \Shopsys\FrameworkBundle\Component\Translation\Translator */
-        $jsTranslatorCompilerPass = $this->getContainer()->get(JsTranslatorCompilerPass::class);
-        /* @var $jsTranslatorCompilerPass \Shopsys\FrameworkBundle\Component\Javascript\Compiler\Translator\JsTranslatorCompilerPass */
+        $translator = $this->getContainer()->get('translator');
 
         $translator->setLocale('testLocale');
         $translator->getCatalogue()->add([
@@ -24,7 +27,7 @@ class JsTranslatorCompilerPassTest extends FunctionalTestCase
         ]);
 
         $jsCompiler = new JsCompiler([
-            $jsTranslatorCompilerPass,
+            $this->jsTranslatorCompilerPass,
         ]);
 
         $content = <<<EOD

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Smoke;
 
 use Shopsys\FrameworkBundle\Form\Admin\Product\ProductFormType;
-use Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupFacade;
 use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
 use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
 use Shopsys\ShopBundle\DataFixtures\Demo\VatDataFixture;
@@ -15,6 +14,12 @@ use Tests\ShopBundle\Test\FunctionalTestCase;
 
 class NewProductTest extends FunctionalTestCase
 {
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupFacade
+     * @inject
+     */
+    private $pricingGroupFacade;
+
     public function createOrEditProductProvider()
     {
         return [['admin/product/new/'], ['admin/product/edit/1']];
@@ -26,8 +31,13 @@ class NewProductTest extends FunctionalTestCase
      */
     public function testCreateOrEditProduct($relativeUrl)
     {
+        $domainUrl = $this->getContainer()->getParameter('overwrite_domain_url');
+        $server = [
+            'HTTP_HOST' => sprintf('%s:%d', parse_url($domainUrl, PHP_URL_HOST), parse_url($domainUrl, PHP_URL_PORT)),
+        ];
+
         $client1 = $this->getClient(false, 'admin', 'admin123');
-        $crawler = $client1->request('GET', $relativeUrl);
+        $crawler = $client1->request('GET', $relativeUrl, [], [], $server);
 
         $form = $crawler->filter('form[name=product_form]')->form();
         $this->fillForm($form);
@@ -92,8 +102,7 @@ class NewProductTest extends FunctionalTestCase
      */
     private function fillManualInputPrices(Form $form)
     {
-        $pricingGroupFacade = $this->getContainer()->get(PricingGroupFacade::class);
-        foreach ($pricingGroupFacade->getAll() as $pricingGroup) {
+        foreach ($this->pricingGroupFacade->getAll() as $pricingGroup) {
             $inputName = sprintf(
                 'product_form[pricesGroup][productCalculatedPricesGroup][manualInputPricesByPricingGroupId][%s]',
                 $pricingGroup->getId()
