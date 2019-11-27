@@ -5,12 +5,6 @@
     @media @query-lg {
         display: flex;
         width: 100%;
-
-        .is-no-flex & {
-            display: block;
-
-            .clearfix();
-        }
     }
 
     &__info {
@@ -18,11 +12,6 @@
 
         @media @query-lg {
             flex: 0 @box-order-info-width;
-
-            .is-no-flex & {
-                float: left;
-                width: @box-order-info-width;
-            }
         }
     }
 
@@ -44,11 +33,6 @@
         @media @query-lg {
             flex: 0 @box-order-cart-width;
             padding-left: 20px;
-
-            .is-no-flex & {
-                float: right;
-                width: @box-order-cart-width;
-            }
         }
 
         @media @query-vl {
