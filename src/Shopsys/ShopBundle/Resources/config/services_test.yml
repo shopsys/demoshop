@@ -4,6 +4,9 @@ services:
         autoconfigure: true
         public: true
 
+    Shopsys\ShopBundle\:
+        resource: '../../**/*{Factory}.php'
+
     CommerceGuys\Intl\NumberFormat\NumberFormatRepository: ~
 
     Shopsys\FrameworkBundle\Component\EntityExtension\EntityNameResolver:
@@ -18,6 +21,8 @@ services:
 
     Symfony\Component\Filesystem\Filesystem: ~
 
+    Tests\ShopBundle\Functional\EntityExtension\OverwritableEntityNameResolver: '@Shopsys\FrameworkBundle\Component\EntityExtension\EntityNameResolver'
+
     joschi127_doctrine_entity_override.event_subscriber.load_orm_metadata:
         class: Tests\ShopBundle\Functional\EntityExtension\OverwritableLoadORMMetadataSubscriber
         arguments:
@@ -27,6 +32,8 @@ services:
             - { name: doctrine.event_subscriber, priority: -10 }
 
     League\Flysystem\FilesystemInterface: '@main_filesystem'
+
+    Shopsys\FrameworkBundle\Model\Article\ArticleFactory: ~
 
     Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface:
         alias: Shopsys\ShopBundle\Model\Category\CategoryDataFactory

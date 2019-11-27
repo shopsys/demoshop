@@ -4,12 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Vat;
 
-use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;
-use Shopsys\FrameworkBundle\Model\Payment\PaymentFacade;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
-use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatFacade;
-use Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface;
-use Shopsys\FrameworkBundle\Model\Transport\TransportFacade;
 use Shopsys\ShopBundle\DataFixtures\Demo\PaymentDataFixture;
 use Shopsys\ShopBundle\DataFixtures\Demo\TransportDataFixture;
 use Shopsys\ShopBundle\DataFixtures\Demo\VatDataFixture;
@@ -17,40 +12,60 @@ use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class VatFacadeTest extends TransactionFunctionalTestCase
 {
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Pricing\Vat\VatFacade
+     * @inject
+     */
+    private $vatFacade;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Transport\TransportFacade
+     * @inject
+     */
+    private $transportFacade;
+
+    /**
+     * @var \Shopsys\ShopBundle\Model\Transport\TransportDataFactory
+     * @inject
+     */
+    private $transportDataFactory;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Payment\PaymentFacade
+     * @inject
+     */
+    private $paymentFacade;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface
+     * @inject
+     */
+    private $paymentDataFactory;
+
     public function testDeleteByIdAndReplace()
     {
         $em = $this->getEntityManager();
-        $vatFacade = $this->getContainer()->get(VatFacade::class);
-        /* @var $vatFacade \Shopsys\FrameworkBundle\Model\Pricing\Vat\VatFacade */
-        $transportFacade = $this->getContainer()->get(TransportFacade::class);
-        /* @var $transportFacade \Shopsys\FrameworkBundle\Model\Transport\TransportFacade */
-        $transportDataFactory = $this->getContainer()->get(TransportDataFactoryInterface::class);
-        /* @var $transportDataFactory \Shopsys\FrameworkBundle\Model\Transport\TransportDataFactory */
-        $paymentDataFactory = $this->getContainer()->get(PaymentDataFactoryInterface::class);
-        /* @var $paymentDataFactory \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface */
-        $paymentFacade = $this->getContainer()->get(PaymentFacade::class);
-        /* @var $paymentFacade \Shopsys\FrameworkBundle\Model\Payment\PaymentFacade */
 
         $vatData = new VatData();
         $vatData->name = 'name';
         $vatData->percent = 10;
-        $vatToDelete = $vatFacade->create($vatData);
+        $vatToDelete = $this->vatFacade->create($vatData);
         $vatToReplaceWith = $this->getReference(VatDataFixture::VAT_HIGH);
         /* @var $vatToReplaceWith \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat */
         $transport = $this->getReference(TransportDataFixture::TRANSPORT_PERSONAL);
         /* @var $transport \Shopsys\FrameworkBundle\Model\Transport\Transport */
-        $transportData = $transportDataFactory->createFromTransport($transport);
+        $transportData = $this->transportDataFactory->createFromTransport($transport);
         $payment = $this->getReference(PaymentDataFixture::PAYMENT_CASH);
         /* @var $payment \Shopsys\FrameworkBundle\Model\Payment\Payment */
-        $paymentData = $paymentDataFactory->createFromPayment($payment);
+        $paymentData = $this->paymentDataFactory->createFromPayment($payment);
 
         $transportData->vat = $vatToDelete;
-        $transportFacade->edit($transport, $transportData);
+        $this->transportFacade->edit($transport, $transportData);
 
         $paymentData->vat = $vatToDelete;
-        $paymentFacade->edit($payment, $paymentData);
+        $this->paymentFacade->edit($payment, $paymentData);
 
-        $vatFacade->deleteById($vatToDelete, $vatToReplaceWith);
+        $this->vatFacade->deleteById($vatToDelete, $vatToReplaceWith);
 
         $em->refresh($transport);
         $em->refresh($payment);

@@ -8,7 +8,6 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Doctrine\ORM\Tools\SchemaTool;
-use Shopsys\FrameworkBundle\Component\EntityExtension\EntityNameResolver;
 use Shopsys\FrameworkBundle\Model\Category\Category;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItem;
 use Shopsys\FrameworkBundle\Model\Order\Order;
@@ -44,6 +43,12 @@ class EntityExtensionTest extends TransactionFunctionalTestCase
      * @var \Doctrine\ORM\EntityManager
      */
     private $em;
+
+    /**
+     * @var \Tests\ShopBundle\Functional\EntityExtension\OverwritableEntityNameResolver
+     * @inject
+     */
+    private $entityNameResolver;
 
     public function setUp()
     {
@@ -106,13 +111,11 @@ class EntityExtensionTest extends TransactionFunctionalTestCase
         $originalEntityExtensionMap = $this->getContainer()->getParameter('shopsys.entity_extension.map');
         $entityExtensionMap = array_merge($originalEntityExtensionMap, $entityExtensionMap);
 
-        $loadORMMetadataSubscriber = $this->getContainer()->get('joschi127_doctrine_entity_override.event_subscriber.load_orm_metadata');
         /* @var $loadORMMetadataSubscriber \Tests\ShopBundle\Functional\EntityExtension\OverwritableLoadORMMetadataSubscriber */
-        $entityNameResolver = $this->getContainer()->get(EntityNameResolver::class);
-        /* @var $entityNameResolver \Tests\ShopBundle\Functional\EntityExtension\OverwritableEntityNameResolver */
+        $loadORMMetadataSubscriber = $this->getContainer()->get('joschi127_doctrine_entity_override.event_subscriber.load_orm_metadata');
 
         $loadORMMetadataSubscriber->overwriteEntityExtensionMap($entityExtensionMap);
-        $entityNameResolver->overwriteEntityExtensionMap($entityExtensionMap);
+        $this->entityNameResolver->overwriteEntityExtensionMap($entityExtensionMap);
     }
 
     /**

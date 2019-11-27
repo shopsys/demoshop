@@ -4,29 +4,32 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Form\Admin\AdvancedSearch;
 
-use Shopsys\FrameworkBundle\Form\Admin\AdvancedSearch\AdvancedSearchProductFilterTranslation;
-use Shopsys\FrameworkBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig;
 use Tests\ShopBundle\Test\FunctionalTestCase;
 
 class AdvancedSearchProductFilterTranslationTest extends FunctionalTestCase
 {
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig
+     * @inject
+     */
+    private $productAdvancedSearchConfig;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Form\Admin\AdvancedSearch\AdvancedSearchProductFilterTranslation
+     * @inject
+     */
+    private $advancedSearchProductFilterTranslation;
+
     public function testTranslateFilterName()
     {
-        $advancedSearchConfig = $this->getContainer()->get(ProductAdvancedSearchConfig::class);
-        /* @var $advancedSearchConfig \Shopsys\FrameworkBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig */
-        $advancedSearchProductFilterTranslation = $this->getContainer()->get(AdvancedSearchProductFilterTranslation::class);
-        /* @var $advancedSearchProductFilterTranslation \Shopsys\FrameworkBundle\Form\Admin\AdvancedSearch\AdvancedSearchProductFilterTranslation */
-
-        foreach ($advancedSearchConfig->getAllFilters() as $filter) {
-            $this->assertNotEmpty($advancedSearchProductFilterTranslation->translateFilterName($filter->getName()));
+        foreach ($this->productAdvancedSearchConfig->getAllFilters() as $filter) {
+            $this->assertNotEmpty($this->advancedSearchProductFilterTranslation->translateFilterName($filter->getName()));
         }
     }
 
     public function testTranslateFilterNameNotFoundException()
     {
-        $advancedSearchTranslator = new AdvancedSearchProductFilterTranslation();
-
         $this->expectException(\Shopsys\FrameworkBundle\Model\AdvancedSearch\Exception\AdvancedSearchTranslationNotFoundException::class);
-        $advancedSearchTranslator->translateFilterName('nonexistingFilterName');
+        $this->advancedSearchProductFilterTranslation->translateFilterName('nonexistingFilterName');
     }
 }

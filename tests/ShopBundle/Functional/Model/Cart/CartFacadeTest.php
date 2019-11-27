@@ -16,7 +16,6 @@ use Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcherFacade;
 use Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerIdentifier;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerIdentifierFactory;
-use Shopsys\FrameworkBundle\Model\Localization\TranslatableListener;
 use Shopsys\FrameworkBundle\Model\Order\PromoCode\CurrentPromoCodeFacade;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser;
 use Shopsys\FrameworkBundle\Model\Product\ProductRepository;
@@ -26,6 +25,24 @@ use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CartFacadeTest extends TransactionFunctionalTestCase
 {
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Cart\CartFacade
+     * @inject
+     */
+    private $cartFacade;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Cart\Item\CartItemFactoryInterface
+     * @inject
+     */
+    private $cartItemFactory;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Localization\TranslatableListener
+     * @inject
+     */
+    private $translatableListener;
+
     public function testAddProductToCartAddsItemsOnlyToCurrentCart(): void
     {
         $customerIdentifier = new CustomerIdentifier('secretSessionHash');
@@ -121,9 +138,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
     {
         // Set currentLocale in TranslatableListener as it done in real request
         // because CartWatcherFacade works with entity translations.
-        /** @var \Shopsys\FrameworkBundle\Model\Localization\TranslatableListener $translatableListener */
-        $translatableListener = $this->getContainer()->get(TranslatableListener::class);
-        $translatableListener->setCurrentLocale('cs');
+        $this->translatableListener->setCurrentLocale('cs');
 
         $customerIdentifier = new CustomerIdentifier('secretSessionHash');
 
@@ -152,15 +167,10 @@ class CartFacadeTest extends TransactionFunctionalTestCase
      */
     public function testCartNotExistIfNoListableProductIsInCart(int $productId, bool $cartShouldBeNull): void
     {
-        /** @var \Shopsys\FrameworkBundle\Model\Cart\CartFacade $cartFacade */
-        $cartFacade = $this->getContainer()->get(CartFacade::class);
-        /** @var \Shopsys\FrameworkBundle\Model\Cart\Item\CartItemFactoryInterface $cartItemFactory */
-        $cartItemFactory = $this->getContainer()->get(CartItemFactoryInterface::class);
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . $productId);
 
-        $cart = $cartFacade->getCartOfCurrentCustomerCreateIfNotExists();
-        $cartItem = $cartItemFactory->create($cart, $product, 1, Money::create(10));
+        $cart = $this->cartFacade->getCartOfCurrentCustomerCreateIfNotExists();
+        $cartItem = $this->cartItemFactory->create($cart, $product, 1, Money::create(10));
         $cart->addItem($cartItem);
 
         $this->getEntityManager()->persist($cartItem);
@@ -168,7 +178,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
 
         $this->assertFalse($cart->isEmpty(), 'Cart should not be empty');
 
-        $cart = $cartFacade->findCartOfCurrentCustomer();
+        $cart = $this->cartFacade->findCartOfCurrentCustomer();
 
         if ($cartShouldBeNull) {
             $this->assertNull($cart);
@@ -262,20 +272,12 @@ class CartFacadeTest extends TransactionFunctionalTestCase
         return $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 1);
     }
 
-    /**
-     * @return \Shopsys\FrameworkBundle\Model\Cart\CartFacade
-     */
-    private function getCartFacadeFromContainer(): CartFacade
-    {
-        return $this->getContainer()->get(CartFacade::class);
-    }
-
     public function testCannotAddProductFloatQuantityToCart(): void
     {
         $product = $this->createProduct();
 
         $this->expectException('Shopsys\FrameworkBundle\Model\Cart\Exception\InvalidQuantityException');
-        $this->getCartFacadeFromContainer()->addProductToCart($product->getId(), 1.1);
+        $this->cartFacade->addProductToCart($product->getId(), 1.1);
     }
 
     public function testCannotAddProductZeroQuantityToCart(): void
@@ -283,7 +285,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
         $product = $this->createProduct();
 
         $this->expectException('Shopsys\FrameworkBundle\Model\Cart\Exception\InvalidQuantityException');
-        $this->getCartFacadeFromContainer()->addProductToCart($product->getId(), 0);
+        $this->cartFacade->addProductToCart($product->getId(), 0);
     }
 
     public function testCannotAddProductNegativeQuantityToCart(): void
@@ -291,14 +293,14 @@ class CartFacadeTest extends TransactionFunctionalTestCase
         $product = $this->createProduct();
 
         $this->expectException('Shopsys\FrameworkBundle\Model\Cart\Exception\InvalidQuantityException');
-        $this->getCartFacadeFromContainer()->addProductToCart($product->getId(), -10);
+        $this->cartFacade->addProductToCart($product->getId(), -10);
     }
 
     public function testAddProductToCartMarksAddedProductAsNew(): void
     {
         $product = $this->createProduct();
 
-        $result = $this->getCartFacadeFromContainer()->addProductToCart($product->getId(), 2);
+        $result = $this->cartFacade->addProductToCart($product->getId(), 2);
         $this->assertTrue($result->getIsNew());
     }
 
@@ -306,8 +308,8 @@ class CartFacadeTest extends TransactionFunctionalTestCase
     {
         $product = $this->createProduct();
 
-        $this->getCartFacadeFromContainer()->addProductToCart($product->getId(), 1);
-        $result = $this->getCartFacadeFromContainer()->addProductToCart($product->getId(), 2);
+        $this->cartFacade->addProductToCart($product->getId(), 1);
+        $result = $this->cartFacade->addProductToCart($product->getId(), 2);
         $this->assertFalse($result->getIsNew());
     }
 
@@ -316,7 +318,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
         $product = $this->createProduct();
 
         $quantity = 2;
-        $result = $this->getCartFacadeFromContainer()->addProductToCart($product->getId(), $quantity);
+        $result = $this->cartFacade->addProductToCart($product->getId(), $quantity);
         $this->assertSame($quantity, $result->getAddedQuantity());
     }
 
@@ -324,7 +326,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
     {
         $product = $this->createProduct();
 
-        $cartFacade = $this->getCartFacadeFromContainer();
+        $cartFacade = $this->cartFacade;
         $cartFacade->addProductToCart($product->getId(), 1);
         $quantity = 2;
 
