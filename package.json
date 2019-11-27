@@ -15,7 +15,6 @@
         "grunt-cli": "^1.2.0",
         "grunt-contrib-less": "^1.4.0",
         "grunt-contrib-watch": "^1.0.0",
-        "grunt-legacssy": "github:shopsys/grunt-legacssy#v0.4.0-with-grunt1-support",
         "grunt-postcss": "^0.8.0",
         "grunt-spritesmith": "^6.6.3",
         "grunt-webfont": "^1.6.0",

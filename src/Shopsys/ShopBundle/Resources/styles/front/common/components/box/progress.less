@@ -12,12 +12,6 @@
         margin-bottom: @margin-gap*2;
     }
 
-    .is-no-flex & {
-        display: block;
-
-        .clearfix();
-    }
-
     &__item {
         display: flex;
         flex: 1;
@@ -26,12 +20,6 @@
         border-bottom: 3px solid @color-border-light;
         border-left: 1px solid @color-f;
         color: @color-9;
-
-        .is-no-flex & {
-            display: block;
-            float: left;
-            width: 100%/@box-progress-steps-count;
-        }
 
         &:first-child {
             border-left: 0;
@@ -56,10 +44,6 @@
             text-align: center;
 
             font-size: 12px;
-
-            .is-no-flex & {
-                display: block;
-            }
 
             @media @query-lg {
                 font-size: 14px;

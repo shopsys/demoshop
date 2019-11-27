@@ -4,11 +4,6 @@
     @media @query-lg {
         width: 100%;
         display: flex;
-
-        .is-no-flex & {
-            display: block;
-            .clearfix();
-        }
     }
 
     &__info {
@@ -18,11 +13,6 @@
         @media @query-lg {
             flex: 1;
             text-align: left;
-
-            .is-no-flex & {
-                float: left;
-                width: 100%/2;
-            }
         }
     }
 
@@ -32,11 +22,6 @@
         @media @query-lg {
             flex: 1;
             text-align: right;
-
-            .is-no-flex & {
-                float: right;
-                width: 100%/2;
-            }
         }
     }
 }
