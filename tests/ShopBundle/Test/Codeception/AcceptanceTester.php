@@ -6,6 +6,7 @@ namespace Tests\ShopBundle\Test\Codeception;
 
 use Codeception\Actor;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Tests\FrameworkBundle\Test\Codeception\ActorInterface;
 use Tests\ShopBundle\Test\Codeception\_generated\AcceptanceTesterActions;
 
 /**
@@ -22,7 +23,7 @@ use Tests\ShopBundle\Test\Codeception\_generated\AcceptanceTesterActions;
  * @method void haveFriend($name, $actorClass = null)
  * @method \Codeception\Scenario getScenario()
  */
-class AcceptanceTester extends Actor
+class AcceptanceTester extends Actor implements ActorInterface
 {
     public const DEFAULT_AJAX_TIMEOUT_SEC = 10;
     public const WAIT_TIMEOUT_SEC = 10;

@@ -13,6 +13,9 @@ use Tests\ShopBundle\Test\Codeception\Helper\SymfonyHelper;
 
 class OrderCest
 {
+    private const TRANSPORT_CZECH_POST_POSITION = 0;
+    private const PAYMENT_CACHE_ON_DELIVERY = 1;
+
     /**
      * @param \Tests\ShopBundle\Acceptance\acceptance\PageObject\Front\ProductListPage $productListPage
      * @param \Tests\ShopBundle\Acceptance\acceptance\PageObject\Front\OrderPage $orderPage
@@ -33,10 +36,12 @@ class OrderCest
         $me->scrollTo(['css' => '#cart_form_submit']);
         $me->clickByTranslationFrontend('Continue to Order');
 
+        $me->scrollTo(['css' => '#transport_and_payment_form_transport']);
         $orderPage->assertTransportIsNotSelected('Czech post');
-        $orderPage->selectTransport('Czech post');
+        $orderPage->selectTransport(self::TRANSPORT_CZECH_POST_POSITION);
+        $me->scrollTo(['css' => '#transport_and_payment_form_payment']);
         $orderPage->assertPaymentIsNotSelected('Cash on delivery');
-        $orderPage->selectPayment('Cash on delivery');
+        $orderPage->selectPayment(self::PAYMENT_CACHE_ON_DELIVERY);
         $me->waitForAjax();
         $me->scrollTo(['css' => '#transport_and_payment_form_save']);
         $me->clickByTranslationFrontend('Continue in order');
@@ -66,10 +71,12 @@ class OrderCest
         $me->scrollTo(['css' => '#cart_form_submit']);
         $me->clickByTranslationFrontend('Continue to Order');
 
+        $me->scrollTo(['css' => '#transport_and_payment_form_transport']);
         $orderPage->assertTransportIsNotSelected('Czech post');
-        $orderPage->selectTransport('Czech post');
+        $orderPage->selectTransport(self::TRANSPORT_CZECH_POST_POSITION);
+        $me->scrollTo(['css' => '#transport_and_payment_form_payment']);
         $orderPage->assertPaymentIsNotSelected('Cash on delivery');
-        $orderPage->selectPayment('Cash on delivery');
+        $orderPage->selectPayment(self::PAYMENT_CACHE_ON_DELIVERY);
         $me->waitForAjax();
         $me->scrollTo(['css' => '#transport_and_payment_form_save']);
         $me->clickByTranslationFrontend('Continue in order');
@@ -94,8 +101,10 @@ class OrderCest
         $me->clickByTranslationFrontend('Go to cart');
         $me->scrollTo(['css' => '#cart_form_submit']);
         $me->clickByTranslationFrontend('Continue to Order');
-        $orderPage->selectTransport('Czech post');
-        $orderPage->selectPayment('Cash on delivery');
+        $me->scrollTo(['css' => '#transport_and_payment_form_transport']);
+        $orderPage->selectTransport(self::TRANSPORT_CZECH_POST_POSITION);
+        $me->scrollTo(['css' => '#transport_and_payment_form_payment']);
+        $orderPage->selectPayment(self::PAYMENT_CACHE_ON_DELIVERY);
         $me->waitForAjax();
         $me->scrollTo(['css' => '#transport_and_payment_form_save'], null, 100);
         $me->clickByTranslationFrontend('Continue in order');
@@ -156,8 +165,10 @@ class OrderCest
         $me->scrollTo(['css' => '#cart_form_submit']);
         $me->clickByTranslationFrontend('Continue to Order');
 
-        $orderPage->selectTransport('Czech post');
-        $orderPage->selectPayment('Cash on delivery');
+        $me->scrollTo(['css' => '#transport_and_payment_form_transport']);
+        $orderPage->selectTransport(self::TRANSPORT_CZECH_POST_POSITION);
+        $me->scrollTo(['css' => '#transport_and_payment_form_payment']);
+        $orderPage->selectPayment(self::PAYMENT_CACHE_ON_DELIVERY);
         $me->waitForAjax();
         $me->scrollTo(['css' => '#transport_and_payment_form_save'], null, 100);
         $me->clickByTranslationFrontend('Continue in order');

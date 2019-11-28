@@ -31,10 +31,8 @@
                     </dd>
                 </dl>
                 <label class="form-choice">
-                    <span class="form-choice__input">
-                        {{ form_widget(form.rememberMe) }}
-                    </span>
-                    <span class="form-choice__label">
+                    {{ form_widget(form.rememberMe, { attr: { class: "css-checkbox" } }) }}
+                    <span class="css-checkbox__image form-choice__label">
                         {{ 'Remember my login'|trans }}
                         <i class="svg svg-info in-icon in-icon--info js-tooltip"
                            data-toggle="tooltip"
