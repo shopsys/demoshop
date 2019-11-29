@@ -6,9 +6,11 @@
     {% endblock %}
     <div class="web__main web__main--with-panel">
         <div class="web__main__content js-main-content">
-
-            {{ render(controller('ShopsysShopBundle:Front/FlashMessage:index')) }}
-
+            <div class="web__line">
+                <div class="web__container">
+                    {{ render(controller('ShopsysShopBundle:Front/FlashMessage:index')) }}
+                </div>
+            </div>
             {% block main_content %}{% endblock %}
         </div>
 
