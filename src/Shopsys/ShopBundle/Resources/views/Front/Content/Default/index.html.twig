@@ -19,17 +19,21 @@
 {% endblock %}
 
 {% block main_content %}
+    <div class="web__line">
+        <div class="web__container">
 
-    <div class="box-homepage-gallery">
-        <div class="box-homepage-gallery__primary">
-            {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepagePrimary'})) }}
-        </div>
-        <div class="box-homepage-gallery__secondary">
-            <div class="box-homepage-gallery__secondary__item box-homepage-gallery__secondary__item--first">
-                {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepageSecondaryFirst'})) }}
-            </div>
-            <div class="box-homepage-gallery__secondary__item box-homepage-gallery__secondary__item--second">
-                {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepageSecondarySecond'})) }}
+            <div class="box-homepage-gallery">
+                <div class="box-homepage-gallery__primary">
+                    {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepagePrimary'})) }}
+                </div>
+                <div class="box-homepage-gallery__secondary">
+                    <div class="box-homepage-gallery__secondary__item box-homepage-gallery__secondary__item--first">
+                        {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepageSecondaryFirst'})) }}
+                    </div>
+                    <div class="box-homepage-gallery__secondary__item box-homepage-gallery__secondary__item--second">
+                        {{ render(controller('ShopsysShopBundle:Front/Advert:box',{'positionName' : 'homepageSecondarySecond'})) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -39,9 +43,13 @@
     {% endcache %}
 
     {% if topProducts is not empty %}
-        <div id="top-products">
-            <h2>{{ 'Special offers'|trans }}</h2>
-            {{ productList.list(topProducts, null, 'h3') }}
+        <div class="web__line">
+            <div class="web__container">
+                <div id="top-products">
+                    <h2>{{ 'Special offers'|trans }}</h2>
+                    {{ productList.list(topProducts, null, 'h3') }}
+                </div>
+            </div>
         </div>
     {% endif %}
 
