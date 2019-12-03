@@ -5748,12 +5748,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/framework.git",
-                "reference": "833c0a9df6697956a2d0dcbf2d4c731e6f5d9941"
+                "reference": "d8b813e84e155822bf5ae6af78469f1f293a3bc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/framework/zipball/833c0a9df6697956a2d0dcbf2d4c731e6f5d9941",
-                "reference": "833c0a9df6697956a2d0dcbf2d4c731e6f5d9941",
+                "url": "https://api.github.com/repos/shopsys/framework/zipball/d8b813e84e155822bf5ae6af78469f1f293a3bc9",
+                "reference": "d8b813e84e155822bf5ae6af78469f1f293a3bc9",
                 "shasum": ""
             },
             "require": {
@@ -5866,7 +5866,7 @@
                 "proprietary"
             ],
             "description": "Core of Shopsys Framework - open source framework for building large, scalable, fast-growing e-commerce projects based on Symfony",
-            "time": "2019-11-19T13:55:03+00:00"
+            "time": "2019-12-02T15:41:04+00:00"
         },
         {
             "name": "shopsys/jparser",
@@ -6326,12 +6326,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/read-model.git",
-                "reference": "0400af96777c50efa333f8561f894f1f4247633d"
+                "reference": "9f5130653a82253e139e2e19f633d54c90f2bc85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/read-model/zipball/0400af96777c50efa333f8561f894f1f4247633d",
-                "reference": "0400af96777c50efa333f8561f894f1f4247633d",
+                "url": "https://api.github.com/repos/shopsys/read-model/zipball/9f5130653a82253e139e2e19f633d54c90f2bc85",
+                "reference": "9f5130653a82253e139e2e19f633d54c90f2bc85",
                 "shasum": ""
             },
             "require": {
@@ -6371,7 +6371,7 @@
                 "Shopsys Framework",
                 "read model"
             ],
-            "time": "2019-11-14T08:28:13+00:00"
+            "time": "2019-12-02T15:41:04+00:00"
         },
         {
             "name": "snc/redis-bundle",
