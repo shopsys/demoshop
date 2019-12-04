@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Product\Brand;
 
 use Shopsys\FrameworkBundle\Model\Product\Brand\Brand;
-use Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface;
-use Shopsys\FrameworkBundle\Model\Product\Brand\BrandFactoryInterface;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class BrandDomainTest extends TransactionFunctionalTestCase
@@ -18,11 +16,13 @@ class BrandDomainTest extends TransactionFunctionalTestCase
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface
+     * @inject
      */
     private $brandDataFactory;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\Brand\BrandFactoryInterface
+     * @inject
      */
     private $brandFactory;
 
@@ -34,8 +34,6 @@ class BrandDomainTest extends TransactionFunctionalTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->brandDataFactory = $this->getContainer()->get(BrandDataFactoryInterface::class);
-        $this->brandFactory = $this->getContainer()->get(BrandFactoryInterface::class);
         $this->em = $this->getEntityManager();
     }
 

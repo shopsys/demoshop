@@ -27,7 +27,7 @@ img {
         }
     }
 
-    .is-no-flex &, .is-safari & {
+    .is-safari & {
         display: block;
     }
 
@@ -65,7 +65,7 @@ img {
     }
 
     &__footer {
-        flex: 0;
+        width:;
 
         background: @web-footer-background;
         transition: @transition padding;
@@ -89,7 +89,11 @@ img {
     }
 
     &__container {
-        padding: 0 @web-padding/2;
+        padding: 0 @web-padding-small;
+
+        @media @query-vl {
+            padding: 0 @web-padding;
+        }
 
         @media @query-xl {
             margin: 0 auto;
@@ -97,15 +101,35 @@ img {
             width: @web-width;
             max-width: 100%;
         }
+
+        &--no-padding {
+            padding: 0;
+        }
+
+        .web__main--with-panel & {
+            padding: 0;
+            width: 100%;
+        }
     }
 
     &__main {
         padding-bottom: 20px;
 
         &--with-panel {
+            padding: 0 @web-padding-small;
+
             @media @query-lg {
                 display: flex;
                 width: 100%;
+            }
+
+            @media @query-vl {
+                padding: 0 @web-padding;
+            }
+
+            @media @query-xl {
+                width: @web-width;
+                margin: 0 auto;
             }
         }
 
@@ -127,7 +151,7 @@ img {
             @media @query-lg {
                 display: block;
                 order: 1;
-                padding-right: 40px;
+                padding-right: @web-panel-gap;
                 width: @web-panel-width;
 
                 flex-shrink: 0;

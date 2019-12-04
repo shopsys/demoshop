@@ -13,12 +13,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CustomerFormType extends AbstractType
 {
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface
+     * @var \Shopsys\ShopBundle\Model\Customer\CustomerDataFactory
      */
     private $customerDataFactory;
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface $customerDataFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\CustomerDataFactory $customerDataFactory
      */
     public function __construct(CustomerDataFactoryInterface $customerDataFactory)
     {

@@ -4,21 +4,45 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product\Search;
 
-use Elasticsearch\Client;
-use Shopsys\FrameworkBundle\Component\Elasticsearch\ElasticsearchStructureManager;
+use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
 use Shopsys\FrameworkBundle\Model\Product\Search\FilterQuery;
-use Shopsys\FrameworkBundle\Model\Product\Search\FilterQueryFactory;
 use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
-use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
+use Tests\ShopBundle\Test\ParameterTransactionFunctionalTestCase;
 
-class FilterQueryTest extends TransactionFunctionalTestCase
+class FilterQueryTest extends ParameterTransactionFunctionalTestCase
 {
     private const ELASTICSEARCH_INDEX = 'product';
 
+    /**
+     * @var \Elasticsearch\Client
+     * @inject
+     */
+    private $elasticSearchClient;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Pricing\PriceConverter
+     * @inject
+     */
+    private $priceConverter;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Product\Search\FilterQueryFactory
+     * @inject
+     */
+    private $filterQueryFactory;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Component\Elasticsearch\ElasticsearchStructureManager
+     * @inject
+     */
+    private $elasticSearchStructureManager;
+
     public function testBrand(): void
     {
+        $this->skipTestIfFirstDomainIsNotInEnglish();
+
         $filter = $this->createFilter()
             ->filterByBrands([1]);
 
@@ -27,6 +51,8 @@ class FilterQueryTest extends TransactionFunctionalTestCase
 
     public function testFlag(): void
     {
+        $this->skipTestIfFirstDomainIsNotInEnglish();
+
         $filter = $this->createFilter()
             ->filterByFlags([3])
             ->applyDefaultOrdering();
@@ -36,6 +62,8 @@ class FilterQueryTest extends TransactionFunctionalTestCase
 
     public function testFlagBrand(): void
     {
+        $this->skipTestIfFirstDomainIsNotInEnglish();
+
         $filter = $this->createFilter()
             ->filterByBrands([12])
             ->filterByFlags([1])
@@ -46,21 +74,35 @@ class FilterQueryTest extends TransactionFunctionalTestCase
 
     public function testMultiFilter(): void
     {
+        $this->skipTestIfFirstDomainIsNotInEnglish();
+
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
-        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+        $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
 
         $filter = $this->createFilter()
             ->filterOnlyInStock()
             ->filterByCategory([9])
             ->filterByFlags([1])
-            ->filterByPrices($pricingGroup, null, Money::create(20));
+            ->filterByPrices($pricingGroup, null, $this->priceConverter->convertPriceWithVatToPriceInDomainDefaultCurrency(Money::create(20), Domain::FIRST_DOMAIN_ID));
 
         $this->assertIdWithFilter($filter, [50]);
     }
 
     public function testParameters(): void
     {
-        $parameters = [50 => [109, 115], 49 => [105, 121], 10 => [107]];
+        $this->skipTestIfFirstDomainIsNotInEnglish();
+
+        $parameters = [
+            51 => [
+                $this->getParameterValueIdForFirstDomain('hardcover'),
+                $this->getParameterValueIdForFirstDomain('paper'),
+            ],
+            50 => [
+                $this->getParameterValueIdForFirstDomain('55'),
+                $this->getParameterValueIdForFirstDomain('48'),
+            ],
+            10 => [$this->getParameterValueIdForFirstDomain('50 g')],
+        ];
 
         $filter = $this->createFilter()
             ->filterByParameters($parameters);
@@ -70,8 +112,10 @@ class FilterQueryTest extends TransactionFunctionalTestCase
 
     public function testOrdering(): void
     {
+        $this->skipTestIfFirstDomainIsNotInEnglish();
+
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
-        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+        $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
 
         $filter = $this->createFilter()
             ->filterByCategory([9])
@@ -94,6 +138,8 @@ class FilterQueryTest extends TransactionFunctionalTestCase
 
     public function testMatchQuery(): void
     {
+        $this->skipTestIfFirstDomainIsNotInEnglish();
+
         $filter = $this->createFilter();
 
         $kittyFilter = $filter->search('kitty');
@@ -105,6 +151,8 @@ class FilterQueryTest extends TransactionFunctionalTestCase
 
     public function testPagination(): void
     {
+        $this->skipTestIfFirstDomainIsNotInEnglish();
+
         $filter = $this->createFilter()
             ->filterByCategory([9])
             ->applyDefaultOrdering();
@@ -137,14 +185,11 @@ class FilterQueryTest extends TransactionFunctionalTestCase
      */
     protected function assertIdWithFilter(FilterQuery $filterQuery, array $ids, string $message = ''): void
     {
-        /** @var \Elasticsearch\Client $es */
-        $es = $this->getContainer()->get(Client::class);
-
         $params = $filterQuery->getQuery();
 
         $params['_source'] = false;
 
-        $result = $es->search($params);
+        $result = $this->elasticSearchClient->search($params);
         $this->assertSame($ids, $this->extractIds($result), $message);
     }
 
@@ -166,12 +211,9 @@ class FilterQueryTest extends TransactionFunctionalTestCase
      */
     protected function createFilter(): FilterQuery
     {
-        /** @var \Shopsys\FrameworkBundle\Model\Product\Search\FilterQueryFactory $filterQueryFactory */
-        $filterQueryFactory = $this->getContainer()->get(FilterQueryFactory::class);
-        /** @var \Shopsys\FrameworkBundle\Component\Elasticsearch\ElasticsearchStructureManager $elasticSearchStructureManager */
-        $elasticSearchStructureManager = $this->getContainer()->get(ElasticsearchStructureManager::class);
-        $elasticSearchIndexName = $elasticSearchStructureManager->getAliasName(1, self::ELASTICSEARCH_INDEX);
-        $filter = $filterQueryFactory->create($elasticSearchIndexName);
+        $elasticSearchIndexName = $this->elasticSearchStructureManager->getAliasName(Domain::FIRST_DOMAIN_ID, self::ELASTICSEARCH_INDEX);
+
+        $filter = $this->filterQueryFactory->create($elasticSearchIndexName);
 
         return $filter->filterOnlySellable();
     }

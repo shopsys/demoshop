@@ -10,12 +10,10 @@ use Tests\ShopBundle\Test\Codeception\AcceptanceTester;
 
 class TransportImageUploadCest
 {
-    public const IMAGE_UPLOAD_FIELD_ID = 'transport_form_image_image_file';
-    public const SAVE_BUTTON_NAME = 'transport_form[save]';
+    protected const IMAGE_UPLOAD_FIELD_ID = 'transport_form_image_image_file';
+    protected const SAVE_BUTTON_NAME = 'transport_form[save]';
 
-    public const EXPECTED_SUCCESS_MESSAGE = 'Shipping Czech post was modified';
-
-    public const TEST_IMAGE_NAME = 'transportTestImage.png';
+    protected const TEST_IMAGE_NAME = 'transportTestImage.png';
 
     /**
      * @param \Tests\ShopBundle\Test\Codeception\AcceptanceTester $me
@@ -29,6 +27,9 @@ class TransportImageUploadCest
         $me->amOnPage('/admin/transport/edit/1');
         $entityEditPage->uploadTestImage(self::IMAGE_UPLOAD_FIELD_ID, self::TEST_IMAGE_NAME);
         $me->clickByName(self::SAVE_BUTTON_NAME);
-        $me->see(self::EXPECTED_SUCCESS_MESSAGE);
+        $me->seeTranslationAdmin('Shipping <strong><a href="{{ url }}">%name%</a></strong> was modified', 'messages', [
+            '{{ url }}' => '',
+            '%name%' => t('Czech post', [], 'dataFixtures', $me->getAdminLocale()),
+        ]);
     }
 }

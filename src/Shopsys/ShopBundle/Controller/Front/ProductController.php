@@ -216,7 +216,7 @@ class ProductController extends FrontBaseController
             'productFilterCountData' => $productFilterCountData,
             'category' => $category,
             'filterForm' => $filterForm->createView(),
-            'filterFormSubmited' => $filterForm->isSubmitted(),
+            'filterFormSubmitted' => $filterForm->isSubmitted(),
             'visibleChildren' => $this->categoryFacade->getAllVisibleChildrenByCategoryAndDomainId($category, $this->domain->getId()),
             'priceRange' => $productFilterConfig->getPriceRange(),
             'discountCoeficient' => $this->currentCustomer->getDiscountCoeficient(),
@@ -312,7 +312,7 @@ class ProductController extends FrontBaseController
             'paginationResult' => $paginationResult,
             'productFilterCountData' => $productFilterCountData,
             'filterForm' => $filterForm->createView(),
-            'filterFormSubmited' => $filterForm->isSubmitted(),
+            'filterFormSubmitted' => $filterForm->isSubmitted(),
             'searchText' => $searchText,
             'SEARCH_TEXT_PARAMETER' => self::SEARCH_TEXT_PARAMETER,
             'priceRange' => $productFilterConfig->getPriceRange(),
@@ -328,7 +328,7 @@ class ProductController extends FrontBaseController
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Category\Category $category
+     * @param \Shopsys\ShopBundle\Model\Category\Category $category
      * @return \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterConfig
      */
     private function createProductFilterConfigForCategory(Category $category)
@@ -355,7 +355,7 @@ class ProductController extends FrontBaseController
 
     /**
      * @param string|null $searchText
-     * @return \Shopsys\FrameworkBundle\Model\Category\Category[]
+     * @return \Shopsys\ShopBundle\Model\Category\Category[]
      */
     private function searchCategories($searchText)
     {

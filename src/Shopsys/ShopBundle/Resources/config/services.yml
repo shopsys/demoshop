@@ -35,6 +35,10 @@ services:
         class: Shopsys\ShopBundle\Controller\Admin\CustomerController
         tags: ['controller.service_arguments']
 
+    Shopsys\FrameworkBundle\Controller\Admin\PromoCodeController:
+        arguments:
+            $useInlineEditation: false
+
     Shopsys\ShopBundle\Form\Front\Order\DomainAwareOrderFlowFactory: ~
 
     Shopsys\FrameworkBundle\Model\Order\Item\OrderItemDataFactoryInterface: '@Shopsys\ShopBundle\Model\Order\Item\OrderItemDataFactory'
@@ -79,9 +83,8 @@ services:
 
     twig_cache_extension.cache_provider:
         class: Doctrine\Common\Cache\RedisCache
-        factory: 'Shopsys\FrameworkBundle\Component\Doctrine\Cache\RedisCacheFactory:create'
-        arguments:
-            - '@snc_redis.twig'
+        calls:
+            - { method: setRedis, arguments: ['@snc_redis.twig'] }
 
     twig_cache_extension.cache_strategy:
         class: Shopsys\ShopBundle\Twig\CurrentDomainLifetimeCacheStrategy
@@ -141,12 +144,6 @@ services:
     Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer:
         alias: Shopsys\ShopBundle\Model\Customer\CurrentCustomer
 
-    Shopsys\ShopBundle\DataFixtures\ProductDataFixtureReferenceInjector: ~
-
-    Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixtureLoader: ~
-
-    Shopsys\ShopBundle\DataFixtures\Demo\ProductParametersFixtureLoader: ~
-
     Shopsys\ShopBundle\DataFixtures\Performance\CategoryDataFixture:
         arguments:
             - "%shopsys.performance_data.category.counts_by_level%"
@@ -170,14 +167,6 @@ services:
             - '%shopsys.image_dir%'
             - '%shopsys.domain_images_dir%'
         tags: ['doctrine.fixture.orm']
-
-    Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixtureCsvReader:
-        arguments:
-            - '%shopsys.data_fixtures.resource_products_filepath%'
-
-    Shopsys\ShopBundle\DataFixtures\Demo\UserDataFixtureLoader:
-        arguments:
-            - '%shopsys.data_fixtures.resource_customers_filepath%'
 
     Shopsys\FrameworkBundle\Model\Administrator\AdministratorRepository: '@Shopsys\ShopBundle\Model\Administrator\AdministratorRepository'
 

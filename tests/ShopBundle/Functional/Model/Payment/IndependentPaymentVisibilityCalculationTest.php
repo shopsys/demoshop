@@ -4,17 +4,33 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Payment;
 
-use Shopsys\FrameworkBundle\Model\Payment\IndependentPaymentVisibilityCalculation;
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
-use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalTestCase
 {
-    public const FIRST_DOMAIN_ID = 1;
-    public const SECOND_DOMAIN_ID = 2;
+    protected const FIRST_DOMAIN_ID = 1;
+    protected const SECOND_DOMAIN_ID = 2;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Localization\Localization
+     * @inject
+     */
+    private $localization;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Payment\IndependentPaymentVisibilityCalculation
+     * @inject
+     */
+    private $independentPaymentVisibilityCalculation;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface
+     * @inject
+     */
+    private $paymentDataFactory;
 
     public function testIsIndependentlyVisible()
     {
@@ -31,11 +47,7 @@ class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalT
         $em->persist($payment);
         $em->flush();
 
-        $independentPaymentVisibilityCalculation =
-            $this->getContainer()->get(IndependentPaymentVisibilityCalculation::class);
-        /* @var $independentPaymentVisibilityCalculation \Shopsys\FrameworkBundle\Model\Payment\IndependentPaymentVisibilityCalculation */
-
-        $this->assertTrue($independentPaymentVisibilityCalculation->isIndependentlyVisible($payment, self::FIRST_DOMAIN_ID));
+        $this->assertTrue($this->independentPaymentVisibilityCalculation->isIndependentlyVisible($payment, self::FIRST_DOMAIN_ID));
     }
 
     public function testIsIndependentlyVisibleEmptyName()
@@ -43,11 +55,12 @@ class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalT
         $em = $this->getEntityManager();
         $vat = $this->getDefaultVat();
 
-        $paymentData = $this->getPaymentDataFactory()->create();
-        $paymentData->name = [
-            'cs' => null,
-            'en' => null,
-        ];
+        $paymentData = $this->paymentDataFactory->create();
+        $names = [];
+        foreach ($this->localization->getLocalesOfAllDomains() as $locale) {
+            $names[$locale] = null;
+        }
+        $paymentData->name = $names;
         $paymentData->vat = $vat;
         $paymentData->hidden = false;
         $paymentData->enabled = [
@@ -61,11 +74,7 @@ class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalT
         $em->persist($payment);
         $em->flush();
 
-        $independentPaymentVisibilityCalculation =
-            $this->getContainer()->get(IndependentPaymentVisibilityCalculation::class);
-        /* @var $independentPaymentVisibilityCalculation \Shopsys\FrameworkBundle\Model\Payment\IndependentPaymentVisibilityCalculation */
-
-        $this->assertFalse($independentPaymentVisibilityCalculation->isIndependentlyVisible($payment, self::FIRST_DOMAIN_ID));
+        $this->assertFalse($this->independentPaymentVisibilityCalculation->isIndependentlyVisible($payment, self::FIRST_DOMAIN_ID));
     }
 
     public function testIsIndependentlyVisibleNotOnDomain()
@@ -83,11 +92,7 @@ class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalT
         $em->persist($payment);
         $em->flush();
 
-        $independentPaymentVisibilityCalculation =
-            $this->getContainer()->get(IndependentPaymentVisibilityCalculation::class);
-        /* @var $independentPaymentVisibilityCalculation \Shopsys\FrameworkBundle\Model\Payment\IndependentPaymentVisibilityCalculation */
-
-        $this->assertFalse($independentPaymentVisibilityCalculation->isIndependentlyVisible($payment, self::FIRST_DOMAIN_ID));
+        $this->assertFalse($this->independentPaymentVisibilityCalculation->isIndependentlyVisible($payment, self::FIRST_DOMAIN_ID));
     }
 
     public function testIsIndependentlyVisibleHidden()
@@ -105,11 +110,7 @@ class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalT
         $em->persist($payment);
         $em->flush();
 
-        $independentPaymentVisibilityCalculation =
-            $this->getContainer()->get(IndependentPaymentVisibilityCalculation::class);
-        /* @var $independentPaymentVisibilityCalculation \Shopsys\FrameworkBundle\Model\Payment\IndependentPaymentVisibilityCalculation */
-
-        $this->assertFalse($independentPaymentVisibilityCalculation->isIndependentlyVisible($payment, self::FIRST_DOMAIN_ID));
+        $this->assertFalse($this->independentPaymentVisibilityCalculation->isIndependentlyVisible($payment, self::FIRST_DOMAIN_ID));
     }
 
     /**
@@ -120,13 +121,12 @@ class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalT
      */
     public function getDefaultPayment(Vat $vat, $enabledForDomains, $hidden)
     {
-        $paymentDataFactory = $this->getPaymentDataFactory();
-
-        $paymentData = $paymentDataFactory->create();
-        $paymentData->name = [
-            'cs' => 'paymentName',
-            'en' => 'paymentName',
-        ];
+        $paymentData = $this->paymentDataFactory->create();
+        $names = [];
+        foreach ($this->localization->getLocalesOfAllDomains() as $locale) {
+            $names[$locale] = 'paymentName';
+        }
+        $paymentData->name = $names;
         $paymentData->vat = $vat;
         $paymentData->hidden = $hidden;
         $paymentData->enabled = $enabledForDomains;
@@ -141,15 +141,7 @@ class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalT
     {
         $vatData = new VatData();
         $vatData->name = 'vat';
-        $vatData->percent = 21;
+        $vatData->percent = '21';
         return new Vat($vatData);
-    }
-
-    /**
-     * @return \Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface
-     */
-    public function getPaymentDataFactory()
-    {
-        return $this->getContainer()->get(PaymentDataFactoryInterface::class);
     }
 }

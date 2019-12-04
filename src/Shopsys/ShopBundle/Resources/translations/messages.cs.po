@@ -43,6 +43,9 @@ msgstr "Na přidaný produkt se nebudou vztahovat žádné individuální slevy"
 msgid "Address"
 msgstr "Adresa"
 
+msgid "Administration"
+msgstr ""
+
 msgid "All prices have to be handled manually if checked, otherwise the unit price without VAT and the total prices for that item will be recalculated automatically."
 msgstr "Pokud je zaškrtnuto, všechny ceny je třeba nastavovat ručně, jinak se jednotková cena bez DPH a celkové ceny pro tuto položku přepočítají automaticky."
 
@@ -208,6 +211,9 @@ msgstr "Dodací adresa"
 msgid "Delivery data"
 msgstr "Dodací údaje"
 
+msgid "Demo product images by"
+msgstr ""
+
 msgid "Description"
 msgstr "Popis"
 
@@ -219,6 +225,9 @@ msgstr "Sleva"
 
 msgid "Displaying"
 msgstr "Zobrazuji"
+
+msgid "Do not distribute without permission."
+msgstr ""
 
 msgid "Do you really want to remove this customer?"
 msgstr "Opravdu chcete odstranit tohoto zákazníka?"
@@ -378,6 +387,9 @@ msgstr "Odhlásit se"
 
 msgid "Login"
 msgstr "Přihlášení"
+
+msgid "Martin Chefmaster"
+msgstr ""
 
 msgid "Menu"
 msgstr "Menu"
@@ -555,6 +567,9 @@ msgstr "Rozcestník kategorií"
 
 msgid "Postcode"
 msgstr "PSČ"
+
+msgid "Powered by"
+msgstr ""
 
 msgid "Price"
 msgstr "Cena"

@@ -5,11 +5,7 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Product\Availability;
 
 use Shopsys\FrameworkBundle\Model\Product\Availability\Availability;
-use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityDataFactoryInterface;
-use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityFacade;
 use Shopsys\FrameworkBundle\Model\Product\Product;
-use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
-use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
 use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
@@ -22,21 +18,25 @@ final class AvailabilityFacadeTest extends TransactionFunctionalTestCase
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityDataFactoryInterface
+     * @inject
      */
     private $availabilityDataFactory;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityFacade
+     * @inject
      */
     private $availabilityFacade;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface
+     * @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory
+     * @inject
      */
     private $productDataFactory;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade
+     * @inject
      */
     private $productFacade;
 
@@ -45,10 +45,6 @@ final class AvailabilityFacadeTest extends TransactionFunctionalTestCase
         parent::setUp();
 
         $this->em = $this->getEntityManager();
-        $this->availabilityFacade = $this->getContainer()->get(AvailabilityFacade::class);
-        $this->availabilityDataFactory = $this->getContainer()->get(AvailabilityDataFactoryInterface::class);
-        $this->productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
-        $this->productFacade = $this->getContainer()->get(ProductFacade::class);
     }
 
     public function testDeleteByIdAndReplaceProductAvailability(): void

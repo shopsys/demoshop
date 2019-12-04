@@ -8,20 +8,9 @@
     &__form {
         display: flex;
 
-        .is-no-flex & {
-            display: block;
-
-            .clearfix();
-        }
-
         &__input {
             flex: 1;
             position: relative;
-
-            .is-no-flex & {
-                float: left;
-                width: ~"calc(100% - @{search-button-width})";
-            }
 
             .input {
                 padding-left: 30px;
@@ -32,14 +21,10 @@
         }
 
         &__button {
-            flex: 0 @search-button-width;
+            width: @search-button-width;
             padding: 0;
             height: @search-form-height;
             line-height: @search-form-height;
-
-            .is-no-flex & {
-                width: @search-button-width;
-            }
         }
 
         &__icon {
@@ -122,7 +107,7 @@
         }
 
         &__image {
-            flex: 0 @search-img-size;
+            width: @search-img-size;
             position: relative;
             height: @search-img-size;
 

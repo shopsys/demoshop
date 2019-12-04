@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Acceptance\acceptance;
 
-use Codeception\Scenario;
 use Tests\ShopBundle\Acceptance\acceptance\PageObject\Admin\LoginPage;
 use Tests\ShopBundle\Test\Codeception\AcceptanceTester;
 
@@ -13,17 +12,16 @@ class LoginAsCustomerCest
     /**
      * @param \Tests\ShopBundle\Test\Codeception\AcceptanceTester $me
      * @param \Tests\ShopBundle\Acceptance\acceptance\PageObject\Admin\LoginPage $loginPage
-     * @param \Codeception\Scenario $scenario
      */
-    public function testLoginAsCustomer(AcceptanceTester $me, LoginPage $loginPage, Scenario $scenario)
+    public function testLoginAsCustomer(AcceptanceTester $me, LoginPage $loginPage)
     {
         $me->wantTo('login as a customer from admin');
         $loginPage->loginAsAdmin();
         $me->amOnPage('/admin/customer/edit/2');
-        $me->clickByText('Log in as user');
+        $me->clickByTranslationAdmin('Log in as user');
         $me->switchToLastOpenedWindow();
         $me->seeCurrentPageEquals('/');
-        $me->see('Attention! You are administrator logged in as the customer.');
+        $me->seeTranslationFrontend('Attention! You are administrator logged in as the customer.');
         $me->see('Igor Anpilogov');
     }
 }

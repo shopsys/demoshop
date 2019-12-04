@@ -201,7 +201,7 @@ class RouteConfigCustomization
                     ->setParameter('categoryId', 2);
             })
             ->customizeByRouteName('admin_pricinggroup_delete', function (RouteConfig $config) {
-                $pricingGroup = $this->getPersistentReference(PricingGroupDataFixture::PRICING_GROUP_PARTNER_DOMAIN_1);
+                $pricingGroup = $this->getPersistentReference(PricingGroupDataFixture::PRICING_GROUP_PARTNER, Domain::FIRST_DOMAIN_ID);
                 /* @var $pricingGroup \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup */
 
                 $debugNote = sprintf('Delete pricing group "%s".', $pricingGroup->getName());
@@ -251,6 +251,11 @@ class RouteConfigCustomization
             ->customizeByRouteName(['front_customer_login_as_remembered_user', 'front_promo_code_remove'], function (RouteConfig $config, RouteInfo $info) {
                 $debugNote = sprintf('Route "%s" should always just redirect.', $info->getRouteName());
                 $config->changeDefaultRequestDataSet($debugNote)
+                    ->setExpectedStatusCode(302);
+            })
+            ->customizeByRouteName('front_login', function (RouteConfig $config) {
+                $config->addExtraRequestDataSet('Logged user on login page is redirected onto homepage')
+                    ->setAuth(new BasicHttpAuth('no-reply@shopsys.com', 'user123'))
                     ->setExpectedStatusCode(302);
             })
             ->customizeByRouteName(['front_order_index', 'front_order_sent'], function (RouteConfig $config) {
@@ -393,14 +398,17 @@ class RouteConfigCustomization
 
     /**
      * @param string $name
+     * @param int|null $domainId
      * @return object
      */
-    private function getPersistentReference($name)
+    private function getPersistentReference($name, ?int $domainId = null)
     {
+        /** @var \Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade $persistentReferenceFacade */
         $persistentReferenceFacade = $this->container
             ->get(PersistentReferenceFacade::class);
-        /* @var $persistentReferenceFacade \Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade */
-
+        if ($domainId !== null) {
+            return $persistentReferenceFacade->getReferenceForDomain($name, $domainId);
+        }
         return $persistentReferenceFacade->getReference($name);
     }
 

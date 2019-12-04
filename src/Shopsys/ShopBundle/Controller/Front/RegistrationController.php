@@ -9,6 +9,7 @@ use Shopsys\FrameworkBundle\Model\Customer\CustomerFacade;
 use Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\LegalConditions\LegalConditionsFacade;
 use Shopsys\FrameworkBundle\Model\Security\Authenticator;
+use Shopsys\FrameworkBundle\Model\Security\Roles;
 use Shopsys\ShopBundle\Form\Front\Registration\RegistrationFormType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,12 +17,12 @@ use Symfony\Component\HttpFoundation\Request;
 class RegistrationController extends FrontBaseController
 {
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade
+     * @var \Shopsys\ShopBundle\Model\Customer\CustomerFacade
      */
     private $customerFacade;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface
+     * @var \Shopsys\ShopBundle\Model\Customer\UserDataFactory
      */
     private $userDataFactory;
 
@@ -42,8 +43,8 @@ class RegistrationController extends FrontBaseController
 
     /**
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
-     * @param \Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface $userDataFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade $customerFacade
+     * @param \Shopsys\ShopBundle\Model\Customer\UserDataFactory $userDataFactory
+     * @param \Shopsys\ShopBundle\Model\Customer\CustomerFacade $customerFacade
      * @param \Shopsys\FrameworkBundle\Model\Security\Authenticator $authenticator
      * @param \Shopsys\FrameworkBundle\Model\LegalConditions\LegalConditionsFacade $legalConditionsFacade
      */
@@ -77,6 +78,10 @@ class RegistrationController extends FrontBaseController
      */
     public function registerAction(Request $request)
     {
+        if ($this->isGranted(Roles::ROLE_LOGGED_CUSTOMER)) {
+            return $this->redirectToRoute('front_homepage');
+        }
+
         $userData = $this->userDataFactory->createForDomainId($this->domain->getId());
 
         $form = $this->createForm(RegistrationFormType::class, $userData);

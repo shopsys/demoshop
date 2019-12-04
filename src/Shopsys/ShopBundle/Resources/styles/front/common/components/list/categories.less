@@ -60,26 +60,12 @@
                     right: 0;
                 }
             }
-
-            .is-no-flex & {
-                display: block;
-
-                font-size: 0;
-            }
         }
 
         &__image {
-            flex: 0 @list-categories-item-image-width;
+            width: @list-categories-item-image-width;
             padding: @list-categories-item-padding 0 @list-categories-item-padding @list-categories-item-padding;
             text-align: center;
-
-
-
-            .is-no-flex & {
-                display: inline-block;
-                vertical-align: middle;
-                width: @list-categories-item-image-width;
-            }
         }
 
         &__title {
@@ -90,12 +76,6 @@
 
             font-size: 18px;
             font-weight: bold;
-
-            .is-no-flex & {
-                display: inline-block;
-                vertical-align: middle;
-                width: ~"calc(100% - @{list-categories-item-image-width})";
-            }
 
             &__count {
                 color: @color-8;

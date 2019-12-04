@@ -9,6 +9,10 @@ use Shopsys\FrameworkBundle\Controller\Admin\AdministratorController as BaseAdmi
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+/**
+ * @property \Shopsys\ShopBundle\Model\Administrator\AdministratorFacade $administratorFacade
+ * @method __construct(\Shopsys\ShopBundle\Model\Administrator\AdministratorFacade $administratorFacade, \Shopsys\FrameworkBundle\Component\Grid\GridFactory $gridFactory, \Shopsys\FrameworkBundle\Model\AdminNavigation\BreadcrumbOverrider $breadcrumbOverrider, \Shopsys\FrameworkBundle\Model\Administrator\Activity\AdministratorActivityFacade $administratorActivityFacade, \Shopsys\FrameworkBundle\Model\Administrator\AdministratorDataFactoryInterface $administratorDataFactory)
+ */
 class AdministratorController extends BaseAdministratorController
 {
     /**

@@ -35,11 +35,6 @@
         align-items: center;
         padding: 5px @box-cookies-padding;
         width: 100%;
-
-        .is-no-flex & {
-            display: block;
-            text-align: center;
-        }
     }
 
     &__text {
@@ -47,20 +42,10 @@
         @media @query-vl {
             white-space: nowrap;
         }
-
-        .is-no-flex & {
-            display: inline-block;
-            vertical-align: middle;
-        }
     }
 
     &__btn {
         padding-left: 10px;
         white-space: nowrap;
-
-        .is-no-flex & {
-            display: inline-block;
-            vertical-align: middle;
-        }
     }
 }

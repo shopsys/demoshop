@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Acceptance\acceptance\PageObject\Front;
 
+use Tests\FrameworkBundle\Test\Codeception\FrontCheckbox;
 use Tests\ShopBundle\Acceptance\acceptance\PageObject\AbstractPage;
 
 class OrderPage extends AbstractPage
 {
-    public const FIRST_NAME_FIELD_NAME = 'order_personal_info_form[firstName]';
+    protected const FIRST_NAME_FIELD_NAME = 'order_personal_info_form[firstName]';
 
     /**
      * @param string $transportTitle
      */
     public function assertTransportIsNotSelected($transportTitle)
     {
-        $this->tester->dontSeeCheckboxIsCheckedByLabel($transportTitle);
+        $translatedTransportTitle = t($transportTitle, [], 'dataFixtures', $this->tester->getFrontendLocale());
+        $this->tester->dontSeeCheckboxIsCheckedByLabel($translatedTransportTitle);
     }
 
     /**
@@ -23,15 +25,20 @@ class OrderPage extends AbstractPage
      */
     public function assertTransportIsSelected($transportTitle)
     {
-        $this->tester->seeCheckboxIsCheckedByLabel($transportTitle);
+        $translatedTransportTitle = t($transportTitle, [], 'dataFixtures', $this->tester->getFrontendLocale());
+        $this->tester->seeCheckboxIsCheckedByLabel($translatedTransportTitle);
     }
 
     /**
-     * @param string $transportTitle
+     * @param int $transportPosition
      */
-    public function selectTransport($transportTitle)
+    public function selectTransport($transportPosition)
     {
-        $this->tester->checkOptionByLabel($transportTitle);
+        $frontCheckboxClicker = FrontCheckbox::createByCss(
+            $this->tester,
+            '#transport_and_payment_form_transport_' . $transportPosition
+        );
+        $frontCheckboxClicker->check();
     }
 
     /**
@@ -39,7 +46,8 @@ class OrderPage extends AbstractPage
      */
     public function assertPaymentIsNotSelected($paymentTitle)
     {
-        $this->tester->dontSeeCheckboxIsCheckedByLabel($paymentTitle);
+        $translatedPaymentTitle = t($paymentTitle, [], 'dataFixtures', $this->tester->getFrontendLocale());
+        $this->tester->dontSeeCheckboxIsCheckedByLabel($translatedPaymentTitle);
     }
 
     /**
@@ -47,15 +55,20 @@ class OrderPage extends AbstractPage
      */
     public function assertPaymentIsSelected($paymentTitle)
     {
-        $this->tester->seeCheckboxIsCheckedByLabel($paymentTitle);
+        $translatedPaymentTitle = t($paymentTitle, [], 'dataFixtures', $this->tester->getFrontendLocale());
+        $this->tester->seeCheckboxIsCheckedByLabel($translatedPaymentTitle);
     }
 
     /**
-     * @param string $paymentTitle
+     * @param int $paymentPosition
      */
-    public function selectPayment($paymentTitle)
+    public function selectPayment($paymentPosition)
     {
-        $this->tester->checkOptionByLabel($paymentTitle);
+        $frontCheckboxClicker = FrontCheckbox::createByCss(
+            $this->tester,
+            '#transport_and_payment_form_payment_' . $paymentPosition
+        );
+        $frontCheckboxClicker->check();
     }
 
     /**
@@ -110,6 +123,10 @@ class OrderPage extends AbstractPage
 
     public function acceptLegalConditions()
     {
-        $this->tester->checkOptionByLabel('I agree with terms and conditions and privacy policy.');
+        $frontCheckboxClicker = FrontCheckbox::createByCss(
+            $this->tester,
+            '#order_personal_info_form_legalConditionsAgreement'
+        );
+        $frontCheckboxClicker->check();
     }
 }

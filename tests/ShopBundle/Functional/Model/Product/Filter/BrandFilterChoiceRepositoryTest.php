@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product\Filter;
 
+use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Model\Product\Brand\Brand;
-use Shopsys\FrameworkBundle\Model\Product\Filter\BrandFilterChoiceRepository;
 use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
 use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class BrandFilterChoiceRepositoryTest extends TransactionFunctionalTestCase
 {
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Product\Filter\BrandFilterChoiceRepository
+     * @inject
+     */
+    private $brandFilterChoiceRepository;
+
     public function testBrandFilterChoicesFromCategoryWithNoBrands(): void
     {
         $brandFilterChoices = $this->getChoicesForCategoryReference(CategoryDataFixture::CATEGORY_BOOKS);
@@ -40,6 +46,8 @@ class BrandFilterChoiceRepositoryTest extends TransactionFunctionalTestCase
 
     public function testGetBrandFilterChoicesForSearchPhone(): void
     {
+        $this->skipTestIfFirstDomainIsNotInEnglish();
+
         $brandFilterChoices = $this->getChoicesForSearchText('phone');
 
         $this->assertCount(7, $brandFilterChoices);
@@ -75,15 +83,15 @@ class BrandFilterChoiceRepositoryTest extends TransactionFunctionalTestCase
      */
     protected function getChoicesForCategoryReference(string $categoryReferenceName): array
     {
-        $repository = $this->getBrandFilterChoiceRepository();
-
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
-        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+        $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
 
-        /** @var \Shopsys\FrameworkBundle\Model\Category\Category $category */
+        /** @var \Shopsys\ShopBundle\Model\Category\Category $category */
         $category = $this->getReference($categoryReferenceName);
+        /** @var \Shopsys\ShopBundle\Model\Product\Brand\Brand[] $brands */
+        $brands = $this->brandFilterChoiceRepository->getBrandFilterChoicesInCategory(Domain::FIRST_DOMAIN_ID, $pricingGroup, $category);
 
-        return $repository->getBrandFilterChoicesInCategory(1, $pricingGroup, $category);
+        return $brands;
     }
 
     /**
@@ -92,19 +100,13 @@ class BrandFilterChoiceRepositoryTest extends TransactionFunctionalTestCase
      */
     protected function getChoicesForSearchText(string $searchText): array
     {
-        $repository = $this->getBrandFilterChoiceRepository();
-
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
-        $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+        $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
+        $domainConfig1 = $this->domain->getDomainConfigById(Domain::FIRST_DOMAIN_ID);
 
-        return $repository->getBrandFilterChoicesForSearch(1, $pricingGroup, 'en', $searchText);
-    }
+        /** @var \Shopsys\ShopBundle\Model\Product\Brand\Brand[] $brands */
+        $brands = $this->brandFilterChoiceRepository->getBrandFilterChoicesForSearch($domainConfig1->getId(), $pricingGroup, $domainConfig1->getLocale(), $searchText);
 
-    /**
-     * @return \Shopsys\FrameworkBundle\Model\Product\Filter\BrandFilterChoiceRepository
-     */
-    public function getBrandFilterChoiceRepository(): BrandFilterChoiceRepository
-    {
-        return $this->getContainer()->get(BrandFilterChoiceRepository::class);
+        return $brands;
     }
 }

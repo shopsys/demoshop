@@ -10,12 +10,10 @@ use Tests\ShopBundle\Test\Codeception\AcceptanceTester;
 
 class PaymentImageUploadCest
 {
-    public const IMAGE_UPLOAD_FIELD_ID = 'payment_form_image_image_file';
-    public const SAVE_BUTTON_NAME = 'payment_form[save]';
+    protected const IMAGE_UPLOAD_FIELD_ID = 'payment_form_image_image_file';
+    protected const SAVE_BUTTON_NAME = 'payment_form[save]';
 
-    public const EXPECTED_SUCCESS_MESSAGE = 'Payment Credit card modified';
-
-    public const TEST_IMAGE_NAME = 'paymentTestImage.png';
+    protected const TEST_IMAGE_NAME = 'paymentTestImage.png';
 
     /**
      * @param \Tests\ShopBundle\Test\Codeception\AcceptanceTester $me
@@ -29,6 +27,9 @@ class PaymentImageUploadCest
         $me->amOnPage('/admin/payment/edit/1');
         $entityEditPage->uploadTestImage(self::IMAGE_UPLOAD_FIELD_ID, self::TEST_IMAGE_NAME);
         $me->clickByName(self::SAVE_BUTTON_NAME);
-        $me->see(self::EXPECTED_SUCCESS_MESSAGE);
+        $me->seeTranslationAdmin('Payment <strong><a href="{{ url }}">{{ name }}</a></strong> modified', 'messages', [
+            '{{ url }}' => '',
+            '{{ name }}' => t('Credit card', [], 'dataFixtures', $me->getAdminLocale()),
+        ]);
     }
 }

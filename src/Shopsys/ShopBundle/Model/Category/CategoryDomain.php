@@ -15,6 +15,8 @@ use Shopsys\FrameworkBundle\Model\Category\CategoryDomain as BaseCategoryDomain;
  *     }
  * )
  * @ORM\Entity
+ * @property \Shopsys\ShopBundle\Model\Category\Category $category
+ * @method __construct(\Shopsys\ShopBundle\Model\Category\Category $category, int $domainId)
  */
 class CategoryDomain extends BaseCategoryDomain
 {

@@ -49,6 +49,7 @@ class ProductListComponent extends AbstractPage
      */
     private function findProductListItemByName($productName, WebDriverElement $context)
     {
+        $translatedProductName = t($productName, [], 'dataFixtures', $this->tester->getFrontendLocale());
         $productItems = $context->findElements(WebDriverBy::cssSelector('.js-list-products-item'));
 
         foreach ($productItems as $item) {
@@ -63,7 +64,7 @@ class ProductListComponent extends AbstractPage
             }
         }
 
-        $message = 'Unable to find product "' . $productName . '" in product list component.';
+        $message = sprintf('Unable to find product "%s" (translated to "%s") in product list component.', $productName, $translatedProductName);
         throw new \Facebook\WebDriver\Exception\NoSuchElementException($message);
     }
 }

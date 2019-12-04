@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Acceptance\acceptance\PageObject\Front;
 
 use Shopsys\FrameworkBundle\Component\Form\TimedFormTypeExtension;
+use Tests\FrameworkBundle\Test\Codeception\FrontCheckbox;
 use Tests\ShopBundle\Acceptance\acceptance\PageObject\AbstractPage;
 
 class RegistrationPage extends AbstractPage
@@ -23,7 +24,11 @@ class RegistrationPage extends AbstractPage
         $this->tester->fillFieldByName('registration_form[email]', $email);
         $this->tester->fillFieldByName('registration_form[password][first]', $firstPassword);
         $this->tester->fillFieldByName('registration_form[password][second]', $secondPassword);
-        $this->tester->checkOptionByLabel('I agree with privacy policy');
+        $frontCheckboxClicker = FrontCheckbox::createByCss(
+            $this->tester,
+            '#registration_form_privacyPolicy'
+        );
+        $frontCheckboxClicker->check();
         $this->tester->wait(TimedFormTypeExtension::MINIMUM_FORM_FILLING_SECONDS);
         $this->tester->clickByName('registration_form[save]');
     }
@@ -45,7 +50,7 @@ class RegistrationPage extends AbstractPage
     }
 
     /**
-     * @param $fieldClass $text
+     * @param string $fieldClass
      * @param string $text
      */
     private function seeErrorForField($fieldClass, $text)
@@ -55,6 +60,6 @@ class RegistrationPage extends AbstractPage
         // Error message might be in fancy title - hover over field
         $this->tester->moveMouseOverByCss($fieldClass);
 
-        $this->tester->see($text);
+        $this->tester->seeTranslationFrontend($text, 'validators');
     }
 }

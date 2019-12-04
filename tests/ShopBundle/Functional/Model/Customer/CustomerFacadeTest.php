@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Customer;
 
-use Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface;
-use Shopsys\FrameworkBundle\Model\Customer\CustomerFacade;
+use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
@@ -16,24 +15,19 @@ class CustomerFacadeTest extends TransactionFunctionalTestCase
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade
+     * @inject
      */
     protected $customerFacade;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactory
+     * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface
+     * @inject
      */
     protected $customerDataFactory;
 
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->customerFacade = $this->getContainer()->get(CustomerFacade::class);
-        $this->customerDataFactory = $this->getContainer()->get(CustomerDataFactoryInterface::class);
-    }
-
     public function testChangeEmailToExistingEmailButDifferentDomainDoNotThrowException()
     {
-        $user = $this->customerFacade->findUserByEmailAndDomain(self::EXISTING_EMAIL_ON_DOMAIN_1, 1);
+        $user = $this->customerFacade->findUserByEmailAndDomain(self::EXISTING_EMAIL_ON_DOMAIN_1, Domain::FIRST_DOMAIN_ID);
         $customerData = $this->customerDataFactory->createFromUser($user);
         $customerData->userData->email = self::EXISTING_EMAIL_ON_DOMAIN_2;
 
@@ -45,7 +39,7 @@ class CustomerFacadeTest extends TransactionFunctionalTestCase
     public function testCreateNotDuplicateEmail()
     {
         $customerData = $this->customerDataFactory->create();
-        $customerData->userData->pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
+        $customerData->userData->pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
         $customerData->userData->domainId = 1;
         $customerData->userData->email = 'unique-email@shopsys.com';
         $customerData->userData->firstName = 'John';
