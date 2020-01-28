@@ -21,6 +21,7 @@ kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- unzip -o web-content.
 
 kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- php phing maintenance-on
 # Drop, create and fill database
+kubectl exec ${POD_POSTGRES} -- psql  -c "SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = current_database() AND pid <> pg_backend_pid();" shopsys
 kubectl exec ${POD_POSTGRES} -- dropdb shopsys
 kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- php phing db-create
 kubectl exec -i ${POD_POSTGRES} -- psql shopsys < demo-sql.sql
