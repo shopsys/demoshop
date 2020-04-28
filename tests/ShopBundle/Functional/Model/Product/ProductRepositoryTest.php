@@ -7,17 +7,17 @@ namespace Tests\ShopBundle\Functional\Model\Product;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData;
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
-use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
-use Shopsys\ShopBundle\Model\Category\Category;
-use Shopsys\ShopBundle\Model\Product\Product;
+use App\DataFixtures\Demo\CategoryDataFixture;
+use App\DataFixtures\Demo\PricingGroupDataFixture;
+use App\DataFixtures\Demo\ProductDataFixture;
+use App\Model\Category\Category;
+use App\Model\Product\Product;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class ProductRepositoryTest extends TransactionFunctionalTestCase
 {
     /**
-     * @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory
+     * @var \App\Model\Product\ProductDataFactory
      * @inject
      */
     private $productDataFactory;
@@ -62,7 +62,7 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
     {
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
         $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . $productReferenceId);
         $productId = $product->getId();
 
@@ -102,7 +102,7 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
     {
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
         $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . $productReferenceId);
         $productId = $product->getId();
 
@@ -142,7 +142,7 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
     {
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
         $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . $productReferenceId);
         $productId = $product->getId();
 
@@ -156,7 +156,7 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
 
     public function testOrderingByProductPriorityInCategory()
     {
-        /** @var \Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture $category */
+        /** @var \App\DataFixtures\Demo\CategoryDataFixture $category */
         $category = $this->getReference(CategoryDataFixture::CATEGORY_FOOD);
         $product1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 70);
         $product2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 71);
@@ -198,7 +198,7 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
     {
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
         $pricingGroup = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 1);
         $product2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 2);
         $product3 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 3);
@@ -224,7 +224,7 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Product\Product $product
+     * @param \App\Model\Product\Product $product
      * @param int $priority
      */
     private function setProductOrderingPriority(Product $product, $priority)
@@ -236,7 +236,7 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
 
     /**
      * @param string $searchText
-     * @return \Shopsys\ShopBundle\Model\Product\Product[]
+     * @return \App\Model\Product\Product[]
      */
     private function getProductsForSearchOrderedByPriority($searchText)
     {
@@ -258,8 +258,8 @@ class ProductRepositoryTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Category\Category $category
-     * @return \Shopsys\ShopBundle\Model\Product\Product[]
+     * @param \App\Model\Category\Category $category
+     * @return \App\Model\Product\Product[]
      */
     private function getProductsInCategoryOrderedByPriority(Category $category)
     {

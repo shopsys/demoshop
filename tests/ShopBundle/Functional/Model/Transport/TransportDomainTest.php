@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Transport;
 
-use Shopsys\ShopBundle\Model\Transport\Transport;
+use App\Model\Transport\Transport;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class TransportDomainTest extends TransactionFunctionalTestCase
@@ -13,7 +13,7 @@ class TransportDomainTest extends TransactionFunctionalTestCase
     public const SECOND_DOMAIN_ID = 2;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Transport\TransportDataFactory
+     * @var \App\Model\Transport\TransportDataFactory
      * @inject
      */
     private $transportDataFactory;
@@ -77,8 +77,8 @@ class TransportDomainTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Transport\Transport $transport
-     * @return \Shopsys\ShopBundle\Model\Transport\Transport
+     * @param \App\Model\Transport\Transport $transport
+     * @return \App\Model\Transport\Transport
      */
     private function getRefreshedTransportFromDatabase(Transport $transport)
     {

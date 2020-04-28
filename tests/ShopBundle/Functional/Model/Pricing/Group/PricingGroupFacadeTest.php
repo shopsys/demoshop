@@ -7,8 +7,8 @@ namespace Tests\ShopBundle\Functional\Model\Pricing\Group;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupData;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductCalculatedPrice;
-use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
+use App\DataFixtures\Demo\PricingGroupDataFixture;
+use App\DataFixtures\Demo\ProductDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class PricingGroupFacadeTest extends TransactionFunctionalTestCase
@@ -32,7 +32,7 @@ class PricingGroupFacadeTest extends TransactionFunctionalTestCase
     private $customerFacade;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Customer\UserDataFactory
+     * @var \App\Model\Customer\UserDataFactory
      * @inject
      */
     private $userDataFactory;
@@ -46,7 +46,7 @@ class PricingGroupFacadeTest extends TransactionFunctionalTestCase
     public function testCreate()
     {
         $em = $this->getEntityManager();
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
         $pricingGroupData = new PricingGroupData();
         $pricingGroupData->name = 'pricing_group_name';
@@ -70,7 +70,7 @@ class PricingGroupFacadeTest extends TransactionFunctionalTestCase
         $pricingGroupToDelete = $this->pricingGroupFacade->create($pricingGroupData, Domain::FIRST_DOMAIN_ID);
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroupToReplaceWith */
         $pricingGroupToReplaceWith = $this->getReferenceForDomain(PricingGroupDataFixture::PRICING_GROUP_ORDINARY, Domain::FIRST_DOMAIN_ID);
-        /** @var \Shopsys\ShopBundle\Model\Customer\User $user */
+        /** @var \App\Model\Customer\User $user */
         $user = $this->customerFacade->getUserById(1);
         $userData = $this->userDataFactory->createFromUser($user);
 

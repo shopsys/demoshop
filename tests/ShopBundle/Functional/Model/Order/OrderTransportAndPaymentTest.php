@@ -8,7 +8,7 @@ use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
-use Shopsys\ShopBundle\Model\Transport\Transport;
+use App\Model\Transport\Transport;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class OrderTransportAndPaymentTest extends TransactionFunctionalTestCase
@@ -32,7 +32,7 @@ class OrderTransportAndPaymentTest extends TransactionFunctionalTestCase
     private $transportFacade;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Transport\TransportDataFactory
+     * @var \App\Model\Transport\TransportDataFactory
      * @inject
      */
     private $transportDataFactory;
@@ -369,7 +369,7 @@ class OrderTransportAndPaymentTest extends TransactionFunctionalTestCase
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat $vat
      * @param bool[] $enabledForDomains
      * @param bool $hidden
-     * @return \Shopsys\ShopBundle\Model\Transport\Transport
+     * @return \App\Model\Transport\Transport
      */
     public function getDefaultTransport(Vat $vat, $enabledForDomains, $hidden)
     {

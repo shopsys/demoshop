@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Vat;
 
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
-use Shopsys\ShopBundle\DataFixtures\Demo\PaymentDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\TransportDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\VatDataFixture;
+use App\DataFixtures\Demo\PaymentDataFixture;
+use App\DataFixtures\Demo\TransportDataFixture;
+use App\DataFixtures\Demo\VatDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class VatFacadeTest extends TransactionFunctionalTestCase
@@ -25,7 +25,7 @@ class VatFacadeTest extends TransactionFunctionalTestCase
     private $transportFacade;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Transport\TransportDataFactory
+     * @var \App\Model\Transport\TransportDataFactory
      * @inject
      */
     private $transportDataFactory;

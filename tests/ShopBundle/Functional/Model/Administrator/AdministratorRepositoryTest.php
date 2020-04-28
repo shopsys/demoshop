@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Administrator;
 
 use DateTime;
-use Shopsys\ShopBundle\DataFixtures\Demo\AdministratorDataFixture;
+use App\DataFixtures\Demo\AdministratorDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class AdministratorRepositoryTest extends TransactionFunctionalTestCase

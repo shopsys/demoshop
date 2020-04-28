@@ -101,7 +101,7 @@ class CartFacadeDeleteOldCartsTest extends TransactionFunctionalTestCase
 
     /**
      * @param int $productId
-     * @return \Shopsys\ShopBundle\Model\Product\Product
+     * @return \App\Model\Product\Product
      */
     private function getProductById($productId)
     {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Product;
 
 use Shopsys\FrameworkBundle\Model\Product\Product;
-use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
+use App\DataFixtures\Demo\AvailabilityDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 final class ProductVariantCreationTest extends TransactionFunctionalTestCase
@@ -23,7 +23,7 @@ final class ProductVariantCreationTest extends TransactionFunctionalTestCase
     private $productVariantFacade;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory
+     * @var \App\Model\Product\ProductDataFactory
      * @inject
      */
     private $productDataFactory;

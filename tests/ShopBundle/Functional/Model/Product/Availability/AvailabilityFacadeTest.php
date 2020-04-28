@@ -6,7 +6,7 @@ namespace Tests\ShopBundle\Functional\Model\Product\Availability;
 
 use Shopsys\FrameworkBundle\Model\Product\Availability\Availability;
 use Shopsys\FrameworkBundle\Model\Product\Product;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
+use App\DataFixtures\Demo\ProductDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 final class AvailabilityFacadeTest extends TransactionFunctionalTestCase
@@ -29,7 +29,7 @@ final class AvailabilityFacadeTest extends TransactionFunctionalTestCase
     private $availabilityFacade;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory
+     * @var \App\Model\Product\ProductDataFactory
      * @inject
      */
     private $productDataFactory;
@@ -49,7 +49,7 @@ final class AvailabilityFacadeTest extends TransactionFunctionalTestCase
 
     public function testDeleteByIdAndReplaceProductAvailability(): void
     {
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
         $productData = $this->productDataFactory->createFromProduct($product);
 
@@ -69,7 +69,7 @@ final class AvailabilityFacadeTest extends TransactionFunctionalTestCase
 
     public function testDeleteByIdAndReplaceProductOutOfStockAvailability(): void
     {
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
         $productData = $this->productDataFactory->createFromProduct($product);
 

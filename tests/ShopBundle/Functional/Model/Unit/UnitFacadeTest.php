@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Unit;
 
 use Shopsys\FrameworkBundle\Model\Product\Unit\UnitData;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
+use App\DataFixtures\Demo\ProductDataFixture;
+use App\DataFixtures\Demo\UnitDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class UnitFacadeTest extends TransactionFunctionalTestCase
@@ -18,7 +18,7 @@ class UnitFacadeTest extends TransactionFunctionalTestCase
     private $unitFacade;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory
+     * @var \App\Model\Product\ProductDataFactory
      * @inject
      */
     private $productDataFactory;
@@ -39,9 +39,9 @@ class UnitFacadeTest extends TransactionFunctionalTestCase
         $unitToReplaceWith = $this->getReference(UnitDataFixture::UNIT_PIECES);
         /* @var $newUnit \Shopsys\FrameworkBundle\Model\Product\Unit\Unit */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
-        /* @var $product \Shopsys\ShopBundle\Model\Product\Product */
+        /* @var $product \App\Model\Product\Product */
         $productData = $this->productDataFactory->createFromProduct($product);
-        /* @var $productData \Shopsys\ShopBundle\Model\Product\ProductData */
+        /* @var $productData \App\Model\Product\ProductData */
 
         $productData->unit = $unitToDelete;
         $this->productFacade->edit($product->getId(), $productData);

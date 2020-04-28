@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\EntityExtension;
 
-use Shopsys\ShopBundle\Component\EntityExtension\LoadORMMetadataSubscriber;
+use App\Component\EntityExtension\LoadORMMetadataSubscriber;
 
 class OverwritableLoadORMMetadataSubscriber extends LoadORMMetadataSubscriber
 {

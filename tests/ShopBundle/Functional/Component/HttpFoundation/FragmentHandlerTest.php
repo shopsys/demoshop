@@ -19,7 +19,7 @@ class FragmentHandlerTest extends TransactionFunctionalTestCase
         // Rendering a fragment can only be done when handling a Request.
         $this->putFakeRequestToRequestStack();
 
-        $this->expectException(\Shopsys\ShopBundle\Controller\Test\ExpectedTestException::class);
+        $this->expectException(\App\Controller\Test\ExpectedTestException::class);
 
         /** This should call @see \Shopsys\FrameworkBundle\Component\HttpFoundation\FragmentHandler::render() */
         $httpKernelRuntime->renderFragment('/test/error-handler/exception');

@@ -19,8 +19,8 @@ use Shopsys\FrameworkBundle\Model\Customer\CustomerIdentifierFactory;
 use Shopsys\FrameworkBundle\Model\Order\PromoCode\CurrentPromoCodeFacade;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser;
 use Shopsys\FrameworkBundle\Model\Product\ProductRepository;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
-use Shopsys\ShopBundle\Model\Product\Product;
+use App\DataFixtures\Demo\ProductDataFixture;
+use App\Model\Product\Product;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CartFacadeTest extends TransactionFunctionalTestCase
@@ -48,7 +48,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
         $customerIdentifier = new CustomerIdentifier('secretSessionHash');
         $anotherCustomerIdentifier = new CustomerIdentifier('anotherSecretSessionHash');
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
         $productId = $product->getId();
         $quantity = 10;
@@ -68,7 +68,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
 
     public function testCannotAddUnsellableProductToCart(): void
     {
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '6');
         $productId = $product->getId();
         $quantity = 1;
@@ -87,9 +87,9 @@ class CartFacadeTest extends TransactionFunctionalTestCase
 
     public function testCanChangeCartItemsQuantities(): void
     {
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product1 */
+        /** @var \App\Model\Product\Product $product1 */
         $product1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product2 */
+        /** @var \App\Model\Product\Product $product2 */
         $product2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '3');
 
         $customerIdentifier = new CustomerIdentifier('secretSessionHash');
@@ -119,7 +119,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
     {
         $customerIdentifier = new CustomerIdentifier('secretSessionHash');
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
         $quantity = 1;
 
@@ -142,9 +142,9 @@ class CartFacadeTest extends TransactionFunctionalTestCase
 
         $customerIdentifier = new CustomerIdentifier('secretSessionHash');
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product1 */
+        /** @var \App\Model\Product\Product $product1 */
         $product1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product2 */
+        /** @var \App\Model\Product\Product $product2 */
         $product2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '2');
         $quantity = 1;
 
@@ -265,7 +265,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @return \Shopsys\ShopBundle\Model\Product\Product
+     * @return \App\Model\Product\Product
      */
     private function createProduct(): Product
     {

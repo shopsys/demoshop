@@ -6,10 +6,10 @@ namespace Tests\ShopBundle\Functional\Model\Order;
 
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItemData;
-use Shopsys\ShopBundle\DataFixtures\Demo\CountryDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\CurrencyDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\OrderStatusDataFixture;
-use Shopsys\ShopBundle\Model\Order\OrderData;
+use App\DataFixtures\Demo\CountryDataFixture;
+use App\DataFixtures\Demo\CurrencyDataFixture;
+use App\DataFixtures\Demo\OrderStatusDataFixture;
+use App\Model\Order\OrderData;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class OrderFacadeTest extends TransactionFunctionalTestCase
@@ -21,7 +21,7 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
     private $cartFacade;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Order\OrderDataFactory
+     * @var \App\Model\Order\OrderDataFactory
      * @inject
      */
     private $orderDataFactory;
@@ -139,7 +139,7 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
 
     public function testEdit()
     {
-        /** @var \Shopsys\ShopBundle\Model\Order\Order $order */
+        /** @var \App\Model\Order\Order $order */
         $order = $this->getReference('order_1');
 
         $this->assertCount(4, $order->getItems());

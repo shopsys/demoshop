@@ -19,10 +19,10 @@ use Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency;
 use Shopsys\FrameworkBundle\Model\Pricing\Currency\CurrencyData;
 use Shopsys\FrameworkBundle\Model\Pricing\Price;
 use Shopsys\FrameworkBundle\Model\Product\Product;
-use Shopsys\ShopBundle\Model\Customer\User;
-use Shopsys\ShopBundle\Model\Customer\UserData;
-use Shopsys\ShopBundle\Model\Order\Order;
-use Shopsys\ShopBundle\Model\Order\OrderData;
+use App\Model\Customer\User;
+use App\Model\Customer\UserData;
+use App\Model\Order\Order;
+use App\Model\Order\OrderData;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
@@ -121,7 +121,7 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
     /**
      * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddress $billingAddress
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress $deliveryAddress
-     * @return \Shopsys\ShopBundle\Model\Customer\User
+     * @return \App\Model\Customer\User
      */
     private function createUser(BillingAddress $billingAddress, DeliveryAddress $deliveryAddress)
     {
@@ -142,7 +142,7 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency
      * @param \Shopsys\FrameworkBundle\Model\Order\Status\OrderStatus $status
      * @param \Shopsys\FrameworkBundle\Model\Country\Country $country
-     * @return \Shopsys\ShopBundle\Model\Order\Order
+     * @return \App\Model\Order\Order
      */
     private function createOrder(Currency $currency, OrderStatus $status, Country $country)
     {

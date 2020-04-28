@@ -11,18 +11,18 @@ use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Product\ProductData;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibility;
-use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
-use Shopsys\ShopBundle\Model\Product\Product;
+use App\DataFixtures\Demo\AvailabilityDataFixture;
+use App\DataFixtures\Demo\CategoryDataFixture;
+use App\DataFixtures\Demo\PricingGroupDataFixture;
+use App\DataFixtures\Demo\ProductDataFixture;
+use App\DataFixtures\Demo\UnitDataFixture;
+use App\Model\Product\Product;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
 {
     /**
-     * @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory
+     * @var \App\Model\Product\ProductDataFactory
      * @inject
      */
     private $productDataFactory;
@@ -58,11 +58,11 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     private $localization;
 
     /**
-     * @return \Shopsys\ShopBundle\Model\Product\ProductData
+     * @return \App\Model\Product\ProductData
      */
     private function getDefaultProductData()
     {
-        /** @var \Shopsys\ShopBundle\Model\Category\Category $category */
+        /** @var \App\Model\Category\Category $category */
         $category = $this->getReference(CategoryDataFixture::CATEGORY_ELECTRONICS);
 
         $em = $this->getEntityManager();
@@ -88,7 +88,7 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Product\ProductData $productData
+     * @param \App\Model\Product\ProductData $productData
      * @param \Shopsys\FrameworkBundle\Component\Money\Money|null $price
      */
     private function setPriceForAllDomains(ProductData $productData, ?Money $price)
@@ -116,7 +116,7 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
 
         $this->productVisibilityRepository->refreshProductsVisibility();
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $productAgain */
+        /** @var \App\Model\Product\Product $productAgain */
         $productAgain = $em->getRepository(Product::class)->find($id);
 
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
@@ -147,7 +147,7 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
 
         $this->productVisibilityRepository->refreshProductsVisibility();
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $productAgain */
+        /** @var \App\Model\Product\Product $productAgain */
         $productAgain = $em->getRepository(Product::class)->find($id);
 
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
@@ -182,7 +182,7 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
 
         $this->productVisibilityRepository->refreshProductsVisibility();
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $productAgain */
+        /** @var \App\Model\Product\Product $productAgain */
         $productAgain = $em->getRepository(Product::class)->find($id);
 
         $this->assertFalse($productAgain->isVisible());
@@ -206,7 +206,7 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
 
         $this->productVisibilityRepository->refreshProductsVisibility();
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $productAgain */
+        /** @var \App\Model\Product\Product $productAgain */
         $productAgain = $em->getRepository(Product::class)->find($id);
 
         $this->assertFalse($productAgain->isVisible());
@@ -233,7 +233,7 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
 
         $this->productVisibilityRepository->refreshProductsVisibility();
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $productAgain */
+        /** @var \App\Model\Product\Product $productAgain */
         $productAgain = $em->getRepository(Product::class)->find($id);
 
         $this->assertTrue($productAgain->isVisible());
@@ -257,9 +257,9 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
 
         $this->productVisibilityRepository->refreshProductsVisibility();
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product1Again */
+        /** @var \App\Model\Product\Product $product1Again */
         $product1Again = $em->getRepository(Product::class)->find($product1Id);
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product2Again */
+        /** @var \App\Model\Product\Product $product2Again */
         $product2Again = $em->getRepository(Product::class)->find($product2Id);
 
         $this->assertFalse($product1Again->isVisible());
@@ -321,7 +321,7 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     {
         $em = $this->getEntityManager();
 
-        /** @var \Shopsys\ShopBundle\Model\Category\Category $category */
+        /** @var \App\Model\Category\Category $category */
         $category = $this->getReference(CategoryDataFixture::CATEGORY_TOYS);
 
         $productData = $this->getDefaultProductData();
@@ -438,13 +438,13 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     {
         $em = $this->getEntityManager();
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant1 */
+        /** @var \App\Model\Product\Product $variant1 */
         $variant1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '53');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant2 */
+        /** @var \App\Model\Product\Product $variant2 */
         $variant2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '54');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant3 */
+        /** @var \App\Model\Product\Product $variant3 */
         $variant3 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '69');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $mainVariant */
+        /** @var \App\Model\Product\Product $mainVariant */
         $mainVariant = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '148');
 
         $variant1productData = $this->productDataFactory->createFromProduct($variant1);
@@ -468,13 +468,13 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     {
         $em = $this->getEntityManager();
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant1 */
+        /** @var \App\Model\Product\Product $variant1 */
         $variant1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '53');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant2 */
+        /** @var \App\Model\Product\Product $variant2 */
         $variant2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '54');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant3 */
+        /** @var \App\Model\Product\Product $variant3 */
         $variant3 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '69');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $mainVariant */
+        /** @var \App\Model\Product\Product $mainVariant */
         $mainVariant = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '148');
 
         $variant1productData = $this->productDataFactory->createFromProduct($variant1);
@@ -506,13 +506,13 @@ class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase
     {
         $em = $this->getEntityManager();
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant1 */
+        /** @var \App\Model\Product\Product $variant1 */
         $variant1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '53');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant2 */
+        /** @var \App\Model\Product\Product $variant2 */
         $variant2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '54');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant3 */
+        /** @var \App\Model\Product\Product $variant3 */
         $variant3 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '69');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $mainVariant */
+        /** @var \App\Model\Product\Product $mainVariant */
         $mainVariant = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '148');
 
         $mainVariantproductData = $this->productDataFactory->createFromProduct($mainVariant);

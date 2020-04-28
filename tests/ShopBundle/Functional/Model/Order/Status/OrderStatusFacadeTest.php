@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Order\Status;
 
 use Shopsys\FrameworkBundle\Model\Order\Status\OrderStatusData;
-use Shopsys\ShopBundle\DataFixtures\Demo\OrderDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\OrderStatusDataFixture;
+use App\DataFixtures\Demo\OrderDataFixture;
+use App\DataFixtures\Demo\OrderStatusDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class OrderStatusFacadeTest extends TransactionFunctionalTestCase
@@ -24,7 +24,7 @@ class OrderStatusFacadeTest extends TransactionFunctionalTestCase
     private $orderFacade;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Order\OrderDataFactory
+     * @var \App\Model\Order\OrderDataFactory
      * @inject
      */
     private $orderDataFactory;

@@ -12,10 +12,10 @@ use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData;
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
 use Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterValue;
 use Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacadeInterface;
-use Shopsys\ShopBundle\DataFixtures\Demo\BrandDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\FlagDataFixture;
-use Shopsys\ShopBundle\Model\Category\Category;
+use App\DataFixtures\Demo\BrandDataFixture;
+use App\DataFixtures\Demo\CategoryDataFixture;
+use App\DataFixtures\Demo\FlagDataFixture;
+use App\Model\Category\Category;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 abstract class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTestCase
@@ -247,7 +247,7 @@ abstract class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTes
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData $productFilterData
-     * @param \Shopsys\ShopBundle\Model\Category\Category $category
+     * @param \App\Model\Category\Category $category
      * @return \Shopsys\FrameworkBundle\Component\Paginator\PaginationResult
      */
     public function getPaginationResultInCategory(ProductFilterData $productFilterData, Category $category): PaginationResult
@@ -326,7 +326,7 @@ abstract class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTes
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData $productFilterData
-     * @param \Shopsys\ShopBundle\Model\Category\Category $category
+     * @param \App\Model\Category\Category $category
      * @param int $page
      * @param int $limit
      * @return \Shopsys\FrameworkBundle\Component\Paginator\PaginationResult

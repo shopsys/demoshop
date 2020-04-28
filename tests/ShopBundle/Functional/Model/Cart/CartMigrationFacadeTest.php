@@ -13,8 +13,8 @@ use Shopsys\FrameworkBundle\Model\Cart\CartMigrationFacade;
 use Shopsys\FrameworkBundle\Model\Cart\Item\CartItem;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerIdentifier;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerIdentifierFactory;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
-use Shopsys\ShopBundle\Model\Product\Product;
+use App\DataFixtures\Demo\ProductDataFixture;
+use App\Model\Product\Product;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CartMigrationFacadeTest extends TransactionFunctionalTestCase

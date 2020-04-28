@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Category;
 
-use Shopsys\ShopBundle\Model\Category\Category;
+use App\Model\Category\Category;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CategoryDomainTest extends TransactionFunctionalTestCase

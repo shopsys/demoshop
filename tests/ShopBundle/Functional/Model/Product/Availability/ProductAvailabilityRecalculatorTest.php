@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product\Availability;
 
-use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
-use Shopsys\ShopBundle\Model\Product\Product;
+use App\DataFixtures\Demo\AvailabilityDataFixture;
+use App\Model\Product\Product;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class ProductAvailabilityRecalculatorTest extends TransactionFunctionalTestCase
@@ -23,7 +23,7 @@ class ProductAvailabilityRecalculatorTest extends TransactionFunctionalTestCase
     private $productFacade;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory
+     * @var \App\Model\Product\ProductDataFactory
      * @inject
      */
     private $productDataFactory;

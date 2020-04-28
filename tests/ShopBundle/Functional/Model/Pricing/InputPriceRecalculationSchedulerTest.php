@@ -58,7 +58,7 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
     private $paymentDataFactory;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Transport\TransportDataFactory
+     * @var \App\Model\Transport\TransportDataFactory
      * @inject
      */
     private $transportDataFactory;
@@ -174,7 +174,7 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
         $transportData->name = ['cs' => 'name'];
         $transportData->description = ['cs' => 'desc'];
         $transportData->vat = $vat;
-        /** @var \Shopsys\ShopBundle\Model\Transport\Transport $transport */
+        /** @var \App\Model\Transport\Transport $transport */
         $transport = $this->transportFacade->create($transportData);
 
         $em->flush();

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Unit\Form\Front\Newsletter;
 
+use App\Form\Front\Newsletter\SubscriptionFormType;
 use PHPUnit\Framework\Assert;
-use Shopsys\ShopBundle\Form\Front\Newsletter\SubscriptionFormType;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Validator\Validation;

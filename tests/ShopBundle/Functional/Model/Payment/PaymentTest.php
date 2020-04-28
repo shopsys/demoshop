@@ -7,7 +7,7 @@ namespace Tests\ShopBundle\Functional\Model\Payment;
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
-use Shopsys\ShopBundle\Model\Transport\Transport;
+use App\Model\Transport\Transport;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class PaymentTest extends TransactionFunctionalTestCase
@@ -19,7 +19,7 @@ class PaymentTest extends TransactionFunctionalTestCase
     private $paymentDataFactory;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Transport\TransportDataFactory
+     * @var \App\Model\Transport\TransportDataFactory
      * @inject
      */
     private $transportDataFactory;

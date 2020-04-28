@@ -8,7 +8,7 @@ use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
 use Shopsys\FrameworkBundle\Model\Product\Search\FilterQuery;
-use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
+use App\DataFixtures\Demo\PricingGroupDataFixture;
 use Tests\ShopBundle\Test\ParameterTransactionFunctionalTestCase;
 
 class FilterQueryTest extends ParameterTransactionFunctionalTestCase

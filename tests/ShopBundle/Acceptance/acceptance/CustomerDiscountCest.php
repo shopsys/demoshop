@@ -30,7 +30,7 @@ class CustomerDiscountCest
         $productDetailPage->assertPriceWithoutVat('CZK8.70');
 
         $layoutPage->openLoginPopup();
-        /** @see \Shopsys\ShopBundle\DataFixtures\Demo\UserDataFixture::USER_WITH_10_PERCENT_DISCOUNT */
+        /** @see \App\DataFixtures\Demo\UserDataFixture::USER_WITH_10_PERCENT_DISCOUNT */
         $loginPage->login('no-reply.3@shopsys.com', 'no-reply.3');
 
         $productDetailPage->assertPriceWithVat('CZK9.00');

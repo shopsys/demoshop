@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Administrator\Security;
 
 use Shopsys\FrameworkBundle\Model\Administrator\Security\AdministratorFrontSecurityFacade;
-use Shopsys\ShopBundle\DataFixtures\Demo\AdministratorDataFixture;
+use App\DataFixtures\Demo\AdministratorDataFixture;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 

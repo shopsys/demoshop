@@ -54,11 +54,11 @@ class CategoryRepositoryTest extends TransactionFunctionalTestCase
             $names[$locale] = 'name';
         }
         $categoryData->name = $names;
-        /** @var \Shopsys\ShopBundle\Model\Category\Category $rootCategory */
+        /** @var \App\Model\Category\Category $rootCategory */
         $rootCategory = $this->categoryFacade->getRootCategory();
         $categoryData->parent = $rootCategory;
 
-        /** @var \Shopsys\ShopBundle\Model\Category\Category $parentCategory */
+        /** @var \App\Model\Category\Category $parentCategory */
         $parentCategory = $this->categoryFacade->create($categoryData);
 
         $categoryData->enabled[self::FIRST_DOMAIN_ID] = false;
@@ -81,11 +81,11 @@ class CategoryRepositoryTest extends TransactionFunctionalTestCase
             $names[$locale] = 'name';
         }
         $categoryData->name = $names;
-        /** @var \Shopsys\ShopBundle\Model\Category\Category $rootCategory */
+        /** @var \App\Model\Category\Category $rootCategory */
         $rootCategory = $this->categoryFacade->getRootCategory();
         $categoryData->parent = $rootCategory;
 
-        /** @var \Shopsys\ShopBundle\Model\Category\Category $parentCategory */
+        /** @var \App\Model\Category\Category $parentCategory */
         $parentCategory = $this->categoryFacade->create($categoryData);
 
         $categoryData->parent = $parentCategory;

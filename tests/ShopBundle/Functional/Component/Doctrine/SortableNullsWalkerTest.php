@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Component\Doctrine;
 
+use App\Model\Product\Product;
 use Doctrine\ORM\Query;
 use Shopsys\FrameworkBundle\Component\Doctrine\SortableNullsWalker;
-use Shopsys\ShopBundle\Model\Product\Product;
 use Tests\ShopBundle\Test\FunctionalTestCase;
 
 class SortableNullsWalkerTest extends FunctionalTestCase

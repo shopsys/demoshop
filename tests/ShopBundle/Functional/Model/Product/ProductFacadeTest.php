@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Product;
 
 use ReflectionClass;
-use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\VatDataFixture;
-use Shopsys\ShopBundle\Model\Product\Product;
+use App\DataFixtures\Demo\AvailabilityDataFixture;
+use App\DataFixtures\Demo\ProductDataFixture;
+use App\DataFixtures\Demo\UnitDataFixture;
+use App\DataFixtures\Demo\VatDataFixture;
+use App\Model\Product\Product;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class ProductFacadeTest extends TransactionFunctionalTestCase
@@ -21,7 +21,7 @@ class ProductFacadeTest extends TransactionFunctionalTestCase
     private $productFacade;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory
+     * @var \App\Model\Product\ProductDataFactory
      * @inject
      */
     private $productDataFactory;
@@ -126,7 +126,7 @@ class ProductFacadeTest extends TransactionFunctionalTestCase
 
     public function testEditMarkProductForVisibilityRecalculation()
     {
-        /* @var $product \Shopsys\ShopBundle\Model\Product\Product */
+        /* @var $product \App\Model\Product\Product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
 
         $reflectionClass = new ReflectionClass(Product::class);
@@ -141,7 +141,7 @@ class ProductFacadeTest extends TransactionFunctionalTestCase
 
     public function testEditSchedulesPriceRecalculation()
     {
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 1);
         $productId = $product->getId();
 

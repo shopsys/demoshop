@@ -46,7 +46,7 @@ class AppKernel extends Kernel
             new Joschi127\DoctrineEntityOverrideBundle\Joschi127DoctrineEntityOverrideBundle(),
             new Shopsys\FrameworkBundle\ShopsysFrameworkBundle(),
             new Shopsys\ReadModelBundle\ShopsysReadModelBundle(),
-            new Shopsys\ShopBundle\ShopsysShopBundle(), // must be loaded as last, because translations must overwrite other bundles
+            new App\ShopsysShopBundle(), // must be loaded as last, because translations must overwrite other bundles
         ];
 
         if ($this->getEnvironment() === EnvironmentType::DEVELOPMENT) {

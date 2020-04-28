@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\ShopBundle\Functional\Model\Customer;
 
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
-use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
+use App\DataFixtures\Demo\PricingGroupDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CustomerFacadeTest extends TransactionFunctionalTestCase
