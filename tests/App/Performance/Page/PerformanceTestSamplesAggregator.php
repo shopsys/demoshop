@@ -1,0 +1,78 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tests\App\Performance\Page;
+
+use RuntimeException;
+
+class PerformanceTestSamplesAggregator
+{
+    /**
+     * @param \Tests\App\Performance\Page\PerformanceTestSample[] $performanceTestSamples
+     * @return \Tests\App\Performance\Page\PerformanceTestSample[]
+     */
+    public function getPerformanceTestSamplesAggregatedByUrl(
+        array $performanceTestSamples
+    ) {
+        $aggregatedPerformanceTestSamples = [];
+
+        $performanceTestSamplesGroupedByUrl = $this->getPerformanceTestSamplesGroupedByUrl($performanceTestSamples);
+
+        foreach ($performanceTestSamplesGroupedByUrl as $url => $performanceTestSamplesOfUrl) {
+            $samplesCount = 0;
+            $totalDuration = 0;
+            $maxQueryCount = 0;
+            $isSuccessful = true;
+            $worstStatusCode = null;
+
+            foreach ($performanceTestSamplesOfUrl as $performanceTestSample) {
+                /* @var $performanceTestSample \Tests\App\Performance\Page\PerformanceTestSample */
+
+                $samplesCount++;
+                $totalDuration += $performanceTestSample->getDuration();
+
+                if ($performanceTestSample->getQueryCount() > $maxQueryCount) {
+                    $maxQueryCount = $performanceTestSample->getQueryCount();
+                }
+
+                if (!$performanceTestSample->isSuccessful()) {
+                    $isSuccessful = false;
+                }
+
+                if ($performanceTestSample->isSuccessful() || $worstStatusCode === null) {
+                    $worstStatusCode = $performanceTestSample->getStatusCode();
+                }
+            }
+
+            if (!isset($performanceTestSample)) {
+                throw new RuntimeException('No performance test sample provided');
+            }
+
+            $aggregatedPerformanceTestSamples[$url] = new PerformanceTestSample(
+                $performanceTestSample->getRouteName(),
+                $url,
+                $totalDuration / $samplesCount,
+                $maxQueryCount,
+                $worstStatusCode,
+                $isSuccessful
+            );
+        }
+
+        return $aggregatedPerformanceTestSamples;
+    }
+
+    /**
+     * @param \Tests\App\Performance\Page\PerformanceTestSample[][] $performanceTestSamples
+     */
+    private function getPerformanceTestSamplesGroupedByUrl(array $performanceTestSamples)
+    {
+        $performanceTestSamplesGroupedByUrl = [];
+
+        foreach ($performanceTestSamples as $performanceTestSample) {
+            $performanceTestSamplesGroupedByUrl[$performanceTestSample->getUrl()][] = $performanceTestSample;
+        }
+
+        return $performanceTestSamplesGroupedByUrl;
+    }
+}
