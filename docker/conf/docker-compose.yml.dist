@@ -44,7 +44,7 @@ services:
             - IGNORE_DEFAULT_ADMIN_PASSWORD_CHECK
 
     redis:
-        image: redis:4.0-alpine
+        image: redis:5.0-alpine
         container_name: shopsys-framework-redis
 
     redis-admin:
