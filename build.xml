@@ -6,11 +6,13 @@
     <property name="path.root" value="${project.basedir}"/>
     <property name="path.vendor" value="${path.root}/vendor"/>
     <property name="path.framework" value="${path.vendor}/shopsys/framework"/>
+    <property name="path.frontend-api" value="${path.vendor}/shopsys/frontend-api"/>
 
     <property name="phpstan.level" value="1"/>
     <property name="check-and-fix-annotations" value="true"/>
 
     <import file="${path.framework}/build.xml"/>
+    <import file="${path.frontend-api}/build.xml"/>
 
     <target name="npm" description="Installs modules required for Grunt.">
         <exec executable="${path.npm.executable}" dir="${path.root}" logoutput="true" passthru="true" checkreturn="true">

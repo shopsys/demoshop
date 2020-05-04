@@ -24,6 +24,10 @@ parameters:
             - '*/src/DataFixtures/*/*DataFixture.php'
             - '*/src/DataFixtures/Demo/ProductDataFixtureLoader.php'
             - '*/tests/App/Functional/Model/Cart/CartMigrationFacadeTest.php'
+            - '*/tests/FrontendApiBundle/Functional/Image/ProductImagesTest.php'
+            - '*/tests/FrontendApiBundle/Functional/Payment/PaymentsTest.php'
+            - '*/tests/FrontendApiBundle/Functional/Transport/TransportsTest.php'
+            - '*/tests/FrontendApiBundle/Functional/Order/MultipleProductsInOrderTest.php'
 
 
         ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
