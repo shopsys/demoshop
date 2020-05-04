@@ -1,5 +1,5 @@
-src/Shopsys/ShopBundle/Resources/scripts/frontend/plugins/**
-src/Shopsys/ShopBundle/Resources/scripts/styleguide
+src/Resources/scripts/frontend/plugins/**
+src/Resources/scripts/styleguide
 
 node_modules/**
 
