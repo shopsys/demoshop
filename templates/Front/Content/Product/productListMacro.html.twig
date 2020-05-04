@@ -1,5 +1,4 @@
 {% macro list(productViews, listCssClass, productHeadingTagName) %}
-    {% import 'Front/Inline/Product/productFlagsMacro.html.twig' as productFlags %}
     {% set domain = getDomain() %}
 
     <ul class="list-products js-list js-product-list {{ listCssClass|default('') }}">

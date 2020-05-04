@@ -1,7 +1,6 @@
 {% extends 'Front/Layout/layoutWithPanel.html.twig' %}
 {% import 'Front/Inline/Paginator/paginator.html.twig' as paginator %}
 {% import 'Front/Content/Product/filterFormMacro.html.twig' as productFilterForm %}
-{% import 'Front/Content/Product/productListMacro.html.twig' as productList %}
 
 {% block title %}
     {{ 'Search results for "%searchText%"'|trans({ '%searchText%': searchText }) }}
