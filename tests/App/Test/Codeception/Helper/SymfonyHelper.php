@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\App\Test\Codeception\Helper;
 
-use AppKernel;
+use App\Kernel;
 use Codeception\Configuration;
 use Codeception\Module;
 use Codeception\TestInterface;
@@ -24,7 +24,7 @@ class SymfonyHelper extends Module
     {
         require_once Configuration::projectDir() . '/../app/autoload.php';
 
-        $this->kernel = new AppKernel(EnvironmentType::TEST, EnvironmentType::isDebug(EnvironmentType::TEST));
+        $this->kernel = new Kernel(EnvironmentType::TEST, EnvironmentType::isDebug(EnvironmentType::TEST));
         $this->kernel->boot();
     }
 

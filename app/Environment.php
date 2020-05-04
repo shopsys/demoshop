@@ -1,6 +1,8 @@
 <?php
 
-namespace Shopsys;
+declare(strict_types=1);
+
+namespace App;
 
 use Composer\IO\IOInterface;
 use Composer\Script\Event;
@@ -39,7 +41,6 @@ class Environment
     {
         return self::getEnvironmentFileSetting()->getEnvironment($console);
     }
-
 
     /**
      * @param \Composer\IO\IOInterface $io
