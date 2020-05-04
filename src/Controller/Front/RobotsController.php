@@ -43,7 +43,7 @@ class RobotsController extends FrontBaseController
         $response->headers->set('Content-Type', 'text/plain');
 
         return $this->render(
-            '@ShopsysShop/Common/robots.txt.twig',
+            'Common/robots.txt.twig',
             [
                 'sitemapUrl' => $sitemapUrl,
             ],

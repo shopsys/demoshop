@@ -35,7 +35,7 @@ class ScriptController extends FrontBaseController
 
     public function embedAllPagesScriptsAction()
     {
-        return $this->render('@ShopsysShop/Front/Inline/MeasuringScript/scripts.html.twig', [
+        return $this->render('Front/Inline/MeasuringScript/scripts.html.twig', [
             'scriptsCodes' => $this->scriptFacade->getAllPagesScriptCodes(),
         ]);
     }
@@ -46,14 +46,14 @@ class ScriptController extends FrontBaseController
             return new Response('');
         }
 
-        return $this->render('@ShopsysShop/Front/Inline/MeasuringScript/googleAnalytics.html.twig', [
+        return $this->render('Front/Inline/MeasuringScript/googleAnalytics.html.twig', [
             'trackingId' => $this->scriptFacade->getGoogleAnalyticsTrackingId($this->domain->getId()),
         ]);
     }
 
     public function embedAllPagesGoogleTagManagerScriptAction()
     {
-        return $this->render('@ShopsysShop/Front/Inline/MeasuringScript/googleTagManager.html.twig', [
+        return $this->render('Front/Inline/MeasuringScript/googleTagManager.html.twig', [
             'domainId' => $this->domain->getId(),
         ]);
     }
@@ -63,7 +63,7 @@ class ScriptController extends FrontBaseController
      */
     public function embedOrderSentPageScriptsAction(Order $order)
     {
-        return $this->render('@ShopsysShop/Front/Inline/MeasuringScript/scripts.html.twig', [
+        return $this->render('Front/Inline/MeasuringScript/scripts.html.twig', [
             'scriptsCodes' => $this->scriptFacade->getOrderSentPageScriptCodesWithReplacedVariables($order),
         ]);
     }
@@ -77,7 +77,7 @@ class ScriptController extends FrontBaseController
             return new Response('');
         }
 
-        return $this->render('@ShopsysShop/Front/Inline/MeasuringScript/googleAnalyticsEcommerce.html.twig', [
+        return $this->render('Front/Inline/MeasuringScript/googleAnalyticsEcommerce.html.twig', [
             'order' => $order,
         ]);
     }

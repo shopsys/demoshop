@@ -1,0 +1,36 @@
+<div class="footer">
+    <div class="web__line web__line--footer clearfix dont-print">
+        <div class="web__container">
+            {{ render(controller('App\\Controller\\Front\\NewsletterController:subscriptionAction')) }}
+        </div>
+    </div>
+    <div class="web__line web__line--split">
+        <div class="web__container footer__top dont-print">
+            {{ render(controller('App\\Controller\\Front\\AdvertController:boxAction',{'positionName' : 'footer'})) }}
+        </div>
+    </div>
+    <div class="web__line web__line--footer clearfix dont-print">
+        <div class="web__container footer__bottom">
+            <span class="footer__bottom__image-info">
+                {{ 'Demo product images by'|trans }}
+                <a href="https://www.artsperky.cz" target="_blank">artsperky.cz</a>.
+                {{ 'Do not distribute without permission.'|trans }}
+            </span>
+        </div>
+    </div>
+    <div class="web__line">
+        <footer class="web__container footer__bottom">
+            <div class="footer__bottom__copyright dont-print">
+                {{ 'Powered by'|trans }} <a href="https://www.shopsys.com/">Shopsys Framework</a>
+            </div>
+
+            <div class="footer__bottom__articles">
+                {% cache 'layout_article_footer' 5*60 %}
+                    {{ getShopInfoPhoneNumber() }}
+                    {{ getShopInfoEmail() }}
+                    {{ render(controller('App\\Controller\\Front\\ArticleController:footerAction')) }}
+                {% endcache %}
+            </div>
+        </footer>
+    </div>
+</div>

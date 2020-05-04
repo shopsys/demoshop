@@ -45,7 +45,7 @@ class PickUpPlaceController extends FrontBaseController
             $pickUpPlaces[] = $pickUpPlace;
         }
 
-        return $this->render('@ShopsysShop/Front/Inline/PickUpPlace/pickUpPlaceSearch.html.twig', [
+        return $this->render('Front/Inline/PickUpPlace/pickUpPlaceSearch.html.twig', [
             'pickUpPlaces' => $pickUpPlaces,
         ]);
     }
@@ -73,7 +73,7 @@ class PickUpPlaceController extends FrontBaseController
             $transportType
         );
 
-        return $this->render('@ShopsysShop/Front/Inline/PickUpPlace/autocompleteResult.html.twig', [
+        return $this->render('Front/Inline/PickUpPlace/autocompleteResult.html.twig', [
             'pickUpPlaces' => $pickUpPlaces,
         ]);
     }

@@ -1,0 +1,56 @@
+{% extends 'Front/Layout/layoutWithPanel.html.twig' %}
+{% import 'Front/Content/Product/productListMacro.html.twig' as productList %}
+
+{% block breadcrumb %}
+{% endblock %}
+
+{% block meta_description %}
+    {{- metaDescription -}}
+{% endblock %}
+
+{% block title %}
+    {{- title -}}
+{% endblock %}
+
+{% block logo %}
+    <h1 class="logo">
+        <img src="{{ asset('assets/frontend/images/logo.svg') }}" alt="{{ 'Online shop'|trans }}">
+    </h1>
+{% endblock %}
+
+{% block main_content %}
+    <div class="web__line">
+        <div class="web__container">
+
+            <div class="box-homepage-gallery">
+                <div class="box-homepage-gallery__primary">
+                    {{ render(controller('App\\Controller\\Front\\AdvertController:boxAction',{'positionName' : 'homepagePrimary'})) }}
+                </div>
+                <div class="box-homepage-gallery__secondary">
+                    <div class="box-homepage-gallery__secondary__item box-homepage-gallery__secondary__item--first">
+                        {{ render(controller('App\\Controller\\Front\\AdvertController:boxAction',{'positionName' : 'homepageSecondaryFirst'})) }}
+                    </div>
+                    <div class="box-homepage-gallery__secondary__item box-homepage-gallery__secondary__item--second">
+                        {{ render(controller('App\\Controller\\Front\\AdvertController:boxAction',{'positionName' : 'homepageSecondarySecond'})) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% cache 'homepage_category_top' 5*60 %}
+        {{ render(controller('App\\Controller\\Front\\CategoryController:topAction')) }}
+    {% endcache %}
+
+    {% if topProducts is not empty %}
+        <div class="web__line">
+            <div class="web__container">
+                <div id="top-products">
+                    <h2>{{ 'Special offers'|trans }}</h2>
+                    {{ productList.list(topProducts, null, 'h3') }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

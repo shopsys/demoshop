@@ -197,11 +197,11 @@ front_customer_delivery_address_delete:
 
 front_pick_up_place_search:
     path: /pick-up-place/search/
-    defaults: { _controller: ShopsysShopBundle:Front\PickUpPlace:search }
+    defaults: { _controller: App\Controller\Front\PickUpPlaceController:search }
     condition: "request.isXmlHttpRequest()"
 
 front_pick_up_place_autocomplete:
     path: /pick-up-place/autocomplete/
-    defaults: { _controller: ShopsysShopBundle:Front\PickUpPlace:autocomplete }
+    defaults: { _controller: App\Controller\Front\PickUpPlaceController:autocomplete }
     methods: [POST]
     condition: "request.isXmlHttpRequest()"

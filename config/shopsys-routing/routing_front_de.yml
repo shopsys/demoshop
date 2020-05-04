@@ -1,6 +1,6 @@
 front_cart:
     path: /warenkorb/
-    defaults: { _controller: ShopsysShopBundle:Front\Cart:index }
+    defaults: { _controller: App\Controller\Front\CartController:indexAction }
 
 front_contact:
     path: /kontakt/
@@ -8,23 +8,23 @@ front_contact:
 
 front_customer_edit:
     path: /kunde/bearbeiten/
-    defaults: { _controller: ShopsysShopBundle:Front\Customer:edit }
+    defaults: { _controller: App\Controller\Front\CustomerController:editAction }
 
 front_customer_orders:
     path: /kunde/bestellungen/
-    defaults: { _controller: ShopsysShopBundle:Front\Customer:orders }
+    defaults: { _controller: App\Controller\Front\CustomerController:ordersAction }
 
 front_customer_order_detail_registered:
     path: /kunde/bestellungen/angaben/{orderNumber}
-    defaults: { _controller: ShopsysShopBundle:Front\Customer:orderDetailRegistered }
+    defaults: { _controller: App\Controller\Front\CustomerController:orderDetailRegisteredAction }
 
 front_customer_order_detail_unregistered:
     path: /bestellung-angaben/{urlHash}
-    defaults: { _controller: ShopsysShopBundle:Front\Customer:orderDetailUnregistered }
+    defaults: { _controller: App\Controller\Front\CustomerController:orderDetailUnregisteredAction }
 
 front_login:
     path: /einloggen/
-    defaults: { _controller: ShopsysShopBundle:Front\Login:login }
+    defaults: { _controller: App\Controller\Front\LoginController:loginAction }
 
 front_logout:
     path: /abmelden/{_csrf_token}
@@ -32,44 +32,44 @@ front_logout:
 
 front_order_index:
     path: /bestellung/
-    defaults: { _controller: ShopsysShopBundle:Front\Order:index }
+    defaults: { _controller: App\Controller\Front\OrderController:indexAction }
 
 front_order_sent:
     path: /bestellung-bestätigen/
-    defaults: { _controller: ShopsysShopBundle:Front\Order:sent }
+    defaults: { _controller: App\Controller\Front\OrderController:sentAction }
 
 front_product_search:
     path: /suche
-    defaults: { _controller: ShopsysShopBundle:Front\Product:search }
+    defaults: { _controller: App\Controller\Front\ProductController:searchAction }
 
 front_registration_register:
     path: /anmeldung/
-    defaults: { _controller: ShopsysShopBundle:Front\Registration:register }
+    defaults: { _controller: App\Controller\Front\RegistrationController:registerAction }
 
 front_registration_reset_password:
     path: /vergessen-passwort/
-    defaults: { _controller: ShopsysShopBundle:Front\CustomerPassword:resetPassword }
+    defaults: { _controller: App\Controller\Front\CustomerPasswordController:resetPasswordAction }
 
 front_registration_set_new_password:
     path: /neues-passwort/
-    defaults: { _controller: ShopsysShopBundle:Front\CustomerPassword:setNewPassword }
+    defaults: { _controller: App\Controller\Front\CustomerPasswordController:setNewPasswordAction }
 
 front_brand_list:
     path: /markenliste/
-    defaults: { _controller: ShopsysShopBundle:Front\Brand:list }
+    defaults: { _controller: App\Controller\Front\BrandController:listAction }
 
 front_personal_data:
     path: /personliche-informationen-ubersicht/
-    defaults: { _controller: ShopsysShopBundle:Front\PersonalData:index }
+    defaults: { _controller: App\Controller\Front\PersonalDataController:indexAction }
 
 front_personal_data_access:
     path: /personliche-informationen-ubersicht/{hash}/
-    defaults: { _controller: ShopsysShopBundle:Front\PersonalData:accessDisplay }
+    defaults: { _controller: App\Controller\Front\PersonalDataController:accessDisplayAction }
 
 front_personal_data_export:
     path: /personliche-informationen-export/
-    defaults: { _controller: ShopsysShopBundle:Front\PersonalData:export }
+    defaults: { _controller: App\Controller\Front\PersonalDataController:exportAction }
 
 front_personal_data_access_export:
     path: /personliche-informationen-export/{hash}/
-    defaults: { _controller: ShopsysShopBundle:Front\PersonalData:accessExport }
+    defaults: { _controller: App\Controller\Front\PersonalDataController:accessExportAction }

@@ -10,7 +10,7 @@ class TwigEnvironmentTest extends FunctionalTestCase
 {
     /**
      * Public method TwigEnvironment::getFilter() is marked as internal
-     * but we are using it in Shopsys/ShopBundle/Twig/TranslationExtension anyway
+     * but we are using it in App/Twig/TranslationExtension anyway
      * so we need to know that the method is callable
      */
     public function testGetFilterMethodIsCallableOnTwigEnvironment()
