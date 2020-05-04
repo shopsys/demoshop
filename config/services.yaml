@@ -1,0 +1,204 @@
+imports:
+    - { resource: forms.yml }
+    - { resource: services/*.yml }
+    - { resource: paths.yml }
+    - { resource: parameters_common.yml }
+    - { resource: parameters.yml }
+    - { resource: directories.yml }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\Controller\:
+        resource: '../src/Controller/'
+        public: true
+        tags: ['controller.service_arguments']
+
+    App\:
+        resource: '../src/**/*{Calculation,Facade,Factory,Generator,Handler,InlineEdit,Listener,Loader,Mapper,Parser,Provider,Recalculator,Registry,Repository,Resolver,Service,Scheduler,Subscriber,Transformer}.php'
+        exclude: '../src/{Command,Controller,DependencyInjection,Form,Migrations,Resources,Twig}'
+
+    joschi127_doctrine_entity_override.event_subscriber.load_orm_metadata:
+        class: App\Component\EntityExtension\LoadORMMetadataSubscriber
+        arguments:
+            - "@service_container"
+            - "%shopsys.entity_extension.map%"
+        tags:
+            - { name: doctrine.event_subscriber, priority: -10 }
+
+    League\Flysystem\MountManager:
+        arguments:
+            -
+                local: '@local_filesystem'
+                main: '@main_filesystem'
+
+    App\Form\Front\Order\DomainAwareOrderFlowFactory: ~
+
+    Shopsys\FrameworkBundle\Model\Order\OrderFlowFactoryInterface: '@App\Form\Front\Order\DomainAwareOrderFlowFactory'
+
+    Shopsys\FrameworkBundle\Model\Article\ArticleDataFactoryInterface: '@App\Model\Article\ArticleDataFactory'
+
+    App\Model\Category\CurrentCategoryResolver: ~
+
+    League\Flysystem\FilesystemInterface: '@main_filesystem'
+
+    Shopsys\FrameworkBundle\Model\Administrator\AdministratorDataFactoryInterface: '@App\Model\Administrator\AdministratorDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface: '@App\Model\Category\CategoryDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserDataFactoryInterface: '@App\Model\Customer\User\CustomerUserDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface: '@App\Model\Order\OrderDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Order\Item\OrderItemDataFactoryInterface: '@App\Model\Order\Item\OrderItemDataFactory'
+
+    App\Model\Order\OrderDataMapper: ~
+
+    Shopsys\FrameworkBundle\Model\Order\OrderDataMapper: '@App\Model\Order\OrderDataMapper'
+
+    Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface: '@App\Model\Transport\TransportDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface: '@App\Model\Payment\PaymentDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface: '@App\Model\Product\ProductDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacadeInterface: '@Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainElasticFacade'
+
+    Shopsys\ReadModelBundle\Product\Listed\ListedProductViewFacadeInterface: '@Shopsys\ReadModelBundle\Product\Listed\ListedProductViewElasticFacade'
+
+    Shopsys\ReadModelBundle\Product\Listed\ListedProductViewElasticFacade: ~
+
+    Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface: '@App\Model\Product\Brand\BrandDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Article\ArticleFactoryInterface: '@App\Model\Article\ArticleFactory'
+
+    Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface: '@App\Model\Customer\BillingAddressFactory'
+
+    Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface: '@App\Model\Customer\BillingAddressDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface: '@App\Model\Customer\CustomerDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface: '@App\Model\Customer\UserDataFactory'
+
+    App\Model\Country\CountryRepository: ~
+
+    Shopsys\FrameworkBundle\Model\Country\CountryRepository: '@App\Model\Country\CountryRepository'
+
+    Shopsys\FrameworkBundle\Model\Transport\TransportFactoryInterface: '@App\Model\Transport\TransportFactory'
+
+    Shopsys\ProductFeed\GoogleBundle\Model\FeedItem\GoogleFeedItemFactory: '@App\Model\Product\Feed\Google\GoogleFeedItemFactory'
+
+    twig_cache_extension.cache_provider:
+        class: Doctrine\Common\Cache\RedisCache
+        calls:
+            - { method: setRedis, arguments: ['@snc_redis.twig'] }
+
+    twig_cache_extension.cache_strategy:
+        class: App\Twig\CurrentDomainLifetimeCacheStrategy
+        arguments:
+            - '@twig_cache_extension.cache_provider'
+
+    twig_cache_extension:
+        class: Asm89\Twig\CacheExtension\Extension
+        arguments:
+            - '@twig_cache_extension.cache_strategy'
+        tags:
+            - { name: twig.extension }
+
+    App\Component\Router\DomainContextSwitcher:
+        arguments:
+            - '@router'
+
+    App\Controller\Front\ErrorController:
+        arguments:
+            $environment: '%kernel.environment%'
+
+    App\Controller\Front\RobotsController:
+        arguments:
+            $sitemapsUrlPrefix: '%shopsys.sitemaps_url_prefix%'
+
+    Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory: ~
+
+    sensio_framework_extra.psr7.http_message_factory:
+        class: Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory
+
+    Psr\Http\Message\ServerRequestInterface:
+        factory: ['@Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory', 'createRequest']
+        arguments: ['@=service("request_stack").getMasterRequest()']
+
+    Shopsys\FrameworkBundle\Model\Order\OrderFactoryInterface: '@App\Model\Order\OrderFactory'
+
+    Shopsys\FrameworkBundle\Model\Customer\CustomerFacade: '@App\Model\Customer\CustomerFacade'
+
+    Shopsys\FrameworkBundle\Model\Customer\UserRepository: '@App\Model\Customer\UserRepository'
+
+    Shopsys\FrameworkBundle\Model\Order\OrderFacade: '@App\Model\Order\OrderFacade'
+
+    Shopsys\FrameworkBundle\Model\Order\OrderRepository: '@App\Model\Order\OrderRepository'
+
+    App\Model\Order\FrontOrderData: ~
+
+    Shopsys\FrameworkBundle\Model\Order\FrontOrderData: '@App\Model\Order\FrontOrderData'
+
+    App\Model\PickUpPlace\PickUpPlaceFacade: ~
+
+    App\Model\PickUpPlace\PickUpPlaceIdToEntityTransformer: ~
+
+    App\Model\PickUpPlace\PickUpPlaceLoader: ~
+
+    App\Model\PickUpPlace\PickUpPlaceRepository: ~
+
+    Shopsys\FrameworkBundle\Model\Advert\AdvertPositionRegistry:
+        class: App\Model\Advert\AdvertPositionRegistry
+
+    Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculation:
+        class: App\Model\Product\Pricing\ProductPriceCalculation
+
+    Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser:
+        class: App\Model\Product\Pricing\ProductPriceCalculationForUser
+
+    App\Model\Customer\CurrentCustomer: ~
+
+    Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer:
+        alias: App\Model\Customer\CurrentCustomer
+
+    App\DataFixtures\Performance\CategoryDataFixture:
+        arguments:
+            - "%shopsys.performance_data.category.counts_by_level%"
+
+    App\DataFixtures\Performance\OrderDataFixture:
+        arguments:
+            - "%shopsys.performance_data.order.total_count%"
+            - "%shopsys.performance_data.order.item_count_per_order%"
+
+    App\DataFixtures\Performance\ProductDataFixture:
+        arguments:
+            - "%shopsys.performance_data.product.total_count%"
+
+    App\DataFixtures\Performance\UserDataFixture:
+        arguments:
+            - "%shopsys.performance_data.user.count_per_domain%"
+
+    App\DataFixtures\Demo\ImageDataFixture:
+        arguments:
+            - '%shopsys.data_fixtures_images.resources_dir%'
+            - '%shopsys.image_dir%'
+            - '%shopsys.domain_images_dir%'
+        tags: ['doctrine.fixture.orm']
+
+    Shopsys\FrameworkBundle\Model\Administrator\AdministratorRepository: '@App\Model\Administrator\AdministratorRepository'
+
+    Shopsys\FrameworkBundle\Model\Administrator\AdministratorFacade: '@App\Model\Administrator\AdministratorFacade'
+
+    Shopsys\FrameworkBundle\Model\Administrator\Security\AdministratorUserProvider: '@App\Model\Administrator\Security\AdministratorUserProvider'
+
+    Shopsys\FrameworkBundle\Model\Mail\Mailer:
+        class: App\Model\Mail\Mailer
+        arguments: ['@mailer', '@swiftmailer.transport.real', '%mailer_disable_delivery%', '@shopsys.shop.component.flash_message.sender.front']
+
+    App\Controller\Admin\MailController:
+        tags: ['controller.service_arguments']
+        arguments: ['%mailer_disable_delivery%']

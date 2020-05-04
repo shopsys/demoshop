@@ -1,2 +1,0 @@
--   name: mailTemplate
-    class: Shopsys\FrameworkBundle\Model\Mail\MailTemplate
