@@ -8,12 +8,11 @@ use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Cart\Cart;
 use Shopsys\FrameworkBundle\Model\Cart\Item\CartItem;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerIdentifier;
-use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
-use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Product\Availability\Availability;
 use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityData;
 use App\DataFixtures\Demo\UnitDataFixture;
 use App\Model\Product\Product;
+use App\Model\Product\ProductData;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 class CartTest extends TransactionFunctionalTestCase
@@ -24,25 +23,27 @@ class CartTest extends TransactionFunctionalTestCase
      */
     private $productDataFactory;
 
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Pricing\Vat\VatFacade
+     * @inject
+     */
+    private $vatFacade;
+
     public function testRemoveItem(): void
     {
         $em = $this->getEntityManager();
 
         $customerIdentifier = new CustomerIdentifier('randomString');
 
-        $vatData = new VatData();
-        $vatData->name = 'vat';
-        $vatData->percent = 21;
-        $vat = new Vat($vatData);
         $availabilityData = new AvailabilityData();
         $availabilityData->dispatchTime = 0;
         $availability = new Availability($availabilityData);
         $productData = $this->productDataFactory->create();
         $productData->name = [];
         $productData->price = 100;
-        $productData->vat = $vat;
         $productData->availability = $availability;
         $productData->unit = $this->getReference(UnitDataFixture::UNIT_PIECES);
+        $this->setVats($productData);
         $product1 = Product::create($productData);
         $product2 = Product::create($productData);
 
@@ -54,7 +55,6 @@ class CartTest extends TransactionFunctionalTestCase
         $cart->addItem($cartItem2);
 
         $em->persist($cart);
-        $em->persist($vat);
         $em->persist($availability);
         $em->persist($product1);
         $em->persist($product2);
@@ -91,17 +91,24 @@ class CartTest extends TransactionFunctionalTestCase
     private function createProduct(): Product
     {
         $price = 100;
-        $vatData = new VatData();
-        $vatData->name = 'vat';
-        $vatData->percent = 21;
-        $vat = new Vat($vatData);
-
         $productData = $this->productDataFactory->create();
         $productData->name = ['cs' => 'Any name'];
         $productData->price = $price;
-        $productData->vat = $vat;
+        $this->setVats($productData);
         $product = Product::create($productData);
 
         return $product;
+    }
+
+    /**
+     * @param \App\Model\Product\ProductData $productData
+     */
+    private function setVats(ProductData $productData): void
+    {
+        $productVatsIndexedByDomainId = [];
+        foreach ($this->domain->getAllIds() as $domainId) {
+            $productVatsIndexedByDomainId[$domainId] = $this->vatFacade->getDefaultVatForDomain($domainId);
+        }
+        $productData->vatsIndexedByDomainId = $productVatsIndexedByDomainId;
     }
 }

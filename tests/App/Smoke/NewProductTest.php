@@ -80,7 +80,7 @@ class NewProductTest extends FunctionalTestCase
         $form['product_form[basicInformationGroup][ean]'] = '123456';
         $form['product_form[descriptionsGroup][descriptions][1]'] = 'test description';
         $this->fillManualInputPrices($form);
-        $form['product_form[pricesGroup][vat]']->setValue($this->getReference(VatDataFixture::VAT_ZERO)->getId());
+        $this->fillVats($form);
         $form['product_form[displayAvailabilityGroup][sellingFrom]'] = '1.1.1990';
         $form['product_form[displayAvailabilityGroup][sellingTo]'] = '1.1.2000';
         $form['product_form[displayAvailabilityGroup][stockGroup][stockQuantity]'] = '10';
@@ -108,6 +108,22 @@ class NewProductTest extends FunctionalTestCase
                 $pricingGroup->getId()
             );
             $form[$inputName] = '10000';
+        }
+    }
+
+    /**
+     * @param \Symfony\Component\DomCrawler\Form $form
+     */
+    private function fillVats(Form $form)
+    {
+        foreach ($this->domain->getAllIds() as $domainId) {
+            /** @var \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat $vat */
+            $vat = $this->getReferenceForDomain(VatDataFixture::VAT_ZERO, $domainId);
+            $inputName = sprintf(
+                'product_form[pricesGroup][productCalculatedPricesGroup][vatsIndexedByDomainId][%s]',
+                $domainId
+            );
+            $form[$inputName] = $vat->getId();
         }
     }
 }

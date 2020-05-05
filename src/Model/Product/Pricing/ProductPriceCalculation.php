@@ -112,10 +112,14 @@ class ProductPriceCalculation extends BaseProductPriceCalculation
             $inputPrice = Money::zero();
         }
 
-        $basePrice = $this->basePriceCalculation->calculateBasePrice(
+        $domainId = $pricingGroup->getDomainId();
+        $defaultCurrency = $this->currencyFacade->getDomainDefaultCurrencyByDomainId($domainId);
+
+        $basePrice = $this->basePriceCalculation->calculateBasePriceRoundedByCurrency(
             $inputPrice,
             $this->pricingSetting->getInputPriceType(),
-            $product->getVat()
+            $product->getVatForDomain($domainId),
+            $defaultCurrency
         );
 
         return new ProductPrice($basePrice, false);

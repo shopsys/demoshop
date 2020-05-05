@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Pricing;
 
+use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Pricing\InputPriceRecalculationScheduler;
 use Shopsys\FrameworkBundle\Model\Pricing\InputPriceRecalculator;
@@ -26,12 +27,6 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
      * @inject
      */
     private $setting;
-
-    /**
-     * @var \Shopsys\FrameworkBundle\Model\Pricing\Currency\CurrencyFacade
-     * @inject
-     */
-    private $currencyFacade;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Pricing\InputPriceRecalculationScheduler
@@ -144,21 +139,14 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
 
         $paymentData = $this->paymentDataFactory->create();
         $transportData = $this->transportDataFactory->create();
-        $paymentData->pricesByCurrencyId = [];
-        $transportData->pricesByCurrencyId = [];
-        $currencies = [];
 
-        foreach ($this->currencyFacade->getAllIndexedById() as $currency) {
-            $currencies[] = $currency;
-            $paymentData->pricesByCurrencyId[$currency->getId()] = $inputPrice;
-            $transportData->pricesByCurrencyId[$currency->getId()] = $inputPrice;
-        }
-        $firstCurrency = reset($currencies);
+        $paymentData->pricesIndexedByDomainId[Domain::FIRST_DOMAIN_ID] = $inputPrice;
+        $transportData->pricesIndexedByDomainId[Domain::FIRST_DOMAIN_ID] = $inputPrice;
 
         $vatData = new VatData();
         $vatData->name = 'vat';
         $vatData->percent = $vatPercent;
-        $vat = new Vat($vatData);
+        $vat = new Vat($vatData, Domain::FIRST_DOMAIN_ID);
         $availabilityData = new AvailabilityData();
         $availabilityData->dispatchTime = 0;
         $availability = new Availability($availabilityData);
@@ -166,14 +154,12 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
         $em->persist($availability);
 
         $paymentData->name = ['cs' => 'name'];
-        $paymentData->vat = $vat;
 
         /** @var \Shopsys\FrameworkBundle\Model\Payment\Payment $payment */
         $payment = $this->paymentFacade->create($paymentData);
 
         $transportData->name = ['cs' => 'name'];
         $transportData->description = ['cs' => 'desc'];
-        $transportData->vat = $vat;
         /** @var \App\Model\Transport\Transport $transport */
         $transport = $this->transportFacade->create($transportData);
 
@@ -197,7 +183,7 @@ class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
         $em->refresh($payment);
         $em->refresh($transport);
 
-        $this->assertThat($payment->getPrice($firstCurrency)->getPrice(), new IsMoneyEqual($expectedPrice));
-        $this->assertThat($transport->getPrice($firstCurrency)->getPrice(), new IsMoneyEqual($expectedPrice));
+        $this->assertThat($payment->getPrice(Domain::FIRST_DOMAIN_ID)->getPrice(), new IsMoneyEqual($expectedPrice));
+        $this->assertThat($transport->getPrice(Domain::FIRST_DOMAIN_ID)->getPrice(), new IsMoneyEqual($expectedPrice));
     }
 }

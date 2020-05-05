@@ -230,9 +230,9 @@ class RouteConfigCustomization
                     ->setParameter('newId', $newUnit->getId());
             })
             ->customizeByRouteName('admin_vat_delete', function (RouteConfig $config) {
-                $vat = $this->getPersistentReference(VatDataFixture::VAT_SECOND_LOW);
+                $vat = $this->getPersistentReference(VatDataFixture::VAT_SECOND_LOW, Domain::FIRST_DOMAIN_ID);
                 /* @var $vat \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat */
-                $newVat = $this->getPersistentReference(VatDataFixture::VAT_LOW);
+                $newVat = $this->getPersistentReference(VatDataFixture::VAT_LOW, Domain::FIRST_DOMAIN_ID);
                 /* @var $newVat \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat */
 
                 $debugNote = sprintf('Delete VAT "%s" and replace it by "%s".', $vat->getName(), $newVat->getName());

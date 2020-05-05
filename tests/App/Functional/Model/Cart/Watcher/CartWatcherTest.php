@@ -11,13 +11,12 @@ use Shopsys\FrameworkBundle\Model\Cart\Item\CartItem;
 use Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcher;
 use Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerIdentifier;
-use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
-use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibility;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository;
 use App\DataFixtures\Demo\PricingGroupDataFixture;
 use App\DataFixtures\Demo\ProductDataFixture;
 use App\Model\Product\Product;
+use App\Model\Product\ProductData;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 class CartWatcherTest extends TransactionFunctionalTestCase
@@ -45,6 +44,12 @@ class CartWatcherTest extends TransactionFunctionalTestCase
      * @inject
      */
     private $manualInputPriceFacade;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Model\Pricing\Vat\VatFacade
+     * @inject
+     */
+    private $vatFacade;
 
     public function testGetModifiedPriceItemsAndUpdatePrices()
     {
@@ -102,10 +107,7 @@ class CartWatcherTest extends TransactionFunctionalTestCase
 
         $productData = $this->productDataFactory->create();
         $productData->name = [];
-        $vatData = new VatData();
-        $vatData->name = 'vat';
-        $vatData->percent = '21';
-        $productData->vat = new Vat($vatData);
+        $this->setVats($productData);
         $product = Product::create($productData);
 
         $cartItemMock = $this->getMockBuilder(CartItem::class)
@@ -152,5 +154,17 @@ class CartWatcherTest extends TransactionFunctionalTestCase
 
         $notListableItems = $cartWatcher->getNotListableItems($cart, $currentCustomerMock);
         $this->assertCount(1, $notListableItems);
+    }
+
+    /**
+     * @param \App\Model\Product\ProductData $productData
+     */
+    private function setVats(ProductData $productData): void
+    {
+        $productVatsIndexedByDomainId = [];
+        foreach ($this->domain->getAllIds() as $domainId) {
+            $productVatsIndexedByDomainId[$domainId] = $this->vatFacade->getDefaultVatForDomain($domainId);
+        }
+        $productData->vatsIndexedByDomainId = $productVatsIndexedByDomainId;
     }
 }
