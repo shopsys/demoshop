@@ -46,11 +46,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - registered new form types (OrderItemsType, DisplayOnlyCustomerType)
     - OrderFormType in Admin is extended on a class level. No need to extend twig template anymore
     - block loading of original data fixtures, if overridden
-    - Shopsys\FrameworkBundle\DataFixtures\Demo\MailTemplateDataFixture blocked from loading, because its overridden in ShopBundle 
+    - Shopsys\FrameworkBundle\DataFixtures\Demo\MailTemplateDataFixture blocked from loading, because its overridden in ShopBundle
     - Shopsys\FrameworkBundle\DataFixtures\Demo\MultidomainMailTemplateDataFixture blocked from loading, because its overridden in ShopBundle
     - fixed wrong links in mail template data fixtures
 - [#33 - Upgrade demoshop to version beta5](https://github.com/shopsys/demoshop/pull/33)
-    - added the ability to deploy to Google Cloud using Terraform, Kustomize and Kubernetes 
+    - added the ability to deploy to Google Cloud using Terraform, Kustomize and Kubernetes
     - updated `.dockerignore` so it ignores infrastructure, and .ci folders and docker/nginx directory is not excluded during building php-fpm image
     - removed `--verbose` from esc phing targets as the package was upgraded and now outputs name of each file checked in the verbose mode
     - switched to Debian PHP-FPM image
@@ -65,7 +65,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - upgraded npm packages to the latest version
     - unified countries across domains with translations and domain dependency
     - added install script
-    - use configuration file to define directories that need to be created 
+    - use configuration file to define directories that need to be created
     - fixed JS validation of forms in popup windows
     - microservices have been removed
     - cart refactored

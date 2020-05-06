@@ -7,8 +7,12 @@ services:
 parameters:
     exclude_files:
         - '*/tests/App/Test/Codeception/_generated/AcceptanceTesterActions.php'
+        - '*/var/cache/*'
+
     skip:
         ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff:
+            - '*/src/DataFixtures/*/*DataFixture.php'
+            - '*/src/DataFixtures/Demo/ProductDataFixtureLoader.php'
             - '*/src/Controller/Front/OrderController.php'
             - '*/src/Form/Front/Customer/BillingAddressFormType.php'
             - '*/src/Form/Front/Customer/DeliveryAddressFormType.php'
@@ -17,28 +21,23 @@ parameters:
             - '*/tests/App/Functional/Model/Order/OrderFacadeTest.php'
             - '*/tests/App/Functional/Model/Order/Preview/OrderPreviewCalculationTest.php'
             - '*/tests/App/Functional/Model/Pricing/InputPriceRecalculationSchedulerTest.php'
-            - '*/tests/App/Functional/Model/Product/ProductOnCurrentDomainFacadeCountDataTest.php'
             - '*/tests/App/Smoke/Http/RouteConfigCustomization.php'
-            - '*/src/DataFixtures/Demo/MailTemplateDataFixture.php'
-            - '*/src/DataFixtures/DemoMultidomain/MailTemplateDataFixture.php'
-            - '*/src/DataFixtures/*/*DataFixture.php'
-            - '*/src/DataFixtures/Demo/ProductDataFixtureLoader.php'
+            - '*/tests/App/Functional/Model/Product/ProductOnCurrentDomainFacadeCountDataTest.php'
             - '*/tests/App/Functional/Model/Cart/CartMigrationFacadeTest.php'
             - '*/tests/FrontendApiBundle/Functional/Image/ProductImagesTest.php'
             - '*/tests/FrontendApiBundle/Functional/Payment/PaymentsTest.php'
             - '*/tests/FrontendApiBundle/Functional/Transport/TransportsTest.php'
             - '*/tests/FrontendApiBundle/Functional/Order/MultipleProductsInOrderTest.php'
 
-
         ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff:
-            - '*/tests/App/Functional/Model/Product/ProductOnCurrentDomainFacadeCountDataTest.php'
             - '*/tests/App/Functional/Model/Product/ProductVisibilityRepositoryTest.php'
-            - '*/src/DataFixtures/Demo/MultidomainOrderDataFixture.phpFixture.php'
             - '*/src/DataFixtures/Demo/OrderDataFixture.php'
             - '*/src/DataFixtures/Demo/ProductDataFixture.php'
+            - '*/tests/App/Functional/Model/Product/ProductOnCurrentDomainFacadeCountDataTest.php'
 
         PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff:
             - '*/src/DataFixtures/Demo/ProductDataFixture.php'
+            - '*/src/DataFixtures/Demo/CategoryDataFixture'
 
         Shopsys\CodingStandards\Sniffs\ValidVariableNameSniff:
             - '*/tests/App/Functional/EntityExtension/EntityExtensionTest.php'
@@ -46,5 +45,19 @@ parameters:
 
         Shopsys\CodingStandards\Sniffs\ObjectIsCreatedByFactorySniff:
             - '*/tests/*'
+
         Shopsys\CodingStandards\Sniffs\ForbiddenDumpSniff:
             - '*/tests/App/Functional/Model/Cart/CartFacadeTest.php'
+
+        Shopsys\CodingStandards\Sniffs\ForbiddenDoctrineInheritanceSniff:
+            - '*/src/*'
+            - '*/tests/App/*'
+
+        PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\MethodDeclarationSniff.Underscore:
+            - '*/tests/App/Test/Codeception/Helper/CloseNewlyOpenedWindowsHelper.php'
+            - '*/tests/App/Test/Codeception/Helper/DatabaseHelper.php'
+            - '*/tests/App/Test/Codeception/Helper/DomainHelper.php'
+            - '*/tests/App/Test/Codeception/Helper/LocalizationHelper.php'
+            - '*/tests/App/Test/Codeception/Helper/NumberFormatHelper.php'
+            - '*/tests/App/Test/Codeception/Helper/SymfonyHelper.php'
+            - '*/tests/App/Test/Codeception/Module/Db.php'

@@ -45,8 +45,6 @@ services:
 
     League\Flysystem\FilesystemInterface: '@main_filesystem'
 
-    Shopsys\FrameworkBundle\Model\Administrator\AdministratorDataFactoryInterface: '@App\Model\Administrator\AdministratorDataFactory'
-
     Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface: '@App\Model\Category\CategoryDataFactory'
 
     Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserDataFactoryInterface: '@App\Model\Customer\User\CustomerUserDataFactory'
@@ -61,8 +59,6 @@ services:
 
     Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface: '@App\Model\Transport\TransportDataFactory'
 
-    Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface: '@App\Model\Payment\PaymentDataFactory'
-
     Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface: '@App\Model\Product\ProductDataFactory'
 
     Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacadeInterface: '@Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainElasticFacade'
@@ -71,8 +67,6 @@ services:
 
     Shopsys\ReadModelBundle\Product\Listed\ListedProductViewElasticFacade: ~
 
-    Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface: '@App\Model\Product\Brand\BrandDataFactory'
-
     Shopsys\FrameworkBundle\Model\Article\ArticleFactoryInterface: '@App\Model\Article\ArticleFactory'
 
     Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface: '@App\Model\Customer\BillingAddressFactory'
@@ -80,8 +74,6 @@ services:
     Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface: '@App\Model\Customer\BillingAddressDataFactory'
 
     Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface: '@App\Model\Customer\User\CustomerUserUpdateDataFactory'
-
-    Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserDataFactoryInterface: '@App\Model\Customer\User\CustomerUserDataFactory'
 
     App\Model\Country\CountryRepository: ~
 
