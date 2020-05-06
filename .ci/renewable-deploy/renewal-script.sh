@@ -33,4 +33,4 @@ kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- rm -r web/content web
 kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- mv web-content web/content
 rm -r demo-sql.sql
 
-kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- php phing clean-cache product-search-export-products maintenance-off
+kubectl exec ${POD_PHP_FPM} -c ${GKE_CONTAINER_PHP_FPM} -- php phing clean-cache elasticsearch-export maintenance-off

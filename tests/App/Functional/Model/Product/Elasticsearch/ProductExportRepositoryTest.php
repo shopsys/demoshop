@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Tests\App\Functional\Model\Product\Search;
+namespace Tests\App\Functional\Model\Product\Elasticsearch;
 
 use Tests\App\Test\TransactionFunctionalTestCase;
 
-class ProductSearchExportWithFilterRepositoryTest extends TransactionFunctionalTestCase
+class ProductExportRepositoryTest extends TransactionFunctionalTestCase
 {
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Product\Search\Export\ProductSearchExportWithFilterRepository
+     * @var \Shopsys\FrameworkBundle\Model\Product\Elasticsearch\ProductExportRepository
      * @inject
      */
     private $repository;
