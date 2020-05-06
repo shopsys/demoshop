@@ -67,7 +67,7 @@
 
     Shopsys.search.autocomplete.searchRequest = function (searchText) {
         Shopsys.ajaxPendingCall('Shopsys.search.autocomplete.searchRequest', {
-            loaderElement: null,
+            loaderElement: '.js-search-autocomplete-submit',
             url: $input.data('autocomplete-url'),
             type: 'post',
             dataType: 'html',
