@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Transport;
 
-use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use App\Model\Transport\Transport;
+use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 class IndependentTransportVisibilityCalculationTest extends TransactionFunctionalTestCase

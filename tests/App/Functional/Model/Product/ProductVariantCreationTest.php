@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Product;
 
+use App\DataFixtures\Demo\AvailabilityDataFixture;
 use Shopsys\FrameworkBundle\Model\Product\Product;
 use Shopsys\FrameworkBundle\Model\Product\ProductData;
-use App\DataFixtures\Demo\AvailabilityDataFixture;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 final class ProductVariantCreationTest extends TransactionFunctionalTestCase

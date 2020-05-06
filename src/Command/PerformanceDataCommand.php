@@ -7,7 +7,7 @@ namespace App\Command;
 use App\DataFixtures\Performance\CategoryDataFixture;
 use App\DataFixtures\Performance\OrderDataFixture;
 use App\DataFixtures\Performance\ProductDataFixture;
-use App\DataFixtures\Performance\UserDataFixture;
+use App\DataFixtures\Performance\CustomerUserDataFixture;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -30,7 +30,7 @@ class PerformanceDataCommand extends Command
     private $productDataFixture;
 
     /**
-     * @var \App\DataFixtures\Performance\UserDataFixture
+     * @var \App\DataFixtures\Performance\CustomerUserDataFixture
      */
     private $userDataFixture;
 
@@ -42,13 +42,13 @@ class PerformanceDataCommand extends Command
     /**
      * @param \App\DataFixtures\Performance\CategoryDataFixture $categoryDataFixture
      * @param \App\DataFixtures\Performance\ProductDataFixture $productDataFixture
-     * @param \App\DataFixtures\Performance\UserDataFixture $userDataFixture
+     * @param \App\DataFixtures\Performance\CustomerUserDataFixture $userDataFixture
      * @param \App\DataFixtures\Performance\OrderDataFixture $orderDataFixture
      */
     public function __construct(
         CategoryDataFixture $categoryDataFixture,
         ProductDataFixture $productDataFixture,
-        UserDataFixture $userDataFixture,
+        CustomerUserDataFixture $userDataFixture,
         OrderDataFixture $orderDataFixture
     ) {
         $this->categoryDataFixture = $categoryDataFixture;
@@ -75,7 +75,7 @@ class PerformanceDataCommand extends Command
         $this->categoryDataFixture->load($output);
         $output->writeln('<fg=green>loading ' . ProductDataFixture::class . '</fg=green>');
         $this->productDataFixture->load($output);
-        $output->writeln('<fg=green>loading ' . UserDataFixture::class . '</fg=green>');
+        $output->writeln('<fg=green>loading ' . CustomerUserDataFixture::class . '</fg=green>');
         $this->userDataFixture->load($output);
         $output->writeln('<fg=green>loading ' . OrderDataFixture::class . '</fg=green>');
         $this->orderDataFixture->load($output);

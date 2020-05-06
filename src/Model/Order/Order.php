@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Model\Order;
 
 use Doctrine\ORM\Mapping as ORM;
-use Shopsys\FrameworkBundle\Model\Customer\User;
+use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUser;
 use Shopsys\FrameworkBundle\Model\Order\Order as BaseOrder;
 use Shopsys\FrameworkBundle\Model\Order\OrderData as BaseOrderData;
 use Shopsys\FrameworkBundle\Model\Order\OrderEditResult;
@@ -13,7 +13,7 @@ use Shopsys\FrameworkBundle\Model\Order\OrderEditResult;
 /**
  * @ORM\Table(name="orders")
  * @ORM\Entity
- * @property \App\Model\Customer\User|null $customer
+ * @property \App\Model\Customer\User\CustomerUser|null $customer
  * @property \App\Model\Transport\Transport $transport
  * @property \App\Model\Administrator\Administrator|null $createdAsAdministrator
  * @method editData(\App\Model\Order\OrderData $orderData)
@@ -21,7 +21,7 @@ use Shopsys\FrameworkBundle\Model\Order\OrderEditResult;
  * @method editOrderPayment(\App\Model\Order\OrderData $orderData)
  * @method setDeliveryAddress(\App\Model\Order\OrderData $orderData)
  * @method \App\Model\Transport\Transport getTransport()
- * @method \App\Model\Customer\User|null getCustomer()
+ * @method \App\Model\Customer\User\CustomerUser|null getCustomer()
  * @method \App\Model\Administrator\Administrator|null getCreatedAsAdministrator()
  */
 class Order extends BaseOrder
@@ -38,15 +38,15 @@ class Order extends BaseOrder
      * @param \App\Model\Order\OrderData $orderData
      * @param string $orderNumber
      * @param string $urlHash
-     * @param \App\Model\Customer\User|null $user
+     * @param \App\Model\Customer\User\CustomerUser|null $customerUser
      */
     public function __construct(
         BaseOrderData $orderData,
         string $orderNumber,
         string $urlHash,
-        ?User $user = null
+        ?CustomerUser $customerUser = null
     ) {
-        parent::__construct($orderData, $orderNumber, $urlHash, $user);
+        parent::__construct($orderData, $orderNumber, $urlHash, $customerUser);
         if ($orderData->transport !== null && $orderData->transport->isPickUpPlaceType()) {
             $this->pickUpPlace = $orderData->pickUpPlace;
         } else {

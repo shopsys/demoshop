@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Controller\Front;
 
 use App\Form\Front\Order\DomainAwareOrderFlowFactory;
+use App\Model\Customer\User\CustomerUser;
 use App\Model\Order\FrontOrderData;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\HttpFoundation\DownloadFileResponse;
 use Shopsys\FrameworkBundle\Model\Cart\CartFacade;
-use Shopsys\FrameworkBundle\Model\Customer\User;
 use Shopsys\FrameworkBundle\Model\LegalConditions\LegalConditionsFacade;
 use Shopsys\FrameworkBundle\Model\Newsletter\NewsletterFacade;
 use Shopsys\FrameworkBundle\Model\Order\Mail\OrderMailFacade;
@@ -172,17 +172,17 @@ class OrderController extends FrontBaseController
         $flashMessageBag = $this->get('shopsys.shop.component.flash_message.bag.front');
         /* @var $flashMessageBag \Shopsys\FrameworkBundle\Component\FlashMessage\Bag */
 
-        $cart = $this->cartFacade->getCartOfCurrentCustomerCreateIfNotExists();
+        $cart = $this->cartFacade->getCartOfCurrentCustomerUserCreateIfNotExists();
         if ($cart->isEmpty()) {
             return $this->redirectToRoute('front_cart');
         }
 
-        $user = $this->getUser();
+        $customerUser = $this->getUser();
 
         $frontOrderFormData = new FrontOrderData();
         $frontOrderFormData->deliveryAddressSameAsBillingAddress = true;
-        if ($user instanceof User) {
-            $this->orderFacade->prefillFrontOrderData($frontOrderFormData, $user);
+        if ($customerUser instanceof CustomerUser) {
+            $this->orderFacade->prefillFrontOrderData($frontOrderFormData, $customerUser);
         }
         $domainId = $this->domain->getId();
         $frontOrderFormData->domainId = $domainId;
@@ -264,7 +264,7 @@ class OrderController extends FrontBaseController
             ),
             'termsAndConditionsArticle' => $this->legalConditionsFacade->findTermsAndConditions($this->domain->getId()),
             'privacyPolicyArticle' => $this->legalConditionsFacade->findPrivacyPolicy($this->domain->getId()),
-            'user' => $user,
+            'customerUser' => $customerUser,
         ]);
     }
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Admin;
 
 use App\Model\Customer\BillingAddress;
-use Shopsys\FrameworkBundle\Form\Admin\Customer\CustomerFormType;
+use Shopsys\FrameworkBundle\Form\Admin\Customer\User\CustomerUserFormType;
 use Shopsys\FrameworkBundle\Form\GroupType;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -13,14 +13,14 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 
-class CustomerFormTypeExtension extends AbstractTypeExtension
+class CustomerUserFormTypeExtension extends AbstractTypeExtension
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builderUserDataGroup = $builder->get('userData');
+        $builderUserDataGroup = $builder->get('customerUserData');
         $builderSystemDataGroup = $builderUserDataGroup->get('systemData');
 
         $builderSystemDataGroup->add('discount', IntegerType::class, [
@@ -40,7 +40,7 @@ class CustomerFormTypeExtension extends AbstractTypeExtension
         ]);
 
         // remove field and add again to sort it after new discount field
-        if ($options['user'] !== null) {
+        if ($options['customerUser'] !== null) {
             $builderRegistrationDateField = $builderSystemDataGroup->get('createdAt');
             $builderSystemDataGroup->remove('createdAt');
             $builderSystemDataGroup->add($builderRegistrationDateField);
@@ -82,7 +82,7 @@ class CustomerFormTypeExtension extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setRequired(['user', 'domain_id', 'billingAddress'])
+            ->setRequired(['customerUser', 'domain_id', 'billingAddress'])
             ->setAllowedTypes('billingAddress', [BillingAddress::class, 'null']);
     }
 
@@ -91,6 +91,6 @@ class CustomerFormTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return CustomerFormType::class;
+        return CustomerUserFormType::class;
     }
 }

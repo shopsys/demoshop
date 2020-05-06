@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Vat;
 
-use Shopsys\FrameworkBundle\Component\Domain\Domain;
-use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use App\DataFixtures\Demo\PaymentDataFixture;
 use App\DataFixtures\Demo\TransportDataFixture;
 use App\DataFixtures\Demo\VatDataFixture;
+use Shopsys\FrameworkBundle\Component\Domain\Domain;
+use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 class VatFacadeTest extends TransactionFunctionalTestCase

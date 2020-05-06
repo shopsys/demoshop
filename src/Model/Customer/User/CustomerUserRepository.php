@@ -2,32 +2,33 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Customer;
+namespace App\Model\Customer\User;
 
+use App\Model\Customer\BillingAddress;
 use Shopsys\FrameworkBundle\Component\String\DatabaseSearching;
 use Shopsys\FrameworkBundle\Form\Admin\QuickSearch\QuickSearchFormData;
 use Shopsys\FrameworkBundle\Model\Customer\BillingAddress as BaseBillingAddress;
-use Shopsys\FrameworkBundle\Model\Customer\UserRepository as BaseUserRepository;
+use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserRepository as BaseCustomerUserRepository;
 
 /**
- * @method \App\Model\Customer\User|null findUserByEmailAndDomain(string $email, int $domainId)
- * @method \App\Model\Customer\User|null getUserByEmailAndDomain(string $email, int $domainId)
- * @method \App\Model\Customer\User getUserById(int $id)
- * @method \App\Model\Customer\User|null findById(int $id)
- * @method \App\Model\Customer\User|null findByIdAndLoginToken(int $id, string $loginToken)
+ * @method \App\Model\Customer\User\CustomerUser|null findCustomerUserByEmailAndDomain(string $email, int $domainId)
+ * @method \App\Model\Customer\User\CustomerUser|null getUserByEmailAndDomain(string $email, int $domainId)
+ * @method \App\Model\Customer\User\CustomerUser getCustomerUserById(int $id)
+ * @method \App\Model\Customer\User\CustomerUser|null findById(int $id)
+ * @method \App\Model\Customer\User\CustomerUser|null findByIdAndLoginToken(int $id, string $loginToken)
  */
-class UserRepository extends BaseUserRepository
+class CustomerUserRepository extends BaseCustomerUserRepository
 {
     /**
      * @param \App\Model\Customer\BillingAddress $billingAddress
      * @param int $domainId
-     * @return \App\Model\Customer\User[]
+     * @return \App\Model\Customer\User\CustomerUser[]
      */
     public function getUsersByBillingAddressAndDomain(BaseBillingAddress $billingAddress, int $domainId)
     {
         return $this->em->createQueryBuilder()
             ->select('u')
-            ->from(User::class, 'u')
+            ->from(CustomerUser::class, 'u')
             ->andWhere('u.domainId = :domain')
             ->andWhere('u.billingAddress = :billingAddress')
             ->setParameter(':domain', $domainId)
@@ -54,7 +55,7 @@ class UserRepository extends BaseUserRepository
                         ELSE CONCAT(u.lastName, \' \', u.firstName)
                     END) AS name')
             ->from(BillingAddress::class, 'ba')
-            ->leftJoin(User::class, 'u', 'WITH', 'ba.id = u.billingAddress')
+            ->leftJoin(CustomerUser::class, 'u', 'WITH', 'ba.id = u.billingAddress')
             ->andWhere('u.domainId = :domainId')
             ->setParameter(':domainId', $domainId)
             ->groupBy('ba.id');
@@ -81,18 +82,18 @@ class UserRepository extends BaseUserRepository
      */
     public function getAllByBillingAddress(BillingAddress $billingAddress)
     {
-        return $this->getUserRepository()->findBy([
+        return $this->getCustomerUserRepository()->findBy([
             'billingAddress' => $billingAddress,
         ]);
     }
 
     /**
      * @param \App\Model\Customer\BillingAddress $billingAddress
-     * @return \App\Model\Customer\User
+     * @return \App\Model\Customer\User\CustomerUser
      */
     public function getUserByBillingAddress(BillingAddress $billingAddress)
     {
-        return $this->getUserRepository()->findOneBy([
+        return $this->getCustomerUserRepository()->findOneBy([
             'billingAddress' => $billingAddress,
         ]);
     }

@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Product;
 
-use ReflectionClass;
 use App\DataFixtures\Demo\AvailabilityDataFixture;
 use App\DataFixtures\Demo\ProductDataFixture;
 use App\DataFixtures\Demo\UnitDataFixture;
-use App\DataFixtures\Demo\VatDataFixture;
 use App\Model\Product\Product;
 use App\Model\Product\ProductData;
+use ReflectionClass;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 class ProductFacadeTest extends TransactionFunctionalTestCase

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Front;
 
 use App\Form\Front\Product\ProductFilterFormType;
-use App\Model\Customer\CurrentCustomer;
+use App\Model\Customer\User\CurrentCustomerUser;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Model\Category\Category;
 use Shopsys\FrameworkBundle\Model\Category\CategoryFacade;
@@ -39,9 +39,9 @@ class ProductController extends FrontBaseController
     private $categoryFacade;
 
     /**
-     * @var \App\Model\Customer\CurrentCustomer
+     * @var \App\Model\Customer\User\CurrentCustomerUser
      */
-    private $currentCustomer;
+    private $currentCustomerUser;
 
     /**
      * @var \Shopsys\FrameworkBundle\Component\Domain\Domain
@@ -91,7 +91,7 @@ class ProductController extends FrontBaseController
     /**
      * @param \Shopsys\FrameworkBundle\Twig\RequestExtension $requestExtension
      * @param \Shopsys\FrameworkBundle\Model\Category\CategoryFacade $categoryFacade
-     * @param \App\Model\Customer\CurrentCustomer $currentCustomer
+     * @param \App\Model\Customer\User\CurrentCustomerUser $currentCustomerUser
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
      * @param \Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacadeInterface $productOnCurrentDomainFacade
      * @param \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterConfigFactory $productFilterConfigFactory
@@ -105,7 +105,7 @@ class ProductController extends FrontBaseController
     public function __construct(
         RequestExtension $requestExtension,
         CategoryFacade $categoryFacade,
-        CurrentCustomer $currentCustomer,
+        CurrentCustomerUser $currentCustomerUser,
         Domain $domain,
         ProductOnCurrentDomainFacadeInterface $productOnCurrentDomainFacade,
         ProductFilterConfigFactory $productFilterConfigFactory,
@@ -118,7 +118,7 @@ class ProductController extends FrontBaseController
     ) {
         $this->requestExtension = $requestExtension;
         $this->categoryFacade = $categoryFacade;
-        $this->currentCustomer = $currentCustomer;
+        $this->currentCustomerUser = $currentCustomerUser;
         $this->domain = $domain;
         $this->productOnCurrentDomainFacade = $productOnCurrentDomainFacade;
         $this->productFilterConfigFactory = $productFilterConfigFactory;
@@ -159,10 +159,10 @@ class ProductController extends FrontBaseController
     private function applyDiscountForPriceFilter(ProductFilterData $productFilterData)
     {
         if ($productFilterData->minimalPrice !== null) {
-            $productFilterData->minimalPrice = $productFilterData->minimalPrice->divide($this->currentCustomer->getDiscountCoeficient(), 10);
+            $productFilterData->minimalPrice = $productFilterData->minimalPrice->divide($this->currentCustomerUser->getDiscountCoeficient(), 10);
         }
         if ($productFilterData->maximalPrice !== null) {
-            $productFilterData->maximalPrice = $productFilterData->maximalPrice->divide($this->currentCustomer->getDiscountCoeficient(), 10);
+            $productFilterData->maximalPrice = $productFilterData->maximalPrice->divide($this->currentCustomerUser->getDiscountCoeficient(), 10);
         }
     }
 
@@ -219,7 +219,7 @@ class ProductController extends FrontBaseController
             'filterFormSubmitted' => $filterForm->isSubmitted(),
             'visibleChildren' => $this->categoryFacade->getAllVisibleChildrenByCategoryAndDomainId($category, $this->domain->getId()),
             'priceRange' => $productFilterConfig->getPriceRange(),
-            'discountCoeficient' => $this->currentCustomer->getDiscountCoeficient(),
+            'discountCoeficient' => $this->currentCustomerUser->getDiscountCoeficient(),
         ];
 
         if ($request->isXmlHttpRequest()) {
@@ -316,7 +316,7 @@ class ProductController extends FrontBaseController
             'searchText' => $searchText,
             'SEARCH_TEXT_PARAMETER' => self::SEARCH_TEXT_PARAMETER,
             'priceRange' => $productFilterConfig->getPriceRange(),
-            'discountCoeficient' => $this->currentCustomer->getDiscountCoeficient(),
+            'discountCoeficient' => $this->currentCustomerUser->getDiscountCoeficient(),
         ];
 
         if ($request->isXmlHttpRequest()) {

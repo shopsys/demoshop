@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\EntityExtension\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping as ORM;
 use App\Model\Product\Product;
 use App\Model\Product\ProductData;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity

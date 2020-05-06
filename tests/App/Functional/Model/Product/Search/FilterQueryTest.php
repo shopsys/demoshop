@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Product\Search;
 
+use App\DataFixtures\Demo\PricingGroupDataFixture;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
 use Shopsys\FrameworkBundle\Model\Product\Search\FilterQuery;
-use App\DataFixtures\Demo\PricingGroupDataFixture;
 use Tests\App\Test\ParameterTransactionFunctionalTestCase;
 
 class FilterQueryTest extends ParameterTransactionFunctionalTestCase

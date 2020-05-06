@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Model\Product\Pricing;
 
-use App\Model\Customer\CurrentCustomer;
+use App\Model\Customer\User\CurrentCustomerUser;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
-use Shopsys\FrameworkBundle\Model\Customer\User;
+use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUser;
 use Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupSettingFacade;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculation;
-use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser as BaseProductPriceCalculationForUser;
+use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForCustomerUser as BaseProductPriceCalculationForCustomerUser;
 use Shopsys\FrameworkBundle\Model\Product\Product;
 
-class ProductPriceCalculationForUser extends BaseProductPriceCalculationForUser
+class ProductPriceCalculationForCustomerUser extends BaseProductPriceCalculationForCustomerUser
 {
     /**
      * @var \App\Model\Product\Pricing\ProductPriceCalculation
@@ -20,9 +20,9 @@ class ProductPriceCalculationForUser extends BaseProductPriceCalculationForUser
     protected $productPriceCalculation;
 
     /**
-     * @var \App\Model\Customer\CurrentCustomer
+     * @var \App\Model\Customer\User\CurrentCustomerUser
      */
-    protected $currentCustomer;
+    protected $currentCustomerUser;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupSettingFacade
@@ -36,20 +36,20 @@ class ProductPriceCalculationForUser extends BaseProductPriceCalculationForUser
 
     /**
      * @param \App\Model\Product\Pricing\ProductPriceCalculation $productPriceCalculation
-     * @param \App\Model\Customer\CurrentCustomer $currentCustomer
+     * @param \App\Model\Customer\User\CurrentCustomerUser $currentCustomerUser
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupSettingFacade $pricingGroupSettingFacade
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
      */
     public function __construct(
         ProductPriceCalculation $productPriceCalculation,
-        CurrentCustomer $currentCustomer,
+        CurrentCustomerUser $currentCustomerUser,
         PricingGroupSettingFacade $pricingGroupSettingFacade,
         Domain $domain
     ) {
-        parent::__construct($productPriceCalculation, $currentCustomer, $pricingGroupSettingFacade, $domain);
+        parent::__construct($productPriceCalculation, $currentCustomerUser, $pricingGroupSettingFacade, $domain);
 
         $this->productPriceCalculation = $productPriceCalculation;
-        $this->currentCustomer = $currentCustomer;
+        $this->currentCustomerUser = $currentCustomerUser;
         $this->pricingGroupSettingFacade = $pricingGroupSettingFacade;
         $this->domain = $domain;
     }
@@ -63,25 +63,25 @@ class ProductPriceCalculationForUser extends BaseProductPriceCalculationForUser
         return $this->productPriceCalculation->calculatePrice(
             $product,
             $this->domain->getId(),
-            $this->currentCustomer->getPricingGroup(),
-            $this->currentCustomer->getDiscountCoeficient()
+            $this->currentCustomerUser->getPricingGroup(),
+            $this->currentCustomerUser->getDiscountCoeficient()
         );
     }
 
     /**
      * @param \App\Model\Product\Product $product
      * @param int $domainId
-     * @param \App\Model\Customer\User|null $user
+     * @param \App\Model\Customer\User\CustomerUser|null $customerUser
      * @return \Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPrice
      */
-    public function calculatePriceForUserAndDomainId(Product $product, $domainId, ?User $user = null)
+    public function calculatePriceForUserAndDomainId(Product $product, $domainId, ?CustomerUser $customerUser = null)
     {
-        if ($user === null) {
+        if ($customerUser === null) {
             $pricingGroup = $this->pricingGroupSettingFacade->getDefaultPricingGroupByDomainId($domainId);
         } else {
-            $pricingGroup = $user->getPricingGroup();
+            $pricingGroup = $customerUser->getPricingGroup();
         }
 
-        return $this->productPriceCalculation->calculatePrice($product, $domainId, $pricingGroup, $this->currentCustomer->getDiscountCoeficient());
+        return $this->productPriceCalculation->calculatePrice($product, $domainId, $pricingGroup, $this->currentCustomerUser->getDiscountCoeficient());
     }
 }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Product\Filter;
 
-use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use App\DataFixtures\Demo\CategoryDataFixture;
 use App\DataFixtures\Demo\PricingGroupDataFixture;
+use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Tests\App\Test\ParameterTransactionFunctionalTestCase;
 
 class ParameterFilterChoiceRepositoryTest extends ParameterTransactionFunctionalTestCase

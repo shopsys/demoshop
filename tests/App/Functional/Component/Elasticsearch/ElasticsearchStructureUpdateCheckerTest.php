@@ -88,7 +88,7 @@ final class ElasticsearchStructureUpdateCheckerTest extends FunctionalTestCase
                 $this->assertTrue($this->elasticsearchStructureUpdateChecker->isNecessaryToUpdateStructure(
                     $domainId,
                     $index
-                    ));
+                ));
             } finally {
                 $this->revertStructureFromBackup($oldDefinition, $indexName, $aliasName);
             }

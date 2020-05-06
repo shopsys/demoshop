@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Admin;
 
-use App\Model\Customer\UserData;
+use App\Model\Customer\User\CustomerUserData;
 use Shopsys\FrameworkBundle\Form\Constraints\Email;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -80,7 +80,7 @@ class CompanyUserFormType extends AbstractType
     {
         $resolver->setDefaults([
             'attr' => ['novalidate' => 'novalidate'],
-            'data_class' => UserData::class,
+            'data_class' => CustomerUserData::class,
         ]);
     }
 }

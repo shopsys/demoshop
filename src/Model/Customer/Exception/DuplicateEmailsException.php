@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Model\Customer\Exception;
 
 use Exception;
-use Shopsys\FrameworkBundle\Model\Customer\Exception\CustomerException;
+use Shopsys\FrameworkBundle\Model\Customer\Exception\CustomerUserException;
 
-class DuplicateEmailsException extends Exception implements CustomerException
+class DuplicateEmailsException extends Exception implements CustomerUserException
 {
     /**
      * @var string

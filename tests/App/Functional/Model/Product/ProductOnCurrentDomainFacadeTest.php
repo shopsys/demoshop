@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Product;
 
+use App\DataFixtures\Demo\BrandDataFixture;
+use App\DataFixtures\Demo\CategoryDataFixture;
+use App\DataFixtures\Demo\FlagDataFixture;
+use App\Model\Category\Category;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Component\Paginator\PaginationResult;
 use Shopsys\FrameworkBundle\Model\Product\Brand\Brand;
@@ -12,10 +16,6 @@ use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData;
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
 use Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterValue;
 use Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacadeInterface;
-use App\DataFixtures\Demo\BrandDataFixture;
-use App\DataFixtures\Demo\CategoryDataFixture;
-use App\DataFixtures\Demo\FlagDataFixture;
-use App\Model\Category\Category;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 abstract class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTestCase

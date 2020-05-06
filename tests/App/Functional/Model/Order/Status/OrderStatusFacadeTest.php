@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Order\Status;
 
-use Shopsys\FrameworkBundle\Model\Order\Status\OrderStatusData;
 use App\DataFixtures\Demo\OrderDataFixture;
 use App\DataFixtures\Demo\OrderStatusDataFixture;
+use Shopsys\FrameworkBundle\Model\Order\Status\OrderStatusData;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 class OrderStatusFacadeTest extends TransactionFunctionalTestCase

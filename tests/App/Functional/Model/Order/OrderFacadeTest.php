@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Order;
 
-use Shopsys\FrameworkBundle\Component\Money\Money;
-use Shopsys\FrameworkBundle\Model\Order\Item\OrderItemData;
 use App\DataFixtures\Demo\CountryDataFixture;
 use App\DataFixtures\Demo\CurrencyDataFixture;
 use App\DataFixtures\Demo\OrderStatusDataFixture;
 use App\Model\Order\OrderData;
+use Shopsys\FrameworkBundle\Component\Money\Money;
+use Shopsys\FrameworkBundle\Model\Order\Item\OrderItemData;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 class OrderFacadeTest extends TransactionFunctionalTestCase

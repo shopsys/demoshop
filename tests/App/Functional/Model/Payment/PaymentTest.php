@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Payment;
 
-use Shopsys\FrameworkBundle\Model\Payment\Payment;
 use App\Model\Transport\Transport;
+use Shopsys\FrameworkBundle\Model\Payment\Payment;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 class PaymentTest extends TransactionFunctionalTestCase

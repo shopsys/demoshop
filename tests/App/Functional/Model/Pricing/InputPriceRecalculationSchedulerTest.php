@@ -14,8 +14,8 @@ use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Product\Availability\Availability;
 use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityData;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-use Tests\FrameworkBundle\Test\IsMoneyEqual;
 use Tests\App\Test\TransactionFunctionalTestCase;
+use Tests\FrameworkBundle\Test\IsMoneyEqual;
 
 class InputPriceRecalculationSchedulerTest extends TransactionFunctionalTestCase
 {

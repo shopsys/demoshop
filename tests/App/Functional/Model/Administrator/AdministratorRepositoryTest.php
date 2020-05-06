@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Administrator;
 
-use DateTime;
 use App\DataFixtures\Demo\AdministratorDataFixture;
+use DateTime;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 class AdministratorRepositoryTest extends TransactionFunctionalTestCase

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Customer;
+namespace App\Model\Customer\User;
 
-use Shopsys\FrameworkBundle\Model\Customer\UserData as BaseUserData;
+use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserData as BaseCustomerUserData;
 
-class UserData extends BaseUserData
+class CustomerUserData extends BaseCustomerUserData
 {
     /**
      * @var int|null

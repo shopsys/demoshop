@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Order;
 
+use App\Model\Transport\Transport;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
-use App\Model\Transport\Transport;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 class OrderTransportAndPaymentTest extends TransactionFunctionalTestCase

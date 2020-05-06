@@ -8,10 +8,10 @@ use App\Component\Router\DomainContextSwitcher;
 use App\Model\Customer\BillingAddress;
 use App\Model\Customer\BillingAddressDataFactory;
 use App\Model\Customer\BillingAddressFacade;
-use App\Model\Customer\CustomerData;
-use App\Model\Customer\CustomerFacade;
 use App\Model\Customer\Exception\BillingAddressNotFoundException;
 use App\Model\Customer\Exception\DuplicateEmailsException;
+use App\Model\Customer\User\CustomerUserFacade;
+use App\Model\Customer\User\CustomerUserUpdateData;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Shopsys\FrameworkBundle\Component\Domain\AdminDomainTabsFacade;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
@@ -21,18 +21,18 @@ use Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory;
 use Shopsys\FrameworkBundle\Component\Router\Security\Annotation\CsrfProtection;
 use Shopsys\FrameworkBundle\Controller\Admin\CustomerController as BaseCustomerController;
 use Shopsys\FrameworkBundle\Controller\Admin\LoginController;
-use Shopsys\FrameworkBundle\Form\Admin\Customer\CustomerFormType;
+use Shopsys\FrameworkBundle\Form\Admin\Customer\User\CustomerUserUpdateFormType;
 use Shopsys\FrameworkBundle\Form\Admin\QuickSearch\QuickSearchFormData;
 use Shopsys\FrameworkBundle\Form\Admin\QuickSearch\QuickSearchFormType;
 use Shopsys\FrameworkBundle\Model\Administrator\AdministratorGridFacade;
 use Shopsys\FrameworkBundle\Model\AdminNavigation\BreadcrumbOverrider;
-use Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface;
-use Shopsys\FrameworkBundle\Model\Customer\CustomerListAdminFacade;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressDataFactory;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFactory;
-use Shopsys\FrameworkBundle\Model\Customer\User;
-use Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface;
-use Shopsys\FrameworkBundle\Model\Customer\UserFactory;
+use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUser;
+use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserDataFactoryInterface;
+use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserFactory;
+use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserListAdminFacade;
+use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Order\OrderFacade;
 use Shopsys\FrameworkBundle\Model\Security\LoginAsUserFacade;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,9 +41,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class CustomerController extends BaseCustomerController
 {
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\CustomerListAdminFacade
+     * @var \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserListAdminFacade
      */
-    protected $customerListAdminFacade;
+    protected $customerUserListAdminFacade;
 
     /**
      * @var \Shopsys\FrameworkBundle\Component\Domain\AdminDomainTabsFacade
@@ -61,14 +61,14 @@ class CustomerController extends BaseCustomerController
     protected $administratorGridFacade;
 
     /**
-     * @var \App\Model\Customer\CustomerFacade
+     * @var \App\Model\Customer\User\CustomerUserFacade
      */
-    protected $customerFacade;
+    protected $customerUserFacade;
 
     /**
-     * @var \App\Model\Customer\CustomerDataFactory
+     * @var \App\Model\Customer\User\CustomerUserUpdateDataFactory
      */
-    protected $customerDataFactory;
+    protected $customerUserUpdateDataFactory;
 
     /**
      * @var \App\Model\Customer\BillingAddressFacade
@@ -81,14 +81,14 @@ class CustomerController extends BaseCustomerController
     protected $billingAddressDataFactory;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\UserFactory
+     * @var \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserFactory
      */
-    protected $userFactory;
+    protected $customerUserFactory;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\UserDataFactory
+     * @var \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserDataFactory
      */
-    protected $userDataFactory;
+    protected $customerUserDataFactory;
 
     /**
      * @var \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressDataFactory
@@ -121,9 +121,9 @@ class CustomerController extends BaseCustomerController
     private $domainContextSwitcher;
 
     /**
-     * @param \App\Model\Customer\UserDataFactory $userDataFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerListAdminFacade $customerListAdminFacade
-     * @param \App\Model\Customer\CustomerFacade $customerFacade
+     * @param \App\Model\Customer\User\CustomerUserDataFactory $customerUserDataFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserListAdminFacade $customerUserListAdminFacade
+     * @param \App\Model\Customer\User\CustomerUserFacade $customerUserFacade
      * @param \Shopsys\FrameworkBundle\Model\AdminNavigation\BreadcrumbOverrider $breadcrumbOverrider
      * @param \Shopsys\FrameworkBundle\Model\Administrator\AdministratorGridFacade $administratorGridFacade
      * @param \Shopsys\FrameworkBundle\Component\Grid\GridFactory $gridFactory
@@ -131,18 +131,18 @@ class CustomerController extends BaseCustomerController
      * @param \App\Model\Order\OrderFacade $orderFacade
      * @param \Shopsys\FrameworkBundle\Model\Security\LoginAsUserFacade $loginAsUserFacade
      * @param \Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory $domainRouterFactory
-     * @param \App\Model\Customer\CustomerDataFactory $customerDataFactory
+     * @param \App\Model\Customer\User\CustomerUserUpdateDataFactory $customerUserUpdateDataFactory
      * @param \App\Model\Customer\BillingAddressFacade $billingAddressFacade
      * @param \App\Model\Customer\BillingAddressDataFactory $billingAddressDataFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\UserFactory $userFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserFactory $customerUserFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressDataFactory $deliveryAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFactory $deliveryAddressFactory
      * @param \App\Component\Router\DomainContextSwitcher $domainContextSwitcher
      */
     public function __construct(
-        UserDataFactoryInterface $userDataFactory,
-        CustomerListAdminFacade $customerListAdminFacade,
-        CustomerFacade $customerFacade,
+        CustomerUserDataFactoryInterface $customerUserDataFactory,
+        CustomerUserListAdminFacade $customerUserListAdminFacade,
+        CustomerUserFacade $customerUserFacade,
         BreadcrumbOverrider $breadcrumbOverrider,
         AdministratorGridFacade $administratorGridFacade,
         GridFactory $gridFactory,
@@ -150,28 +150,28 @@ class CustomerController extends BaseCustomerController
         OrderFacade $orderFacade,
         LoginAsUserFacade $loginAsUserFacade,
         DomainRouterFactory $domainRouterFactory,
-        CustomerDataFactoryInterface $customerDataFactory,
+        CustomerUserUpdateDataFactoryInterface $customerUserUpdateDataFactory,
         BillingAddressFacade $billingAddressFacade,
         BillingAddressDataFactory $billingAddressDataFactory,
-        UserFactory $userFactory,
+        CustomerUserFactory $customerUserFactory,
         DeliveryAddressDataFactory $deliveryAddressDataFactory,
         DeliveryAddressFactory $deliveryAddressFactory,
         DomainContextSwitcher $domainContextSwitcher
     ) {
-        parent::__construct($userDataFactory, $customerListAdminFacade, $customerFacade, $breadcrumbOverrider, $administratorGridFacade, $gridFactory, $adminDomainTabsFacade, $orderFacade, $loginAsUserFacade, $domainRouterFactory, $customerDataFactory);
+        parent::__construct($customerUserDataFactory, $customerUserListAdminFacade, $customerUserFacade, $breadcrumbOverrider, $administratorGridFacade, $gridFactory, $adminDomainTabsFacade, $orderFacade, $loginAsUserFacade, $domainRouterFactory, $customerUserUpdateDataFactory);
 
-        $this->customerListAdminFacade = $customerListAdminFacade;
+        $this->customerUserListAdminFacade = $customerUserListAdminFacade;
         $this->adminDomainTabsFacade = $adminDomainTabsFacade;
         $this->gridFactory = $gridFactory;
         $this->administratorGridFacade = $administratorGridFacade;
-        $this->customerFacade = $customerFacade;
-        $this->customerDataFactory = $customerDataFactory;
+        $this->customerUserFacade = $customerUserFacade;
+        $this->customerUserUpdateDataFactory = $customerUserUpdateDataFactory;
         $this->billingAddressFacade = $billingAddressFacade;
         $this->billingAddressDataFactory = $billingAddressDataFactory;
         $this->deliveryAddressDataFactory = $deliveryAddressDataFactory;
         $this->deliveryAddressFactory = $deliveryAddressFactory;
-        $this->userDataFactory = $userDataFactory;
-        $this->userFactory = $userFactory;
+        $this->customerUserDataFactory = $customerUserDataFactory;
+        $this->customerUserFactory = $customerUserFactory;
         $this->breadcrumbOverrider = $breadcrumbOverrider;
         $this->orderFacade = $orderFacade;
         $this->domainRouterFactory = $domainRouterFactory;
@@ -184,27 +184,27 @@ class CustomerController extends BaseCustomerController
      */
     public function newAction(Request $request)
     {
-        $customerData = $this->customerDataFactory->create();
+        $customerUserUpdateData = $this->customerUserUpdateDataFactory->create();
         $selectedDomainId = $this->adminDomainTabsFacade->getSelectedDomainId();
-        $userData = $this->userDataFactory->createForDomainId($selectedDomainId);
-        $customerData->userData = $userData;
+        $customerUserData = $this->customerUserDataFactory->createForDomainId($selectedDomainId);
+        $customerUserUpdateData->customerUserData = $customerUserData;
 
-        $form = $this->createForm(CustomerFormType::class, $customerData, [
-            'user' => null,
+        $form = $this->createForm(CustomerUserUpdateFormType::class, $customerUserUpdateData, [
+            'customerUser' => null,
             'domain_id' => $selectedDomainId,
             'billingAddress' => null,
         ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $customerData = $form->getData();
-            $user = $this->customerFacade->create($customerData);
+            $customerUserUpdateData = $form->getData();
+            $customerUser = $this->customerUserFacade->create($customerUserUpdateData);
 
             $this->getFlashMessageSender()->addSuccessFlashTwig(
                 t('Customer <strong><a href="{{ url }}">{{ name }}</a></strong> created'),
                 [
-                    'name' => $user->getFullName(),
-                    'url' => $this->generateUrl('admin_customer_edit', ['billingAddressId' => $user->getBillingAddress()->getId()]),
+                    'name' => $customerUser->getFullName(),
+                    'url' => $this->generateUrl('admin_customer_edit', ['billingAddressId' => $customerUser->getBillingAddress()->getId()]),
                 ]
             );
 
@@ -254,7 +254,7 @@ class CustomerController extends BaseCustomerController
         $quickSearchForm = $this->createForm(QuickSearchFormType::class, new QuickSearchFormData());
         $quickSearchForm->handleRequest($request);
 
-        $queryBuilder = $this->customerListAdminFacade->getCustomerListQueryBuilderByQuickSearchData(
+        $queryBuilder = $this->customerUserListAdminFacade->getCustomerListQueryBuilderByQuickSearchData(
             $this->adminDomainTabsFacade->getSelectedDomainId(),
             $quickSearchForm->getData()
         );
@@ -294,17 +294,17 @@ class CustomerController extends BaseCustomerController
         try {
             $billingAddress = $this->billingAddressFacade->getById($billingAddressId);
 
-            $user = $this->customerFacade->getUserByBillingAddress($billingAddress);
+            $customerUser = $this->customerUserFacade->getUserByBillingAddress($billingAddress);
 
-            $this->customerFacade->removeBillingAddress($billingAddress);
+            $this->customerUserFacade->removeBillingAddress($billingAddress);
 
             $this->getFlashMessageSender()->addSuccessFlashTwig(
                 t('Customer <strong>{{ name }}</strong> deleted'),
                 [
-                    'name' => $user->getFullName(),
+                    'name' => $customerUser->getFullName(),
                 ]
             );
-        } catch (\Shopsys\FrameworkBundle\Model\Customer\Exception\UserNotFoundException $ex) {
+        } catch (\Shopsys\FrameworkBundle\Model\Customer\Exception\CustomerUserNotFoundException $ex) {
             $this->getFlashMessageSender()->addErrorFlash(t('Selected customer doesn\'t exist.'));
         }
 
@@ -313,25 +313,25 @@ class CustomerController extends BaseCustomerController
 
     /**
      * @param \App\Model\Customer\BillingAddress $billingAddress
-     * @param \App\Model\Customer\CustomerData $customerData
+     * @param \App\Model\Customer\User\CustomerUserUpdateData $customerUserUpdateData
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    protected function editCompanyWithMultipleUsers(BillingAddress $billingAddress, CustomerData $customerData)
+    protected function editCompanyWithMultipleUsers(BillingAddress $billingAddress, CustomerUserUpdateData $customerUserUpdateData)
     {
-        $user = $this->customerFacade->getUserByBillingAddress($billingAddress);
+        $customerUser = $this->customerUserFacade->getUserByBillingAddress($billingAddress);
 
-        if (!$customerData->billingAddressData->isCompanyWithMultipleUsers) {
-            $this->customerFacade->removeCompanyUsersExceptTheFirstOne($billingAddress, $customerData);
+        if (!$customerUserUpdateData->billingAddressData->isCompanyWithMultipleUsers) {
+            $this->customerUserFacade->removeCompanyUsersExceptTheFirstOne($billingAddress, $customerUserUpdateData);
         } else {
-            $this->customerFacade->editCompanyWithMultipleUsers($billingAddress, $customerData);
+            $this->customerUserFacade->editCompanyWithMultipleUsers($billingAddress, $customerUserUpdateData);
         }
 
-        $this->billingAddressFacade->edit($billingAddress->getId(), $customerData->billingAddressData);
+        $this->billingAddressFacade->edit($billingAddress->getId(), $customerUserUpdateData->billingAddressData);
 
         $this->getFlashMessageSender()->addSuccessFlashTwig(
             t('Customer <strong><a href="{{ url }}">{{ name }}</a></strong> modified'),
             [
-                'name' => $user->getFullName(),
+                'name' => $customerUser->getFullName(),
                 'url' => $this->generateUrl('admin_customer_edit', [
                     'billingAddressId' => $billingAddress->getId(),
                 ]),
@@ -343,19 +343,19 @@ class CustomerController extends BaseCustomerController
 
     /**
      * @param \App\Model\Customer\BillingAddress $billingAddress
-     * @param \App\Model\Customer\CustomerData $customerData
+     * @param \App\Model\Customer\User\CustomerUserUpdateData $customerUserUpdateData
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    protected function editStandardCustomer(BillingAddress $billingAddress, CustomerData $customerData)
+    protected function editStandardCustomer(BillingAddress $billingAddress, CustomerUserUpdateData $customerUserUpdateData)
     {
-        $user = $this->customerFacade->getUserByBillingAddress($billingAddress);
+        $customerUser = $this->customerUserFacade->getUserByBillingAddress($billingAddress);
 
-        $this->customerFacade->editByAdmin($user->getId(), $customerData);
+        $this->customerUserFacade->editByAdmin($customerUser->getId(), $customerUserUpdateData);
 
         $this->getFlashMessageSender()->addSuccessFlashTwig(
             t('Customer <strong><a href="{{ url }}">{{ name }}</a></strong> modified'),
             [
-                'name' => $user->getFullName(),
+                'name' => $customerUser->getFullName(),
                 'url' => $this->generateUrl('admin_customer_edit', [
                     'billingAddressId' => $billingAddress->getId(),
                 ]),
@@ -372,14 +372,14 @@ class CustomerController extends BaseCustomerController
      */
     protected function processCompanyWithMultipleUsers(Request $request, BillingAddress $billingAddress)
     {
-        $user = $this->customerFacade->getUserByBillingAddress($billingAddress);
-        $customerData = $this->customerDataFactory->createFromUser($user);
+        $customerUser = $this->customerUserFacade->getUserByBillingAddress($billingAddress);
+        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromUser($customerUser);
 
-        $usersByBillingAddress = $this->customerFacade->getAllByBillingAddress($billingAddress);
-        $customerData->companyUsersData = $this->userDataFactory->createMultipleUserDataFromUsers($usersByBillingAddress);
+        $usersByBillingAddress = $this->customerUserFacade->getAllByBillingAddress($billingAddress);
+        $customerUserUpdateData->companyUsersData = $this->customerUserDataFactory->createMultipleUserDataFromUsers($usersByBillingAddress);
 
-        $form = $this->createForm(CustomerFormType::class, $customerData, [
-            'user' => $user,
+        $form = $this->createForm(CustomerUserUpdateFormType::class, $customerUserUpdateData, [
+            'customerUser' => $customerUser,
             'domain_id' => $this->adminDomainTabsFacade->getSelectedDomainId(),
             'billingAddress' => $billingAddress,
         ]);
@@ -388,7 +388,7 @@ class CustomerController extends BaseCustomerController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                return $this->editCompanyWithMultipleUsers($billingAddress, $customerData);
+                return $this->editCompanyWithMultipleUsers($billingAddress, $customerUserUpdateData);
             } catch (DuplicateEmailsException $exc) {
                 $this->getFlashMessageSender()->addErrorFlashTwig(t('One or more emails are duplicated or already used, e.g.:') . ' ' . $exc->getEmail());
                 $this->getFlashMessageSender()->addErrorFlashTwig(t('Please check the correctness of all data filled.'));
@@ -401,7 +401,7 @@ class CustomerController extends BaseCustomerController
 
         return $this->render('@ShopsysFramework/Admin/Content/Customer/edit.html.twig', [
             'form' => $form->createView(),
-            'user' => $user,
+            'customerUser' => $customerUser,
         ]);
     }
 
@@ -412,11 +412,11 @@ class CustomerController extends BaseCustomerController
      */
     protected function processStandardCustomer(Request $request, BillingAddress $billingAddress)
     {
-        $user = $this->customerFacade->getUserByBillingAddress($billingAddress);
-        $customerData = $this->customerDataFactory->createFromUser($user);
+        $customerUser = $this->customerUserFacade->getUserByBillingAddress($billingAddress);
+        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromUser($customerUser);
 
-        $form = $this->createForm(CustomerFormType::class, $customerData, [
-            'user' => $user,
+        $form = $this->createForm(CustomerUserUpdateFormType::class, $customerUserUpdateData, [
+            'customerUser' => $customerUser,
             'domain_id' => $this->adminDomainTabsFacade->getSelectedDomainId(),
             'billingAddress' => null,
         ]);
@@ -424,36 +424,36 @@ class CustomerController extends BaseCustomerController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            return $this->editStandardCustomer($billingAddress, $customerData);
+            return $this->editStandardCustomer($billingAddress, $customerUserUpdateData);
         }
 
         if ($form->isSubmitted() && !$form->isValid()) {
             $this->getFlashMessageSender()->addErrorFlashTwig(t('Please check the correctness of all data filled.'));
         }
 
-        $this->breadcrumbOverrider->overrideLastItem(t('Editing customer - %name%', ['%name%' => $user->getFullName()]));
+        $this->breadcrumbOverrider->overrideLastItem(t('Editing customer - %name%', ['%name%' => $customerUser->getFullName()]));
 
-        $orders = $this->orderFacade->getCustomerOrderList($user);
+        $orders = $this->orderFacade->getCustomerUserOrderList($customerUser);
 
         return $this->render('@ShopsysFramework/Admin/Content/Customer/edit.html.twig', [
             'form' => $form->createView(),
-            'user' => $user,
+            'customerUser' => $customerUser,
             'orders' => $orders,
-            'ssoLoginAsUserUrl' => $this->getSsoLoginAsUserUrl($user),
+            'ssoLoginAsUserUrl' => $this->getSsoLoginAsUserUrl($customerUser),
         ]);
     }
 
     /**
-     * @param \App\Model\Customer\User $user
+     * @param \App\Model\Customer\User\CustomerUser $customerUser
      * @return string
      */
-    protected function getSsoLoginAsUserUrl(User $user)
+    protected function getSsoLoginAsUserUrl(CustomerUser $customerUser)
     {
-        $this->domainContextSwitcher->changeRouterContext($user->getDomainId());
+        $this->domainContextSwitcher->changeRouterContext($customerUser->getDomainId());
         $loginAsUserUrl = $this->generateUrl(
             'admin_customer_loginasuser',
             [
-                'userId' => $user->getId(),
+                'userId' => $customerUser->getId(),
             ],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
@@ -462,7 +462,7 @@ class CustomerController extends BaseCustomerController
         $ssoLoginAsUserUrl = $this->generateUrl(
             'admin_login_sso',
             [
-                LoginController::ORIGINAL_DOMAIN_ID_PARAMETER_NAME => $user->getDomainId(),
+                LoginController::ORIGINAL_DOMAIN_ID_PARAMETER_NAME => $customerUser->getDomainId(),
                 LoginController::ORIGINAL_REFERER_PARAMETER_NAME => $loginAsUserUrl,
             ],
             UrlGeneratorInterface::ABSOLUTE_URL

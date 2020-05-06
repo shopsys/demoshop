@@ -7,6 +7,7 @@ namespace App\Form\Front\Order;
 use App\Model\Transport\Transport;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Form\Constraints\Email;
+use Shopsys\FrameworkBundle\Form\DeliveryAddressChoiceType;
 use Shopsys\FrameworkBundle\Form\Transformers\InverseTransformer;
 use Shopsys\FrameworkBundle\Form\ValidationGroup;
 use Shopsys\FrameworkBundle\Model\Country\CountryFacade;

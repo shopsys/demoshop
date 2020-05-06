@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\App\Functional\Model\Product;
 
+use App\DataFixtures\Demo\AvailabilityDataFixture;
+use App\DataFixtures\Demo\CategoryDataFixture;
+use App\DataFixtures\Demo\PricingGroupDataFixture;
+use App\DataFixtures\Demo\ProductDataFixture;
+use App\DataFixtures\Demo\UnitDataFixture;
+use App\Model\Product\Product;
 use DateTime;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\Money\Money;
@@ -11,12 +17,6 @@ use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Product\ProductData;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibility;
-use App\DataFixtures\Demo\AvailabilityDataFixture;
-use App\DataFixtures\Demo\CategoryDataFixture;
-use App\DataFixtures\Demo\PricingGroupDataFixture;
-use App\DataFixtures\Demo\ProductDataFixture;
-use App\DataFixtures\Demo\UnitDataFixture;
-use App\Model\Product\Product;
 use Tests\App\Test\TransactionFunctionalTestCase;
 
 class ProductVisibilityRepositoryTest extends TransactionFunctionalTestCase

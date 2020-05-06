@@ -12,19 +12,19 @@ use Shopsys\FrameworkBundle\Model\Order\OrderRepository as BaseOrderRepository;
  * @method \App\Model\Order\Order|null findLastByUserId(int $userId)
  * @method \App\Model\Order\Order|null findById(int $id)
  * @method \App\Model\Order\Order getById(int $id)
- * @method \App\Model\Order\Order[] getCustomerOrderList(\App\Model\Customer\User $user)
+ * @method \App\Model\Order\Order[] getCustomerUserOrderList(\App\Model\Customer\User\CustomerUser $customerUser)
  * @method \App\Model\Order\Order[] getOrderListForEmailByDomainId(string $email, int $domainId)
  * @method \App\Model\Order\Order getByUrlHashAndDomain(string $urlHash, int $domainId)
- * @method \App\Model\Order\Order getByOrderNumberAndUser(string $orderNumber, \App\Model\Customer\User $user)
+ * @method \App\Model\Order\Order getByOrderNumberAndUser(string $orderNumber, \App\Model\Customer\User\CustomerUser $customerUser)
  * @method \App\Model\Order\Order|null findByUrlHashIncludingDeletedOrders(string $urlHash)
  */
 class OrderRepository extends BaseOrderRepository
 {
     /**
-     * @param \App\Model\Customer\User[] $users
+     * @param \App\Model\Customer\User\CustomerUser[] $customerUsers
      * @return \App\Model\Order\Order[]
      */
-    public function getOrderListByCustomers(array $users)
+    public function getOrderListByCustomers(array $customerUsers)
     {
         return $this->createOrderQueryBuilder()
             ->select('o, oi, os, ost, c')
@@ -34,7 +34,7 @@ class OrderRepository extends BaseOrderRepository
             ->join('o.currency', 'c')
             ->andWhere('o.customer IN (:customers)')
             ->orderBy('o.createdAt', 'DESC')
-            ->setParameter('customers', $users)
+            ->setParameter('customers', $customerUsers)
             ->getQuery()->execute();
     }
 

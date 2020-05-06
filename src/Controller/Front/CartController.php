@@ -84,7 +84,7 @@ class CartController extends FrontBaseController
      */
     public function indexAction(Request $request)
     {
-        $cart = $this->cartFacade->getCartOfCurrentCustomerCreateIfNotExists();
+        $cart = $this->cartFacade->getCartOfCurrentCustomerUserCreateIfNotExists();
 
         if ($cart->isEmpty()) {
             $this->cartFacade->cleanAdditionalData();
@@ -147,7 +147,7 @@ class CartController extends FrontBaseController
         $orderPreview = $this->orderPreviewFactory->createForCurrentUser();
 
         return $this->render('Front/Inline/Cart/cartBox.html.twig', [
-            'cart' => $this->cartFacade->getCartOfCurrentCustomerCreateIfNotExists(),
+            'cart' => $this->cartFacade->getCartOfCurrentCustomerUserCreateIfNotExists(),
             'productsPrice' => $orderPreview->getProductsPrice(),
         ]);
     }

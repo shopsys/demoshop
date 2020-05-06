@@ -79,9 +79,9 @@ services:
 
     Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface: '@App\Model\Customer\BillingAddressDataFactory'
 
-    Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface: '@App\Model\Customer\CustomerDataFactory'
+    Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface: '@App\Model\Customer\User\CustomerUserUpdateDataFactory'
 
-    Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface: '@App\Model\Customer\UserDataFactory'
+    Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserDataFactoryInterface: '@App\Model\Customer\User\CustomerUserDataFactory'
 
     App\Model\Country\CountryRepository: ~
 
@@ -133,7 +133,7 @@ services:
 
     Shopsys\FrameworkBundle\Model\Customer\CustomerFacade: '@App\Model\Customer\CustomerFacade'
 
-    Shopsys\FrameworkBundle\Model\Customer\UserRepository: '@App\Model\Customer\UserRepository'
+    Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserRepository: '@App\Model\Customer\User\CustomerUserRepository'
 
     Shopsys\FrameworkBundle\Model\Order\OrderFacade: '@App\Model\Order\OrderFacade'
 
@@ -157,13 +157,13 @@ services:
     Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculation:
         class: App\Model\Product\Pricing\ProductPriceCalculation
 
-    Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser:
-        class: App\Model\Product\Pricing\ProductPriceCalculationForUser
+    Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForCustomerUser:
+        class: App\Model\Product\Pricing\ProductPriceCalculationForCustomerUser
 
-    App\Model\Customer\CurrentCustomer: ~
+    App\Model\Customer\User\CurrentCustomerUser: ~
 
-    Shopsys\FrameworkBundle\Model\Customer\CurrentCustomer:
-        alias: App\Model\Customer\CurrentCustomer
+    Shopsys\FrameworkBundle\Model\Customer\User\CurrentCustomerUser:
+        alias: App\Model\Customer\User\CurrentCustomerUser
 
     App\DataFixtures\Performance\CategoryDataFixture:
         arguments:
@@ -178,7 +178,7 @@ services:
         arguments:
             - "%shopsys.performance_data.product.total_count%"
 
-    App\DataFixtures\Performance\UserDataFixture:
+    App\DataFixtures\Performance\CustomerUserDataFixture:
         arguments:
             - "%shopsys.performance_data.user.count_per_domain%"
 
