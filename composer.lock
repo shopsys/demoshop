@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2054c235845ebecb28f18275fd1906ca",
+    "content-hash": "cabcd63e0db6eda756fa1fc11545081a",
     "packages": [
         {
             "name": "arvenil/ninja-mutex",
@@ -273,16 +273,16 @@
         },
         {
             "name": "components/jquery",
-            "version": "3.4.1",
+            "version": "3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/components/jquery.git",
-                "reference": "901828b7968b18319e377dc23d466f28426ee083"
+                "reference": "b33e8f0f9a1cb2ae390cf05d766a900b53d2125b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/jquery/zipball/901828b7968b18319e377dc23d466f28426ee083",
-                "reference": "901828b7968b18319e377dc23d466f28426ee083",
+                "url": "https://api.github.com/repos/components/jquery/zipball/b33e8f0f9a1cb2ae390cf05d766a900b53d2125b",
+                "reference": "b33e8f0f9a1cb2ae390cf05d766a900b53d2125b",
                 "shasum": ""
             },
             "type": "component",
@@ -311,7 +311,7 @@
             ],
             "description": "jQuery JavaScript Library",
             "homepage": "http://jquery.com",
-            "time": "2019-10-23T05:15:13+00:00"
+            "time": "2020-05-05T13:21:02+00:00"
         },
         {
             "name": "components/jqueryui",
@@ -456,16 +456,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.10.5",
+            "version": "1.10.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "7a4d5b6aa30d2118af27c04f5e897b57156ccfa9"
+                "reference": "be81b9c4735362c26876bdbfd3b5bc7e7f711c88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/7a4d5b6aa30d2118af27c04f5e897b57156ccfa9",
-                "reference": "7a4d5b6aa30d2118af27c04f5e897b57156ccfa9",
+                "url": "https://api.github.com/repos/composer/composer/zipball/be81b9c4735362c26876bdbfd3b5bc7e7f711c88",
+                "reference": "be81b9c4735362c26876bdbfd3b5bc7e7f711c88",
                 "shasum": ""
             },
             "require": {
@@ -484,7 +484,8 @@
                 "symfony/process": "^2.7 || ^3.0 || ^4.0 || ^5.0"
             },
             "conflict": {
-                "symfony/console": "2.8.38"
+                "symfony/console": "2.8.38",
+                "symfony/phpunit-bridge": "3.4.40"
             },
             "require-dev": {
                 "phpspec/prophecy": "^1.10",
@@ -532,7 +533,17 @@
                 "dependency",
                 "package"
             ],
-            "time": "2020-04-10T09:44:22+00:00"
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-05-06T08:28:10+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",
@@ -2429,16 +2440,16 @@
         },
         {
             "name": "fp/jsformvalidator-bundle",
-            "version": "dev-master",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/formapro/JsFormValidatorBundle.git",
-                "reference": "df5a8b3711c210ebc8f1acf343e06233e2c44d3f"
+                "reference": "f081b0bf67067218b9811896bb5f3845843f43a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/formapro/JsFormValidatorBundle/zipball/df5a8b3711c210ebc8f1acf343e06233e2c44d3f",
-                "reference": "df5a8b3711c210ebc8f1acf343e06233e2c44d3f",
+                "url": "https://api.github.com/repos/formapro/JsFormValidatorBundle/zipball/f081b0bf67067218b9811896bb5f3845843f43a9",
+                "reference": "f081b0bf67067218b9811896bb5f3845843f43a9",
                 "shasum": ""
             },
             "require": {
@@ -2508,7 +2519,7 @@
                 "symfony",
                 "validation"
             ],
-            "time": "2020-04-16T14:57:25+00:00"
+            "time": "2020-04-17T14:29:09+00:00"
         },
         {
             "name": "friendsofsymfony/ckeditor-bundle",
@@ -6131,12 +6142,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/form-types-bundle.git",
-                "reference": "0a72d7a366b3c91464b455a32b59a53ab860446b"
+                "reference": "56076ae1f0a8b70eaf507c843f81f6941659642d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/form-types-bundle/zipball/0a72d7a366b3c91464b455a32b59a53ab860446b",
-                "reference": "0a72d7a366b3c91464b455a32b59a53ab860446b",
+                "url": "https://api.github.com/repos/shopsys/form-types-bundle/zipball/56076ae1f0a8b70eaf507c843f81f6941659642d",
+                "reference": "56076ae1f0a8b70eaf507c843f81f6941659642d",
                 "shasum": ""
             },
             "require": {
@@ -6180,7 +6191,7 @@
                 "Shopsys Framework",
                 "form"
             ],
-            "time": "2020-04-27T08:14:22+00:00"
+            "time": "2020-05-05T06:47:09+00:00"
         },
         {
             "name": "shopsys/framework",
@@ -6188,12 +6199,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/framework.git",
-                "reference": "092fc7fdfc288c88bbed6a1ab5944bc4520dc8fc"
+                "reference": "ce423f5c493018a59623268207198044f1106ca2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/framework/zipball/092fc7fdfc288c88bbed6a1ab5944bc4520dc8fc",
-                "reference": "092fc7fdfc288c88bbed6a1ab5944bc4520dc8fc",
+                "url": "https://api.github.com/repos/shopsys/framework/zipball/ce423f5c493018a59623268207198044f1106ca2",
+                "reference": "ce423f5c493018a59623268207198044f1106ca2",
                 "shasum": ""
             },
             "require": {
@@ -6229,7 +6240,7 @@
                 "ext-pdo_pgsql": "*",
                 "ext-redis": "*",
                 "ext-xml": "*",
-                "fp/jsformvalidator-bundle": "dev-master",
+                "fp/jsformvalidator-bundle": "^1.6.1",
                 "friendsofsymfony/ckeditor-bundle": "^2.1",
                 "fzaninotto/faker": "^1.7.1",
                 "gedmo/doctrine-extensions": "^2.4.34",
@@ -6307,7 +6318,7 @@
                 "proprietary"
             ],
             "description": "Core of Shopsys Framework - open source framework for building large, scalable, fast-growing e-commerce projects based on Symfony",
-            "time": "2020-04-29T06:57:03+00:00"
+            "time": "2020-05-05T08:07:11+00:00"
         },
         {
             "name": "shopsys/frontend-api",
@@ -6315,12 +6326,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/frontend-api.git",
-                "reference": "759920311a178319496c6ea6f80f7843a34a2bc3"
+                "reference": "a5cbc528c868b7da0bbb8e289141a02a7da2509a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/frontend-api/zipball/759920311a178319496c6ea6f80f7843a34a2bc3",
-                "reference": "759920311a178319496c6ea6f80f7843a34a2bc3",
+                "url": "https://api.github.com/repos/shopsys/frontend-api/zipball/a5cbc528c868b7da0bbb8e289141a02a7da2509a",
+                "reference": "a5cbc528c868b7da0bbb8e289141a02a7da2509a",
                 "shasum": ""
             },
             "require": {
@@ -6370,7 +6381,7 @@
                 "api",
                 "graphql"
             ],
-            "time": "2020-04-27T08:14:22+00:00"
+            "time": "2020-05-05T06:47:09+00:00"
         },
         {
             "name": "shopsys/google-cloud-bundle",
@@ -6378,12 +6389,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/google-cloud-bundle.git",
-                "reference": "7a49fd121c820bf38d39af781d85904f5d34184a"
+                "reference": "8da710bd2fb8cf3aafb8b088a92ce9a105418eb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/google-cloud-bundle/zipball/7a49fd121c820bf38d39af781d85904f5d34184a",
-                "reference": "7a49fd121c820bf38d39af781d85904f5d34184a",
+                "url": "https://api.github.com/repos/shopsys/google-cloud-bundle/zipball/8da710bd2fb8cf3aafb8b088a92ce9a105418eb9",
+                "reference": "8da710bd2fb8cf3aafb8b088a92ce9a105418eb9",
                 "shasum": ""
             },
             "require": {
@@ -6430,7 +6441,7 @@
                 "Shopsys Framework",
                 "google cloud"
             ],
-            "time": "2020-04-27T08:14:22+00:00"
+            "time": "2020-05-05T06:47:09+00:00"
         },
         {
             "name": "shopsys/migrations",
@@ -6438,12 +6449,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/migrations.git",
-                "reference": "3b668babf6c78fed0de2dffcd9c474090f530c7c"
+                "reference": "2d2e8047d2d25fa0bc41afc0211c79b8bb0533a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/migrations/zipball/3b668babf6c78fed0de2dffcd9c474090f530c7c",
-                "reference": "3b668babf6c78fed0de2dffcd9c474090f530c7c",
+                "url": "https://api.github.com/repos/shopsys/migrations/zipball/2d2e8047d2d25fa0bc41afc0211c79b8bb0533a4",
+                "reference": "2d2e8047d2d25fa0bc41afc0211c79b8bb0533a4",
                 "shasum": ""
             },
             "require": {
@@ -6498,7 +6509,7 @@
                 "orm",
                 "schema"
             ],
-            "time": "2020-04-27T08:14:22+00:00"
+            "time": "2020-05-05T06:47:09+00:00"
         },
         {
             "name": "shopsys/ordered-form",
@@ -6553,12 +6564,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/plugin-interface.git",
-                "reference": "00c273ecd3b028486cea805229b0abf26a627b66"
+                "reference": "5f16fc184be3f7bafb544953bfc05dc2cd28fbf7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/plugin-interface/zipball/00c273ecd3b028486cea805229b0abf26a627b66",
-                "reference": "00c273ecd3b028486cea805229b0abf26a627b66",
+                "url": "https://api.github.com/repos/shopsys/plugin-interface/zipball/5f16fc184be3f7bafb544953bfc05dc2cd28fbf7",
+                "reference": "5f16fc184be3f7bafb544953bfc05dc2cd28fbf7",
                 "shasum": ""
             },
             "require": {
@@ -6595,7 +6606,7 @@
                 "Shopsys Framework",
                 "plugin"
             ],
-            "time": "2020-04-27T08:14:22+00:00"
+            "time": "2020-05-05T06:47:09+00:00"
         },
         {
             "name": "shopsys/postgres-search-bundle",
@@ -6649,12 +6660,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/product-feed-google.git",
-                "reference": "e2193159ce28df91487893d736d8fee7294111d5"
+                "reference": "d64c110a32c35273e9410cde7d567abd0339661c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/product-feed-google/zipball/e2193159ce28df91487893d736d8fee7294111d5",
-                "reference": "e2193159ce28df91487893d736d8fee7294111d5",
+                "url": "https://api.github.com/repos/shopsys/product-feed-google/zipball/d64c110a32c35273e9410cde7d567abd0339661c",
+                "reference": "d64c110a32c35273e9410cde7d567abd0339661c",
                 "shasum": ""
             },
             "require": {
@@ -6711,7 +6722,7 @@
                 "plugin",
                 "product feed"
             ],
-            "time": "2020-04-27T08:14:22+00:00"
+            "time": "2020-05-05T06:47:09+00:00"
         },
         {
             "name": "shopsys/product-feed-heureka",
@@ -6719,12 +6730,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/product-feed-heureka.git",
-                "reference": "bd460e4160ffb513a9b893adb87b66170d2ddc28"
+                "reference": "1202b59f8edd2a8461f1079ff0296d8d5968abb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/product-feed-heureka/zipball/bd460e4160ffb513a9b893adb87b66170d2ddc28",
-                "reference": "bd460e4160ffb513a9b893adb87b66170d2ddc28",
+                "url": "https://api.github.com/repos/shopsys/product-feed-heureka/zipball/1202b59f8edd2a8461f1079ff0296d8d5968abb4",
+                "reference": "1202b59f8edd2a8461f1079ff0296d8d5968abb4",
                 "shasum": ""
             },
             "require": {
@@ -6784,7 +6795,7 @@
                 "plugin",
                 "product feed"
             ],
-            "time": "2020-04-27T08:14:22+00:00"
+            "time": "2020-05-05T06:47:09+00:00"
         },
         {
             "name": "shopsys/product-feed-heureka-delivery",
@@ -6792,12 +6803,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/product-feed-heureka-delivery.git",
-                "reference": "95716e177233c6cdc115763798ae969b79714c59"
+                "reference": "e5f1d9417d39076176d02eefb7838ed3d6a2e77f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/product-feed-heureka-delivery/zipball/95716e177233c6cdc115763798ae969b79714c59",
-                "reference": "95716e177233c6cdc115763798ae969b79714c59",
+                "url": "https://api.github.com/repos/shopsys/product-feed-heureka-delivery/zipball/e5f1d9417d39076176d02eefb7838ed3d6a2e77f",
+                "reference": "e5f1d9417d39076176d02eefb7838ed3d6a2e77f",
                 "shasum": ""
             },
             "require": {
@@ -6848,7 +6859,7 @@
                 "plugin",
                 "product delivery feed"
             ],
-            "time": "2020-04-27T08:14:22+00:00"
+            "time": "2020-05-05T06:47:09+00:00"
         },
         {
             "name": "shopsys/product-feed-zbozi",
@@ -6856,12 +6867,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/product-feed-zbozi.git",
-                "reference": "e19a449e40371522e7d3bad61fbce2f202aad1e2"
+                "reference": "53dd763c8710a5dbd066b9b7282860085ef33e23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/product-feed-zbozi/zipball/e19a449e40371522e7d3bad61fbce2f202aad1e2",
-                "reference": "e19a449e40371522e7d3bad61fbce2f202aad1e2",
+                "url": "https://api.github.com/repos/shopsys/product-feed-zbozi/zipball/53dd763c8710a5dbd066b9b7282860085ef33e23",
+                "reference": "53dd763c8710a5dbd066b9b7282860085ef33e23",
                 "shasum": ""
             },
             "require": {
@@ -6915,9 +6926,10 @@
                 "Shopsys Framework",
                 "XML feed",
                 "plugin",
-                "product feed"
+                "product feed",
+                "zbozi"
             ],
-            "time": "2020-04-27T08:14:22+00:00"
+            "time": "2020-05-05T06:47:09+00:00"
         },
         {
             "name": "shopsys/read-model",
@@ -6925,12 +6937,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/read-model.git",
-                "reference": "360b514865eace465c8e09e2449233ffe74af200"
+                "reference": "8f6ac998fe07393bb7c61050dae8261425d9a38c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/read-model/zipball/360b514865eace465c8e09e2449233ffe74af200",
-                "reference": "360b514865eace465c8e09e2449233ffe74af200",
+                "url": "https://api.github.com/repos/shopsys/read-model/zipball/8f6ac998fe07393bb7c61050dae8261425d9a38c",
+                "reference": "8f6ac998fe07393bb7c61050dae8261425d9a38c",
                 "shasum": ""
             },
             "require": {
@@ -6975,7 +6987,7 @@
                 "Shopsys Framework",
                 "read model"
             ],
-            "time": "2020-04-27T08:14:22+00:00"
+            "time": "2020-05-05T06:47:09+00:00"
         },
         {
             "name": "snc/redis-bundle",
@@ -7291,16 +7303,16 @@
         },
         {
             "name": "symfony-cmf/routing",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony-cmf/Routing.git",
-                "reference": "4f21849ee18c91e17ceaf694c492414046e7f12a"
+                "reference": "ab47aab7096db01fe40047e1d7597b181110d0f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/Routing/zipball/4f21849ee18c91e17ceaf694c492414046e7f12a",
-                "reference": "4f21849ee18c91e17ceaf694c492414046e7f12a",
+                "url": "https://api.github.com/repos/symfony-cmf/Routing/zipball/ab47aab7096db01fe40047e1d7597b181110d0f7",
+                "reference": "ab47aab7096db01fe40047e1d7597b181110d0f7",
                 "shasum": ""
             },
             "require": {
@@ -7346,7 +7358,7 @@
                 "database",
                 "routing"
             ],
-            "time": "2020-04-21T14:16:32+00:00"
+            "time": "2020-05-04T14:09:57+00:00"
         },
         {
             "name": "symfony-cmf/routing-bundle",
@@ -13843,16 +13855,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.22",
+            "version": "0.12.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "59090e1b84efca9310e58586aeb787521aa00b10"
+                "reference": "71e529efced79e055fa8318b692e7f7d03ea4e75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/59090e1b84efca9310e58586aeb787521aa00b10",
-                "reference": "59090e1b84efca9310e58586aeb787521aa00b10",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/71e529efced79e055fa8318b692e7f7d03ea4e75",
+                "reference": "71e529efced79e055fa8318b692e7f7d03ea4e75",
                 "shasum": ""
             },
             "require": {
@@ -13895,7 +13907,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-04T09:21:25+00:00"
+            "time": "2020-05-05T12:55:44+00:00"
         },
         {
             "name": "phpstan/phpstan-doctrine",
@@ -15021,12 +15033,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/coding-standards.git",
-                "reference": "40db0cc15a49106473c4a85972f6e327ceae3db0"
+                "reference": "5d7c364c041bc6cd8bb5fc849db9691487b2bebc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/coding-standards/zipball/40db0cc15a49106473c4a85972f6e327ceae3db0",
-                "reference": "40db0cc15a49106473c4a85972f6e327ceae3db0",
+                "url": "https://api.github.com/repos/shopsys/coding-standards/zipball/5d7c364c041bc6cd8bb5fc849db9691487b2bebc",
+                "reference": "5d7c364c041bc6cd8bb5fc849db9691487b2bebc",
                 "shasum": ""
             },
             "require": {
@@ -15073,7 +15085,7 @@
                 "code quality",
                 "coding standards"
             ],
-            "time": "2020-04-27T08:14:22+00:00"
+            "time": "2020-05-05T06:47:09+00:00"
         },
         {
             "name": "shopsys/http-smoke-testing",
@@ -15583,16 +15595,16 @@
         },
         {
             "name": "symplify/auto-bind-parameter",
-            "version": "v7.3.8",
+            "version": "v7.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/auto-bind-parameter.git",
-                "reference": "3792651907a942afaf1eb6d9b1ad846ff4947277"
+                "reference": "8511b7888a20b576b85a8b0396a5d170dd4a3429"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/auto-bind-parameter/zipball/3792651907a942afaf1eb6d9b1ad846ff4947277",
-                "reference": "3792651907a942afaf1eb6d9b1ad846ff4947277",
+                "url": "https://api.github.com/repos/symplify/auto-bind-parameter/zipball/8511b7888a20b576b85a8b0396a5d170dd4a3429",
+                "reference": "8511b7888a20b576b85a8b0396a5d170dd4a3429",
                 "shasum": ""
             },
             "require": {
@@ -15603,7 +15615,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0",
-                "symplify/package-builder": "^7.3.8"
+                "symplify/package-builder": "^7.3.9"
             },
             "type": "library",
             "extra": {
@@ -15627,7 +15639,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-05-04T10:14:41+00:00"
+            "time": "2020-05-05T14:12:32+00:00"
         },
         {
             "name": "symplify/autowire-array-parameter",
@@ -15840,16 +15852,16 @@
         },
         {
             "name": "symplify/set-config-resolver",
-            "version": "v7.3.8",
+            "version": "v7.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/set-config-resolver.git",
-                "reference": "25cf62fd1801d07218f97d2ce9d80eacf20694fb"
+                "reference": "87dda0250771ba7290e773e6a78565ebfdf8dcd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/25cf62fd1801d07218f97d2ce9d80eacf20694fb",
-                "reference": "25cf62fd1801d07218f97d2ce9d80eacf20694fb",
+                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/87dda0250771ba7290e773e6a78565ebfdf8dcd5",
+                "reference": "87dda0250771ba7290e773e6a78565ebfdf8dcd5",
                 "shasum": ""
             },
             "require": {
@@ -15858,7 +15870,7 @@
                 "symfony/console": "^4.4|^5.0",
                 "symfony/filesystem": "^4.4|^5.0",
                 "symfony/finder": "^4.4|^5.0",
-                "symplify/smart-file-system": "^7.3.8"
+                "symplify/smart-file-system": "^7.3.9"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0"
@@ -15885,20 +15897,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-05-04T10:14:41+00:00"
+            "time": "2020-05-05T14:12:32+00:00"
         },
         {
             "name": "symplify/smart-file-system",
-            "version": "v7.3.8",
+            "version": "v7.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/smart-file-system.git",
-                "reference": "0e91ecda90c9071d997f9877e1aee17f692c0a1b"
+                "reference": "418b0abb201c2bcb3b3a1e7c9eb5327f3cfba70e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/smart-file-system/zipball/0e91ecda90c9071d997f9877e1aee17f692c0a1b",
-                "reference": "0e91ecda90c9071d997f9877e1aee17f692c0a1b",
+                "url": "https://api.github.com/repos/symplify/smart-file-system/zipball/418b0abb201c2bcb3b3a1e7c9eb5327f3cfba70e",
+                "reference": "418b0abb201c2bcb3b3a1e7c9eb5327f3cfba70e",
                 "shasum": ""
             },
             "require": {
@@ -15934,7 +15946,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-05-02T01:43:28+00:00"
+            "time": "2020-05-02T08:52:53+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -16081,7 +16093,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "fp/jsformvalidator-bundle": 20,
         "shopsys/google-cloud-bundle": 20,
         "shopsys/migrations": 20,
         "shopsys/form-types-bundle": 20,

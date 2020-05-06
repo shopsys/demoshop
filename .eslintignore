@@ -5,3 +5,5 @@ node_modules/**
 
 # eslint-check-diff runs check with provided files that could contain even javascripts from tests folder
 tests/**
+
+/assets/js/bundles

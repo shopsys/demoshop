@@ -18,3 +18,4 @@
 /.env.local
 /.env.local.php
 /.env.*.local
+/assets/js/bundles
