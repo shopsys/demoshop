@@ -18,4 +18,12 @@
 /.env.local
 /.env.local.php
 /.env.*.local
+
+/web/build/
+npm-debug.log
+yarn-error.log
+
 /assets/js/bundles
+/assets/js/translations.json
+/assets/js/framework
+/assets/js/commands/translations/mocks
