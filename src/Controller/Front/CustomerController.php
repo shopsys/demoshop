@@ -6,6 +6,7 @@ namespace App\Controller\Front;
 
 use App\Form\Front\Customer\CustomerUserFormType;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
+use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFacade;
 use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserFacade;
 use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItemPriceCalculation;
@@ -13,6 +14,7 @@ use Shopsys\FrameworkBundle\Model\Order\OrderFacade;
 use Shopsys\FrameworkBundle\Model\Security\LoginAsUserFacade;
 use Shopsys\FrameworkBundle\Model\Security\Roles;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CustomerController extends FrontBaseController
 {
@@ -47,12 +49,18 @@ class CustomerController extends FrontBaseController
     private $customerUserUpdateDataFactory;
 
     /**
-     * @param \App\Model\Customer\User\CustomerUserFacade $customerUserFacade
-     * @param \App\Model\Order\OrderFacade $orderFacade
+     * @var \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFacade
+     */
+    private $deliveryAddressFacade;
+
+    /**
+     * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserFacade $customerUserFacade
+     * @param \Shopsys\FrameworkBundle\Model\Order\OrderFacade $orderFacade
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
      * @param \Shopsys\FrameworkBundle\Model\Order\Item\OrderItemPriceCalculation $orderItemPriceCalculation
      * @param \Shopsys\FrameworkBundle\Model\Security\LoginAsUserFacade $loginAsUserFacade
-     * @param \App\Model\Customer\User\CustomerUserUpdateDataFactory $customerUserUpdateDataFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface $customerUserUpdateDataFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFacade $deliveryAddressFacade
      */
     public function __construct(
         CustomerUserFacade $customerUserFacade,
@@ -60,7 +68,8 @@ class CustomerController extends FrontBaseController
         Domain $domain,
         OrderItemPriceCalculation $orderItemPriceCalculation,
         LoginAsUserFacade $loginAsUserFacade,
-        CustomerUserUpdateDataFactoryInterface $customerUserUpdateDataFactory
+        CustomerUserUpdateDataFactoryInterface $customerUserUpdateDataFactory,
+        DeliveryAddressFacade $deliveryAddressFacade
     ) {
         $this->customerUserFacade = $customerUserFacade;
         $this->orderFacade = $orderFacade;
@@ -68,6 +77,7 @@ class CustomerController extends FrontBaseController
         $this->orderItemPriceCalculation = $orderItemPriceCalculation;
         $this->loginAsUserFacade = $loginAsUserFacade;
         $this->customerUserUpdateDataFactory = $customerUserUpdateDataFactory;
+        $this->deliveryAddressFacade = $deliveryAddressFacade;
     }
 
     /**
@@ -82,6 +92,7 @@ class CustomerController extends FrontBaseController
 
         $customerUser = $this->getUser();
         $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromUser($customerUser);
+        $customerUserUpdateData->deliveryAddressData = null;
 
         $form = $this->createForm(CustomerUserFormType::class, $customerUserUpdateData, [
             'domain_id' => $this->domain->getId(),
@@ -202,5 +213,29 @@ class CustomerController extends FrontBaseController
         }
 
         return $this->redirectToRoute('front_homepage');
+    }
+
+    /**
+     * @param int $deliveryAddressId
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function deleteDeliveryAddressAction(int $deliveryAddressId)
+    {
+        if (!$this->isGranted(Roles::ROLE_LOGGED_CUSTOMER)) {
+            throw $this->createAccessDeniedException('');
+        }
+
+        /** @var \App\Model\Customer\User\CustomerUser $customerUser */
+        $customerUser = $this->getUser();
+
+        $deliveryAddress = $this->deliveryAddressFacade->getById($deliveryAddressId);
+
+        if (in_array($deliveryAddress, $customerUser->getCustomer()->getDeliveryAddresses(), true)) {
+            $this->deliveryAddressFacade->delete($deliveryAddressId);
+
+            return Response::create('OK');
+        } else {
+            throw $this->createAccessDeniedException('');
+        }
     }
 }

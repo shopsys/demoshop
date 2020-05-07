@@ -15,6 +15,7 @@ use Shopsys\FrameworkBundle\Model\Country\Country;
 use Shopsys\FrameworkBundle\Model\Country\CountryData;
 use Shopsys\FrameworkBundle\Model\Customer\BillingAddress;
 use Shopsys\FrameworkBundle\Model\Customer\BillingAddressData;
+use Shopsys\FrameworkBundle\Model\Customer\Customer;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressData;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItem;
@@ -34,9 +35,11 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
     public function testExportXml()
     {
         $country = $this->createCountry();
-        $billingAddress = $this->createBillingAddress($country);
+        $customer = new Customer();
+        $customer->addBillingAddress($this->createBillingAddress($country, $customer));
         $deliveryAddress = $this->createDeliveryAddress($country);
-        $customerUser = $this->createUser($billingAddress, $deliveryAddress);
+        $customer->addDeliveryAddress($deliveryAddress);
+        $customerUser = $this->createCustomerUser($customer);
         $status = $this->createMock(OrderStatus::class);
         $currencyData = new CurrencyData();
         $currencyData->name = 'CZK';
@@ -119,10 +122,10 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress $deliveryAddress
+     * @param \Shopsys\FrameworkBundle\Model\Customer\Customer $customer
      * @return \App\Model\Customer\User\CustomerUser
      */
-    private function createUser(DeliveryAddress $deliveryAddress)
+    private function createCustomerUser(Customer $customer)
     {
         $customerUserData = new CustomerUserData();
         $customerUserData->firstName = 'Jaromír';
@@ -132,9 +135,7 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $customerUserData->email = 'no-reply@shopsys.com';
         $customerUserData->telephone = '+420987654321';
 
-        $customerUser = new CustomerUser($customerUserData, $deliveryAddress);
-
-        return $customerUser;
+        return new CustomerUser($customerUserData);
     }
 
     /**

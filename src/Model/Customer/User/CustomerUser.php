@@ -33,13 +33,11 @@ class CustomerUser extends BaseCustomerUser
 
     /**
      * @param \App\Model\Customer\User\CustomerUserData $customerUserData
-     * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress|null $deliveryAddress
      */
     public function __construct(
-        BaseCustomerUserData $customerUserData,
-        ?DeliveryAddress $deliveryAddress
+        BaseCustomerUserData $customerUserData
     ) {
-        parent::__construct($customerUserData, $deliveryAddress);
+        parent::__construct($customerUserData);
         $this->discount = $customerUserData->discount;
     }
 

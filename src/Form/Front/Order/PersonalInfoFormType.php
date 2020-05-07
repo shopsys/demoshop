@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Front\Order;
 
+use App\Model\Customer\User\CurrentCustomerUser;
 use App\Model\Transport\Transport;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Form\Constraints\Email;
@@ -46,15 +47,26 @@ class PersonalInfoFormType extends AbstractType
     private $domain;
 
     /**
+     * @var \App\Model\Customer\User\CurrentCustomerUser
+     */
+    private $currentCustomerUser;
+
+    /**
      * @param \Shopsys\FrameworkBundle\Model\Country\CountryFacade $countryFacade
      * @param \Shopsys\FrameworkBundle\Model\Heureka\HeurekaFacade $heurekaFacade
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
+     * @param \App\Model\Customer\User\CurrentCustomerUser $currentCustomerUser
      */
-    public function __construct(CountryFacade $countryFacade, HeurekaFacade $heurekaFacade, Domain $domain)
-    {
+    public function __construct(
+        CountryFacade $countryFacade,
+        HeurekaFacade $heurekaFacade,
+        Domain $domain,
+        CurrentCustomerUser $currentCustomerUser
+    ) {
         $this->countryFacade = $countryFacade;
         $this->heurekaFacade = $heurekaFacade;
         $this->domain = $domain;
+        $this->currentCustomerUser = $currentCustomerUser;
     }
 
     /**
@@ -160,7 +172,15 @@ class PersonalInfoFormType extends AbstractType
                     'required' => false,
                     'property_path' => 'deliveryAddressSameAsBillingAddress',
                 ])
-                ->addModelTransformer(new InverseTransformer()))
+                ->addModelTransformer(new InverseTransformer()));
+
+        if ($this->currentCustomerUser->findCurrentCustomerUser() !== null) {
+            $builder->add('deliveryAddress', DeliveryAddressChoiceType::class, [
+                'required' => false,
+            ]);
+        }
+
+        $builder
             ->add('deliveryFirstName', TextType::class, [
                 'required' => true,
                 'constraints' => [
@@ -314,7 +334,7 @@ class PersonalInfoFormType extends AbstractType
                         $validationGroups[] = self::VALIDATION_GROUP_COMPANY_CUSTOMER;
                     }
                     $isPickUpPlaceTransport = $orderData->transport instanceof Transport && $orderData->transport->isPickUpPlaceType();
-                    if (!$isPickUpPlaceTransport && !$orderData->deliveryAddressSameAsBillingAddress) {
+                    if (!$isPickUpPlaceTransport && !$orderData->deliveryAddressSameAsBillingAddress && $orderData->deliveryAddress === null) {
                         $validationGroups[] = self::VALIDATION_GROUP_DIFFERENT_DELIVERY_ADDRESS;
                     }
 
