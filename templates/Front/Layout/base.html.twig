@@ -10,11 +10,13 @@
 
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i|Teko:600&amp;subset=latin-ext" rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/styles/index' ~ getDomain().id ~ '_' ~ getCssVersion() ~ '.css') }}" media="screen, projection">
+        {% set entryDirectory = 'frontend-style-' ~ getDomain().currentDomainConfig.stylesDirectory %}
+        {{ encore_entry_link_tags( entryDirectory ) }}
 
-        <link rel="icon" type="image/png" href="{{ asset('assets/frontend/images/favicon.png') }}">
+        <link rel="icon" type="image/png" href="{{ asset('public/frontend/images/favicon.png') }}">
 
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/styles/print' ~ getDomain().id ~ '_' ~ getCssVersion() ~ '.css') }}" media="print">
+        {% set entryDirectoryPrint = 'frontend-print-style-' ~ getDomain().currentDomainConfig.stylesDirectory %}
+        {{ encore_entry_link_tags( entryDirectoryPrint ) }}
 
         {{ encore_entry_script_tags('frontend') }}
 
