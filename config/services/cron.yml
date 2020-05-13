@@ -59,6 +59,6 @@ services:
 
     App\Model\PickUpPlace\PickUpPlaceCronModule:
         tags:
-            - { name: shopsys.cron, hours: '2', minutes: '0' }
+            - { name: shopsys.cron, hours: '2', minutes: '0', readableName: 'Download actual pick up places' }
         arguments:
             - '%shopsys.zasilkovna_feed%'
