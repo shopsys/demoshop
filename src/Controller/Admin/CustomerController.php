@@ -7,7 +7,6 @@ namespace App\Controller\Admin;
 use App\Component\Router\DomainContextSwitcher;
 use App\Model\Customer\BillingAddress;
 use App\Model\Customer\BillingAddressDataFactory;
-use App\Model\Customer\BillingAddressFacade;
 use App\Model\Customer\Exception\BillingAddressNotFoundException;
 use App\Model\Customer\Exception\DuplicateEmailsException;
 use App\Model\Customer\User\CustomerUserFacade;
@@ -26,6 +25,7 @@ use Shopsys\FrameworkBundle\Form\Admin\QuickSearch\QuickSearchFormData;
 use Shopsys\FrameworkBundle\Form\Admin\QuickSearch\QuickSearchFormType;
 use Shopsys\FrameworkBundle\Model\Administrator\AdministratorGridFacade;
 use Shopsys\FrameworkBundle\Model\AdminNavigation\BreadcrumbOverrider;
+use Shopsys\FrameworkBundle\Model\Customer\BillingAddressFacade;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressDataFactory;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFactory;
 use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUser;
@@ -71,7 +71,7 @@ class CustomerController extends BaseCustomerController
     protected $customerUserUpdateDataFactory;
 
     /**
-     * @var \App\Model\Customer\BillingAddressFacade
+     * @var \Shopsys\FrameworkBundle\Model\Customer\BillingAddressFacade
      */
     protected $billingAddressFacade;
 
@@ -132,7 +132,7 @@ class CustomerController extends BaseCustomerController
      * @param \Shopsys\FrameworkBundle\Model\Security\LoginAsUserFacade $loginAsUserFacade
      * @param \Shopsys\FrameworkBundle\Component\Router\DomainRouterFactory $domainRouterFactory
      * @param \App\Model\Customer\User\CustomerUserUpdateDataFactory $customerUserUpdateDataFactory
-     * @param \App\Model\Customer\BillingAddressFacade $billingAddressFacade
+     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressFacade $billingAddressFacade
      * @param \App\Model\Customer\BillingAddressDataFactory $billingAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserFactory $customerUserFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressDataFactory $deliveryAddressDataFactory

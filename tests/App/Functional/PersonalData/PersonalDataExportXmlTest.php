@@ -16,6 +16,7 @@ use Shopsys\FrameworkBundle\Model\Country\CountryData;
 use Shopsys\FrameworkBundle\Model\Customer\BillingAddress;
 use Shopsys\FrameworkBundle\Model\Customer\BillingAddressData;
 use Shopsys\FrameworkBundle\Model\Customer\Customer;
+use Shopsys\FrameworkBundle\Model\Customer\CustomerData;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressData;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItem;
@@ -28,17 +29,24 @@ use Tests\App\Test\TransactionFunctionalTestCase;
 
 class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
 {
-    public const EMAIL = 'no-reply@shopsys.com';
-    public const EXPECTED_XML_FILE_NAME = 'test.xml';
-    public const DOMAIN_ID_FIRST = Domain::FIRST_DOMAIN_ID;
+    protected const EMAIL = 'no-reply@shopsys.com';
+    protected const EXPECTED_XML_FILE_NAME = 'test.xml';
+    protected const DOMAIN_ID_FIRST = Domain::FIRST_DOMAIN_ID;
 
     public function testExportXml()
     {
         $country = $this->createCountry();
-        $customer = new Customer();
-        $customer->addBillingAddress($this->createBillingAddress($country, $customer));
+
+        $customerData = new CustomerData();
+        $customerData->domainId = Domain::FIRST_DOMAIN_ID;
+        $customer = new Customer($customerData);
+
+        $customerData->billingAddress = $this->createBillingAddress($country, $customer);
         $deliveryAddress = $this->createDeliveryAddress($country);
-        $customer->addDeliveryAddress($deliveryAddress);
+        $customerData->deliveryAddresses[] = $deliveryAddress;
+
+        $customer->edit($customerData);
+
         $customerUser = $this->createCustomerUser($customer);
         $status = $this->createMock(OrderStatus::class);
         $currencyData = new CurrencyData();
@@ -55,8 +63,8 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
 
         $twig = $this->getContainer()->get('twig');
 
-        $generatedXml = $twig->render('@ShopsysShop/Front/Content/PersonalData/export.xml.twig', [
-            'user' => $customerUser,
+        $generatedXml = $twig->render('Front/Content/PersonalData/export.xml.twig', [
+            'customerUser' => $customerUser,
             'orders' => [0 => $order],
             'newsletterSubscriber' => null,
         ]);
@@ -82,9 +90,10 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Country\Country $country
+     * @param \Shopsys\FrameworkBundle\Model\Customer\Customer $customer
      * @return \Shopsys\FrameworkBundle\Model\Customer\BillingAddress
      */
-    private function createBillingAddress(Country $country)
+    private function createBillingAddress(Country $country, Customer $customer)
     {
         $billingAddressData = new BillingAddressData();
         $billingAddressData->country = $country;
@@ -92,9 +101,10 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $billingAddressData->street = 'Hlubinská';
         $billingAddressData->companyCustomer = true;
         $billingAddressData->companyName = 'Shopsys';
-        $billingAddressData->companyNumber = 123456;
-        $billingAddressData->companyTaxNumber = 123456;
-        $billingAddressData->postcode = 70200;
+        $billingAddressData->companyNumber = '123456';
+        $billingAddressData->companyTaxNumber = '123456';
+        $billingAddressData->postcode = '70200';
+        $billingAddressData->customer = $customer;
 
         $billingAddress = new BillingAddress($billingAddressData);
 
@@ -110,7 +120,7 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $deliveryAddressData = new DeliveryAddressData();
         $deliveryAddressData->country = $country;
         $deliveryAddressData->telephone = '+420987654321';
-        $deliveryAddressData->postcode = 70200;
+        $deliveryAddressData->postcode = '70200';
         $deliveryAddressData->companyName = 'Shopsys';
         $deliveryAddressData->street = 'Hlubinská';
         $deliveryAddressData->city = 'Ostrava';
@@ -123,6 +133,7 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Customer\Customer $customer
+     *
      * @return \App\Model\Customer\User\CustomerUser
      */
     private function createCustomerUser(Customer $customer)
@@ -134,6 +145,7 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $customerUserData->createdAt = new \DateTime('2018-04-13');
         $customerUserData->email = 'no-reply@shopsys.com';
         $customerUserData->telephone = '+420987654321';
+        $customerUserData->customer = $customer;
 
         return new CustomerUser($customerUserData);
     }
@@ -157,10 +169,10 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $orderData->city = 'Liberec';
         $orderData->street = 'Cihelní 5';
         $orderData->companyName = 'Shopsys';
-        $orderData->postcode = 65421;
+        $orderData->postcode = '65421';
         $orderData->telephone = '+420987654321';
-        $orderData->companyTaxNumber = 123456;
-        $orderData->companyNumber = 123456;
+        $orderData->companyTaxNumber = '123456';
+        $orderData->companyNumber = '123456';
         $orderData->deliveryAddressSameAsBillingAddress = true;
         $orderData->country = $country;
 

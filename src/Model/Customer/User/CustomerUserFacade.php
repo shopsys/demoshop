@@ -8,14 +8,17 @@ use App\Model\Customer\Exception\DuplicateEmailsException;
 use Doctrine\ORM\EntityManagerInterface;
 use Shopsys\FrameworkBundle\Model\Customer\BillingAddress;
 use Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface;
+use Shopsys\FrameworkBundle\Model\Customer\BillingAddressFacade;
 use Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface;
+use Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerFacade;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFacade;
-use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Customer\Mail\CustomerMailFacade;
 use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserFacade as BaseCustomerFacade;
 use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserPasswordFacade;
+use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserRefreshTokenChainFacade;
+use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserRepository;
 use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface;
 
 /**
@@ -46,16 +49,18 @@ class CustomerUserFacade extends BaseCustomerFacade
 
     /**
      * @param \Doctrine\ORM\EntityManagerInterface $em
-     * @param \App\Model\Customer\User\CustomerUserRepository $customerUserRepository
+     * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserRepository $customerUserRepository
      * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface $customerUserUpdateDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\Mail\CustomerMailFacade $customerMailFacade
      * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface $billingAddressFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFactoryInterface $deliveryAddressFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface $billingAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserFactoryInterface $customerUserFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserPasswordFacade $customerUserPasswordFacade
      * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade $customerFacade
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFacade $deliveryAddressFacade
+     * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface $customerDataFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressFacade $billingAddressFacade
+     * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserRefreshTokenChainFacade $customerUserRefreshTokenChainFacade
      */
     public function __construct(
         EntityManagerInterface $em,
@@ -63,16 +68,30 @@ class CustomerUserFacade extends BaseCustomerFacade
         CustomerUserUpdateDataFactoryInterface $customerUserUpdateDataFactory,
         CustomerMailFacade $customerMailFacade,
         BillingAddressFactoryInterface $billingAddressFactory,
-        DeliveryAddressFactoryInterface $deliveryAddressFactory,
         BillingAddressDataFactoryInterface $billingAddressDataFactory,
         CustomerUserFactoryInterface $customerUserFactory,
         CustomerUserPasswordFacade $customerUserPasswordFacade,
         CustomerFacade $customerFacade,
-        DeliveryAddressFacade $deliveryAddressFacade
+        DeliveryAddressFacade $deliveryAddressFacade,
+        CustomerDataFactoryInterface $customerDataFactory,
+        BillingAddressFacade $billingAddressFacade,
+        CustomerUserRefreshTokenChainFacade $customerUserRefreshTokenChainFacade
     ) {
-        parent::__construct($em, $customerUserRepository, $customerUserUpdateDataFactory, $customerMailFacade, $billingAddressFactory, $deliveryAddressFactory, $billingAddressDataFactory, $customerUserFactory, $customerUserPasswordFacade, $customerFacade, $deliveryAddressFacade);
-        $this->customerUserUpdateDataFactory = $customerUserUpdateDataFactory;
-        $this->customerUserFactory = $customerUserFactory;
+        parent::__construct(
+            $em,
+            $customerUserRepository,
+            $customerUserUpdateDataFactory,
+            $customerMailFacade,
+            $billingAddressFactory,
+            $billingAddressDataFactory,
+            $customerUserFactory,
+            $customerUserPasswordFacade,
+            $customerFacade,
+            $deliveryAddressFacade,
+            $customerDataFactory,
+            $billingAddressFacade,
+            $customerUserRefreshTokenChainFacade
+        );
     }
 
     /**
