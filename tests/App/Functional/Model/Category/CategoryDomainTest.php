@@ -9,6 +9,8 @@ use Tests\App\Test\TransactionFunctionalTestCase;
 
 class CategoryDomainTest extends TransactionFunctionalTestCase
 {
+    use SymfonyTestContainer;
+
     public const FIRST_DOMAIN_ID = 1;
     public const SECOND_DOMAIN_ID = 2;
     public const DEMONSTRATIVE_SEO_TITLE = 'Demonstrative seo title';
@@ -26,17 +28,6 @@ class CategoryDomainTest extends TransactionFunctionalTestCase
      * @inject
      */
     private $categoryFactory;
-
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $em;
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->em = $this->getEntityManager();
-    }
 
     public function testCreateCategoryEnabledOnDomain()
     {

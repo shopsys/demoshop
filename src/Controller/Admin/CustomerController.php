@@ -200,7 +200,7 @@ class CustomerController extends BaseCustomerController
             $customerUserUpdateData = $form->getData();
             $customerUser = $this->customerUserFacade->create($customerUserUpdateData);
 
-            $this->getFlashMessageSender()->addSuccessFlashTwig(
+            $this->addSuccessFlashTwig(
                 t('Customer <strong><a href="{{ url }}">{{ name }}</a></strong> created'),
                 [
                     'name' => $customerUser->getFullName(),
@@ -212,7 +212,7 @@ class CustomerController extends BaseCustomerController
         }
 
         if ($form->isSubmitted() && !$form->isValid()) {
-            $this->getFlashMessageSender()->addErrorFlashTwig(t('Please check the correctness of all data filled.'));
+            $this->addErrorFlashTwig(t('Please check the correctness of all data filled.'));
         }
 
         return $this->render('@ShopsysFramework/Admin/Content/Customer/new.html.twig', [
@@ -230,7 +230,7 @@ class CustomerController extends BaseCustomerController
         try {
             $billingAddress = $this->billingAddressFacade->getById($billingAddressId);
         } catch (BillingAddressNotFoundException $ex) {
-            $this->getFlashMessageSender()->addErrorFlash(t('Customer not found'));
+            $this->addErrorFlash(t('Customer not found'));
 
             return $this->redirectToRoute('admin_customer_list');
         }
@@ -298,14 +298,14 @@ class CustomerController extends BaseCustomerController
 
             $this->customerUserFacade->removeBillingAddress($billingAddress);
 
-            $this->getFlashMessageSender()->addSuccessFlashTwig(
+            $this->addSuccessFlashTwig(
                 t('Customer <strong>{{ name }}</strong> deleted'),
                 [
                     'name' => $customerUser->getFullName(),
                 ]
             );
         } catch (\Shopsys\FrameworkBundle\Model\Customer\Exception\CustomerUserNotFoundException $ex) {
-            $this->getFlashMessageSender()->addErrorFlash(t('Selected customer doesn\'t exist.'));
+            $this->addErrorFlash(t('Selected customer doesn\'t exist.'));
         }
 
         return $this->redirectToRoute('admin_customer_list');
@@ -328,7 +328,7 @@ class CustomerController extends BaseCustomerController
 
         $this->billingAddressFacade->edit($billingAddress->getId(), $customerUserUpdateData->billingAddressData);
 
-        $this->getFlashMessageSender()->addSuccessFlashTwig(
+        $this->addSuccessFlashTwig(
             t('Customer <strong><a href="{{ url }}">{{ name }}</a></strong> modified'),
             [
                 'name' => $customerUser->getFullName(),
@@ -352,7 +352,7 @@ class CustomerController extends BaseCustomerController
 
         $this->customerUserFacade->editByAdmin($customerUser->getId(), $customerUserUpdateData);
 
-        $this->getFlashMessageSender()->addSuccessFlashTwig(
+        $this->addSuccessFlashTwig(
             t('Customer <strong><a href="{{ url }}">{{ name }}</a></strong> modified'),
             [
                 'name' => $customerUser->getFullName(),
@@ -390,13 +390,13 @@ class CustomerController extends BaseCustomerController
             try {
                 return $this->editCompanyWithMultipleUsers($billingAddress, $customerUserUpdateData);
             } catch (DuplicateEmailsException $exc) {
-                $this->getFlashMessageSender()->addErrorFlashTwig(t('One or more emails are duplicated or already used, e.g.:') . ' ' . $exc->getEmail());
-                $this->getFlashMessageSender()->addErrorFlashTwig(t('Please check the correctness of all data filled.'));
+                $this->addErrorFlashTwig(t('One or more emails are duplicated or already used, e.g.:') . ' ' . $exc->getEmail());
+                $this->addErrorFlashTwig(t('Please check the correctness of all data filled.'));
             }
         }
 
         if ($form->isSubmitted() && !$form->isValid()) {
-            $this->getFlashMessageSender()->addErrorFlashTwig(t('Please check the correctness of all data filled.'));
+            $this->addErrorFlashTwig(t('Please check the correctness of all data filled.'));
         }
 
         return $this->render('@ShopsysFramework/Admin/Content/Customer/edit.html.twig', [
@@ -428,7 +428,7 @@ class CustomerController extends BaseCustomerController
         }
 
         if ($form->isSubmitted() && !$form->isValid()) {
-            $this->getFlashMessageSender()->addErrorFlashTwig(t('Please check the correctness of all data filled.'));
+            $this->addErrorFlashTwig(t('Please check the correctness of all data filled.'));
         }
 
         $this->breadcrumbOverrider->overrideLastItem(t('Editing customer - %name%', ['%name%' => $customerUser->getFullName()]));

@@ -36,7 +36,7 @@ class AllFeedsTest extends KernelTestCase
      */
     private $minDuration;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -45,7 +45,7 @@ class AllFeedsTest extends KernelTestCase
             'debug' => EnvironmentType::isDebug(EnvironmentType::TEST),
         ]);
 
-        $container = self::$kernel->getContainer();
+        $container = static::bootKernel()->getContainer();
         $container->get(Domain::class)
             ->switchDomainById(1);
 
@@ -86,7 +86,7 @@ class AllFeedsTest extends KernelTestCase
 
         $this->exportJmeterCsvReport(
             $performanceTestSamples,
-            self::$kernel->getContainer()->getParameter('shopsys.root_dir') . '/build/stats/performance-tests-feeds.csv'
+            static::bootKernel()->getContainer()->getParameter('shopsys.root_dir') . '/build/stats/performance-tests-feeds.csv'
         );
 
         $this->assertSamplesAreSuccessful($performanceTestSamples);
@@ -111,9 +111,9 @@ class AllFeedsTest extends KernelTestCase
      */
     public function getAllFeedGenerationData()
     {
-        $feedRegistry = self::$kernel->getContainer()->get(FeedRegistry::class);
+        $feedRegistry = static::bootKernel()->getContainer()->get(FeedRegistry::class);
         /* @var $feedRegistry \Shopsys\FrameworkBundle\Model\Feed\FeedRegistry */
-        $domain = self::$kernel->getContainer()->get(Domain::class);
+        $domain = static::bootKernel()->getContainer()->get(Domain::class);
         /* @var $domain \Shopsys\FrameworkBundle\Component\Domain\Domain */
 
         $dailyFeedGenerationData = $this->getFeedGenerationData(
@@ -181,7 +181,7 @@ class AllFeedsTest extends KernelTestCase
     {
         $this->setUp();
 
-        $router = self::$kernel->getContainer()->get('router');
+        $router = static::bootKernel()->getContainer()->get('router');
         /* @var $router \Symfony\Component\Routing\RouterInterface */
 
         $uri = $router->generate(
@@ -195,12 +195,12 @@ class AllFeedsTest extends KernelTestCase
         $auth = new BasicHttpAuth(self::ADMIN_USERNAME, self::ADMIN_PASSWORD);
         $auth->authenticateRequest($request);
 
-        $entityManager = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $entityManager = static::bootKernel()->getContainer()->get('doctrine.orm.entity_manager');
         /* @var $entityManager \Doctrine\ORM\EntityManager */
 
         $startTime = microtime(true);
         $entityManager->beginTransaction();
-        $response = static::$kernel->handle($request);
+        $response = static::bootKernel()->handle($request);
         $entityManager->rollback();
         $endTime = microtime(true);
 

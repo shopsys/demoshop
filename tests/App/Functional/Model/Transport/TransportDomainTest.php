@@ -6,9 +6,12 @@ namespace Tests\App\Functional\Model\Transport;
 
 use App\Model\Transport\Transport;
 use Tests\App\Test\TransactionFunctionalTestCase;
+use Zalas\Injector\PHPUnit\Symfony\TestCase\SymfonyTestContainer;
 
 class TransportDomainTest extends TransactionFunctionalTestCase
 {
+    use SymfonyTestContainer;
+
     public const FIRST_DOMAIN_ID = 1;
     public const SECOND_DOMAIN_ID = 2;
 
@@ -23,17 +26,6 @@ class TransportDomainTest extends TransactionFunctionalTestCase
      * @inject
      */
     private $transportFactory;
-
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $em;
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->em = $this->getEntityManager();
-    }
 
     public function testCreateTransportEnabledOnDomain()
     {

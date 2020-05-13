@@ -6,9 +6,12 @@ namespace Tests\App\Functional\Model\Product\Brand;
 
 use Shopsys\FrameworkBundle\Model\Product\Brand\Brand;
 use Tests\App\Test\TransactionFunctionalTestCase;
+use Zalas\Injector\PHPUnit\Symfony\TestCase\SymfonyTestContainer;
 
 class BrandDomainTest extends TransactionFunctionalTestCase
 {
+    use SymfonyTestContainer;
+
     public const FIRST_DOMAIN_ID = 1;
     public const SECOND_DOMAIN_ID = 2;
     public const DEMONSTRATIVE_SEO_TITLE = 'Demonstrative seo title';
@@ -25,17 +28,6 @@ class BrandDomainTest extends TransactionFunctionalTestCase
      * @inject
      */
     private $brandFactory;
-
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $em;
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->em = $this->getEntityManager();
-    }
 
     /**
      * @group multidomain

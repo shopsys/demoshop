@@ -21,6 +21,8 @@ use Tests\App\Test\TransactionFunctionalTestCase;
 
 class CartWatcherTest extends TransactionFunctionalTestCase
 {
+    use SymfonyTestContainer;
+
     /**
      * @var \Shopsys\FrameworkBundle\Model\Cart\Watcher\CartWatcher
      * @inject

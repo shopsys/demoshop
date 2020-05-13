@@ -9,6 +9,8 @@ use Tests\App\Test\TransactionFunctionalTestCase;
 
 class PaymentDomainTest extends TransactionFunctionalTestCase
 {
+    use SymfonyTestContainer;
+
     public const FIRST_DOMAIN_ID = 1;
     public const SECOND_DOMAIN_ID = 2;
 
@@ -23,17 +25,6 @@ class PaymentDomainTest extends TransactionFunctionalTestCase
      * @inject
      */
     private $paymentFactory;
-
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $em;
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->em = $this->getEntityManager();
-    }
 
     public function testCreatePaymentEnabledOnDomain()
     {

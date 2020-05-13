@@ -11,9 +11,12 @@ use App\Model\Order\OrderData;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItemData;
 use Tests\App\Test\TransactionFunctionalTestCase;
+use Zalas\Injector\PHPUnit\Symfony\TestCase\SymfonyTestContainer;
 
 class OrderFacadeTest extends TransactionFunctionalTestCase
 {
+    use SymfonyTestContainer;
+
     /**
      * @var \Shopsys\FrameworkBundle\Model\Cart\CartFacade
      * @inject
@@ -62,12 +65,6 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
      */
     private $paymentRepository;
 
-    /**
-     * @var \Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade
-     * @inject
-     */
-    private $persistentReferenceFacade;
-
     public function testCreate()
     {
         $product = $this->productRepository->getById(1);
@@ -80,7 +77,7 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
         $orderData = new OrderData();
         $orderData->transport = $transport;
         $orderData->payment = $payment;
-        $orderData->status = $this->persistentReferenceFacade->getReference(OrderStatusDataFixture::ORDER_STATUS_NEW);
+        $orderData->status = $this->getReference(OrderStatusDataFixture::ORDER_STATUS_NEW);
         $orderData->firstName = 'firstName';
         $orderData->lastName = 'lastName';
         $orderData->email = 'email';
@@ -91,7 +88,7 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
         $orderData->street = 'street';
         $orderData->city = 'city';
         $orderData->postcode = 'postcode';
-        $orderData->country = $this->persistentReferenceFacade->getReference(CountryDataFixture::COUNTRY_CZECH_REPUBLIC);
+        $orderData->country = $this->getReference(CountryDataFixture::COUNTRY_CZECH_REPUBLIC);
         $orderData->deliveryAddressSameAsBillingAddress = false;
         $orderData->deliveryFirstName = 'deliveryFirstName';
         $orderData->deliveryLastName = 'deliveryLastName';
@@ -100,7 +97,7 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
         $orderData->deliveryStreet = 'deliveryStreet';
         $orderData->deliveryCity = 'deliveryCity';
         $orderData->deliveryPostcode = 'deliveryPostcode';
-        $orderData->deliveryCountry = $this->persistentReferenceFacade->getReference(CountryDataFixture::COUNTRY_CZECH_REPUBLIC);
+        $orderData->deliveryCountry = $this->getReference(CountryDataFixture::COUNTRY_CZECH_REPUBLIC);
         $orderData->note = 'note';
         $orderData->domainId = 1;
         $orderData->currency = $this->getReference(CurrencyDataFixture::CURRENCY_CZK);

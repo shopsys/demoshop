@@ -58,7 +58,7 @@ class CustomerPasswordController extends FrontBaseController
             try {
                 $this->customerUserPasswordFacade->resetPassword($email, $this->domain->getId());
 
-                $this->getFlashMessageSender()->addSuccessFlashTwig(
+                $this->addSuccessFlashTwig(
                     t('Link to password reset sent to e-mail <strong>{{ email }}</strong>.'),
                     [
                         'email' => $email,
@@ -91,7 +91,7 @@ class CustomerPasswordController extends FrontBaseController
         $hash = $request->query->get('hash');
 
         if (!$this->customerUserPasswordFacade->isResetPasswordHashValid($email, $this->domain->getId(), $hash)) {
-            $this->getFlashMessageSender()->addErrorFlash(t('The link to change your password expired.'));
+            $this->addErrorFlash(t('The link to change your password expired.'));
             return $this->redirectToRoute('front_homepage');
         }
 
@@ -117,10 +117,10 @@ class CustomerPasswordController extends FrontBaseController
                     ]
                 );
             } catch (\Shopsys\FrameworkBundle\Model\Customer\Exception\InvalidResetPasswordHashUserException $ex) {
-                $this->getFlashMessageSender()->addErrorFlash(t('The link to change your password expired.'));
+                $this->addErrorFlash(t('The link to change your password expired.'));
             }
 
-            $this->getFlashMessageSender()->addSuccessFlash(t('Password successfully changed'));
+            $this->addSuccessFlash(t('Password successfully changed'));
             return $this->redirectToRoute('front_homepage');
         }
 

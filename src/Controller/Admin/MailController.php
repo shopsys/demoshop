@@ -71,7 +71,7 @@ class MailController extends BaseMailController
     public function templateAction(Request $request): Response
     {
         if ($this->mailerDisableDelivery) {
-            $this->getFlashMessageSender()->addInfoFlashTwig(t('Email sending has been prevented so the demoshop is not abused for the spam distribution.'));
+            $this->addInfoFlashTwig(t('Email sending has been prevented so the demoshop is not abused for the spam distribution.'));
         }
 
         return parent::templateAction($request);

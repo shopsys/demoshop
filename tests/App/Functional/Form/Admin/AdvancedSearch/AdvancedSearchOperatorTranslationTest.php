@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Tests\App\Functional\Form\Admin\AdvancedSearch;
 
 use Tests\App\Test\FunctionalTestCase;
+use Zalas\Injector\PHPUnit\Symfony\TestCase\SymfonyTestContainer;
 
 class AdvancedSearchOperatorTranslationTest extends FunctionalTestCase
 {
+    use SymfonyTestContainer;
+
     /**
      * @var \Shopsys\FrameworkBundle\Model\AdvancedSearch\ProductAdvancedSearchConfig
      * @inject

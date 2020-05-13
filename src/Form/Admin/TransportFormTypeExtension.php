@@ -36,8 +36,8 @@ class TransportFormTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function getExtendedType()
+    public static function getExtendedTypes(): iterable
     {
-        return TransportFormType::class;
+        yield TransportFormType::class;
     }
 }

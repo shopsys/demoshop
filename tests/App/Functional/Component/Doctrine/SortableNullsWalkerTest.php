@@ -7,15 +7,13 @@ namespace Tests\App\Functional\Component\Doctrine;
 use App\Model\Product\Product;
 use Doctrine\ORM\Query;
 use Shopsys\FrameworkBundle\Component\Doctrine\SortableNullsWalker;
-use Tests\App\Test\FunctionalTestCase;
+use Tests\App\Test\TransactionFunctionalTestCase;
 
-class SortableNullsWalkerTest extends FunctionalTestCase
+class SortableNullsWalkerTest extends TransactionFunctionalTestCase
 {
     public function testWalkOrderByItemAsc()
     {
-        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $queryBuilder = $em->createQueryBuilder();
+        $queryBuilder = $this->em->createQueryBuilder();
         /* @var $queryBuilder \Doctrine\ORM\QueryBuilder */
 
         $queryBuilder
@@ -31,9 +29,7 @@ class SortableNullsWalkerTest extends FunctionalTestCase
 
     public function testWalkOrderByItemDesc()
     {
-        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $queryBuilder = $em->createQueryBuilder();
+        $queryBuilder = $this->em->createQueryBuilder();
         /* @var $queryBuilder \Doctrine\ORM\QueryBuilder */
 
         $queryBuilder
@@ -49,9 +45,7 @@ class SortableNullsWalkerTest extends FunctionalTestCase
 
     public function testWalkOrderByItemWithoutOrdering()
     {
-        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $queryBuilder = $em->createQueryBuilder();
+        $queryBuilder = $this->em->createQueryBuilder();
         /* @var $queryBuilder \Doctrine\ORM\QueryBuilder */
 
         $queryBuilder

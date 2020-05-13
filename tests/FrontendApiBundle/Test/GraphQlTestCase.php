@@ -97,9 +97,9 @@ abstract class GraphQlTestCase extends FunctionalTestCase
      * @param string $query
      * @param array $variables
      * @param array $customServer
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response|null
      */
-    private function getResponseForQuery(string $query, array $variables, array $customServer = []): Response
+    private function getResponseForQuery(string $query, array $variables, array $customServer = []): ?Response
     {
         $path = $this->getLocalizedPathOnFirstDomainByRouteName('overblog_graphql_endpoint');
         $server = array_merge(['CONTENT_TYPE' => 'application/graphql'], $customServer);

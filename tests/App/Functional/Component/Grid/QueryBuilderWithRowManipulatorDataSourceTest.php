@@ -13,10 +13,7 @@ class QueryBuilderWithRowManipulatorDataSourceTest extends TransactionFunctional
 {
     public function testGetOneRow()
     {
-        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-        /* @var $em \Doctrine\ORM\EntityManager */
-
-        $qb = $em->createQueryBuilder();
+        $qb = $this->em->createQueryBuilder();
         $qb->select('p')
             ->from(Product::class, 'p');
 
@@ -27,17 +24,14 @@ class QueryBuilderWithRowManipulatorDataSourceTest extends TransactionFunctional
 
         $row = $dataSource->getOneRow($this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1'));
 
-        $this->assertInternalType('array', $row);
+        $this->assertIsArray($row);
         $this->assertArrayHasKey('newField', $row);
         $this->assertSame('newValue', $row['newField']);
     }
 
     public function testGetTotalRowsCount()
     {
-        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-        /* @var $em \Doctrine\ORM\EntityManager */
-
-        $qb = $em->createQueryBuilder();
+        $qb = $this->em->createQueryBuilder();
         $qb->select('p')
             ->from(Product::class, 'p')
             ->where('p.id >= 1 AND p.id <= 10')
@@ -56,10 +50,7 @@ class QueryBuilderWithRowManipulatorDataSourceTest extends TransactionFunctional
 
     public function testGetRows()
     {
-        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-        /* @var $em \Doctrine\ORM\EntityManager */
-
-        $qb = $em->createQueryBuilder();
+        $qb = $this->em->createQueryBuilder();
         $qb->select('p')
             ->from(Product::class, 'p')
             ->setMaxResults(5);
@@ -70,11 +61,11 @@ class QueryBuilderWithRowManipulatorDataSourceTest extends TransactionFunctional
         });
 
         $rows = $dataSource->getPaginatedRows()->getResults();
-        $this->assertInternalType('array', $rows);
+        $this->assertIsArray($rows);
         $this->assertCount(5, $rows);
 
         foreach ($rows as $row) {
-            $this->assertInternalType('array', $row);
+            $this->assertIsArray($row);
             $this->assertArrayHasKey('newField', $row);
             $this->assertSame('newValue' . $row['p']['id'], $row['newField']);
         }

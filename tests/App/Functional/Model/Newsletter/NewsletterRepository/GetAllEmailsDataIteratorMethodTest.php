@@ -7,9 +7,12 @@ namespace Tests\App\Functional\Model\Newsletter\NewsletterRepository;
 use Doctrine\ORM\Internal\Hydration\IterableResult;
 use PHPUnit\Framework\Assert;
 use Tests\App\Test\TransactionFunctionalTestCase;
+use Zalas\Injector\PHPUnit\Symfony\TestCase\SymfonyTestContainer;
 
 class GetAllEmailsDataIteratorMethodTest extends TransactionFunctionalTestCase
 {
+    use SymfonyTestContainer;
+
     public const FIRST_DOMAIN_SUBSCRIBER_EMAIL = 'james.black@no-reply.com';
 
     /**

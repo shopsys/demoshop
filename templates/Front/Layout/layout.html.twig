@@ -2,7 +2,7 @@
 {% use 'Front/Layout/header.html.twig' %}
 
 {% block html_body %}
-    {% set adminLoggedAsCustomer = is_granted(constant('Shopsys\\FrameworkBundle\\Model\\Security\\Roles::ROLE_ADMIN_AS_CUSTOMER')) %}
+    {% set adminLoggedAsCustomer = app.session.has(constant('Shopsys\\FrameworkBundle\\Model\\Security\\LoginAsUserFacade::SESSION_LOGIN_AS')) %}
     <div class="window-bar dont-print">
         <div class="window-bar__item">
             {{ 'Attention! Demoshop refreshes presentation data every day at 2 AM.'| trans }}

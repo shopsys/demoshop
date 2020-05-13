@@ -16,9 +16,12 @@ use Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterRepository;
 use Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterValue;
 use Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacadeInterface;
 use Tests\App\Test\ParameterTransactionFunctionalTestCase;
+use Zalas\Injector\PHPUnit\Symfony\TestCase\SymfonyTestContainer;
 
 abstract class ProductOnCurrentDomainFacadeCountDataTest extends ParameterTransactionFunctionalTestCase
 {
+    use SymfonyTestContainer;
+
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterConfigFactory
      * @inject
@@ -36,7 +39,7 @@ abstract class ProductOnCurrentDomainFacadeCountDataTest extends ParameterTransa
      */
     protected $productOnCurrentDomainFacade;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->productOnCurrentDomainFacade = $this->getProductOnCurrentDomainFacade();
@@ -635,14 +638,12 @@ abstract class ProductOnCurrentDomainFacadeCountDataTest extends ParameterTransa
      */
     private function getParameterValuesByLocalesAndTexts(array $valuesTextsByLocales)
     {
-        /** @var \Doctrine\ORM\EntityManager $em */
-        $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
         $parameterValues = [];
 
         foreach ($valuesTextsByLocales as $valueTextsByLocales) {
             foreach ($valueTextsByLocales as $locale => $text) {
                 /** @var \Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterValue $parameterValue */
-                $parameterValue = $em->getRepository(ParameterValue::class)->findOneBy([
+                $parameterValue = $this->em->getRepository(ParameterValue::class)->findOneBy([
                     'text' => $text,
                     'locale' => $locale,
                 ]);

@@ -40,11 +40,11 @@ class BillingAddressFormTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
-    public function getExtendedType()
+    public static function getExtendedTypes(): iterable
     {
-        return BillingAddressFormType::class;
+        yield BillingAddressFormType::class;
     }
 
     /**
