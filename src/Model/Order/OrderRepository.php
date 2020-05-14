@@ -17,6 +17,9 @@ use Shopsys\FrameworkBundle\Model\Order\OrderRepository as BaseOrderRepository;
  * @method \App\Model\Order\Order getByUrlHashAndDomain(string $urlHash, int $domainId)
  * @method \App\Model\Order\Order getByOrderNumberAndUser(string $orderNumber, \App\Model\Customer\User\CustomerUser $customerUser)
  * @method \App\Model\Order\Order|null findByUrlHashIncludingDeletedOrders(string $urlHash)
+ * @method \App\Model\Order\Order[] getOrdersByCustomerUserId(int $customerUserId)
+ * @method \App\Model\Order\Order|null findLastByCustomerUserId(int $customerUserId)
+ * @method \App\Model\Order\Order getByOrderNumberAndCustomerUser(string $orderNumber, \App\Model\Customer\User\CustomerUser $customerUser)
  */
 class OrderRepository extends BaseOrderRepository
 {

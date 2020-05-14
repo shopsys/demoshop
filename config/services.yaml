@@ -189,7 +189,7 @@ services:
 
     Shopsys\FrameworkBundle\Model\Mail\Mailer:
         class: App\Model\Mail\Mailer
-        arguments: ['@mailer', '@swiftmailer.transport.real', '%mailer_disable_delivery%', '@shopsys.shop.component.flash_message.sender.front']
+        arguments: ['@mailer', '@swiftmailer.transport.real', '%mailer_disable_delivery%']
 
     App\Controller\Admin\MailController:
         tags: ['controller.service_arguments']

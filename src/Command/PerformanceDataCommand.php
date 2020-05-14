@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Command;
 
 use App\DataFixtures\Performance\CategoryDataFixture;
+use App\DataFixtures\Performance\CustomerUserDataFixture;
 use App\DataFixtures\Performance\OrderDataFixture;
 use App\DataFixtures\Performance\ProductDataFixture;
-use App\DataFixtures\Performance\CustomerUserDataFixture;
 use Shopsys\FrameworkBundle\Command\CommandResultCodes;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

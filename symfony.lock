@@ -2,6 +2,9 @@
     "arvenil/ninja-mutex": {
         "version": "0.4.1"
     },
+    "asm89/twig-cache-extension": {
+        "version": "1.4.0"
+    },
     "barryvdh/elfinder-flysystem-driver": {
         "version": "v0.2.1"
     },

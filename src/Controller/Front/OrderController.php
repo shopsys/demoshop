@@ -268,7 +268,7 @@ class OrderController extends FrontBaseController
         ]);
     }
 
-     /**
+    /**
      * @param \Shopsys\FrameworkBundle\Model\Payment\Payment[] $payments
      * @return string
      */

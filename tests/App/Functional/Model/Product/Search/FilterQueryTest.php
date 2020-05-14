@@ -17,8 +17,6 @@ class FilterQueryTest extends ParameterTransactionFunctionalTestCase
 {
     use SymfonyTestContainer;
 
-    private const ELASTICSEARCH_INDEX = 'product';
-
     /**
      * @var \Elasticsearch\Client
      * @inject

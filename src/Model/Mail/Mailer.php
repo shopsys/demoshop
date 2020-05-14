@@ -23,14 +23,14 @@ class Mailer extends BaseMailer
     /**
      * @param \Swift_Mailer $swiftMailer
      * @param \Swift_Transport $realSwiftTransport
-     * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateFacade $mailTemplateFacade
      * @param bool $mailerDisableDelivery
+     * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateFacade $mailTemplateFacade
      */
     public function __construct(
         Swift_Mailer $swiftMailer,
         Swift_Transport $realSwiftTransport,
-        MailTemplateFacade $mailTemplateFacade,
-        bool $mailerDisableDelivery
+        bool $mailerDisableDelivery,
+        MailTemplateFacade $mailTemplateFacade
     ) {
         parent::__construct($swiftMailer, $realSwiftTransport, $mailTemplateFacade);
 

@@ -12,7 +12,7 @@ use Zalas\Injector\PHPUnit\Symfony\TestCase\SymfonyTestContainer;
 class ProductAvailabilityRecalculatorTest extends TransactionFunctionalTestCase
 {
     use SymfonyTestContainer;
-    
+
     /**
      * @var \Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityFacade
      * @inject

@@ -49,11 +49,11 @@ class CustomerUserFacade extends BaseCustomerFacade
 
     /**
      * @param \Doctrine\ORM\EntityManagerInterface $em
-     * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserRepository $customerUserRepository
-     * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface $customerUserUpdateDataFactory
+     * @param \App\Model\Customer\User\CustomerUserRepository $customerUserRepository
+     * @param \App\Model\Customer\User\CustomerUserUpdateDataFactory $customerUserUpdateDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\Mail\CustomerMailFacade $customerMailFacade
-     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface $billingAddressFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface $billingAddressDataFactory
+     * @param \App\Model\Customer\BillingAddressFactory $billingAddressFactory
+     * @param \App\Model\Customer\BillingAddressDataFactory $billingAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserFactoryInterface $customerUserFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserPasswordFacade $customerUserPasswordFacade
      * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade $customerFacade

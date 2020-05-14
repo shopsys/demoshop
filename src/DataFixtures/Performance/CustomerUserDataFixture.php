@@ -67,7 +67,7 @@ class CustomerUserDataFixture
     private $progressBarFactory;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface
+     * @var \App\Model\Customer\User\CustomerUserUpdateDataFactory
      */
     private $customerUserUpdateDataFactory;
 
@@ -86,7 +86,7 @@ class CustomerUserDataFixture
      * @param \Faker\Generator $faker
      * @param \Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade $persistentReferenceFacade
      * @param \Shopsys\FrameworkBundle\Component\Console\ProgressBarFactory $progressBarFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface $customerUserUpdateDataFactory
+     * @param \App\Model\Customer\User\CustomerUserUpdateDataFactory $customerUserUpdateDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressDataFactoryInterface $deliveryAddressDataFactory
      */
     public function __construct(
@@ -164,7 +164,7 @@ class CustomerUserDataFixture
     /**
      * @param int $domainId
      * @param int $userNumber
-     * @return \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateData
+     * @return \App\Model\Customer\User\CustomerUserUpdateData
      */
     private function getRandomCustomerUserUpdateDataByDomainId($domainId, $userNumber)
     {

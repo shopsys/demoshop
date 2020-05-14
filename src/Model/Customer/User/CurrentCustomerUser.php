@@ -8,6 +8,7 @@ use Shopsys\FrameworkBundle\Model\Customer\User\CurrentCustomerUser as BaseCurre
 
 /**
  * @method \App\Model\Customer\User\CustomerUser|null findCurrentUser()
+ * @method \App\Model\Customer\User\CustomerUser|null findCurrentCustomerUser()
  */
 class CurrentCustomerUser extends BaseCurrentCustomerUser
 {

@@ -73,7 +73,7 @@ class CustomerUserDataFixture extends AbstractReferenceFixture implements Depend
     protected $domain;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface
+     * @var \App\Model\Customer\User\CustomerUserUpdateDataFactory
      */
     protected $customerUserUpdateDataFactory;
 
@@ -83,7 +83,7 @@ class CustomerUserDataFixture extends AbstractReferenceFixture implements Depend
     protected $customerUserDataFactory;
 
     /**
-     * @var \Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface
+     * @var \App\Model\Customer\BillingAddressDataFactory
      */
     protected $billingAddressDataFactory;
 
@@ -103,9 +103,9 @@ class CustomerUserDataFixture extends AbstractReferenceFixture implements Depend
      * @param \Shopsys\FrameworkBundle\Component\EntityExtension\EntityManagerDecorator $em
      * @param \Shopsys\FrameworkBundle\Component\String\HashGenerator $hashGenerator
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
-     * @param \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface $customerUserUpdateDataFactory
+     * @param \App\Model\Customer\User\CustomerUserUpdateDataFactory $customerUserUpdateDataFactory
      * @param \App\Model\Customer\User\CustomerUserDataFactory $customerUserDataFactory
-     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface $billingAddressDataFactory
+     * @param \App\Model\Customer\BillingAddressDataFactory $billingAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressDataFactoryInterface $deliveryAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerFactoryInterface $customerFactory
      */
@@ -163,7 +163,7 @@ class CustomerUserDataFixture extends AbstractReferenceFixture implements Depend
      * @param int $domainId
      * @param array $data
      *
-     * @return \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateData
+     * @return \App\Model\Customer\User\CustomerUserUpdateData
      */
     protected function getCustomerUserUpdateData(int $domainId, array $data): CustomerUserUpdateData
     {

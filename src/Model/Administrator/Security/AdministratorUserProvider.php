@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @property \App\Model\Administrator\AdministratorRepository $administratorRepository
  * @method __construct(\App\Model\Administrator\AdministratorRepository $administratorRepository, \Shopsys\FrameworkBundle\Model\Administrator\Activity\AdministratorActivityFacade $administratorActivityFacade)
  * @method \App\Model\Administrator\Administrator loadUserByUsername(string $username)
+ * @method __construct(\App\Model\Administrator\AdministratorRepository $administratorRepository, \Shopsys\FrameworkBundle\Model\Administrator\Activity\AdministratorActivityFacade $administratorActivityFacade, \Shopsys\FrameworkBundle\Model\Administrator\Security\AdministratorRolesChangedSubscriber $administratorRolesChangedSubscriber)
  */
 class AdministratorUserProvider extends BaseAdministratorUserProvider
 {

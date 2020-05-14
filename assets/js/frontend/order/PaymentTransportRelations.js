@@ -1,5 +1,5 @@
 import Register from 'framework/common/utils/Register';
-import PickUpPlace from "./PickUpPlace";
+import PickUpPlace from './PickUpPlace';
 
 export default class PaymentTransportRelations {
 

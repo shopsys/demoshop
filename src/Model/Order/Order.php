@@ -23,6 +23,9 @@ use Shopsys\FrameworkBundle\Model\Order\OrderEditResult;
  * @method \App\Model\Transport\Transport getTransport()
  * @method \App\Model\Customer\User\CustomerUser|null getCustomer()
  * @method \App\Model\Administrator\Administrator|null getCreatedAsAdministrator()
+ * @property \App\Model\Customer\User\CustomerUser|null $customerUser
+ * @method fillCommonFields(\App\Model\Order\OrderData $orderData)
+ * @method \App\Model\Customer\User\CustomerUser|null getCustomerUser()
  */
 class Order extends BaseOrder
 {

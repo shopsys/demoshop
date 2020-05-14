@@ -10,6 +10,8 @@ use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactory as
 
 /**
  * @method \App\Model\Customer\User\CustomerUserUpdateData createAmendedByOrder(\App\Model\Customer\User\CustomerUser $customerUser, \App\Model\Order\Order $order)
+ * @method \App\Model\Customer\User\CustomerUserUpdateData createFromCustomerUser(\App\Model\Customer\User\CustomerUser $customerUser)
+ * @method \App\Model\Customer\User\CustomerUserUpdateData createAmendedByOrder(\App\Model\Customer\User\CustomerUser $customerUser, \App\Model\Order\Order $order, \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress|null $deliveryAddress)
  */
 class CustomerUserUpdateDataFactory extends BaseCustomerDataFactory
 {

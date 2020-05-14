@@ -38,6 +38,9 @@ use Shopsys\FrameworkBundle\Model\Security\LoginAsUserFacade;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+/**
+ * @method string getSsoLoginAsCustomerUserUrl(\App\Model\Customer\User\CustomerUser $customerUser)
+ */
 class CustomerController extends BaseCustomerController
 {
     /**

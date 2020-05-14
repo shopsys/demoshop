@@ -1,7 +1,7 @@
 import Ajax from 'framework/common/utils/Ajax';
 import Register from 'framework/common/utils/Register';
 import Timeout from 'framework/common/utils/Timeout';
-import windowClose from "../utils/windowClose";
+import windowClose from '../utils/windowClose';
 
 export default class PickUpPlace {
 

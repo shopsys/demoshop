@@ -16,6 +16,8 @@ use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserRepository as BaseCu
  * @method \App\Model\Customer\User\CustomerUser getCustomerUserById(int $id)
  * @method \App\Model\Customer\User\CustomerUser|null findById(int $id)
  * @method \App\Model\Customer\User\CustomerUser|null findByIdAndLoginToken(int $id, string $loginToken)
+ * @method \App\Model\Customer\User\CustomerUser|null getCustomerUserByEmailAndDomain(string $email, int $domainId)
+ * @method \App\Model\Customer\User\CustomerUser getOneByUuid(string $uuid)
  */
 class CustomerUserRepository extends BaseCustomerUserRepository
 {

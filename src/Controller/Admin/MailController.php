@@ -15,7 +15,6 @@ use Shopsys\FrameworkBundle\Model\Order\Mail\OrderMail;
 use Shopsys\FrameworkBundle\Model\Order\Status\OrderStatusFacade;
 use Shopsys\FrameworkBundle\Model\PersonalData\Mail\PersonalDataAccessMail;
 use Shopsys\FrameworkBundle\Model\PersonalData\Mail\PersonalDataExportMail;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MailController extends BaseMailController
@@ -65,15 +64,14 @@ class MailController extends BaseMailController
 
     /**
      * @Route("/mail/template/")
-     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function templateAction(Request $request): Response
+    public function templateAction(): Response
     {
         if ($this->mailerDisableDelivery) {
             $this->addInfoFlashTwig(t('Email sending has been prevented so the demoshop is not abused for the spam distribution.'));
         }
 
-        return parent::templateAction($request);
+        return parent::templateAction();
     }
 }
