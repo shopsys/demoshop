@@ -2306,16 +2306,16 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v7.6.1",
+            "version": "v7.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "d4f24bc43c2af60aece3df20eb689d322f9c8acf"
+                "reference": "1d90a7ff4fb1936dc4376f09d723af75714f6f05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/d4f24bc43c2af60aece3df20eb689d322f9c8acf",
-                "reference": "d4f24bc43c2af60aece3df20eb689d322f9c8acf",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/1d90a7ff4fb1936dc4376f09d723af75714f6f05",
+                "reference": "1d90a7ff4fb1936dc4376f09d723af75714f6f05",
                 "shasum": ""
             },
             "require": {
@@ -2365,7 +2365,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2020-02-15T00:09:00+00:00"
+            "time": "2020-05-13T15:19:26+00:00"
         },
         {
             "name": "ezimuel/guzzlestreams",
@@ -6285,12 +6285,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/framework.git",
-                "reference": "9804a844694fc00b0f52c00a2379f70585a3e6b9"
+                "reference": "ca257e1567e8e34d92a13cc9e7bf41bc5a9811b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/framework/zipball/9804a844694fc00b0f52c00a2379f70585a3e6b9",
-                "reference": "9804a844694fc00b0f52c00a2379f70585a3e6b9",
+                "url": "https://api.github.com/repos/shopsys/framework/zipball/ca257e1567e8e34d92a13cc9e7bf41bc5a9811b8",
+                "reference": "ca257e1567e8e34d92a13cc9e7bf41bc5a9811b8",
                 "shasum": ""
             },
             "require": {
@@ -6403,7 +6403,7 @@
                 "proprietary"
             ],
             "description": "Core of Shopsys Framework - open source framework for building large, scalable, fast-growing e-commerce projects based on Symfony",
-            "time": "2020-05-13T08:05:53+00:00"
+            "time": "2020-05-14T06:10:23+00:00"
         },
         {
             "name": "shopsys/frontend-api",
@@ -14108,16 +14108,16 @@
         },
         {
             "name": "phpstan/phpstan-doctrine",
-            "version": "0.12.12",
+            "version": "0.12.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-doctrine.git",
-                "reference": "842047b2496a46dca2c826d9d6ae37ed08593677"
+                "reference": "5fab376975c2f2d99865837cfe693dc258ca9e61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/842047b2496a46dca2c826d9d6ae37ed08593677",
-                "reference": "842047b2496a46dca2c826d9d6ae37ed08593677",
+                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/5fab376975c2f2d99865837cfe693dc258ca9e61",
+                "reference": "5fab376975c2f2d99865837cfe693dc258ca9e61",
                 "shasum": ""
             },
             "require": {
@@ -14168,7 +14168,7 @@
                 "MIT"
             ],
             "description": "Doctrine extensions for PHPStan",
-            "time": "2020-05-08T08:31:05+00:00"
+            "time": "2020-05-13T17:45:51+00:00"
         },
         {
             "name": "phpstan/phpstan-phpunit",
@@ -15792,16 +15792,16 @@
         },
         {
             "name": "symplify/auto-bind-parameter",
-            "version": "v7.3.15",
+            "version": "v7.3.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/auto-bind-parameter.git",
-                "reference": "a702587f4fb79c540e69a1523d86812051098910"
+                "reference": "b19c15216d98d438e053eadea8370213e291cb96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/auto-bind-parameter/zipball/a702587f4fb79c540e69a1523d86812051098910",
-                "reference": "a702587f4fb79c540e69a1523d86812051098910",
+                "url": "https://api.github.com/repos/symplify/auto-bind-parameter/zipball/b19c15216d98d438e053eadea8370213e291cb96",
+                "reference": "b19c15216d98d438e053eadea8370213e291cb96",
                 "shasum": ""
             },
             "require": {
@@ -15812,7 +15812,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0",
-                "symplify/package-builder": "^7.3.15"
+                "symplify/package-builder": "^7.3.16"
             },
             "type": "library",
             "extra": {
@@ -15836,7 +15836,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-05-13T07:29:16+00:00"
+            "time": "2020-05-13T20:53:18+00:00"
         },
         {
             "name": "symplify/autowire-array-parameter",
@@ -16049,16 +16049,16 @@
         },
         {
             "name": "symplify/set-config-resolver",
-            "version": "v7.3.15",
+            "version": "v7.3.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/set-config-resolver.git",
-                "reference": "1cfeec449d602797a0505c7854af68cde1966af9"
+                "reference": "6aa5eccb3207b3b45560ba06ea096b1ed7b73795"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/1cfeec449d602797a0505c7854af68cde1966af9",
-                "reference": "1cfeec449d602797a0505c7854af68cde1966af9",
+                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/6aa5eccb3207b3b45560ba06ea096b1ed7b73795",
+                "reference": "6aa5eccb3207b3b45560ba06ea096b1ed7b73795",
                 "shasum": ""
             },
             "require": {
@@ -16067,7 +16067,7 @@
                 "symfony/console": "^4.4|^5.0",
                 "symfony/filesystem": "^4.4|^5.0",
                 "symfony/finder": "^4.4|^5.0",
-                "symplify/smart-file-system": "^7.3.15"
+                "symplify/smart-file-system": "^7.3.16"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0"
@@ -16094,11 +16094,11 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-05-13T07:29:16+00:00"
+            "time": "2020-05-13T20:53:18+00:00"
         },
         {
             "name": "symplify/smart-file-system",
-            "version": "v7.3.15",
+            "version": "v7.3.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/smart-file-system.git",
