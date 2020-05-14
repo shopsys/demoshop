@@ -205,7 +205,7 @@ class OrderDataFixture
             $orderData->lastName = $customerUser->getLastName();
             $orderData->email = $customerUser->getEmail();
 
-            $billingAddress = $customerUser->getBillingAddress();
+            $billingAddress = $customerUser->getCustomer()->getBillingAddress();
             $orderData->telephone = $customerUser->getTelephone();
             $orderData->street = $billingAddress->getStreet();
             $orderData->city = $billingAddress->getCity();

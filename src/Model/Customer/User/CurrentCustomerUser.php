@@ -7,7 +7,6 @@ namespace App\Model\Customer\User;
 use Shopsys\FrameworkBundle\Model\Customer\User\CurrentCustomerUser as BaseCurrentCustomerUser;
 
 /**
- * @method \App\Model\Customer\User\CustomerUser|null findCurrentUser()
  * @method \App\Model\Customer\User\CustomerUser|null findCurrentCustomerUser()
  */
 class CurrentCustomerUser extends BaseCurrentCustomerUser
@@ -17,7 +16,7 @@ class CurrentCustomerUser extends BaseCurrentCustomerUser
      */
     public function getDiscountCoeficient()
     {
-        $customerUser = $this->findCurrentUser();
+        $customerUser = $this->findCurrentCustomerUser();
         if ($customerUser === null) {
             return 1;
         } else {

@@ -6285,12 +6285,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shopsys/framework.git",
-                "reference": "ca257e1567e8e34d92a13cc9e7bf41bc5a9811b8"
+                "reference": "58df69a6066389c0817297cce8d8d3b32507dd68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shopsys/framework/zipball/ca257e1567e8e34d92a13cc9e7bf41bc5a9811b8",
-                "reference": "ca257e1567e8e34d92a13cc9e7bf41bc5a9811b8",
+                "url": "https://api.github.com/repos/shopsys/framework/zipball/58df69a6066389c0817297cce8d8d3b32507dd68",
+                "reference": "58df69a6066389c0817297cce8d8d3b32507dd68",
                 "shasum": ""
             },
             "require": {
@@ -6403,7 +6403,7 @@
                 "proprietary"
             ],
             "description": "Core of Shopsys Framework - open source framework for building large, scalable, fast-growing e-commerce projects based on Symfony",
-            "time": "2020-05-14T06:10:23+00:00"
+            "time": "2020-05-14T09:32:34+00:00"
         },
         {
             "name": "shopsys/frontend-api",

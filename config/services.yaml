@@ -135,14 +135,6 @@ services:
 
     Shopsys\FrameworkBundle\Model\Order\FrontOrderData: '@App\Model\Order\FrontOrderData'
 
-    App\Model\PickUpPlace\PickUpPlaceFacade: ~
-
-    App\Model\PickUpPlace\PickUpPlaceIdToEntityTransformer: ~
-
-    App\Model\PickUpPlace\PickUpPlaceLoader: ~
-
-    App\Model\PickUpPlace\PickUpPlaceRepository: ~
-
     Shopsys\FrameworkBundle\Model\Advert\AdvertPositionRegistry:
         class: App\Model\Advert\AdvertPositionRegistry
 
@@ -194,3 +186,5 @@ services:
     App\Controller\Admin\MailController:
         tags: ['controller.service_arguments']
         arguments: ['%mailer_disable_delivery%']
+
+    Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface: '@App\Model\Product\Brand\BrandDataFactory'

@@ -52,7 +52,7 @@ class PickUpPlaceLoader
                     }
                 }
             }
-        } catch (\Symfony\Component\Debug\Exception\ContextErrorException $exception) {
+        } catch (\ErrorException $exception) {
             throw new \App\Model\PickUpPlace\Exception\PickUpPlaceXmlParsingException(
                 'Could not parse XML file "' . $feedUrl . '": ' . $exception->getMessage(),
                 $exception

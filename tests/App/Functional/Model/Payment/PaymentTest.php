@@ -7,6 +7,7 @@ namespace Tests\App\Functional\Model\Payment;
 use App\Model\Transport\Transport;
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
 use Tests\App\Test\TransactionFunctionalTestCase;
+use Zalas\Injector\PHPUnit\Symfony\TestCase\SymfonyTestContainer;
 
 class PaymentTest extends TransactionFunctionalTestCase
 {

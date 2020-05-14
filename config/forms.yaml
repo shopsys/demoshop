@@ -11,21 +11,9 @@ services:
         tags:
             - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Article\ArticleFormType }
 
-    App\Form\Admin\AdministratorFormTypeExtension:
-        tags:
-            - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Administrator\AdministratorFormType }
-
-    App\Form\Admin\BrandFormTypeExtension:
-        tags:
-            - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Product\Brand\BrandFormType }
-
     App\Form\Admin\CategoryFormTypeExtension:
         tags:
             - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Category\CategoryFormType }
-
-    App\Form\Admin\CustomerUserFormTypeExtension:
-        tags:
-            - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Customer\User\CustomerUserFormType }
 
     App\Form\Admin\OrderFormTypeExtension:
         tags:
@@ -39,10 +27,10 @@ services:
         tags:
             - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Product\ProductFormType }
 
-    App\Form\Admin\PaymentFormTypeExtension:
-        tags:
-            - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Payment\PaymentFormType }
-
     App\Form\Admin\BillingAddressFormTypeExtension:
         tags:
             - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Customer\BillingAddressFormType }
+
+    App\Form\Admin\CustomerUserFormTypeExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Shopsys\FrameworkBundle\Form\Admin\Customer\User\CustomerUserUpdateFormType }

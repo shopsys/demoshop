@@ -10,6 +10,7 @@ use Shopsys\FrameworkBundle\Model\Product\ProductData as BaseProductData;
  * @property \App\Model\Category\Category[][] $categoriesByDomainId
  * @property \App\Model\Product\Product[] $accessories
  * @property \App\Model\Product\Product[] $variants
+ * @property \App\Model\Product\Brand\Brand|null $brand
  */
 class ProductData extends BaseProductData
 {

@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                {% set isCompanyWithMultipleUsers = customerUser.getBillingAddress().isCompanyWithMultipleUsers() %}
+                {% set isCompanyWithMultipleUsers = customerUser.getCustomer().getBillingAddress().isCompanyWithMultipleUsers() %}
                 {% set disabledInputClassIfCompanyWithMultipleUsers = '' %}
                 {% if isCompanyWithMultipleUsers %}
                     {% set disabledInputClassIfCompanyWithMultipleUsers = 'form-input-disabled' %}

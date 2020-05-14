@@ -267,7 +267,7 @@ class CustomerUserFacade extends BaseCustomerFacade
         foreach ($emailsOfCompanyCustomers as $email) {
             $customerUser = $this->findCustomerUserByEmailAndDomain($email, $companyData->customerUserData->domainId);
 
-            if ($customerUser !== null && $customerUser->getBillingAddress()->getId() != $billingAddress->getId()) {
+            if ($customerUser !== null && $customerUser->getCustomer()->getBillingAddress()->getId() != $billingAddress->getId()) {
                 throw new DuplicateEmailsException($email);
             }
         }

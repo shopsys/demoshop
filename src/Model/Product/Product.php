@@ -28,6 +28,8 @@ use Shopsys\FrameworkBundle\Model\Product\ProductData;
  * @method refreshVariants(\App\Model\Product\Product[] $currentVariants)
  * @method addNewVariants(\App\Model\Product\Product[] $currentVariants)
  * @method unsetRemovedVariants(\App\Model\Product\Product[] $currentVariants)
+ * @property \App\Model\Product\Brand\Brand|null $brand
+ * @method \App\Model\Product\Brand\Brand|null getBrand()
  */
 class Product extends BaseProduct
 {

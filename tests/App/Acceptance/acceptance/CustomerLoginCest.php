@@ -44,6 +44,7 @@ class CustomerLoginCest
         // personal-computers-accessories
         $me->amOnLocalizedRoute('front_product_list', ['id' => 6]);
         $layoutPage->openLoginPopup();
+        $me->waitForAjax();
         $loginPage->login('no-reply@shopsys.com', 'user123');
         $me->see('Jaromír Jágr');
         $layoutPage->logout();

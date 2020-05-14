@@ -28,7 +28,7 @@ class CustomerFacadeTest extends TransactionFunctionalTestCase
     public function testChangeEmailToExistingEmailButDifferentDomainDoNotThrowException()
     {
         $customerUser = $this->customerUserFacade->findCustomerUserByEmailAndDomain(self::EXISTING_EMAIL_ON_DOMAIN_1, Domain::FIRST_DOMAIN_ID);
-        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromUser($customerUser);
+        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromCustomerUser($customerUser);
         $customerUserUpdateData->customerUserData->email = self::EXISTING_EMAIL_ON_DOMAIN_2;
 
         $this->customerUserFacade->editByAdmin($customerUser->getId(), $customerUserUpdateData);
@@ -54,7 +54,7 @@ class CustomerFacadeTest extends TransactionFunctionalTestCase
     public function testCreateDuplicateEmail()
     {
         $customerUser = $this->customerUserFacade->findCustomerUserByEmailAndDomain(self::EXISTING_EMAIL_ON_DOMAIN_1, 1);
-        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromUser($customerUser);
+        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromCustomerUser($customerUser);
         $customerUserUpdateData->customerUserData->password = 'password';
         $this->expectException(\Shopsys\FrameworkBundle\Model\Customer\Exception\DuplicateEmailException::class);
 
@@ -64,7 +64,7 @@ class CustomerFacadeTest extends TransactionFunctionalTestCase
     public function testCreateDuplicateEmailCaseInsentitive()
     {
         $customerUser = $this->customerUserFacade->findCustomerUserByEmailAndDomain(self::EXISTING_EMAIL_ON_DOMAIN_1, 1);
-        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromUser($customerUser);
+        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromCustomerUser($customerUser);
         $customerUserUpdateData->customerUserData->password = 'password';
         $customerUserUpdateData->customerUserData->email = mb_strtoupper(self::EXISTING_EMAIL_ON_DOMAIN_1);
         $this->expectException(\Shopsys\FrameworkBundle\Model\Customer\Exception\DuplicateEmailException::class);

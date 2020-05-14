@@ -14,6 +14,7 @@ class AdvertPositionRegistry extends BaseAdvertPositionRegistry
     public function getAllLabelsIndexedByNames(): array
     {
         $advertPositions = parent::getAllLabelsIndexedByNames();
+        $advertPositions['leftSidebar'] = t('in left panel (under category tree)');
         $advertPositions['homepagePrimary'] = t('on homepage above popular categories (Primary)');
         $advertPositions['homepageSecondaryFirst'] = t('on homepage above popular categories (Secondary First)');
         $advertPositions['homepageSecondarySecond'] = t('on homepage above popular categories (Secondary Second)');

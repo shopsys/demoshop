@@ -2,6 +2,7 @@ import Ajax from 'framework/common/utils/Ajax';
 import Register from 'framework/common/utils/Register';
 import Timeout from 'framework/common/utils/Timeout';
 import windowClose from '../utils/windowClose';
+import Window from '../utils/Window';
 
 export default class PickUpPlace {
 
@@ -36,7 +37,7 @@ export default class PickUpPlace {
                 transportType: transportType
             },
             success: function (data) {
-                const $window = Shopsys.window({
+                const $window = new Window({
                     content: data,
                     cssClass: 'window-popup--standard box-pick-up-place'
                 });
@@ -130,9 +131,9 @@ export default class PickUpPlace {
 
         $transportInput.change((event) => pickUpPlace.onTransportChange(event, $transportInput));
 
-        $autocompleteInput.bind('keyup paste', pickUpPlace.onSearchAutocompleteInputChange($autocompleteInput));
-        $pickUpPlaceButton.click(pickUpPlace.onSelectPlaceButtonClick($pickUpPlaceButton));
-        $pickUpPlaceChangeButton.click(pickUpPlace.onChangeButtonClick($pickUpPlaceChangeButton));
+        $autocompleteInput.bind('keyup paste', () => pickUpPlace.onSearchAutocompleteInputChange($autocompleteInput));
+        $pickUpPlaceButton.click(() => pickUpPlace.onSelectPlaceButtonClick($pickUpPlaceButton));
+        $pickUpPlaceChangeButton.click(() => pickUpPlace.onChangeButtonClick($pickUpPlaceChangeButton));
 
         PickUpPlace.updateSummaryVisibility();
     }

@@ -10,7 +10,7 @@
             <div class="box-order__wrapper">
                 <div class="box-order">
                     <div class="box-order__info">
-                        {% set isCompanyWithMultipleUsers = customerUser is not null and customerUser.getBillingAddress().isCompanyWithMultipleUsers() %}
+                        {% set isCompanyWithMultipleUsers = customerUser is not null and customerUser.getCustomer().getBillingAddress().isCompanyWithMultipleUsers() %}
                         {% set disabledInputClassIfCompanyWithMultipleUsers = '' %}
                         {% if isCompanyWithMultipleUsers %}
                             {% set disabledInputClassIfCompanyWithMultipleUsers = 'form-input-disabled' %}

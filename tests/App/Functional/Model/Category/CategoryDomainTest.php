@@ -6,6 +6,7 @@ namespace Tests\App\Functional\Model\Category;
 
 use App\Model\Category\Category;
 use Tests\App\Test\TransactionFunctionalTestCase;
+use Zalas\Injector\PHPUnit\Symfony\TestCase\SymfonyTestContainer;
 
 class CategoryDomainTest extends TransactionFunctionalTestCase
 {

@@ -26,14 +26,14 @@ class CustomerDiscountCest
         $me->wantTo('see customer discount on product detail');
         $me->amOnPage('/prime-flour-1-kg/');
 
-        $productDetailPage->assertPriceWithVat('CZK10.00');
-        $productDetailPage->assertPriceWithoutVat('CZK8.70');
+        $productDetailPage->assertPriceWithVat('€0.38');
+        $productDetailPage->assertPriceWithoutVat('€0.33');
 
         $layoutPage->openLoginPopup();
         /** @see \App\DataFixtures\Demo\UserDataFixture::USER_WITH_10_PERCENT_DISCOUNT */
         $loginPage->login('no-reply.3@shopsys.com', 'no-reply.3');
 
-        $productDetailPage->assertPriceWithVat('CZK9.00');
-        $productDetailPage->assertPriceWithoutVat('CZK7.83');
+        $productDetailPage->assertPriceWithVat('€0.34');
+        $productDetailPage->assertPriceWithoutVat('€0.30');
     }
 }

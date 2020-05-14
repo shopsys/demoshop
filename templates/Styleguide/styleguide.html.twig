@@ -6,15 +6,6 @@
     {{ encore_entry_link_tags('styleguide-style') }}
 {% endblock %}
 
-{% block javascripts %}
-    <!-- codemirror -->
-    {{ importJavascripts([
-        'styleguide/styleguide.js',
-        'styleguide/plugins/codemirror/codemirror.minified.js'
-    ]) }}
-
-{% endblock %}
-
 {% block html_body %}
     <main class="container">
         <header class="styleguide-header">
@@ -1017,7 +1008,9 @@
 
                             <div class="in-overlay__in in-overlay__in--absolute">
                                 <div class="in-overlay__spinner in-overlay__spinner--absolute">
-                                    <span class="in-overlay__spinner__icon"></span>
+                                    <span class="in-overlay__spinner__icon">
+                                        <i class="svg svg-spinner"></i>
+                                    </span>
                                     <span class="in-overlay__spinner__message"></span>
                                 </div>
                             </div>
@@ -1026,7 +1019,9 @@
                             <textarea class="codemirror-html" id="html-list-simple">
 <div class="in-overlay__in">
     <div class="in-overlay__spinner">
-        <span class="in-overlay__spinner__icon"></span>
+        <span class="in-overlay__spinner__icon">
+            <i class="svg svg-spinner"></i>
+        </span>
         <span class="in-overlay__spinner__message"></span>
     </div>
 </div>
@@ -1121,5 +1116,7 @@
             </main>
         </div>
     </main>
+
+    {{ encore_entry_script_tags('styleguide') }}
 
 {% endblock %}

@@ -138,7 +138,7 @@ class ImageDataFixture extends AbstractReferenceFixture implements DependentFixt
         ];
 
         foreach ($brandsImagesData as $imageId => $brandName) {
-            /** @var \Shopsys\FrameworkBundle\Model\Product\Brand\Brand $brand */
+            /** @var \App\Model\Product\Brand\Brand $brand */
             $brand = $this->getReference($brandName);
 
             $this->saveImageIntoDb($brand->getId(), 'brand', $imageId);

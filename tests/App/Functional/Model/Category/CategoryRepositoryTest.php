@@ -44,7 +44,7 @@ class CategoryRepositoryTest extends TransactionFunctionalTestCase
      */
     private $categoryDataFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
     }

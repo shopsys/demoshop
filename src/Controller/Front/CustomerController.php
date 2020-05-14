@@ -91,7 +91,7 @@ class CustomerController extends FrontBaseController
         }
 
         $customerUser = $this->getUser();
-        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromUser($customerUser);
+        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromCustomerUser($customerUser);
         $customerUserUpdateData->deliveryAddressData = null;
 
         $form = $this->createForm(CustomerUserFormType::class, $customerUserUpdateData, [
@@ -128,8 +128,8 @@ class CustomerController extends FrontBaseController
         $customerUser = $this->getUser();
         /* @var $customerUser \App\Model\Customer\User\CustomerUser */
 
-        if ($customerUser->getBillingAddress()->isCompanyWithMultipleUsers()) {
-            $customerUsers = $this->customerUserFacade->getUsersByBillingAddressAndDomain($customerUser->getBillingAddress(), $customerUser->getDomainId());
+        if ($customerUser->getCustomer()->getBillingAddress()->isCompanyWithMultipleUsers()) {
+            $customerUsers = $this->customerUserFacade->getUsersByBillingAddressAndDomain($customerUser->getCustomer()->getBillingAddress(), $customerUser->getDomainId());
         } else {
             $customerUsers = [$customerUser];
         }
@@ -170,8 +170,8 @@ class CustomerController extends FrontBaseController
 
             $customerUser = $this->getUser();
             try {
-                if ($customerUser->getBillingAddress()->isCompanyWithMultipleUsers()) {
-                    $order = $this->orderFacade->getByOrderNumberAndBillingAddress($orderNumber, $customerUser->getBillingAddress());
+                if ($customerUser->getCustomer()->getBillingAddress()->isCompanyWithMultipleUsers()) {
+                    $order = $this->orderFacade->getByOrderNumberAndBillingAddress($orderNumber, $customerUser->getCustomer()->getBillingAddress());
                 /* @var $order \App\Model\Order\Order */
                 } else {
                     $order = $this->orderFacade->getByOrderNumberAndUser($orderNumber, $customerUser);

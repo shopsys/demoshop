@@ -40,7 +40,7 @@ class BrandDataFixture extends AbstractReferenceFixture
     /** @var \Shopsys\FrameworkBundle\Model\Product\Brand\BrandFacade */
     protected $brandFacade;
 
-    /** @var \Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface */
+    /** @var \App\Model\Product\Brand\BrandDataFactory */
     protected $brandDataFactory;
 
     /**
@@ -50,7 +50,7 @@ class BrandDataFixture extends AbstractReferenceFixture
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Product\Brand\BrandFacade $brandFacade
-     * @param \Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface $brandDataFactory
+     * @param \App\Model\Product\Brand\BrandDataFactory $brandDataFactory
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
      */
     public function __construct(BrandFacade $brandFacade, BrandDataFactoryInterface $brandDataFactory, Domain $domain)

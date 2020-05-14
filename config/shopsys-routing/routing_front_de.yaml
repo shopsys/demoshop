@@ -35,7 +35,7 @@ front_order_index:
     defaults: { _controller: App\Controller\Front\OrderController:indexAction }
 
 front_order_sent:
-    path: /bestellung-bestätigen/
+    path: /bestellung-bestatigen/
     defaults: { _controller: App\Controller\Front\OrderController:sentAction }
 
 front_product_search:

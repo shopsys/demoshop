@@ -66,14 +66,8 @@ class CustomerUserDataFactory extends BaseUserDataFactory
      */
     public function fillFromUser(BaseCustomerUserData $customerUserData, BaseCustomerUser $customerUser)
     {
-        $customerUserData->id = $customerUser->getId();
-        $customerUserData->domainId = $customerUser->getDomainId();
-        $customerUserData->firstName = $customerUser->getFirstName();
-        $customerUserData->lastName = $customerUser->getLastName();
-        $customerUserData->email = $customerUser->getEmail();
-        $customerUserData->pricingGroup = $customerUser->getPricingGroup();
-        $customerUserData->createdAt = $customerUser->getCreatedAt();
-        $customerUserData->telephone = $customerUser->getTelephone();
+        parent::fillFromUser($customerUserData, $customerUser);
+
         $customerUserData->discount = $customerUser->getDiscount();
     }
 }

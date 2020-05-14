@@ -6,6 +6,7 @@ namespace App\Form\Admin;
 
 use App\Model\Customer\BillingAddress;
 use Shopsys\FrameworkBundle\Form\Admin\Customer\User\CustomerUserFormType;
+use Shopsys\FrameworkBundle\Form\Admin\Customer\User\CustomerUserUpdateFormType;
 use Shopsys\FrameworkBundle\Form\GroupType;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -91,6 +92,6 @@ class CustomerUserFormTypeExtension extends AbstractTypeExtension
      */
     public static function getExtendedTypes(): iterable
     {
-        yield CustomerUserFormType::class;
+        yield CustomerUserUpdateFormType::class;
     }
 }

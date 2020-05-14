@@ -6,6 +6,7 @@ namespace App\Model\Administrator;
 
 use Doctrine\ORM\QueryBuilder;
 use Shopsys\FrameworkBundle\Model\Administrator\AdministratorRepository as BaseAdministratorRepository;
+use Shopsys\FrameworkBundle\Model\Security\Roles;
 
 /**
  * @method \App\Model\Administrator\Administrator|null findById(int $administratorId)
@@ -24,8 +25,9 @@ class AdministratorRepository extends BaseAdministratorRepository
     {
         return $this->getAdministratorRepository()
             ->createQueryBuilder('a')
-            ->where('a.superadmin = :isSuperadmin')
-            ->setParameter('isSuperadmin', false)
+            ->join('a.roles', 'ar')
+            ->where('ar.role = :role')
+            ->setParameter('role', Roles::ROLE_SUPER_ADMIN)
             ->andWhere('a.id != :defaultAdminId')
             ->setParameter('defaultAdminId', Administrator::DEFAULT_ADMIN_ID);
     }

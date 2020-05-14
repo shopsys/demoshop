@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- http://www.phpunit.de/manual/current/en/appendixes.configuration.html -->
 <phpunit
-        backupGlobals="false"
-        backupStaticAttributes="false"
-        bootstrap="config/bootstrap.php"
-        colors="true"
-        convertErrorsToExceptions="true"
-        convertNoticesToExceptions="true"
-        convertWarningsToExceptions="true"
-        processIsolation="false"
-        stopOnFailure="false"
-        failOnWarning="true"
-        beStrictAboutTestsThatDoNotTestAnything="false"
+    backupGlobals="false"
+    backupStaticAttributes="false"
+    bootstrap="config/bootstrap.php"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    processIsolation="false"
+    stopOnFailure="false"
+    failOnWarning="true"
+    beStrictAboutTestsThatDoNotTestAnything="false"
 >
     <php>
         <env name="KERNEL_CLASS" value="App\Kernel" />
         <env name="APP_ENV" value="test" />
         <env name="APP_DEBUG" value="false" />
+        <ini name="memory_limit" value="768MB" />
     </php>
 
     <testsuites>

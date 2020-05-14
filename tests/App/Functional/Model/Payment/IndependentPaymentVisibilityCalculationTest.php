@@ -6,6 +6,7 @@ namespace Tests\App\Functional\Model\Payment;
 
 use Shopsys\FrameworkBundle\Model\Payment\Payment;
 use Tests\App\Test\TransactionFunctionalTestCase;
+use Zalas\Injector\PHPUnit\Symfony\TestCase\SymfonyTestContainer;
 
 class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalTestCase
 {

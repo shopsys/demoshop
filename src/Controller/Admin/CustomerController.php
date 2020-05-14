@@ -207,7 +207,7 @@ class CustomerController extends BaseCustomerController
                 t('Customer <strong><a href="{{ url }}">{{ name }}</a></strong> created'),
                 [
                     'name' => $customerUser->getFullName(),
-                    'url' => $this->generateUrl('admin_customer_edit', ['billingAddressId' => $customerUser->getBillingAddress()->getId()]),
+                    'url' => $this->generateUrl('admin_customer_edit', ['billingAddressId' => $customerUser->getCustomer()->getBillingAddress()->getId()]),
                 ]
             );
 
@@ -230,6 +230,7 @@ class CustomerController extends BaseCustomerController
      */
     public function editAction(Request $request, $billingAddressId)
     {
+        d(1);
         try {
             $billingAddress = $this->billingAddressFacade->getById($billingAddressId);
         } catch (BillingAddressNotFoundException $ex) {
@@ -376,7 +377,7 @@ class CustomerController extends BaseCustomerController
     protected function processCompanyWithMultipleUsers(Request $request, BillingAddress $billingAddress)
     {
         $customerUser = $this->customerUserFacade->getUserByBillingAddress($billingAddress);
-        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromUser($customerUser);
+        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromCustomerUser($customerUser);
 
         $usersByBillingAddress = $this->customerUserFacade->getAllByBillingAddress($billingAddress);
         $customerUserUpdateData->companyUsersData = $this->customerUserDataFactory->createMultipleUserDataFromUsers($usersByBillingAddress);
@@ -416,7 +417,7 @@ class CustomerController extends BaseCustomerController
     protected function processStandardCustomer(Request $request, BillingAddress $billingAddress)
     {
         $customerUser = $this->customerUserFacade->getUserByBillingAddress($billingAddress);
-        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromUser($customerUser);
+        $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromCustomerUser($customerUser);
 
         $form = $this->createForm(CustomerUserUpdateFormType::class, $customerUserUpdateData, [
             'customerUser' => $customerUser,

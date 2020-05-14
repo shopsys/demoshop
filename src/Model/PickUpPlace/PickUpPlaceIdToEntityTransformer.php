@@ -25,7 +25,7 @@ class PickUpPlaceIdToEntityTransformer implements DataTransformerInterface
     /**
      * @param mixed $pickUpPlace
      * @return int|null
-     *@var \App\Model\PickUpPlace\PickUpPlace
+     * @var \App\Model\PickUpPlace\PickUpPlace
      */
     public function transform($pickUpPlace)
     {
