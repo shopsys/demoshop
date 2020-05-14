@@ -7,14 +7,12 @@ namespace App\Controller\Admin;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Shopsys\FrameworkBundle\Component\Domain\AdminDomainTabsFacade;
 use Shopsys\FrameworkBundle\Controller\Admin\MailController as BaseMailController;
-use Shopsys\FrameworkBundle\Model\Customer\Mail\RegistrationMail;
-use Shopsys\FrameworkBundle\Model\Customer\Mail\ResetPasswordMail;
+use Shopsys\FrameworkBundle\Model\AdminNavigation\BreadcrumbOverrider;
+use Shopsys\FrameworkBundle\Model\Mail\Grid\MailTemplateGridFactory;
+use Shopsys\FrameworkBundle\Model\Mail\MailTemplateConfiguration;
+use Shopsys\FrameworkBundle\Model\Mail\MailTemplateDataFactory;
 use Shopsys\FrameworkBundle\Model\Mail\MailTemplateFacade;
 use Shopsys\FrameworkBundle\Model\Mail\Setting\MailSettingFacade;
-use Shopsys\FrameworkBundle\Model\Order\Mail\OrderMail;
-use Shopsys\FrameworkBundle\Model\Order\Status\OrderStatusFacade;
-use Shopsys\FrameworkBundle\Model\PersonalData\Mail\PersonalDataAccessMail;
-use Shopsys\FrameworkBundle\Model\PersonalData\Mail\PersonalDataExportMail;
 use Symfony\Component\HttpFoundation\Response;
 
 class MailController extends BaseMailController
@@ -26,39 +24,26 @@ class MailController extends BaseMailController
 
     /**
      * @param bool $mailerDisableDelivery
-     * @param \Shopsys\FrameworkBundle\Model\Customer\Mail\ResetPasswordMail $resetPasswordMail
-     * @param \Shopsys\FrameworkBundle\Model\Order\Mail\OrderMail $orderMail
-     * @param \Shopsys\FrameworkBundle\Model\Customer\Mail\RegistrationMail $registrationMail
      * @param \Shopsys\FrameworkBundle\Component\Domain\AdminDomainTabsFacade $adminDomainTabsFacade
      * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateFacade $mailTemplateFacade
      * @param \Shopsys\FrameworkBundle\Model\Mail\Setting\MailSettingFacade $mailSettingFacade
-     * @param \Shopsys\FrameworkBundle\Model\Order\Status\OrderStatusFacade $orderStatusFacade
-     * @param \Shopsys\FrameworkBundle\Model\PersonalData\Mail\PersonalDataAccessMail $personalDataAccessMail
-     * @param \Shopsys\FrameworkBundle\Model\PersonalData\Mail\PersonalDataExportMail $personalDataExportMail
+     * @param \Shopsys\FrameworkBundle\Model\AdminNavigation\BreadcrumbOverrider $breadcrumbOverrider
+     * @param \Shopsys\FrameworkBundle\Model\Mail\Grid\MailTemplateGridFactory $mailTemplateGridFactory
+     * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateConfiguration $mailTemplateConfiguration
+     * @param \Shopsys\FrameworkBundle\Model\Mail\MailTemplateDataFactory $mailTemplateDataFactory
      */
     public function __construct(
         bool $mailerDisableDelivery,
-        ResetPasswordMail $resetPasswordMail,
-        OrderMail $orderMail,
-        RegistrationMail $registrationMail,
         AdminDomainTabsFacade $adminDomainTabsFacade,
         MailTemplateFacade $mailTemplateFacade,
         MailSettingFacade $mailSettingFacade,
-        OrderStatusFacade $orderStatusFacade,
-        PersonalDataAccessMail $personalDataAccessMail,
-        PersonalDataExportMail $personalDataExportMail
+        BreadcrumbOverrider $breadcrumbOverrider,
+        MailTemplateGridFactory $mailTemplateGridFactory,
+        MailTemplateConfiguration $mailTemplateConfiguration,
+        MailTemplateDataFactory $mailTemplateDataFactory
     ) {
-        parent::__construct(
-            $resetPasswordMail,
-            $orderMail,
-            $registrationMail,
-            $adminDomainTabsFacade,
-            $mailTemplateFacade,
-            $mailSettingFacade,
-            $orderStatusFacade,
-            $personalDataAccessMail,
-            $personalDataExportMail
-        );
+        parent::__construct($adminDomainTabsFacade, $mailTemplateFacade, $mailSettingFacade, $breadcrumbOverrider, $mailTemplateGridFactory, $mailTemplateConfiguration, $mailTemplateDataFactory);
+
         $this->mailerDisableDelivery = $mailerDisableDelivery;
     }
 
