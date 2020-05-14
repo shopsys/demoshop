@@ -25,29 +25,6 @@ class CartPage extends AbstractPage
      * @param string $productName
      * @param string $price
      */
-    public function assertProductPrice($productName, $price)
-    {
-        $convertedPrice = $this->tester->getPriceWithVatConvertedToDomainDefaultCurrency($price);
-        $formattedPriceWithCurrency = $this->tester->getFormattedPriceWithCurrencySymbolOnFrontend(Money::create($convertedPrice));
-        $productPriceCell = $this->getProductTotalPriceCellByName($productName);
-        $this->tester->seeInElement($formattedPriceWithCurrency, $productPriceCell);
-    }
-
-    /**
-     * @param string $price
-     */
-    public function assertTotalPriceWithVat($price)
-    {
-        $formattedPriceWithCurrency = $this->tester->getFormattedPriceWithCurrencySymbolOnFrontend(Money::create($price));
-        $orderPriceCell = $this->getTotalProductsPriceCell();
-        $message = t('Total price including VAT', [], 'messages', $this->tester->getFrontendLocale());
-        $this->tester->seeInElement($message . ': ' . $formattedPriceWithCurrency, $orderPriceCell);
-    }
-
-    /**
-     * @param string $productName
-     * @param string $price
-     */
     public function assertProductPriceRoundedByCurrency($productName, $price)
     {
         $convertedPrice = $this->tester->getPriceWithVatConvertedToDomainDefaultCurrency($price);
@@ -224,7 +201,7 @@ class CartPage extends AbstractPage
             );
         }
 
-        $this->assertTotalPriceWithVat($totalPrice->getAmount());
+        $this->assertTotalPriceWithVatRoundedByCurrency($totalPrice->getAmount());
     }
 
     /**

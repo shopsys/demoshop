@@ -27,12 +27,9 @@ class ProductFilterFormType extends AbstractType
         /** @var \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterConfig $config */
         $config = $options['product_filter_config'];
 
-        $moneyBuilder = $builder->create('money', MoneyType::class);
-
         $builder
             ->add('minimalPrice', MoneyType::class, [
                 'required' => false,
-                'attr' => ['placeholder' => $this->transformMoneyToView($config->getPriceRange()->getMinimalPrice(), $moneyBuilder)],
                 'invalid_message' => 'Please enter price in correct format (positive number with decimal separator)',
                 'constraints' => [
                     new NotNegativeMoneyAmount(['message' => 'Price must be greater or equal to zero']),
@@ -40,7 +37,6 @@ class ProductFilterFormType extends AbstractType
             ])
             ->add('maximalPrice', MoneyType::class, [
                 'required' => false,
-                'attr' => ['placeholder' => $this->transformMoneyToView($config->getPriceRange()->getMaximalPrice(), $moneyBuilder)],
                 'invalid_message' => 'Please enter price in correct format (positive number with decimal separator)',
                 'constraints' => [
                     new NotNegativeMoneyAmount(['message' => 'Price must be greater or equal to zero']),
@@ -85,24 +81,5 @@ class ProductFilterFormType extends AbstractType
                 'method' => 'GET',
                 'csrf_protection' => false,
             ]);
-    }
-
-    /**
-     * @param \Shopsys\FrameworkBundle\Component\Money\Money $money
-     * @param \Symfony\Component\Form\FormBuilderInterface $moneyBuilder
-     * @return string
-     */
-    protected function transformMoneyToView(Money $money, FormBuilderInterface $moneyBuilder): string
-    {
-        foreach ($moneyBuilder->getModelTransformers() as $modelTransformer) {
-            /** @var \Symfony\Component\Form\DataTransformerInterface $modelTransformer */
-            $money = $modelTransformer->transform($money);
-        }
-        foreach ($moneyBuilder->getViewTransformers() as $viewTransformer) {
-            /** @var \Symfony\Component\Form\DataTransformerInterface $viewTransformer */
-            $money = $viewTransformer->transform($money);
-        }
-
-        return $money;
     }
 }
