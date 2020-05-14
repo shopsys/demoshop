@@ -337,3 +337,93 @@
 20191029210140:
     class: Shopsys\FrameworkBundle\Migrations\Version20191029210140
     skip: false
+20190824181350:
+    class: Shopsys\FrameworkBundle\Migrations\Version20190824181350
+    skip: false
+20190930140221:
+    class: Shopsys\FrameworkBundle\Migrations\Version20190930140221
+    skip: false
+20191107162719:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191107162719
+    skip: false
+20191108140919:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191108140919
+    skip: false
+20191112122617:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191112122617
+    skip: false
+20191113133455:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191113133455
+    skip: false
+20191113212555:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191113212555
+    skip: false
+20191113231735:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191113231735
+    skip: false
+20191121145700:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191121145700
+    skip: false
+20191121171000:
+    class: App\Migrations\Version20191121171000
+    skip: false
+20191126105045:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191126105045
+    skip: false
+20191127133143:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191127133143
+    skip: false
+20191205145631:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191205145631
+    skip: false
+20191210112451:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191210112451
+    skip: false
+20191211124055:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191211124055
+    skip: false
+20191216143436:
+    class: Shopsys\FrameworkBundle\Migrations\Version20191216143436
+    skip: false
+20200127085928:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200127085928
+    skip: false
+20200129073328:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200129073328
+    skip: false
+20200206111017:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200206111017
+    skip: false
+20200211110913:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200211110913
+    skip: false
+20200225102504:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200225102504
+    skip: false
+20200310120000:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200310120000
+    skip: false
+20200310130000:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200310130000
+    skip: false
+20200319124638:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200319124638
+    skip: false
+20200325132105:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200325132105
+    skip: false
+20200327080840:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200327080840
+    skip: false
+20200330150340:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200330150340
+    skip: false
+20200416114815:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200416114815
+    skip: false
+20200511110953:
+    class: Shopsys\FrameworkBundle\Migrations\Version20200511110953
+    skip: false
+202005141171000:
+    class: App\Migrations\Version202005141171000
+    skip: false
