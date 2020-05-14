@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Form\Front\Product;
 
-use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Form\Constraints\NotNegativeMoneyAmount;
 use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterConfig;
 use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData;
