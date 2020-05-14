@@ -97,14 +97,7 @@ domainStylesDirectories.forEach(stylesDirectory => {
 
 Encore
     .addEntry('admin-style', './assets/styles/admin/main.less')
-    .addEntry('admin-wysiwyg', './assets/styles/admin/wysiwyg.less')
     .addEntry('styleguide-style', './assets/styles/styleguide/main.less')
-    .addPlugin(
-        new StylelintPlugin({
-            configFile: '.stylelintrc',
-            files: 'assets/styles/**/*.less'
-        })
-    )
     .enableLessLoader()
     .enablePostCssLoader()
 ;
