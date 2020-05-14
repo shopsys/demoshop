@@ -42,6 +42,7 @@ parameters:
         Shopsys\CodingStandards\Sniffs\ValidVariableNameSniff:
             - '*/tests/App/Functional/EntityExtension/EntityExtensionTest.php'
             - '*/tests/App/Test/Codeception/_generated/AcceptanceTesterActions.php'
+            - '*/app/router.php'
 
         Shopsys\CodingStandards\Sniffs\ObjectIsCreatedByFactorySniff:
             - '*/tests/*'
@@ -61,3 +62,6 @@ parameters:
             - '*/tests/App/Test/Codeception/Helper/NumberFormatHelper.php'
             - '*/tests/App/Test/Codeception/Helper/SymfonyHelper.php'
             - '*/tests/App/Test/Codeception/Module/Db.php'
+
+        Shopsys\CodingStandards\Sniffs\ForbiddenSuperGlobalSniff:
+            - '*/app/router.php'
