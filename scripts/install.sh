@@ -25,9 +25,9 @@ do
 done
 
 echo "Creating config files.."
-cp -f config/parameters.yml.dist config/parameters.yml
-cp -f config/parameters_test.yml.dist config/parameters_test.yml
-cp -f config/domains_urls.yml.dist config/domains_urls.yml
+cp -f config/parameters.yaml.dist config/parameters.yaml
+cp -f config/parameters_test.yaml.dist config/parameters_test.yaml
+cp -f config/domains_urls.yaml.dist config/domains_urls.yaml
 
 echo "Creating docker configuration.."
 case "$operatingSystem" in

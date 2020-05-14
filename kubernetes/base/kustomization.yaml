@@ -15,7 +15,7 @@ configMapGenerator:
             - config/postgres/postgres.conf
     -   name: domains-urls
         files:
-            - config/config/domains_urls.yml
+            - config/config/domains_urls.yaml
     -   name: parameters
         files:
-            - config/config/parameters.yml
+            - config/config/parameters.yaml

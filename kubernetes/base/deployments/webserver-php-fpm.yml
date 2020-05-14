@@ -53,11 +53,11 @@ spec:
                         -   name: source-codes
                             mountPath: /tmp/source-codes
                         -   name: domains-urls
-                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/domains_urls.yml"
-                            subPath: domains_urls.yml
+                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/domains_urls.yaml"
+                            subPath: domains_urls.yaml
                         -   name: parameters
-                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/parameters.yml"
-                            subPath: parameters.yml
+                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/parameters.yaml"
+                            subPath: parameters.yaml
                 -   name: initialize-database
                     image: "{{DOCKER_PHP_FPM_IMAGE}}"
                     securityContext:
@@ -67,11 +67,11 @@ spec:
                         -   name: source-codes
                             mountPath: /var/www/html
                         -   name: domains-urls
-                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/domains_urls.yml"
-                            subPath: domains_urls.yml
+                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/domains_urls.yaml"
+                            subPath: domains_urls.yaml
                         -   name: parameters
-                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/parameters.yml"
-                            subPath: parameters.yml
+                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/parameters.yaml"
+                            subPath: parameters.yaml
             containers:
                 -   image: "{{DOCKER_PHP_FPM_IMAGE}}"
                     name: php-fpm
@@ -82,11 +82,11 @@ spec:
                         -   name: source-codes
                             mountPath: /var/www/html
                         -   name: domains-urls
-                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/domains_urls.yml"
-                            subPath: domains_urls.yml
+                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/domains_urls.yaml"
+                            subPath: domains_urls.yaml
                         -   name: parameters
-                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/parameters.yml"
-                            subPath: parameters.yml
+                            mountPath: "{{PATH_CONFIG_DIRECTORY}}/parameters.yaml"
+                            subPath: parameters.yaml
                 -   image: nginx:1.13.10-alpine
                     name: webserver
                     ports:

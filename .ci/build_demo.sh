@@ -30,25 +30,25 @@ fi
 echo -e "${BLUE}Configuring your demo-shop...${NC}"
 
 # Configuration files are baked into the Docker image at the moment
-cp "$WORKSPACE/config/parameters.yml.dist" "$WORKSPACE/config/parameters.yml"
-cp "$WORKSPACE/config/domains_urls.yml.dist" "$WORKSPACE/config/domains_urls.yml"
+cp "$WORKSPACE/config/parameters.yaml.dist" "$WORKSPACE/config/parameters.yaml"
+cp "$WORKSPACE/config/domains_urls.yaml.dist" "$WORKSPACE/config/domains_urls.yaml"
 
 # Disable master e-mail and mailer whitelist
-sed -i "s/mailer_master_email_address:.*/mailer_master_email_address: ~/" "$WORKSPACE/config/parameters.yml"
-sed -i "s/mailer_delivery_whitelist:.*/mailer_delivery_whitelist: ~/" "$WORKSPACE/config/parameters.yml"
-sed -i "s/elasticsearch:/${ELASTICSEARCH_CONTAINER}:/" "$WORKSPACE/config/parameters.yml"
+sed -i "s/mailer_master_email_address:.*/mailer_master_email_address: ~/" "$WORKSPACE/config/parameters.yaml"
+sed -i "s/mailer_delivery_whitelist:.*/mailer_delivery_whitelist: ~/" "$WORKSPACE/config/parameters.yaml"
+sed -i "s/elasticsearch:/${ELASTICSEARCH_CONTAINER}:/" "$WORKSPACE/config/parameters.yaml"
 
 # Fetch all domain IDs
-DOMAIN_IDS=$(cat "$WORKSPACE/config/domains_urls.yml" | grep -Po 'id: ([0-9]+)$' | sed -r 's/id: ([0-9]+)/\1/')
+DOMAIN_IDS=$(cat "$WORKSPACE/config/domains_urls.yaml" | grep -Po 'id: ([0-9]+)$' | sed -r 's/id: ([0-9]+)/\1/')
 
 # Modify public URLs to $DOMAIN_ID.$DEMO_DOMAIN ($DOMAIN_ID is omitted for the first domain)
 for DOMAIN_ID in $DOMAIN_IDS; do
     if [[ "$DOMAIN_ID" == "1" ]]; then
         # 1st domain has URL without a number prefix
-        sed -i "/id: 1/,/url:/{s/url:.*/url: http:\/\/$DEMO_DOMAIN/}" "$WORKSPACE/config/domains_urls.yml"
+        sed -i "/id: 1/,/url:/{s/url:.*/url: http:\/\/$DEMO_DOMAIN/}" "$WORKSPACE/config/domains_urls.yaml"
     else
         # 2nd and subsequent domains have URLs with DOMAIN_ID prefix
-        sed -i "/id: $DOMAIN_ID/,/url:/{s/url:.*/url: http:\/\/$DOMAIN_ID.$DEMO_DOMAIN/}" "$WORKSPACE/config/domains_urls.yml"
+        sed -i "/id: $DOMAIN_ID/,/url:/{s/url:.*/url: http:\/\/$DOMAIN_ID.$DEMO_DOMAIN/}" "$WORKSPACE/config/domains_urls.yaml"
     fi
 done
 

@@ -103,7 +103,7 @@ class RouteConfigCustomization
                 }
             })
             ->customizeByRouteName('admin_access_denied', function (RouteConfig $config) {
-                $config->changeDefaultRequestDataSet('This route serves as "access_denied_url" (see security.yml) and always redirects to a referer (or dashboard).')
+                $config->changeDefaultRequestDataSet('This route serves as "access_denied_url" (see security.yaml) and always redirects to a referer (or dashboard).')
                    ->setExpectedStatusCode(302);
             });
     }
@@ -289,7 +289,7 @@ class RouteConfigCustomization
                     ->setExpectedStatusCode(302);
             })
             ->customizeByRouteName('front_logout', function (RouteConfig $config) {
-                $debugNote = 'Add CSRF token for logout action (configured in app/security.yml) during test execution.';
+                $debugNote = 'Add CSRF token for logout action (configured in app/security.yaml) during test execution.';
                 $config->changeDefaultRequestDataSet($debugNote)
                     ->addCallDuringTestExecution(function (RequestDataSet $requestDataSet, ContainerInterface $container) {
                         $csrfTokenManager = $container->get('security.csrf.token_manager');
