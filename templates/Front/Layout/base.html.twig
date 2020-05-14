@@ -23,6 +23,10 @@
         {{ js_validator_config() }}
         {{ init_js_validation() }}
 
+        {% if app.environment is same as('dev') %}
+            <script async src="//localhost:35729/livereload.js"></script>
+        {% endif %}
+
         {{ render(controller('App\\Controller\\Front\\HeurekaController:embedWidgetAction')) }}
 
         {% block javascripts %}{% endblock %}
