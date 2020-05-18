@@ -44,7 +44,7 @@ msgid "Address"
 msgstr "Adresa"
 
 msgid "Administration"
-msgstr ""
+msgstr "Administrace"
 
 msgid "All prices have to be handled manually if checked, otherwise the unit price without VAT and the total prices for that item will be recalculated automatically."
 msgstr "Pokud je zaškrtnuto, všechny ceny je třeba nastavovat ručně, jinak se jednotková cena bez DPH a celkové ceny pro tuto položku přepočítají automaticky."
@@ -102,6 +102,9 @@ msgstr "Přehled značek"
 
 msgid "Cart"
 msgstr "Košík"
+
+msgid "Catalog number"
+msgstr "Katalogové číslo"
 
 msgid "Catalogue number"
 msgstr "Katalogové číslo"
@@ -163,6 +166,9 @@ msgstr "Uživatelé firmy"
 msgid "Condition"
 msgstr "Stav zboží"
 
+msgid "Contact"
+msgstr "Kontakt"
+
 msgid "Contact Us"
 msgstr "Kontaktujte nás"
 
@@ -208,11 +214,20 @@ msgstr "Datum přihlášení"
 msgid "Delivery address"
 msgstr "Dodací adresa"
 
+msgid "Delivery address could not be removed."
+msgstr "Dodací adresa nemohla být odebrána."
+
+msgid "Delivery address has been removed."
+msgstr "Dodací adresa byla odebrána."
+
+msgid "Delivery addresses"
+msgstr "Dodací adresy"
+
 msgid "Delivery data"
 msgstr "Dodací údaje"
 
 msgid "Demo product images by"
-msgstr ""
+msgstr "Demo produktové obrázky od"
 
 msgid "Description"
 msgstr "Popis"
@@ -227,10 +242,13 @@ msgid "Displaying"
 msgstr "Zobrazuji"
 
 msgid "Do not distribute without permission."
-msgstr ""
+msgstr "Nedistribuovat bez povolení."
 
 msgid "Do you really want to remove this customer?"
 msgstr "Opravdu chcete odstranit tohoto zákazníka?"
+
+msgid "Do you really want to remove this delivery address?"
+msgstr "Opravdu si přejete odebrat tuto dodací adresu?"
 
 msgid "Do you want to receive the newest information about our shop? Subscribe to our e-mail newsletter."
 msgstr "Chcete dostávat nejnovější informace z našeho obchodu? Přihlašte se do našeho e-mailového zpravodaje."
@@ -262,6 +280,9 @@ msgstr "Editace zákazníka - %name%"
 msgid "Effectivness Hunter"
 msgstr "Effectivness Hunter"
 
+msgid "Email"
+msgstr "E-mail"
+
 msgid "Email sending has been prevented so the demoshop is not abused for the spam distribution."
 msgstr "Odesílání emailů bylo zamezeno, aby nedošlo k zneužití demoshopu pro distribuci spamu."
 
@@ -276,6 +297,9 @@ msgstr "Nastala chyba"
 
 msgid "Error occurred when sending e-mail."
 msgstr "Nastala chyba při odesílání mailu."
+
+msgid "Error occurred when sending email."
+msgstr "Během odesílání e-mailu se vyskytla chyba."
 
 msgid "Fill in city or post number"
 msgstr "Zadejte mēsto nebo psč"
@@ -415,6 +439,9 @@ msgstr "Název"
 msgid "New"
 msgstr "Nové"
 
+msgid "New delivery address"
+msgstr "Nová dodací adresa"
+
 msgid "News & Sales in your e-mail"
 msgstr "Novinky a slevy ve vašem e-mailu"
 
@@ -450,6 +477,9 @@ msgstr "Není z čeho vybírat."
 
 msgid "Number of items"
 msgstr "Počet položek"
+
+msgid "Ok"
+msgstr ""
 
 msgid "One or more emails are duplicated or already used, e.g.:"
 msgstr "Jeden nebo více e-mailů je duplikován nebo se již používá, např.:"
@@ -546,6 +576,9 @@ msgstr "Přehled osobních údajů"
 
 msgid "Please check the correctness of all data filled."
 msgstr "Prosím zkontrolujte si správnost vyplnění všech údajů"
+
+msgid "Please check the entered values.<br>"
+msgstr "Prosím zkontrolujte vložené údaje.<br>"
 
 msgid "Please enter promo code."
 msgstr "Zadejte, prosím, slevový kupón."
@@ -717,6 +750,9 @@ msgstr "Ulice"
 
 msgid "Subscription to e-mail newsletter"
 msgstr "Přihlášení k zpravodaji"
+
+msgid "Subscription was failed"
+msgstr "Přihlášení selhalo"
 
 msgid "Tax number"
 msgstr "DIČ"
@@ -897,6 +933,9 @@ msgstr "z"
 
 msgid "from %price%"
 msgstr "od %price%"
+
+msgid "in left panel (under category tree)"
+msgstr "v levém panelu (pod stromem kategorií)"
 
 msgid "on homepage above popular categories (Primary)"
 msgstr "na domovské stránce nad oblíbenými kategoriemi (primární)"

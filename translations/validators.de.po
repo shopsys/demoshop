@@ -46,6 +46,9 @@ msgstr "Das Passwort darf nicht mit der E-Mail übereinstimmen"
 msgid "Password cannot be same as part of e-mail before at sign"
 msgstr "Das Passwort kann nicht mit dem Teil der E-Mail vor der At-Zeichen identisch sein"
 
+msgid "Password must be at least {{ limit }} characters long"
+msgstr ""
+
 msgid "Passwords do not match"
 msgstr "Passwörter stimmen nicht überein"
 

@@ -46,6 +46,9 @@ msgstr "Heslo nesmí být stejné jako přihlašovací e-mail."
 msgid "Password cannot be same as part of e-mail before at sign"
 msgstr "Heslo nesmí být stejné jako část e-mailu před zavináčem."
 
+msgid "Password must be at least {{ limit }} characters long"
+msgstr "Heslo musí být alespoň {{ limit }} znaků dlouhé"
+
 msgid "Passwords do not match"
 msgstr "Hesla se neshodují"
 

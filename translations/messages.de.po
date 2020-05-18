@@ -103,6 +103,9 @@ msgstr "Markenübersicht"
 msgid "Cart"
 msgstr "Warenkorb"
 
+msgid "Catalog number"
+msgstr ""
+
 msgid "Catalogue number"
 msgstr "Katalognummer"
 
@@ -163,6 +166,9 @@ msgstr "Firmennutzer"
 msgid "Condition"
 msgstr "Zustand"
 
+msgid "Contact"
+msgstr ""
+
 msgid "Contact Us"
 msgstr "Kontaktieren Sie uns"
 
@@ -208,6 +214,15 @@ msgstr "Datum des Abonnements"
 msgid "Delivery address"
 msgstr "Lieferadresse"
 
+msgid "Delivery address could not be removed."
+msgstr ""
+
+msgid "Delivery address has been removed."
+msgstr ""
+
+msgid "Delivery addresses"
+msgstr ""
+
 msgid "Delivery data"
 msgstr "Lieferdaten"
 
@@ -231,6 +246,9 @@ msgstr ""
 
 msgid "Do you really want to remove this customer?"
 msgstr "Möchten Sie diesen Kunden wirklich entfernen?"
+
+msgid "Do you really want to remove this delivery address?"
+msgstr ""
 
 msgid "Do you want to receive the newest information about our shop? Subscribe to our e-mail newsletter."
 msgstr "Möchten Sie die neuesten Informationen über unseren Shop erhalten? Abonnieren Sie unseren E-Mail-Newsletter."
@@ -259,6 +277,9 @@ msgstr "Kunden bearbeiten - %name%"
 msgid "Effectivness Hunter"
 msgstr "Effektivität Jäger"
 
+msgid "Email"
+msgstr ""
+
 msgid "Email sending has been prevented so the demoshop is not abused for the spam distribution."
 msgstr "Das Versenden von E-Mail wurde verhindert, damit der Demoshop nicht für die Spam-Verteilung missbraucht wird."
 
@@ -273,6 +294,9 @@ msgstr "Ein Fehler ist aufgetreten"
 
 msgid "Error occurred when sending e-mail."
 msgstr "Beim Versendung der E-Mail ist ein Fehler aufgetreten."
+
+msgid "Error occurred when sending email."
+msgstr ""
 
 msgid "Fill in city or post number"
 msgstr "Geben Sie den Ort oder die Postnummer ein"
@@ -409,6 +433,9 @@ msgstr "Name"
 msgid "New"
 msgstr "Neu"
 
+msgid "New delivery address"
+msgstr ""
+
 msgid "News & Sales in your e-mail"
 msgstr "Neuigkeiten & Rabatte in Ihrer E-Mail"
 
@@ -444,6 +471,9 @@ msgstr "Nichts zur Auswahl."
 
 msgid "Number of items"
 msgstr "Anzahl der Artikel"
+
+msgid "Ok"
+msgstr ""
 
 msgid "One or more emails are duplicated or already used, e.g.:"
 msgstr "Eine oder mehrere E-Mails werden dupliziert oder bereits verwendet, z.B:"
@@ -537,6 +567,9 @@ msgstr "Überblick über die persönlichen Daten"
 
 msgid "Please check the correctness of all data filled."
 msgstr "Bitte überprüfen Sie die Richtigkeit aller ausgefüllten Daten."
+
+msgid "Please check the entered values.<br>"
+msgstr ""
 
 msgid "Please enter promo code."
 msgstr "Bitte geben Sie den Promo-Code ein."
@@ -696,6 +729,9 @@ msgstr "Straße"
 
 msgid "Subscription to e-mail newsletter"
 msgstr "Anmeldung zum E-Mail-Newsletter"
+
+msgid "Subscription was failed"
+msgstr ""
 
 msgid "TOP"
 msgstr "TOP"
@@ -888,6 +924,9 @@ msgstr "vom teuersten"
 
 msgid "from the cheapest"
 msgstr "vom billigsten"
+
+msgid "in left panel (under category tree)"
+msgstr ""
 
 msgid "on homepage above popular categories (Primary)"
 msgstr "auf der Homepage über den populären Kategorien (Primär)"

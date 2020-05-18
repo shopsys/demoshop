@@ -25,9 +25,6 @@ msgstr ""
 msgid "Account"
 msgstr ""
 
-msgid "Add company user"
-msgstr ""
-
 msgid "Add item"
 msgstr ""
 
@@ -70,9 +67,6 @@ msgstr ""
 msgid "Back to orders overview"
 msgstr ""
 
-msgid "Back to overview"
-msgstr ""
-
 msgid "Back to shipping and payment selection"
 msgstr ""
 
@@ -101,6 +95,9 @@ msgid "Brand overview"
 msgstr ""
 
 msgid "Cart"
+msgstr ""
+
+msgid "Catalog number"
 msgstr ""
 
 msgid "Catalogue number"
@@ -157,10 +154,10 @@ msgstr ""
 msgid "Company number"
 msgstr ""
 
-msgid "Company users"
+msgid "Condition"
 msgstr ""
 
-msgid "Condition"
+msgid "Contact"
 msgstr ""
 
 msgid "Contact Us"
@@ -184,21 +181,6 @@ msgstr ""
 msgid "Current status"
 msgstr ""
 
-msgid "Customer <strong><a href=\"{{ url }}\">{{ name }}</a></strong> created"
-msgstr ""
-
-msgid "Customer <strong><a href=\"{{ url }}\">{{ name }}</a></strong> modified"
-msgstr ""
-
-msgid "Customer <strong>{{ name }}</strong> deleted"
-msgstr ""
-
-msgid "Customer detail"
-msgstr ""
-
-msgid "Customer not found"
-msgstr ""
-
 msgid "Customer with e-mail address <strong>{{ email }}</strong> doesn't exist. <a href=\"{{ registrationLink }}\"> Register</a>"
 msgstr ""
 
@@ -206,6 +188,15 @@ msgid "Date of subscription"
 msgstr ""
 
 msgid "Delivery address"
+msgstr ""
+
+msgid "Delivery address could not be removed."
+msgstr ""
+
+msgid "Delivery address has been removed."
+msgstr ""
+
+msgid "Delivery addresses"
 msgstr ""
 
 msgid "Delivery data"
@@ -229,7 +220,7 @@ msgstr ""
 msgid "Do not distribute without permission."
 msgstr ""
 
-msgid "Do you really want to remove this customer?"
+msgid "Do you really want to remove this delivery address?"
 msgstr ""
 
 msgid "Do you want to receive the newest information about our shop? Subscribe to our e-mail newsletter."
@@ -250,13 +241,10 @@ msgstr ""
 msgid "EAN"
 msgstr ""
 
-msgid "Editing customer"
-msgstr ""
-
-msgid "Editing customer - %name%"
-msgstr ""
-
 msgid "Effectivness Hunter"
+msgstr ""
+
+msgid "Email"
 msgstr ""
 
 msgid "Email sending has been prevented so the demoshop is not abused for the spam distribution."
@@ -271,7 +259,7 @@ msgstr ""
 msgid "Error occurred"
 msgstr ""
 
-msgid "Error occurred when sending e-mail."
+msgid "Error occurred when sending email."
 msgstr ""
 
 msgid "Fill in city or post number"
@@ -355,9 +343,6 @@ msgstr ""
 msgid "Invalid login"
 msgstr ""
 
-msgid "Is company with multiple users"
-msgstr ""
-
 msgid "Items"
 msgstr ""
 
@@ -371,9 +356,6 @@ msgid "List of subcategories"
 msgstr ""
 
 msgid "Log in"
-msgstr ""
-
-msgid "Log in as user"
 msgstr ""
 
 msgid "Log out"
@@ -406,13 +388,13 @@ msgstr ""
 msgid "New"
 msgstr ""
 
+msgid "New delivery address"
+msgstr ""
+
 msgid "News & Sales in your e-mail"
 msgstr ""
 
 msgid "No"
-msgstr ""
-
-msgid "No customers found."
 msgstr ""
 
 msgid "No order so far."
@@ -442,7 +424,7 @@ msgstr ""
 msgid "Number of items"
 msgstr ""
 
-msgid "One or more emails are duplicated or already used, e.g.:"
+msgid "Ok"
 msgstr ""
 
 msgid "Online shop"
@@ -533,6 +515,9 @@ msgid "Personal information overview"
 msgstr ""
 
 msgid "Please check the correctness of all data filled."
+msgstr ""
+
+msgid "Please check the entered values.<br>"
 msgstr ""
 
 msgid "Please enter promo code."
@@ -640,9 +625,6 @@ msgstr ""
 msgid "Searching"
 msgstr ""
 
-msgid "Selected customer doesn't exist."
-msgstr ""
-
 msgid "Selected product no longer available or doesn't exist."
 msgstr ""
 
@@ -659,9 +641,6 @@ msgid "Set prices manually"
 msgstr ""
 
 msgid "Shipping"
-msgstr ""
-
-msgid "Shipping address"
 msgstr ""
 
 msgid "Shipping and payment"
@@ -692,6 +671,9 @@ msgid "Street"
 msgstr ""
 
 msgid "Subscription to e-mail newsletter"
+msgstr ""
+
+msgid "Subscription was failed"
 msgstr ""
 
 msgid "Tax number"
@@ -856,9 +838,6 @@ msgstr ""
 msgid "Zásilkovna"
 msgstr ""
 
-msgid "customers"
-msgstr ""
-
 msgid "etc. Praha"
 msgstr ""
 
@@ -869,6 +848,9 @@ msgid "from"
 msgstr ""
 
 msgid "from %price%"
+msgstr ""
+
+msgid "in left panel (under category tree)"
 msgstr ""
 
 msgid "on homepage above popular categories (Primary)"
