@@ -2,15 +2,3 @@ shopsys_shop_admin:
     resource: "../../src/Controller/Admin/"
     prefix: /admin
     type: annotation
-
-admin_customer_edit:
-    path: /admin/customer/edit/{billingAddressId}
-    defaults: { _controller: App\Controller\Admin\CustomerController:editAction }
-    requirements:
-        billingAddressId: \d+
-
-admin_customer_delete:
-    path: /admin/customer/delete/{billingAddressId}
-    defaults: { _controller: App\Controller\Admin\CustomerController:deleteAction }
-    requirements:
-        billingAddressId: \d+

@@ -15,7 +15,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [#6 - Shipping method with pickup places](https://github.com/shopsys/demoshop/pull/6)
     - added new shipping method Zasilkovna
     - pick up places are downloaded by cron
-- [#15 - Company account with multiple users](https://github.com/shopsys/demoshop/pull/15)
 - [#31 - Discount for customer](https://github.com/shopsys/demoshop/pull/31)
     - administration of customer now contains discount field with range validation that is reflected into User entity
     - prices of products are recalculated for logged customers based on custom discount

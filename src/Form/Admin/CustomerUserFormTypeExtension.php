@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Admin;
 
-use App\Model\Customer\BillingAddress;
 use Shopsys\FrameworkBundle\Form\Admin\Customer\User\CustomerUserFormType;
-use Shopsys\FrameworkBundle\Form\Admin\Customer\User\CustomerUserUpdateFormType;
-use Shopsys\FrameworkBundle\Form\GroupType;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,8 +18,7 @@ class CustomerUserFormTypeExtension extends AbstractTypeExtension
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builderUserDataGroup = $builder->get('customerUserData');
-        $builderSystemDataGroup = $builderUserDataGroup->get('systemData');
+        $builderSystemDataGroup = $builder->get('systemData');
 
         $builderSystemDataGroup->add('discount', IntegerType::class, [
             'constraints' => [
@@ -46,35 +42,6 @@ class CustomerUserFormTypeExtension extends AbstractTypeExtension
             $builderSystemDataGroup->remove('createdAt');
             $builderSystemDataGroup->add($builderRegistrationDateField);
         }
-
-        if ($options['billingAddress'] !== null && $options['billingAddress']->isCompanyWithMultipleUsers()) {
-            $builder
-                ->remove('orders')
-                ->remove('deliveryAddressData');
-
-            $builderUserDataGroup
-                ->remove('personalData')
-                ->remove('registeredCustomer');
-
-            $builderSystemDataGroup->remove('formId');
-
-            $builderCompanyUsersDataGroup = $builder->create('companyUsersDataGroup', GroupType::class, [
-                'label' => t('Company users'),
-            ]);
-
-            $builderCompanyUsersDataGroup
-                ->add('companyUsersData', CompanyUsersFormType::class, [
-                    'required' => false,
-                    'allow_add' => true,
-                    'allow_delete' => true,
-                    'entry_type' => CompanyUserFormType::class,
-                    'error_bubbling' => false,
-                    'render_form_row' => false,
-                ]);
-
-            $builder
-                ->add($builderCompanyUsersDataGroup);
-        }
     }
 
     /**
@@ -83,15 +50,14 @@ class CustomerUserFormTypeExtension extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setRequired(['customerUser', 'domain_id', 'billingAddress'])
-            ->setAllowedTypes('billingAddress', [BillingAddress::class, 'null']);
+            ->setRequired(['customerUser', 'domain_id']);
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function getExtendedTypes(): iterable
+    public function getExtendedTypes(): iterable
     {
-        yield CustomerUserUpdateFormType::class;
+        yield CustomerUserFormType::class;
     }
 }

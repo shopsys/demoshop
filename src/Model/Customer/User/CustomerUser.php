@@ -19,7 +19,6 @@ use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserData as BaseCustomer
  *     }
  * )
  * @ORM\Entity
- * @method \App\Model\Customer\BillingAddress getBillingAddress()
  */
 class CustomerUser extends BaseCustomerUser
 {

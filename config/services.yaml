@@ -47,8 +47,6 @@ services:
 
     Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface: '@App\Model\Category\CategoryDataFactory'
 
-    Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserDataFactoryInterface: '@App\Model\Customer\User\CustomerUserDataFactory'
-
     Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface: '@App\Model\Order\OrderDataFactory'
 
     Shopsys\FrameworkBundle\Model\Order\Item\OrderItemDataFactoryInterface: '@App\Model\Order\Item\OrderItemDataFactory'
@@ -68,12 +66,6 @@ services:
     Shopsys\ReadModelBundle\Product\Listed\ListedProductViewElasticFacade: ~
 
     Shopsys\FrameworkBundle\Model\Article\ArticleFactoryInterface: '@App\Model\Article\ArticleFactory'
-
-    Shopsys\FrameworkBundle\Model\Customer\BillingAddressFactoryInterface: '@App\Model\Customer\BillingAddressFactory'
-
-    Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactoryInterface: '@App\Model\Customer\BillingAddressDataFactory'
-
-    Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactoryInterface: '@App\Model\Customer\User\CustomerUserUpdateDataFactory'
 
     App\Model\Country\CountryRepository: ~
 
@@ -122,14 +114,6 @@ services:
         arguments: ['@=service("request_stack").getMasterRequest()']
 
     Shopsys\FrameworkBundle\Model\Order\OrderFactoryInterface: '@App\Model\Order\OrderFactory'
-
-    Shopsys\FrameworkBundle\Model\Customer\CustomerFacade: '@App\Model\Customer\CustomerFacade'
-
-    Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserRepository: '@App\Model\Customer\User\CustomerUserRepository'
-
-    Shopsys\FrameworkBundle\Model\Order\OrderFacade: '@App\Model\Order\OrderFacade'
-
-    Shopsys\FrameworkBundle\Model\Order\OrderRepository: '@App\Model\Order\OrderRepository'
 
     App\Model\Order\FrontOrderData: ~
 
@@ -188,3 +172,7 @@ services:
         arguments: ['%mailer_disable_delivery%']
 
     Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface: '@App\Model\Product\Brand\BrandDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserDataFactory: '@App\Model\Customer\User\CustomerUserDataFactory'
+
+    Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactory: '@App\Model\Customer\User\CustomerUserUpdateDataFactory'

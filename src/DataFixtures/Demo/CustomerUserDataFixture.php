@@ -34,6 +34,7 @@ class CustomerUserDataFixture extends AbstractReferenceFixture implements Depend
     protected const KEY_CUSTOMER_USER_DATA_EMAIL = 'email';
     protected const KEY_CUSTOMER_USER_DATA_PASSWORD = 'password';
     protected const KEY_CUSTOMER_USER_DATA_TELEPHONE = 'telephone';
+    protected const KEY_CUSTOMER_USER_DATA_DISCOUNT = 'discount';
 
     protected const KEY_ADDRESS_COMPANY_CUSTOMER = 'companyCustomer';
     protected const KEY_ADDRESS_COMPANY_NAME = 'companyName';
@@ -83,7 +84,7 @@ class CustomerUserDataFixture extends AbstractReferenceFixture implements Depend
     protected $customerUserDataFactory;
 
     /**
-     * @var \App\Model\Customer\BillingAddressDataFactory
+     * @var \Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactory
      */
     protected $billingAddressDataFactory;
 
@@ -105,7 +106,7 @@ class CustomerUserDataFixture extends AbstractReferenceFixture implements Depend
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
      * @param \App\Model\Customer\User\CustomerUserUpdateDataFactory $customerUserUpdateDataFactory
      * @param \App\Model\Customer\User\CustomerUserDataFactory $customerUserDataFactory
-     * @param \App\Model\Customer\BillingAddressDataFactory $billingAddressDataFactory
+     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressDataFactory $billingAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressDataFactoryInterface $deliveryAddressDataFactory
      * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerFactoryInterface $customerFactory
      */
@@ -174,6 +175,7 @@ class CustomerUserDataFixture extends AbstractReferenceFixture implements Depend
         $customerUserData->email = $data[self::KEY_CUSTOMER_USER_DATA][self::KEY_CUSTOMER_USER_DATA_EMAIL] ?? null;
         $customerUserData->password = $data[self::KEY_CUSTOMER_USER_DATA][self::KEY_CUSTOMER_USER_DATA_PASSWORD] ?? null;
         $customerUserData->telephone = $data[self::KEY_CUSTOMER_USER_DATA][self::KEY_CUSTOMER_USER_DATA_TELEPHONE] ?? null;
+        $customerUserData->discount = $data[self::KEY_CUSTOMER_USER_DATA][self::KEY_CUSTOMER_USER_DATA_DISCOUNT] ?? 0;
         $customerUserData->customer = $customerUserUpdateData->customerUserData->customer;
 
         $billingAddressData = $customerUserUpdateData->billingAddressData;
@@ -234,6 +236,7 @@ class CustomerUserDataFixture extends AbstractReferenceFixture implements Depend
                     self::KEY_CUSTOMER_USER_DATA_LAST_NAME => 'Anpilogov',
                     self::KEY_CUSTOMER_USER_DATA_EMAIL => 'no-reply.3@shopsys.com',
                     self::KEY_CUSTOMER_USER_DATA_PASSWORD => 'no-reply.3',
+                    self::KEY_CUSTOMER_USER_DATA_DISCOUNT => 10,
                 ],
                 self::KEY_BILLING_ADDRESS => [
                     self::KEY_ADDRESS_COMPANY_CUSTOMER => false,

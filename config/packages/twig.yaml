@@ -20,7 +20,6 @@ twig:
         - '@ShopsysFramework/Admin/Form/productCalculatedPrices.html.twig'
         - '@ShopsysFramework/Front/Form/deliveryAddressChoiceFields.html.twig'
         - '@ShopsysFramework/Admin/Form/deliveryAddressListFields.html.twig'
-        - 'Admin/Form/companyUsers.html.twig'
     strict_variables: true
     globals:
         globalMultipleFormSetting: '@Shopsys\FrameworkBundle\Component\Form\MultipleFormSetting'

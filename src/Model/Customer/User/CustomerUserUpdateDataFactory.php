@@ -14,11 +14,14 @@ use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateDataFactory as
  * @method \App\Model\Customer\User\CustomerUserUpdateData createFromCustomerUser(\App\Model\Customer\User\CustomerUser $customerUser)
  * @method \App\Model\Customer\User\CustomerUserUpdateData createAmendedByOrder(\App\Model\Customer\User\CustomerUser $customerUser, \App\Model\Order\Order $order, \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress|null $deliveryAddress)
  * @method \App\Model\Customer\User\CustomerUserUpdateData create()
+ * @method \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressData getDeliveryAddressDataFromCustomerUser(\App\Model\Customer\User\CustomerUser $customerUser)
+ * @method \Shopsys\FrameworkBundle\Model\Customer\BillingAddressData getAmendedBillingAddressDataByOrder(\App\Model\Order\Order $order, \Shopsys\FrameworkBundle\Model\Customer\BillingAddress $billingAddress)
+ * @method \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressData getAmendedDeliveryAddressDataByOrder(\App\Model\Order\Order $order, \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddress|null $deliveryAddress)
  */
 class CustomerUserUpdateDataFactory extends BaseCustomerDataFactory
 {
     /**
-     * @param \App\Model\Customer\BillingAddressData $billingAddressData
+     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressData $billingAddressData
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressData $deliveryAddressData
      * @param \App\Model\Customer\User\CustomerUserData $customerUserData
      * @return \App\Model\Customer\User\CustomerUserUpdateData

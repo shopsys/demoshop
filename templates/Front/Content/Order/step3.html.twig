@@ -10,11 +10,6 @@
             <div class="box-order__wrapper">
                 <div class="box-order">
                     <div class="box-order__info">
-                        {% set isCompanyWithMultipleUsers = customerUser is not null and customerUser.getCustomer().getBillingAddress().isCompanyWithMultipleUsers() %}
-                        {% set disabledInputClassIfCompanyWithMultipleUsers = '' %}
-                        {% if isCompanyWithMultipleUsers %}
-                            {% set disabledInputClassIfCompanyWithMultipleUsers = 'form-input-disabled' %}
-                        {% endif %}
                         <h2>{{ 'Personal data'|trans }}</h2>
                         <fieldset class="box-order__fieldset">
                             {{ form_row(form.firstName, { label: 'First name'|trans }) }}
@@ -22,26 +17,24 @@
                             {{ form_row(form.email, { label: 'E-mail'|trans }) }}
                             {{ form_row(form.telephone, { label: 'Telephone'|trans }) }}
                         </fieldset>
-                        <h2>{{ 'Company data'|trans }} <span {% if isCompanyWithMultipleUsers %} class="display-none" {% else %} class="heading-addition" {% endif %}>{{ '(If I buy on the company behalf)'|trans }}</span></h2>
+                        <h2>{{ 'Company data'|trans }} <span class="heading-addition">{{ '(If I buy on the company behalf)'|trans }}</span></h2>
                         <fieldset class="box-order__fieldset">
-                            <div {% if isCompanyWithMultipleUsers %}class="display-none"{% endif %}>
-                                {{ form_row(form.companyCustomer, {
-                                    attr: { class: 'js-checkbox-toggle', 'data-checkbox-toggle-container-id': 'js-company-fields' },
-                                    label: 'I buy on company behalf'|trans }) }}
-                            </div>
+                            {{ form_row(form.companyCustomer, {
+                                attr: { class: 'js-checkbox-toggle', 'data-checkbox-toggle-container-id': 'js-company-fields' },
+                                label: 'I buy on company behalf'|trans }) }}
                             <div id="js-company-fields">
-                                {{ form_row(form.companyName, { label: 'Company name'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
-                                {{ form_row(form.companyNumber, { label: 'Company number'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
-                                {{ form_row(form.companyTaxNumber, { label: 'Tax number'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
+                                {{ form_row(form.companyName, { label: 'Company name'|trans }) }}
+                                {{ form_row(form.companyNumber, { label: 'Company number'|trans }) }}
+                                {{ form_row(form.companyTaxNumber, { label: 'Tax number'|trans }) }}
                             </div>
                         </fieldset>
 
                         <h2>{{ 'Billing data'|trans }} <span class="heading-addition">{{ '(This address will be on the tax invoice)'|trans }}</span></h2>
                         <fieldset class="box-order__fieldset">
-                            {{ form_row(form.street, { label: 'Street'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
-                            {{ form_row(form.city, { label: 'City'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
-                            {{ form_row(form.postcode, { label: 'Postcode'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
-                            {{ form_row(form.country, { label: 'Country'|trans, attr: {readonly: isCompanyWithMultipleUsers, class: disabledInputClassIfCompanyWithMultipleUsers } }) }}
+                            {{ form_row(form.street, { label: 'Street'|trans }) }}
+                            {{ form_row(form.city, { label: 'City'|trans }) }}
+                            {{ form_row(form.postcode, { label: 'Postcode'|trans }) }}
+                            {{ form_row(form.country, { label: 'Country'|trans }) }}
                         </fieldset>
 
                         {% set isSelectedPickupPlaceTypeTransport = transport is not empty and transport.isPickUpPlaceType %}

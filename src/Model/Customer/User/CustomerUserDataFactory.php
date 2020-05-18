@@ -10,6 +10,8 @@ use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserDataFactory as BaseU
 
 /**
  * @method \App\Model\Customer\User\CustomerUserData createForCustomer(\Shopsys\FrameworkBundle\Model\Customer\Customer $customer)
+ * @method \App\Model\Customer\User\CustomerUserData createInstance()
+ * @method fillForDomainId(\App\Model\Customer\User\CustomerUserData $customerUserData, int $domainId)
  */
 class CustomerUserDataFactory extends BaseUserDataFactory
 {
@@ -43,21 +45,6 @@ class CustomerUserDataFactory extends BaseUserDataFactory
         $this->fillFromUser($customerUserData, $customerUser);
 
         return $customerUserData;
-    }
-
-    /**
-     * @param \App\Model\Customer\User\CustomerUser[] $customerUsers
-     * @return \App\Model\Customer\User\CustomerUserData[]
-     */
-    public function createMultipleUserDataFromUsers(array $customerUsers)
-    {
-        $multipleUserData = [];
-
-        foreach ($customerUsers as $customerUser) {
-            $multipleUserData[] = $this->createFromCustomerUser($customerUser);
-        }
-
-        return $multipleUserData;
     }
 
     /**

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Front;
 
-use App\Form\Front\Customer\CustomerUserFormType;
+use App\Form\Front\Customer\CustomerUserUpdateFormType;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressFacade;
 use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserFacade;
@@ -94,7 +94,7 @@ class CustomerController extends FrontBaseController
         $customerUserUpdateData = $this->customerUserUpdateDataFactory->createFromCustomerUser($customerUser);
         $customerUserUpdateData->deliveryAddressData = null;
 
-        $form = $this->createForm(CustomerUserFormType::class, $customerUserUpdateData, [
+        $form = $this->createForm(CustomerUserUpdateFormType::class, $customerUserUpdateData, [
             'domain_id' => $this->domain->getId(),
         ]);
         $form->handleRequest($request);
@@ -114,7 +114,6 @@ class CustomerController extends FrontBaseController
 
         return $this->render('Front/Content/Customer/edit.html.twig', [
             'form' => $form->createView(),
-            'customerUser' => $customerUser,
         ]);
     }
 
@@ -128,13 +127,7 @@ class CustomerController extends FrontBaseController
         $customerUser = $this->getUser();
         /* @var $customerUser \App\Model\Customer\User\CustomerUser */
 
-        if ($customerUser->getCustomer()->getBillingAddress()->isCompanyWithMultipleUsers()) {
-            $customerUsers = $this->customerUserFacade->getUsersByBillingAddressAndDomain($customerUser->getCustomer()->getBillingAddress(), $customerUser->getDomainId());
-        } else {
-            $customerUsers = [$customerUser];
-        }
-
-        $orders = $this->orderFacade->getOrderListByCustomers($customerUsers);
+        $orders = $this->orderFacade->getCustomerUserOrderList($customerUser);
         return $this->render('Front/Content/Customer/orders.html.twig', [
             'orders' => $orders,
         ]);
@@ -170,13 +163,8 @@ class CustomerController extends FrontBaseController
 
             $customerUser = $this->getUser();
             try {
-                if ($customerUser->getCustomer()->getBillingAddress()->isCompanyWithMultipleUsers()) {
-                    $order = $this->orderFacade->getByOrderNumberAndBillingAddress($orderNumber, $customerUser->getCustomer()->getBillingAddress());
                 /* @var $order \App\Model\Order\Order */
-                } else {
-                    $order = $this->orderFacade->getByOrderNumberAndUser($orderNumber, $customerUser);
-                    /* @var $order \App\Model\Order\Order */
-                }
+                $order = $this->orderFacade->getByOrderNumberAndUser($orderNumber, $customerUser);
             } catch (\Shopsys\FrameworkBundle\Model\Order\Exception\OrderNotFoundException $ex) {
                 $this->addErrorFlash(t('Order not found'));
                 return $this->redirectToRoute('front_customer_orders');

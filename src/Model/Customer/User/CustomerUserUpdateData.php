@@ -11,17 +11,11 @@ use Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserUpdateData as BaseCu
 
 /**
  * @property \App\Model\Customer\User\CustomerUserData $customerUserData
- * @property \App\Model\Customer\BillingAddressData $billingAddressData
  */
 class CustomerUserUpdateData extends BaseCustomerUserUpdateData
 {
     /**
-     * @var \App\Model\Customer\User\CustomerUserData[]|null
-     */
-    public $companyUsersData;
-
-    /**
-     * @param \App\Model\Customer\BillingAddressData $billingAddressData
+     * @param \Shopsys\FrameworkBundle\Model\Customer\BillingAddressData $billingAddressData
      * @param \Shopsys\FrameworkBundle\Model\Customer\DeliveryAddressData $deliveryAddressData
      * @param \App\Model\Customer\User\CustomerUserData $customerUserData
      */
@@ -30,7 +24,6 @@ class CustomerUserUpdateData extends BaseCustomerUserUpdateData
         DeliveryAddressData $deliveryAddressData,
         CustomerUserData $customerUserData
     ) {
-        $this->companyUsersData = [];
         parent::__construct($billingAddressData, $deliveryAddressData, $customerUserData);
     }
 }
