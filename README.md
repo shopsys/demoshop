@@ -1,5 +1,8 @@
 # Shopsys Framework Demoshop
 
+**:warning: This repository is archived.  
+For the full feature e-shop experience take a look at Shopsys Commerce Cloud ([English](https://www.shopsys.com/commerce-cloud/), [Czech](https://www.shopsys.cz/shopsys-b2c-commerce-cloud/)).**
+
 This repository is Demoshop project of Shopsys Framework - a **scalable ecommerce framework** for fast-growing ecommerce sites created and maintained by in-house developers or outsourcing agencies.
 
 shopsys/demoshop repository contains demostration project to show how you can build your own project on top of Shopsys Framework.
